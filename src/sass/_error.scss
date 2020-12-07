@@ -1,0 +1,45 @@
+@keyframes fadein {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  25% {
+    transform: translateY(40px);
+    opacity: 0.5;
+  }
+  30% {
+    transform: translateY(30px);
+  }
+  40% {
+    color: $main-grey;
+    opacity: 0.9;
+  }
+  60% {
+    color: $white;
+  }
+  80% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+}
+
+.error {
+  animation: fadein 5s cubic-bezier(0.4, 0, 0.2, 1) 1 forwards;
+}
+body > .pnotify.pnotify-positioned.error {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+  & .material-container {
+    border-radius: 0 0 8px 8px;
+    padding-top: 100px;
+    color: $main-red;
+  }
+}
