@@ -12,3 +12,23 @@ a {
 ul {
   list-style: none;
 }
+.container {
+  width: 100%;
+  padding: 0 15px;
+  @media screen and (min-width: $tablet) {
+    padding: 0 22px;
+  }
+  @media screen and (min-width: $desktop) {
+    padding: 0 20px;
+  }
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0 0 0 0);
+}
