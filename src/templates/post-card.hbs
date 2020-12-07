@@ -1,0 +1,20 @@
+{{!-- Рендерится в <main></main> по объекту из массива posts --}}
+{{#each this}}
+<div class="post-card">
+    <span class="post-card__emoji">
+        <svg width="" height="">
+            <use href=""></use>
+        </svg>
+        {{likes}}
+    </span>
+    <h2 class="post-card__title">{{title}}</h2>
+    <p class="post-card__description">{{text}}</p>
+    <p class="post-card__tags"><b>Tags:</b></p>
+    <ul class="post-card__taglist">
+        {{#each tags}}
+        <li class="post-card__tagitem">{{name}}</li>
+        {{/each}}
+    </ul>
+    <button class="button">Read more</button>
+</div>
+{{/each}}

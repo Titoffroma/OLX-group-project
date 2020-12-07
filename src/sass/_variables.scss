@@ -1,0 +1,38 @@
+/* dewice-width */
+
+$desktop: 1280px;
+$tablet: 768px;
+$phone: 480px;
+
+/* colors*/
+
+$white: #fff;
+$black: #000000;
+$logo-black: #010002;
+$main-grey: #f5f6fb;
+$bg-grey: #e5e5e5;
+$stroke-grey: #e2e3e5;
+$dark-grey: #bbbbbb;
+$accent: #ff6b09;
+
+$overlay: rgba(0, 0, 0, 0.7);
+$dim: rgba(225, 225, 225, 0.5); /* placeholder-text */
+
+/* shadows */
+
+$shade: 0px 2px 4px rgba(0, 0, 0, 0.1);
+
+/* fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+$Montserrat: 'Montserrat', 'Open Sans', sans-serif;
+$Roboto: 'Roboto', 'Open Sans', sans-serif;
+$normal: 400;
+$medium: 500;
+$bold: 700;
+
+/* transition */
+
+$transition: 500ms cubic-bezier(0.4, 0, 0.2, 1);

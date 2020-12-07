@@ -1,0 +1,61 @@
+@mixin Cardset-Responsive(
+  $Screen-width,
+  $Margin-right,
+  $Margin-bottom,
+  $Columns
+) {
+  @function Margin-in-row($margin, $cols) {
+    $result: $margin * ($cols - 1);
+    @return $result;
+  }
+  $margin-in-row: Margin-in-row($Margin-right, $Columns);
+  @if ($Screen-width < $tablet) {
+    & > li {
+      width: calc((100% - #{$margin-in-row}) / #{$Columns});
+      &:nth-child(n) {
+        margin-right: $Margin-right;
+        margin-bottom: $Margin-bottom;
+      }
+      &:nth-child(#{$Columns}n) {
+        margin-right: 0px;
+      }
+      &:nth-last-child(-n + #{$Columns}) {
+        margin-bottom: 0px;
+      }
+    }
+  } @else {
+    @if ($Screen-width < $desktop and $Screen-width >= $tablet) {
+      @media screen and (min-width: #{$Screen-width}), screen and (min-width: $phone) and (orientation: landscape) {
+        & > li {
+          width: calc((100% - #{$margin-in-row}) / #{$Columns});
+          &:nth-child(n) {
+            margin-right: $Margin-right;
+            margin-bottom: $Margin-bottom;
+          }
+          &:nth-child(#{$Columns}n) {
+            margin-right: 0px;
+          }
+          &:nth-last-child(-n + #{$Columns}) {
+            margin-bottom: 0px;
+          }
+        }
+      }
+    } @else {
+      @media screen and (min-width: #{$Screen-width}) {
+        & > li {
+          width: calc((100% - #{$margin-in-row}) / #{$Columns});
+          &:nth-child(n) {
+            margin-right: $Margin-right;
+            margin-bottom: $Margin-bottom;
+          }
+          &:nth-child(#{$Columns}n) {
+            margin-right: 0px;
+          }
+          &:nth-last-child(-n + #{$Columns}) {
+            margin-bottom: 0px;
+          }
+        }
+      }
+    }
+  }
+}

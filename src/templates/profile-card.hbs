@@ -1,0 +1,36 @@
+{{!-- Рендерится в <aside></aside> по объекту из массива users --}}
+{{#each this}}
+<div class="skills-container">
+    <h2 class="skills-container__title">My skills</h2>
+    <ul class="skills-container__list">
+        {{#each skills}}
+        <li class="skills-container__item">{{name}}</li>
+        {{/each}}
+    </ul>
+    <button class="button">Read more</button>
+</div>
+
+<div class="about-me-container">
+    <h2 class="about-me-container__title">About me</h2>
+    <p class="about-me-container__description">{{aboutMe}}</p>
+    <button class="button">Read more</button>
+</div>
+
+<div class="contacts-container">
+    {{!-- <h2 class="about-me-container__title">Contacts</h2> --}}
+    <ul class="contacts-container__list">
+        <li class="contacts-container__item">
+            <a class="contacts-container__link" href="mailto:{{contacts.email}}">{{contacts.email}}</a>
+        </li>
+        <li class="contacts-container__item">
+            <a class="contacts-container__link" href="tel:{{contacts.phone}}">{{contacts.phone}}</a>
+        </li>
+        <li class="contacts-container__item">
+            <a class="contacts-container__link" href="{{contacts.linkedIn}}">{{contacts.linkedIn}}</a>
+        </li>
+        <li class="contacts-container__item">
+            <a class="contacts-container__link" href="{{contacts.slack}}">{{contacts.slack}}</a>
+        </li>
+    </ul>
+</div>
+{{/each}}
