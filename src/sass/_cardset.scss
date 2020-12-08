@@ -1,0 +1,102 @@
+.cardset {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  @include Cardset-Responsive($phone, 20px, 20px, 1);
+  @include Cardset-Responsive($tablet, 20px, 20px, 2);
+  @include Cardset-Responsive($desktop, 20px, 20px, 4);
+  &__link {
+    position: relative;
+    overflow: hidden;
+    box-shadow: $shade;
+    &:hover,
+    &:focus {
+      & .cardset__overlay {
+        transform: translateY(-100%);
+        opacity: 1;
+      }
+      & .cardset__icons {
+        opacity: 1;
+      }
+      & .cardset__image {
+        object-position: top;
+      }
+    }
+  }
+  &__image {
+    object-fit: cover;
+    object-position: center center;
+    will-change: object-position;
+    transition: object-position $transition;
+    width: 100%;
+    height: calc((100vw - 30px) * 275 / 290);
+    @media screen and (min-width: $tablet),
+      screen and (min-width: $phone) and (orientation: landscape) {
+      height: calc((100vw - 64px) / 2 * 275 / 352);
+    }
+    @media screen and (min-width: $desktop) {
+      height: calc((100vw - 100px) / 4 * 275 / 295);
+    }
+  }
+  &__description {
+    position: relative;
+    z-index: 10;
+    height: 75px;
+    width: 100%;
+    padding: 20px;
+    background: $white;
+  }
+  &__title {
+    font-weight: $light;
+    color: $black;
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+  &__overlay {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    height: 100%;
+    width: 100%;
+    background: $overlay;
+    padding: 20px;
+    padding-bottom: 95px;
+    opacity: 0;
+    will-change: opacity, transform;
+    transition: transform $transition, opacity $transition;
+    & .icons-container {
+      width: 24px;
+      height: 24px;
+      &:first-child {
+        margin-bottom: 10px;
+      }
+      &:last-child {
+        margin-top: auto;
+      }
+    }
+  }
+  &__icons {
+    font-size: 14px;
+    color: $white;
+    opacity: 0;
+    transition: opacity $transition;
+  }
+  &__price {
+    font-weight: $bold;
+    font-size: 14px;
+    color: $black;
+    &.new {
+      color: $accent;
+    }
+    &.old {
+      color: $dark-grey;
+    }
+    &.del {
+      color: $black;
+      text-decoration: line-through;
+      margin-right: 10px;
+    }
+  }
+}
