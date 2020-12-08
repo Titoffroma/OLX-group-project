@@ -1,31 +1,16 @@
-<section class="container">
-
-    <ul class="categorylist">
-
-        {{#each category}}
-        <li class="categorylist__item">
-            <div class="categorylist__description">
-                <button class="categorylist__button left">
-                    <svg id="icon-left" width="10" height="10">
-                        <use href="./img/sprite.svg#icon-lef" class="categorylist__icon"></use>
-                    </svg>
-                </button>
-                <h3 class="categorylist__title">{{this}}</h3>
-                <a href="" class="categorylist__link">Дивитися всі</a>
-                <button class="categorylist__button right">
-                    <svg id="icon-right" width="10" height="10">
-                        <use href="./img/sprite.svg#icon-right" class="categorylist__icon"></use>
-                    </svg>
-                </button>
-            </div>
-            <ul class="cardset">
-                {{#each this}}
-                <li class="cardset__item"></li>
-                {{/each}}
-            </ul>
-        </li>
-        {{/each}}
-
-    </ul>
-    <a href="" class="btn-right"></a>
-</section>
+<ul class="categorylist">
+    {{#each category}}
+    <li class="categorylist__item">
+        <div class="categorylist__description">
+            <button class="categorylist__btn left">
+                <span class="material-icons">keyboard_arrow_left</span>
+            </button>
+            <h3 class="categorylist__title">{{this}}</h3>
+            <a href="" class="categorylist__link">Дивитися всі</a>
+            <button class="categorylist__btn right">
+                <span class="material-icons">keyboard_arrow_right</span>
+            </button>
+        </div>
+    </li>
+    {{/each}}
+</ul>
