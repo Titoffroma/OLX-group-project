@@ -1,0 +1,82 @@
+.pop-up-search-backdrop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+
+  background-color: $overlay;
+}
+
+.pop-up-search-container {
+  position: relative;
+  padding: 50px 20px 60px;
+  width: 290px;
+  height: 152px;
+  background-color: $accent;
+
+  @media screen and (min-width: $tablet) {
+    padding: 94px 50px;
+    width: 650px;
+    height: 230px;
+  }
+  @media screen and (min-width: $desktop) {
+    padding: 94px 105px;
+    width: 860px;
+    height: 230px;
+  }
+}
+
+.pop-up-search-input {
+  padding: 7px 10px;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 1px solid $black;
+  background-color: transparent;
+  color: white;
+  width: 100%;
+  height: 100%;
+
+  &::placeholder {
+    color: white;
+    font-family: $Roboto;
+    font-style: normal;
+    font-weight: $medium;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 0.02em;
+
+    color: $white;
+
+    opacity: 0.5;
+  }
+}
+
+.pop-up-search-material-icon-search {
+  position: absolute;
+  top: 56px;
+  right: 30px;
+  color: $white;
+
+  @media screen and (min-width: $tablet) {
+    top: 100px;
+    right: 70px;
+  }
+  @media screen and (min-width: $desktop) {
+    top: 100px;
+    right: 125px;
+  }
+}
+
+.pop-up-search-material-icon-clear {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: $white;
+
+  @media screen and (min-width: $tablet) {
+    top: 25px;
+    right: 20px;
+  }
+}

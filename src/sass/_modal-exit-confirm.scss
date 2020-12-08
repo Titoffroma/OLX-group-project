@@ -25,6 +25,7 @@
   font-size: 12px;
   line-height: 14px;
   letter-spacing: 0.02em;
+  cursor: pointer;
 
   width: 119px;
   height: 50px;
@@ -36,10 +37,9 @@
   }
 }
 
-.modal-exit-confirm-container-btn-cansel {
+.modal-exit-confirm-container-btn-cancel {
   background-color: $main-grey;
   color: $black;
-  margin-left: auto;
 }
 
 .modal-exit-confirm-container-btn-out {
@@ -73,8 +73,8 @@
   }
 }
 
-.material-icons.md-14 {
-  font-size: 14px;
+.material-icons.md-24 {
+  font-size: 24px;
   color: $black;
-  font-weight: $bold;
+  cursor: pointer;
 }
