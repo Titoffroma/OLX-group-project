@@ -53,11 +53,22 @@
   }
 }
 
-.pop-up-search-material-icon-search {
+.icon-search-btn {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  color: $white;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+}
+
+.pop-up-search-material-icon-search {
   top: 56px;
   right: 30px;
-  color: $white;
 
   @media screen and (min-width: $tablet) {
     top: 100px;
@@ -70,10 +81,8 @@
 }
 
 .pop-up-search-material-icon-clear {
-  position: absolute;
   top: 15px;
   right: 15px;
-  color: $white;
 
   @media screen and (min-width: $tablet) {
     top: 25px;

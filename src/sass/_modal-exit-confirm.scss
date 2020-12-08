@@ -72,17 +72,20 @@
 
 .modal-exit-confirm-container-btn-clear {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: 20px;
   right: 20px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: $black;
 
   @media screen and (min-width: $tablet) {
     top: 30px;
     right: 30px;
   }
-}
-
-.material-icons.md-24 {
-  font-size: 24px;
-  color: $black;
-  cursor: pointer;
 }

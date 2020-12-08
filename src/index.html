@@ -7,6 +7,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no"
     />
     <title>OLX-team-project</title>
+
     <div class="modal-exit-confirmation-backdrop visually-hidden">
       <div class="modal-exit-confirmation">
         <div class="modal-exit-confirm-container">
@@ -27,22 +28,31 @@
               Відміна
             </button>
           </div>
-          <div class="modal-exit-confirm-container-btn-clear">
+
+          <button class="modal-exit-confirm-container-btn-clear" type="button">
             <span class="material-icons md-24">clear</span>
-          </div>
+          </button>
         </div>
       </div>
     </div>
 
-    <div class="pop-up-search-backdrop">
+    <div class="pop-up-search-backdrop visually-hidden">
       <div class="pop-up-search-container">
-        <input class="pop-up-search-input" type="text" placeholder="ПОШУК" />
-        <span class="material-icons pop-up-search-material-icon-search">
-          search
-        </span>
-        <span class="material-icons pop-up-search-material-icon-clear">
-          clear
-        </span>
+        <form action="">
+          <input class="pop-up-search-input" type="text" placeholder="ПОШУК" />
+          <button
+            class="pop-up-search-material-icon-search icon-search-btn"
+            type="submit"
+          >
+            <span class="material-icons"> search </span>
+          </button>
+        </form>
+        <button
+          class="pop-up-search-material-icon-clear icon-search-btn"
+          type="button"
+        >
+          <span class="material-icons"> clear </span>
+        </button>
       </div>
     </div>
   </head>
