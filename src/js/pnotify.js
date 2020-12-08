@@ -21,4 +21,4 @@ function removeError() {
   if (errorRef) errorRef.remove();
 }
 
-export default { pushError, removeError };
+export { pushError, removeError };

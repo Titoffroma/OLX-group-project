@@ -40,6 +40,7 @@ body > .pnotify.pnotify-positioned.error {
   & .material-container {
     border-radius: 0 0 8px 8px;
     padding-top: 100px;
-    color: $main-red;
+    background: $main-red;
+    color: $white;
   }
 }
