@@ -1,0 +1,59 @@
+.header {
+  &_logo__link {
+    @media screen and (max-width: $tablet) {
+      width: 80px;
+      height: 20px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      width: 56px;
+      height: 22px;
+    }
+  }
+
+  &_registration {
+    font-weight: $medium;
+    font-size: 12px;
+    line-height: 1.17;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: $black;
+  }
+
+  &_button__create {
+    font-weight: $medium;
+    font-size: 12px;
+    line-height: 1.17;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    background-color: $accent;
+    color: $white;
+
+    @media screen and (max-width: $tablet) {
+      width: 188px;
+      height: 70px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      width: 214px;
+      height: 70px;
+    }
+  }
+
+  &_filter {
+    font-weight: $bold;
+    font-size: 14px;
+    line-height: 1.14;
+    text-align: center;
+    letter-spacing: 0.02em;
+    color: $black;
+  }
+
+  &_filter__replay {
+    font-weight: $normal;
+    font-size: 12px;
+    line-height: 1.25;
+    letter-spacing: 0.03em;
+    color: $black;
+  }
+}
