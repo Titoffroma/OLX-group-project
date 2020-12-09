@@ -1,0 +1,16 @@
+<ul class="categorylist">
+    {{#each category}}
+    <li class="categorylist__item">
+        <div class="categorylist__description">
+            <button class="categorylist__btn left">
+                <span class="material-icons">keyboard_arrow_left</span>
+            </button>
+            <h3 class="categorylist__title">{{this}}</h3>
+            <a href="" class="categorylist__link">Дивитися всі</a>
+            <button class="categorylist__btn right">
+                <span class="material-icons">keyboard_arrow_right</span>
+            </button>
+        </div>
+    </li>
+    {{/each}}
+</ul>
