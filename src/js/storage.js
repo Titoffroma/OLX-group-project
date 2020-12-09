@@ -28,4 +28,4 @@ const remove = key => {
   }
 };
 
-export default { load, save, remove };
+export { load, save, remove };
