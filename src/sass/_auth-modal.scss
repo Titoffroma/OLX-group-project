@@ -29,6 +29,7 @@
     }
   }
   &-register {
+    background-color: $main-grey;
     border: 1px solid $dark-grey;
   }
   &-login {
@@ -59,7 +60,16 @@
   height: 56px;
   padding: 20px 0 20px 25px;
   border: 1px solid $dark-grey;
-  color: $dark-grey;
+  transition: border $transition;
+  &:active,
+  &:focus {
+    outline: none;
+    border-color: $accent;
+  }
+  &::placeholder {
+    color: $dark-grey;
+  }
+
   &:not(:last-of-type) {
     margin-bottom: 20px;
     @media screen and(min-width:$tablet) {
@@ -78,6 +88,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 1.16;
+  cursor: pointer;
 }
 .authorization-button-container {
   margin-top: 30px;
@@ -92,8 +103,15 @@
   align-items: center;
   margin-bottom: 40px;
   background-color: $white;
-  border: none;
+  border: transparent;
   cursor: pointer;
+  transition: border $transition;
+
+  &:focus,
+  &:hover,
+  &:active {
+    border: 1px solid $accent;
+  }
 
   &-icon {
     margin-right: 10px;
