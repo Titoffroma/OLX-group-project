@@ -1,14 +1,14 @@
 
-// Пример
+// example
 // const openModal = document.querySelector('.open')
 // const closeModal = document.querySelector('.close')
 // const backdrop = document.querySelector('.modal-exit-confirmation-backdrop')
 // const closeByBtn = document.querySelector('.modal-exit-confirm-container-btn-clear')
 
 
-openModal.addEventListener('click', onClickOpenModal)
-backdrop.addEventListener('click', onClickOverlayCloseModal)
-closeModal.addEventListener('click', onClickCloseModal)
+// openModal.addEventListener('click', onClickOpenModal)
+// backdrop.addEventListener('click', onClickOverlayCloseModal)
+// closeModal.addEventListener('click', onClickCloseModal)
 
 
 function onClickOpenModal(event) {
