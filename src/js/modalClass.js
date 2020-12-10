@@ -60,5 +60,6 @@ class Modal {
 const myModal = new Modal(hbsFunctions);
 
 export default myModal;
+
 // <button data-modal="true">
 // <el data-close>
