@@ -36,9 +36,9 @@ class FetchMe {
       i += 1;
     }
   }
-  logout() {
+  async logout() {
     const opt = { point: this.points.logout, method: 'POST', logout: true };
-    this.getRequest(opt);
+    await this.getRequest(opt);
     remove('Token');
     this.token = {
       accessToken: '',
@@ -113,49 +113,3 @@ class FetchMe {
 }
 const fetchFunctions = new FetchMe();
 export default fetchFunctions;
-
-// Небольшая инструкция
-// ///////1/ Перед отправкой запросов нужно создать объект для body запроса,
-// если этого требует API(для метода 'GET' не нужно).
-// Напрмер для логина в body отправляется такой объект:
-const logInfo = {
-  email: 'titoff.roma@gmail.com',
-  password: 'qweqwe12',
-};
-// //////2/ Затем нужно создать объект параметров запроса, он включает в себя до 4 параметров,
-// в зависимости от запроса(как в доках API)
-// point - обязательный параметр, он указывает на какой адрес отправлять запрос
-// Все point для нашего API указаны к конструкторе класса - в свойстве points
-// Например для логина создается такой объект параметров запроса
-const request = {
-  point: fetchFunctions.points.login,
-  body: logInfo,
-  method: 'POST',
-  //query: '1'
-};
-// Например для для получения данных пользователя создается такой объект параметров запроса
-const newRequest = {
-  point: fetchFunctions.points.user,
-};
-// //////3/ Чтоб получить информацию с бэкэнда в классе имеются 3 метода:
-//
-async function some() {
-  let response = await fetchFunctions.login(request);
-
-  console.log('login -', response);
-
-  response = fetchFunctions.logout();
-
-  console.log('logout - всегда вернет undefined - ', response);
-
-  response = await fetchFunctions.getRequest(newRequest);
-
-  console.log('get user - unauthorized -', response);
-
-  response = await fetchFunctions.login(request);
-
-  response = await fetchFunctions.getRequest(newRequest);
-
-  console.log('get user - authorized -', response);
-}
-some();
