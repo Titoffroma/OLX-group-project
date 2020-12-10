@@ -6,7 +6,6 @@ const registerBtn = document.querySelector('.authorization-modal-register');
 import { load, save, remove } from './storage';
 import { pushError, removeError } from './pnotify';
 import fetchFunctions from './fetchMe';
-if (!load('Token')) authBackdrop.setAttribute('data-modal', true);
 async function fetchLogin() {
   const info = {
     email: loginInput.value,
