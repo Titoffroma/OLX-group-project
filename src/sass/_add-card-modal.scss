@@ -318,7 +318,7 @@
 
 .checkbox-field {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
 
   font-weight: 300;
@@ -350,7 +350,7 @@
 
 .checkbox-label {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
 
   &::before {
