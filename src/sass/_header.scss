@@ -28,10 +28,7 @@ a {
 
   &_logo__link {
     display: block;
-
-    @media screen and (max-width: 767px) {
-      margin-left: 90px;
-    }
+    margin-left: 90px;
 
     @media screen and (min-width: $tablet) {
       width: 80px;
@@ -57,9 +54,10 @@ a {
     color: $black;
 
     margin-right: 19px;
+    display: none;
 
-    @media screen and (max-width: 1279px) {
-      display: none;
+    @media screen and (min-width: $desktop) {
+      display: block;
     }
   }
 
@@ -68,8 +66,10 @@ a {
 
     margin-right: 21px;
 
-    @media screen and (max-width: 767px) {
-      display: none;
+    display: none;
+
+    @media screen and (min-width: $tablet) {
+      display: block;
     }
 
     @media screen and (min-width: $desktop) {
@@ -85,14 +85,12 @@ a {
     text-transform: uppercase;
     background-color: $accent;
     color: $white;
-
-    @media screen and (max-width: 767px) {
-      display: none;
-    }
+    display: none;
 
     @media screen and (min-width: $tablet) {
       width: 188px;
       height: 70px;
+      display: block;
     }
 
     @media screen and (min-width: $desktop) {
@@ -116,9 +114,10 @@ a {
     line-height: 1.25;
     letter-spacing: 0.03em;
     color: $black;
+    display: none;
 
-    @media screen and (max-width: 767px) {
-      display: none;
+    @media screen and (min-width: $tablet) {
+      display: block;
     }
   }
 }
@@ -126,6 +125,7 @@ a {
 .header_filter__wrap {
   display: flex;
   align-items: center;
+  width: 100%;
 
   @media screen and (min-width: $tablet) {
     height: 69px;
@@ -135,6 +135,7 @@ a {
 .header_filter_button {
   display: flex;
   align-items: center;
+  margin-left: auto;
 }
 .header_filter {
   display: flex;
@@ -151,9 +152,10 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 70px;
 
-  @media screen and (max-width: 767px) {
-    height: 70px;
+  @media screen and (min-width: $tablet) {
+    height: auto;
   }
 
   @media screen and (min-width: $desktop) {
@@ -164,9 +166,9 @@ a {
 .header_button__replay {
   margin-right: 14px;
   margin-left: 40px;
-
-  @media screen and (max-width: 767px) {
-    display: none;
+  display: none;
+  @media screen and (min-width: $tablet) {
+    display: block;
   }
 }
 
@@ -199,8 +201,9 @@ a {
 }
 
 .header_filter {
-  @media screen and (max-width: 1279px) {
-    display: none;
+  display: none;
+  @media screen and (min-width: $desktop) {
+    display: flex;
   }
 
   &.is-open {
@@ -209,7 +212,7 @@ a {
 }
 
 .header_button_menu_tablet {
-  @media screen and (min-width: $tablet) and (max-width: 1279px) {
+  @media screen and (min-width: $tablet) {
     display: flex;
     justify-content: space-between;
   }
