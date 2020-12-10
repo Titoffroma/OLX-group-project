@@ -44,8 +44,8 @@ class Modal {
     }
   }
   onClickCloseModal(event) {
-    event.preventDefault();
     if (event.target.hasAttribute('data-close')) {
+      event.preventDefault();
       this.closeModal();
     }
   }

@@ -7,7 +7,6 @@ body {
   font-size: 14px;
   color: $black;
   height: 100vh;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -38,9 +37,10 @@ button {
     padding: 0 20px;
   }
 }
-main .container {
-  overflow-y: scroll;
-}
+// main .container {
+//   height: 100vh;
+//   overflow-y: scroll;
+// }
 .visually-hidden {
   position: absolute;
   width: 1px;

@@ -20,7 +20,7 @@ class FetchMe {
       fav: '/call/favourite/',
       myFav: '/call/favourites/',
       myCalls: '/call/own/',
-      find: '/call/find/',
+      find: '/call/find?search=',
       cat: '/call/categories',
     };
     this.headers = {
@@ -72,6 +72,7 @@ class FetchMe {
     const url = this.URL + point + query;
     return await this.sendRequest(url, par);
   }
+
   async sendRequest(url, opt) {
     try {
       if (!opt)
@@ -92,6 +93,7 @@ class FetchMe {
       console.log('mistake', err.message);
     }
   }
+
   async refresh(url, opt) {
     const option = {
       method: 'POST',

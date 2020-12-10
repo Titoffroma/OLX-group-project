@@ -1,21 +1,4 @@
 <ul class="categorylist">
-    <li class="categorylist__item">
-        <div class="categorylist__description">
-            <button class="categorylist__btn left">
-                <span class="material-icons">keyboard_arrow_left</span>
-            </button>
-            <h3 class="categorylist__title other"> {{sales}}<span class="border"></span></h3>
-            <h3 class="categorylist__title ">Різне</h3>
-            <a href="" class="categorylist__link">Дивитися всі</a>
-            <button class="categorylist__btn right">
-                <span class="material-icons">keyboard_arrow_right</span>
-            </button>
-        </div>
-
-    </li>
-</ul>
-
-<ul class="categorylist">
     {{#each this}}
     <li class="categorylist__item">
         <div class="categorylist__description">
@@ -28,6 +11,7 @@
                 <span class="material-icons">keyboard_arrow_right</span>
             </button>
         </div>
+        {{>./cardset}}
     </li>
     {{/each}}
 </ul>

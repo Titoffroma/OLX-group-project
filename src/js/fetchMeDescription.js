@@ -1,4 +1,5 @@
 import renderCards from '../templates/cardset.hbs';
+import category from '../templates/category.hbs';
 
 // Небольшая инструкция
 // Импортирум экземпляр класса
@@ -53,15 +54,28 @@ async function some() {
   response = await fetchFunctions.getRequest(newRequest);
   console.log('get user - authorized -', response);
 }
-//some();
+// some();
 
-// //////4/ Раскоментируйте вызов функции trySome() для демонстрации рендера разметки по запросу
-async function trySome() {
-  const tryRequest = { point: fetchFunctions.points.call, query: '?page=1' };
-  const response = await fetchFunctions.getRequest(tryRequest);
-  console.log('Yo', response);
-  const markup = renderCards(response);
-  document.querySelector('main div.container').innerHTML = markup;
-}
+// //////4/ Раскоментируйте вызов функции для демонстрации рендера разметки по запросу
+// (async () => {
+//   const request = {
+//     point: fetchFunctions.points.login,
+//     body: logInfo,
+//     method: 'POST',
+//   };
+//   fetchFunctions.login(request);
+//   const searchQuery = {
+//     point: fetchFunctions.points.call,
+//     query: '?page=2',
+//   };
+//   const searchResult = await fetchFunctions.getRequest(searchQuery);
+//   console.log(searchResult);
+//   let orderedSearch = [];
+//   for (let key in searchResult) {
+//     orderedSearch.push(...searchResult[key]);
+//   }
 
-// trySome();
+//   document.querySelector('main div.container').innerHTML = category(
+//     searchResult,
+//   );
+// })();
