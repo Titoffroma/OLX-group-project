@@ -1,20 +1,47 @@
-.modal-product {
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+
   display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: $overlay;
+
+  opacity: 1;
+  transition: opacity $transition;
+}
+.modal-product {
+  display: block;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 
-  max-width: 860px;
-  width: 100%;
+  padding: 55px 20px 60px;
+  width: 290px;
+  margin: 0 auto;
+  background-color: $white;
 
-  max-height: 670px;
-  height: 100%;
+  @media screen and (min-width: $tablet) {
+    display: flex;
+    padding: 55px 55px 60px;
+    width: 725px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    padding: 55px 105px 60px;
+    width: 860px;
+  }
 }
 .button-close {
   position: absolute;
-  top: 30px;
-  right: 30px;
+  top: 20px;
+  right: 20px;
 
   background-color: $white;
 
@@ -24,6 +51,7 @@
 
   & .material-icons {
     display: flex;
+
     width: 24px;
     height: 24px;
 
@@ -32,14 +60,16 @@
 
     &:hover,
     &:focus {
-      background-color: $accent;
       cursor: pointer;
-      color: $white;
     }
   }
+  @media screen and (min-width: $tablet) {
+    top: 30px;
+    right: 30px;
+  }
 }
+
 .modal-foto-box {
-  margin: 50px 0px 0px 60px;
 }
 .modal-product_foto {
   & img {
@@ -51,13 +81,15 @@
 
 .foto-wrapper {
   margin-top: 10px;
+  @media screen and (max-width: $tablet) {
+    display: none;
+  }
 }
 .foto-list {
   display: flex;
   height: 73px;
   &_atem {
     overflow: hidden;
-
     & img {
       max-width: 100%;
       height: auto;
@@ -69,9 +101,11 @@
   }
 }
 
-.modal-content {
-  margin-top: 50px;
-  margin-left: 40px;
+.modal-content-box {
+  margin-bottom: 20px;
+  @media screen and (min-width: $tablet) {
+    display: none;
+  }
 
   &_title {
     font-weight: $medium;
@@ -80,7 +114,6 @@
 
     margin-bottom: 5px;
   }
-
   &_code {
     font-size: 12px;
     line-height: 1.16;
@@ -89,27 +122,97 @@
     margin-bottom: 30px;
   }
 
+  @media screen and (min-width: $tablet) {
+    margin-bottom: 30px;
+  }
+}
+.modal-content-box-down {
+  @media screen and (max-width: $tablet) {
+    display: none;
+  }
+}
+
+.modal-content-wrapper {
   &_price {
     font-weight: $medium;
     font-size: 18px;
     line-height: 1.16;
 
-    margin-bottom: 40px;
+    margin-bottom: 30px;
+    @media screen and (min-width: $tablet) {
+      margin-bottom: 40px;
+    }
+  }
+  @media screen and (min-width: $tablet) {
+    margin-left: 40px;
   }
 }
 
-.modal-button-info {
+.modal-button-box {
+  position: relative;
+  opacity: 1;
+  transition: opacity $transition;
+
   display: inline-block;
   margin-bottom: 20px;
   text-align: center;
+
   color: $white;
   background-color: $accent;
   padding: 18px 60px;
-  min-width: 255px;
+  width: 255px;
   border: none;
-  cursor: pointer;
-  text-decoration: none;
 
+  font-weight: $medium;
+  font-size: 12px;
+  line-height: 1.16;
+  @media screen and (min-width: $tablet) {
+    width: 300px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: 255px;
+  }
+}
+.modal-button-box-info {
+  position: absolute;
+  top: 185px;
+  opacity: 0;
+  transition: opacity $transition;
+
+  margin-bottom: 20px;
+  text-align: center;
+
+  padding: 12px 26px;
+  width: 255px;
+  border: 2px solid #ff6b09;
+
+  line-height: 1.16;
+  @media screen and (min-width: $tablet) {
+    width: 300px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: 255px;
+  }
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.button-info_accent {
+  font-weight: $medium;
+  font-size: 18px;
+  line-height: 1.16;
+}
+
+.button-info_text {
+  font-weight: $light;
+  font-size: 12px;
+  line-height: 1.16;
+}
+
+.button-info_text-number {
   font-weight: $medium;
   font-size: 12px;
   line-height: 1.16;
@@ -128,7 +231,6 @@
   }
 
   &_title {
-    margin-bottom: 10px;
     font-size: 12px;
     line-height: 1.16;
     color: $dark-grey;
@@ -141,17 +243,17 @@
     & .material-icons {
       color: $dark-grey;
       display: flex;
+      align-items: center;
+      justify-content: center;
       width: 24px;
       height: 24px;
 
-      border-radius: 50%;
       background-color: $white;
 
       &:hover,
       &:focus {
-        background-color: $accent;
         cursor: pointer;
-        color: $white;
+        color: $accent;
       }
     }
   }

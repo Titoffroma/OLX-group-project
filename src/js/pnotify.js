@@ -14,6 +14,9 @@ function pushError(err) {
     type: 'error',
     addClass: 'error',
   });
+  setTimeout(() => {
+    removeError();
+  }, 5000);
 }
 
 function removeError() {
