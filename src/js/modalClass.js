@@ -1,6 +1,8 @@
 import renderCardlist from '../templates/card.hbs';
 import renderAddCard from '../templates/add-card.hbs';
-const hbsFunctions = [renderCardlist, renderAddCard];
+import popupSearch from '../templates/pop-up-search.hbs'
+import popupExitConfirm from '../templates/pop-up-exit-confirm.hbs'
+const hbsFunctions = [renderCardlist, renderAddCard, popupSearch, popupExitConfirm ];
 
 class Modal {
   constructor(functions) {
