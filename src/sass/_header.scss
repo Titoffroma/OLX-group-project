@@ -1,15 +1,3 @@
-.container {
-  @media screen and (min-width: $desktop) {
-    max-width: $desktop;
-  }
-}
-
-button {
-  border: none;
-  outline: none;
-  background-color: none;
-}
-
 .header_button__search {
   background-color: $white;
 }
