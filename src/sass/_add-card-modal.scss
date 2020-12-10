@@ -4,27 +4,22 @@
   left: 0;
   width: 100%;
   height: 100%;
-  padding: 15px 15px 30px 15px;
   overflow-y: scroll;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   background: $overlay;
 
   opacity: 1;
   transition: opacity $transition;
-
-  @media screen and (min-width: $tablet) {
-    padding: 165px 20px;
-  }
-
-  @media screen and (min-width: $desktop) {
-    padding: 125px 210px;
-  }
 }
 
 .add-card__modal {
-  position: relative;
   padding: 55px 20px 60px;
   width: 290px;
+  margin: 0 auto;
   background-color: $white;
 
   font-family: Roboto;
@@ -47,10 +42,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
-  position: absolute;
-  top: 15px;
-  right: 15px;
+  margin-left: auto;
 
   width: 24px;
   height: 24px;
@@ -97,6 +89,7 @@
   width: 100%;
   font-size: 14px;
   line-height: 1.14;
+  overflow: hidden;
 
   @media screen and (min-width: $tablet) {
     display: flex;
@@ -106,10 +99,11 @@
 }
 
 .add-card__subtitle {
-  display: inline-block;
+  display: block;
   margin-bottom: 10px;
 
   @media screen and (min-width: $tablet) {
+    display: inline-block;
     margin-bottom: 0;
   }
 }
@@ -125,13 +119,7 @@
   border: 1px solid $dark-grey;
   cursor: text;
 
-  &.select-input {
-    cursor: pointer;
-  }
-
-  @media screen and (max-width: $phone) {
-    width: 100%;
-  }
+  width: 100%;
 
   @media screen and (min-width: $tablet) {
     width: 458px;
@@ -139,6 +127,9 @@
 
   @media screen and (min-width: $desktop) {
     width: 440px;
+  }
+  &.select-input {
+    cursor: pointer;
   }
 }
 
@@ -162,6 +153,7 @@
   & .icon-btn {
     top: 43px;
     right: 15px;
+    position: absolute;
 
     @media screen and (min-width: $tablet) {
       top: 17px;
