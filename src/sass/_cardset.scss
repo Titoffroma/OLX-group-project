@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  @include Cardset-Responsive($phone, 20px, 20px, 1);
+  @include Cardset-Responsive($phone, 15px, 15px, 1);
   @include Cardset-Responsive($tablet, 20px, 20px, 2);
   @include Cardset-Responsive($desktop, 20px, 20px, 4);
   &__link {
