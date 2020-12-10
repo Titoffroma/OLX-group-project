@@ -1,0 +1,171 @@
+.modal-product {
+  display: flex;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  max-width: 860px;
+  width: 100%;
+
+  max-height: 670px;
+  height: 100%;
+}
+.button-close {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+
+  background-color: $white;
+
+  border: none;
+
+  text-decoration: none;
+
+  & .material-icons {
+    display: flex;
+    width: 24px;
+    height: 24px;
+
+    border-radius: 50%;
+    background-color: $white;
+
+    &:hover,
+    &:focus {
+      background-color: $accent;
+      cursor: pointer;
+      color: $white;
+    }
+  }
+}
+.modal-foto-box {
+  margin: 50px 0px 0px 60px;
+}
+.modal-product_foto {
+  & img {
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+  }
+}
+
+.foto-wrapper {
+  margin-top: 10px;
+}
+.foto-list {
+  display: flex;
+  height: 73px;
+  &_atem {
+    overflow: hidden;
+
+    & img {
+      max-width: 100%;
+      height: auto;
+      margin: auto;
+    }
+  }
+  &_atem:not(:first-child) {
+    margin-left: 10px;
+  }
+}
+
+.modal-content {
+  margin-top: 50px;
+  margin-left: 40px;
+
+  &_title {
+    font-weight: $medium;
+    font-size: 18px;
+    line-height: 1.16;
+
+    margin-bottom: 5px;
+  }
+
+  &_code {
+    font-size: 12px;
+    line-height: 1.16;
+    color: $dark-grey;
+
+    margin-bottom: 30px;
+  }
+
+  &_price {
+    font-weight: $medium;
+    font-size: 18px;
+    line-height: 1.16;
+
+    margin-bottom: 40px;
+  }
+}
+
+.modal-button-info {
+  display: inline-block;
+  margin-bottom: 20px;
+  text-align: center;
+  color: $white;
+  background-color: $accent;
+  padding: 18px 60px;
+  min-width: 255px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+
+  font-weight: $medium;
+  font-size: 12px;
+  line-height: 1.16;
+}
+
+.actions-list {
+  display: flex;
+  margin-bottom: 32px;
+}
+.actions-atem {
+  display: flex;
+  align-items: center;
+
+  &:first-child {
+    margin-right: 47px;
+  }
+
+  &_title {
+    margin-bottom: 10px;
+    font-size: 12px;
+    line-height: 1.16;
+    color: $dark-grey;
+  }
+  &_button {
+    border: none;
+
+    text-decoration: none;
+
+    & .material-icons {
+      color: $dark-grey;
+      display: flex;
+      width: 24px;
+      height: 24px;
+
+      border-radius: 50%;
+      background-color: $white;
+
+      &:hover,
+      &:focus {
+        background-color: $accent;
+        cursor: pointer;
+        color: $white;
+      }
+    }
+  }
+}
+
+.modal-text-title {
+  margin-bottom: 10px;
+  font-size: 12px;
+  line-height: 1.16;
+  color: $dark-grey;
+}
+
+.modal-text {
+  font-weight: $light;
+  font-size: 14px;
+  line-height: 1.14;
+}
