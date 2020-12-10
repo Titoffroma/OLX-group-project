@@ -20,6 +20,8 @@ class FetchMe {
       fav: '/call/favourite/',
       myFav: '/call/favourites/',
       myCalls: '/call/own/',
+      find: '/call/find/',
+      cat: '/call/categories',
     };
     this.headers = {
       'Content-Type': 'application/json',
