@@ -1,4 +1,4 @@
-ul class="categorylist">
+<ul class="categorylist">
     {{#each this}}
     <li class="categorylist__item">
         <div class="categorylist__description">
@@ -11,6 +11,7 @@ ul class="categorylist">
                 <span class="material-icons">keyboard_arrow_right</span>
             </button>
         </div>
+        {{>./cardset}}
     </li>
     {{/each}}
 </ul>

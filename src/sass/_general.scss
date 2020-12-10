@@ -4,6 +4,12 @@
 }
 body {
   font-family: $Roboto;
+  font-size: 14px;
+  color: $black;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 img,
 a {
@@ -19,6 +25,7 @@ button {
   border: none;
   outline: none;
   background-color: none;
+  cursor: pointer;
 }
 .container {
   width: 100%;
@@ -30,6 +37,10 @@ button {
     padding: 0 20px;
   }
 }
+// main .container {
+//   height: 100vh;
+//   overflow-y: scroll;
+// }
 .visually-hidden {
   position: absolute;
   width: 1px;
