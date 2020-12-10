@@ -1,6 +1,13 @@
 import renderCardlist from '../templates/card.hbs';
 import renderAddCard from '../templates/add-card.hbs';
-const hbsFunctions = [renderCardlist, renderAddCard];
+import popupSearch from '../templates/pop-up-search.hbs';
+import popupExitConfirm from '../templates/pop-up-exit-confirm.hbs';
+import myOffice from '../templates/my-office.hbs';
+import myAdvert from '../templates/my-advert.hbs';
+import selectedAdvert from '../templates/selected-advert.hbs';
+
+
+const hbsFunctions = [renderCardlist, renderAddCard, popupSearch, popupExitConfirm, myOffice, myAdvert, selectedAdvert ];
 
 class Modal {
   constructor(functions) {
