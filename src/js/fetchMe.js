@@ -1,5 +1,5 @@
 import { load, save, remove } from './storage';
-import { pushError, removeError } from './pnotify';
+import { pushError } from './pnotify';
 
 class FetchMe {
   constructor() {
@@ -10,20 +10,20 @@ class FetchMe {
       sid: '',
     };
     this.points = {
-      reg: '/auth/register',
-      login: '/auth/login',
-      logout: '/auth/logout',
-      refresh: '/auth/refresh',
-      google: '/auth/google',
-      user: '/user',
-      call: '/call',
-      fav: '/call/favourite',
-      myFav: '/call/favourites',
-      myCalls: '/call/own',
+      reg: '/auth/register/',
+      login: '/auth/login/',
+      logout: '/auth/logout/',
+      refresh: '/auth/refresh/',
+      google: '/auth/google/',
+      user: '/user/',
+      call: '/call/',
+      fav: '/call/favourite/',
+      myFav: '/call/favourites/',
+      myCalls: '/call/own/',
     };
     this.headers = {
       'Content-Type': 'application/json',
-      authorization: this.token.accessToken,
+      authorization: '',
     };
   }
   get token() {
@@ -36,14 +36,18 @@ class FetchMe {
       i += 1;
     }
   }
-  logout() {
+  async logout() {
     const opt = { point: this.points.logout, method: 'POST', logout: true };
-    this.getRequest(opt);
-    // console.log('deleted', load('Token').sid);
+    await this.getRequest(opt);
+    remove('Token');
+    this.token = {
+      accessToken: '',
+      refreshToken: '',
+      sid: '',
+    };
   }
   async login(opt) {
     return await this.getRequest(opt).then(data => {
-      // console.log('saved', data);
       this.token = data;
       save('Token', data);
       return data;
@@ -61,17 +65,13 @@ class FetchMe {
       headers: this.headers,
     };
     if (body) opt.body = JSON.stringify(body);
-    if (!this.token.accessToken.length) {
-      if (load('Token')) opt.headers.authorization = load('Token').accessToken;
-    }
+    if (load('Token')) opt.headers.authorization = load('Token').accessToken;
     const par = logout ? false : opt;
-
     const url = this.URL + point + query;
     return await this.sendRequest(url, par);
   }
   async sendRequest(url, opt) {
     try {
-      console.log(opt);
       if (!opt)
         return fetch(url, {
           method: 'POST',
@@ -87,7 +87,7 @@ class FetchMe {
       }
       return await response.json();
     } catch (err) {
-      console.log('mistake', err);
+      console.log('mistake', err.message);
     }
   }
   async refresh(url, opt) {
@@ -102,7 +102,6 @@ class FetchMe {
     try {
       const response = await fetch(this.URL + this.points.refresh, option);
       response.json().then(data => {
-        console.log('new Toc', data);
         this.token = data;
         save('Token', this.token);
       });
@@ -112,7 +111,5 @@ class FetchMe {
     }
   }
 }
-
 const fetchFunctions = new FetchMe();
-
 export default fetchFunctions;
