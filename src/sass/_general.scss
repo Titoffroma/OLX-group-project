@@ -4,6 +4,13 @@
 }
 body {
   font-family: $Roboto;
+  font-size: 14px;
+  color: $black;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 img,
 a {
@@ -19,6 +26,7 @@ button {
   border: none;
   outline: none;
   background-color: none;
+  cursor: pointer;
 }
 .container {
   width: 100%;
@@ -29,6 +37,9 @@ button {
   @media screen and (min-width: $desktop) {
     padding: 0 20px;
   }
+}
+main .container {
+  overflow-y: scroll;
 }
 .visually-hidden {
   position: absolute;
