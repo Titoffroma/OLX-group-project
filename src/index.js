@@ -7,4 +7,3 @@ import './js/menu.js';
 import './js/authorization';
 import './js/menu.js';
 import './js/fetchMeDescription';
-
