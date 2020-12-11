@@ -53,7 +53,7 @@ async function some() {
   response = await fetchFunctions.getRequest(newRequest);
   console.log('get user - authorized -', response);
 }
-//some();
+// some();
 
 // //////4/ Раскоментируйте вызов функции trySome() для демонстрации рендера разметки по запросу
 async function trySome() {

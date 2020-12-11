@@ -21,11 +21,12 @@
                                     accept="image/*" />
                                 <label for="photoElem" class="photo-label"><span
                                         class="material-icons">add</span></label>
+                                <img id="output_image" />
                             </li>
-                            <li class="photo-item"></li>
-                            <li class="photo-item"></li>
-                            <li class="photo-item"></li>
-                            <li class="photo-item"></li>
+                            <li class="photo-item"><img id="output_image" /></li>
+                            <li class="photo-item"><img id="output_image" /></li>
+                            <li class="photo-item"><img id="output_image" /></li>
+                            <li class="photo-item"><img id="output_image" /></li>
                         </ul>
                     </label>
                 </li>
@@ -38,11 +39,16 @@
                 <li class="add-card__item">
                     <label class="add-card__label notice">
                         <span class="add-card__subtitle">Категорія товару</span>
-                        <input class="add-card__input select-input" type="text" name="category" required />
-                        <button class="icon-btn" type="button">
+                        <input list="categories" class="add-card__input select-input" type="text" name="category"
+                            required />
+                        <div class="category-list"></div>
+                        <button class="icon-btn open-category" type="button">
                             <span class="material-icons" width="10px" height="5px">arrow_drop_down</span>
                         </button>
+
+
                     </label>
+
                 </li>
                 <li class="add-card__item">
                     <label class="add-card__label notice">
@@ -60,7 +66,7 @@
                     </label>
                 </li>
             </ul>
-            <button class="submit-btn" type="submit" data-close>Додати</button>
+            <button class="submit-btn" type="submit">Додати</button>
         </form>
     </div>
 </div>

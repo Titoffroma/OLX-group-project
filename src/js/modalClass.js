@@ -2,6 +2,8 @@ import renderCardlist from '../templates/card.hbs';
 import renderAddCard from '../templates/add-card.hbs';
 const hbsFunctions = [renderCardlist, renderAddCard];
 
+import addCardLogic from './addCardLogic';
+
 class Modal {
   constructor(functions) {
     this.functions = functions;
@@ -25,6 +27,7 @@ class Modal {
       console.log(modalRef);
       modalRef.addEventListener('click', this.onClickCloseModal);
       window.addEventListener('keydown', this.onEscapeCloseModal);
+      addCardLogic();
       return;
     }
     this.startListener();
@@ -44,7 +47,7 @@ class Modal {
     }
   }
   onClickCloseModal(event) {
-    event.preventDefault();
+    // event.preventDefault();
     if (event.target.hasAttribute('data-close')) {
       this.closeModal();
     }

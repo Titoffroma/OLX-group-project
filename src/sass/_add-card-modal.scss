@@ -145,6 +145,7 @@
 
 .notice {
   position: relative;
+  cursor: text;
 
   & .add-card__input::-webkit-inner-spin-button {
     display: none;
@@ -308,6 +309,20 @@
   cursor: pointer;
 }
 
+#output_image {
+  max-width: 76px;
+  max-height: 46px;
+
+  @media screen and (min-width: $tablet) {
+    max-width: 83px;
+    max-height: 50px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    max-width: 78px;
+  }
+}
+
 .checkbox-field {
   display: flex;
   justify-content: flex-start;
@@ -374,4 +389,8 @@
     font-weight: 500;
     text-transform: none;
   }
+}
+
+.category-list {
+  position: absolute;
 }
