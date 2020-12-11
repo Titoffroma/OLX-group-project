@@ -37,8 +37,8 @@ const request = {
 };
 // А для для получения данных пользователя создается такой объект параметров запроса
 const newRequest = {
-  point: fetchFunctions.points.catCalls,
-  query: 'businessAndServices',
+  point: fetchFunctions.points.find,
+  query: 'shirt',
 };
 
 // //////3/ Чтоб получить информацию с бэкэнда в классе имеются 3 метода:
@@ -59,21 +59,22 @@ async function some() {
 // some();
 
 // //////4/ Раскоментируйте вызов функции для демонстрации рендера разметки по запросу
-(async () => {
-  const request = {
-    point: fetchFunctions.points.login,
-    body: logInfo,
-    method: 'POST',
-  };
-  fetchFunctions.login(request);
-  const searchQuery = {
-    point: fetchFunctions.points.call,
-    query: '?page=2',
-  };
-  const searchResult = await fetchFunctions.getRequest(newRequest);
-  console.log(searchResult);
+// (async () => {
+//   const request = {
+//     point: fetchFunctions.points.login,
+//     body: logInfo,
+//     method: 'POST',
+//   };
+//   // fetchFunctions.login(request);
+//   const searchQuery = {
+//     point: fetchFunctions.points.call,
+//     query: '?page=2',
+//   };
+//   fetchFunctions.logout();
+//   const searchResult = await fetchFunctions.getRequest(newRequest);
+//   console.log(searchResult);
 
-  document.querySelector('main div.container').innerHTML = renderCards(
-    searchResult,
-  );
-})();
+//   document.querySelector('main div.container').innerHTML = renderCards(
+//     searchResult,
+//   );
+// })();

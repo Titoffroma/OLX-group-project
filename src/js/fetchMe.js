@@ -26,7 +26,7 @@ class FetchMe {
     };
     this.headers = {
       'Content-Type': 'application/json',
-      authorization: load('Token') || '',
+      authorization: load('Token').accessToken || '',
     };
   }
   get token() {
