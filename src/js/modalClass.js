@@ -1,6 +1,20 @@
 import renderCardlist from '../templates/card.hbs';
 import renderAddCard from '../templates/add-card.hbs';
-const hbsFunctions = [renderCardlist, renderAddCard];
+import popupSearch from '../templates/pop-up-search.hbs';
+import popupExitConfirm from '../templates/pop-up-exit-confirm.hbs';
+import myOffice from '../templates/my-office.hbs';
+import myAdvert from '../templates/my-advert.hbs';
+import selectedAdvert from '../templates/selected-advert.hbs';
+
+const hbsFunctions = [
+  renderCardlist,
+  renderAddCard,
+  popupSearch,
+  popupExitConfirm,
+  myOffice,
+  myAdvert,
+  selectedAdvert,
+];
 
 class Modal {
   constructor(functions) {
@@ -22,7 +36,7 @@ class Modal {
         .querySelector('body')
         .insertAdjacentHTML('beforeend', this.functions[index]());
       const modalRef = document.querySelector('div[data-close]');
-      console.log(modalRef);
+      document.body.style.overflow = 'hidden';
       modalRef.addEventListener('click', this.onClickCloseModal);
       window.addEventListener('keydown', this.onEscapeCloseModal);
       return;
@@ -34,6 +48,7 @@ class Modal {
     window.removeEventListener('keydown', this.onEscapeCloseModal);
     backdrop.removeEventListener('click', this.onClickCloseModal);
     backdrop.remove();
+    document.body.style.overflowY = 'scroll';
     document.body.addEventListener('click', this.openModal, {
       once: true,
     });
@@ -44,8 +59,8 @@ class Modal {
     }
   }
   onClickCloseModal(event) {
-    event.preventDefault();
     if (event.target.hasAttribute('data-close')) {
+      event.preventDefault();
       this.closeModal();
     }
   }
