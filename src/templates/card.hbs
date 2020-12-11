@@ -1,13 +1,14 @@
 <li class="cardset__item">
     <a href="" class="cardset__link">
         <picture class="cardset__picture">
-            <img class="cardset__image" srcset="{{#each imageUrls}} {{@index0}} {{this}} {{/each}} 352w"
+            <img class="cardset__image" srcset="{{#each imageUrls}}{{#if @first}}{{this}}{{/if}}{{/each}} 352w"
                 sizes="(min-width: 1280px) 25vw,(min-width: 768px) 50vw, (min-width: 480px) and (orientation: landscape) 50vw, 100vw"
-                src="{{imageUrls}}" alt="{{title}}" />
+                src="{{#each imageUrls}}{{#if @first}}{{this}}{{/if}}{{/each}}" alt="{{title}}" />
         </picture>
         <div class="cardset__description">
             <h4 class="cardset__title">{{title}}</h4>
-            <p><span class="cardset__price del"><span class="cardset__price old">{{oldPrice}}</span></span><span
+            <p><span class="cardset__price del">{{#if oldPrice}}<span
+                        class="cardset__price old">{{oldPrice}}</span>{{/if}}</span><span
                     class="cardset__price new">{{price}} грн</span></p>
         </div>
         <div class="cardset__overlay">

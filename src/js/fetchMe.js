@@ -24,9 +24,11 @@ class FetchMe {
       cat: '/call/categories',
       catCalls: '/call/specific/',
     };
-    this.headers = {
+  }
+  get headers() {
+    return {
       'Content-Type': 'application/json',
-      authorization: load('Token').accessToken || '',
+      authorization: load('Token') ? load('Token').accessToken : '',
     };
   }
   get token() {
