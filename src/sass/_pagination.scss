@@ -3,7 +3,7 @@
 
   padding-bottom: 30px;
 
-  @media screen and (min-width: $phone) {
+  @media screen and (min-width: $tablet) {
     padding-bottom: 60px;
   }
 
@@ -32,13 +32,13 @@
     color: $black;
     background-color: $white;
 
-    &:hover,
-    &:focus {
-      color: $white;
-      background-color: $black;
-    }
+    // &:hover,
+    // &:focus {
+    //   color: $white;
+    //   background-color: $black;
+    // }
 
-    &.activ {
+    &.active {
       color: $white;
       background-color: $black;
     }
