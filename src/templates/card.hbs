@@ -1,7 +1,7 @@
 <li class="cardset__item">
     <a href="" class="cardset__link">
         <picture class="cardset__picture">
-            <img class="cardset__image" srcset="{{imageUrls}} 352w"
+            <img class="cardset__image" srcset="{{#each imageUrls}} {{@index0}} {{this}} {{/each}} 352w"
                 sizes="(min-width: 1280px) 25vw,(min-width: 768px) 50vw, (min-width: 480px) and (orientation: landscape) 50vw, 100vw"
                 src="{{imageUrls}}" alt="{{title}}" />
         </picture>

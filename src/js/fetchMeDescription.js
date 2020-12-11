@@ -1,5 +1,6 @@
 import renderCards from '../templates/cardset.hbs';
 import category from '../templates/category.hbs';
+import { load, save, remove } from './storage';
 
 // Небольшая инструкция
 // Импортирум экземпляр класса
@@ -36,7 +37,8 @@ const request = {
 };
 // А для для получения данных пользователя создается такой объект параметров запроса
 const newRequest = {
-  point: fetchFunctions.points.user,
+  point: fetchFunctions.points.catCalls,
+  query: 'businessAndServices',
 };
 
 // //////3/ Чтоб получить информацию с бэкэнда в классе имеются 3 метода:
@@ -47,7 +49,7 @@ async function some() {
   let response = await fetchFunctions.login(request);
   console.log('login -', response);
   response = await fetchFunctions.logout();
-  console.log('logout - всегда вернет undefined - ', response);
+  console.log('logout -', response);
   response = await fetchFunctions.getRequest(newRequest);
   console.log('get user - unauthorized -', response);
   response = await fetchFunctions.login(request);
@@ -57,25 +59,21 @@ async function some() {
 // some();
 
 // //////4/ Раскоментируйте вызов функции для демонстрации рендера разметки по запросу
-// (async () => {
-//   const request = {
-//     point: fetchFunctions.points.login,
-//     body: logInfo,
-//     method: 'POST',
-//   };
-//   fetchFunctions.login(request);
-//   const searchQuery = {
-//     point: fetchFunctions.points.call,
-//     query: '?page=2',
-//   };
-//   const searchResult = await fetchFunctions.getRequest(searchQuery);
-//   console.log(searchResult);
-//   let orderedSearch = [];
-//   for (let key in searchResult) {
-//     orderedSearch.push(...searchResult[key]);
-//   }
+(async () => {
+  const request = {
+    point: fetchFunctions.points.login,
+    body: logInfo,
+    method: 'POST',
+  };
+  fetchFunctions.login(request);
+  const searchQuery = {
+    point: fetchFunctions.points.call,
+    query: '?page=2',
+  };
+  const searchResult = await fetchFunctions.getRequest(newRequest);
+  console.log(searchResult);
 
-//   document.querySelector('main div.container').innerHTML = category(
-//     searchResult,
-//   );
-// })();
+  document.querySelector('main div.container').innerHTML = renderCards(
+    searchResult,
+  );
+})();

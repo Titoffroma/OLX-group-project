@@ -6,8 +6,15 @@ import myOffice from '../templates/my-office.hbs';
 import myAdvert from '../templates/my-advert.hbs';
 import selectedAdvert from '../templates/selected-advert.hbs';
 
-
-const hbsFunctions = [renderCardlist, renderAddCard, popupSearch, popupExitConfirm, myOffice, myAdvert, selectedAdvert ];
+const hbsFunctions = [
+  renderCardlist,
+  renderAddCard,
+  popupSearch,
+  popupExitConfirm,
+  myOffice,
+  myAdvert,
+  selectedAdvert,
+];
 
 class Modal {
   constructor(functions) {
@@ -29,7 +36,7 @@ class Modal {
         .querySelector('body')
         .insertAdjacentHTML('beforeend', this.functions[index]());
       const modalRef = document.querySelector('div[data-close]');
-      console.log(modalRef);
+      document.body.style.overflow = 'hidden';
       modalRef.addEventListener('click', this.onClickCloseModal);
       window.addEventListener('keydown', this.onEscapeCloseModal);
       return;
@@ -41,6 +48,7 @@ class Modal {
     window.removeEventListener('keydown', this.onEscapeCloseModal);
     backdrop.removeEventListener('click', this.onClickCloseModal);
     backdrop.remove();
+    document.body.style.overflowY = 'scroll';
     document.body.addEventListener('click', this.openModal, {
       once: true,
     });
