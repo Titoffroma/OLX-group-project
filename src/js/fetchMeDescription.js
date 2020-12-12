@@ -58,24 +58,24 @@ async function some() {
 }
 // some();
 
-// //////4/ Раскоментируйте вызов функции для демонстрации рендера разметки по запросу
-(async () => {
-  const request = {
-    point: fetchFunctions.points.login,
-    body: logInfo,
-    method: 'POST',
-  };
-  const resp = await fetchFunctions.login(request);
-  console.log(resp);
-  const searchQuery = {
-    point: fetchFunctions.points.call,
-    query: '?page=1',
-  };
-  fetchFunctions.logout();
-  const searchResult = await fetchFunctions.getRequest(searchQuery);
-  console.log(searchResult);
+// // //////4/ Раскоментируйте вызов функции для демонстрации рендера разметки по запросу
+// (async () => {
+//   const request = {
+//     point: fetchFunctions.points.login,
+//     body: logInfo,
+//     method: 'POST',
+//   };
+//   const resp = await fetchFunctions.login(request);
+//   console.log(resp);
+//   const searchQuery = {
+//     point: fetchFunctions.points.call,
+//     query: '?page=1',
+//   };
+//   fetchFunctions.logout();
+//   const searchResult = await fetchFunctions.getRequest(searchQuery);
+//   console.log(searchResult);
 
-  document.querySelector('main div.container').innerHTML = category(
-    searchResult,
-  );
-})();
+//   document.querySelector('main div.container').innerHTML = category(
+//     searchResult,
+//   );
+// })();
