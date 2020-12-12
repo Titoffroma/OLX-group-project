@@ -140,6 +140,12 @@ a {
 .header_filter {
   display: flex;
   align-items: center;
+
+  &__link {
+    &.active {
+      color: $accent;
+    }
+  }
 }
 
 @media screen and (min-width: $tablet) {
