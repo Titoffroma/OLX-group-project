@@ -1,6 +1,6 @@
-<div class="authorization-backdrop">
+<div class="backdrop" data-close>
     <div class="authorization-modal">
-        <button class="authorization-close-button"><span class="material-icons">clear</span></button>
+        <button class="authorization-close-button"><span data-close class="material-icons">clear</span></button>
         <h3 class="authorization-modal-header">Ви можете авторизуватися за допомогою Google Account:</h3>
         <button class="google-auth"><svg class="google-auth-icon" width="18px" height="18px">
                 <use href="./img/Google-icon.svg#google">
@@ -9,7 +9,7 @@
             <p>Google</p>
         </button>
         <h3 class="authorization-modal-header">Або зайти за допомогою імейлу і пароля, попередньо зареєструвавшись:</h3>
-        <form action="authorization" method="post" class="authorization-form">
+        <form action="authorization" class="authorization-form">
             <input type="email" name="email" class="authorization-input" id="authorization-modal-email"
                 placeholder="E-mail">
             <input type="password" name="password" class="authorization-input" id="authorization-modal-password"
