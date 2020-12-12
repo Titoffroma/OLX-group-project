@@ -7,19 +7,19 @@
         </picture>
         <div class="cardset__description">
             <h4 class="cardset__title">{{title}}</h4>
-            <p><span class="cardset__price del">{{#if oldPrice}}<span
-                        class="cardset__price old">{{oldPrice}}</span>{{/if}}</span><span
+            <p>{{#if oldPrice}}<span class="cardset__price del"><span
+                        class="cardset__price old">{{oldPrice}}</span></span>{{/if}}<span
                     class="cardset__price new">{{price}} грн</span></p>
         </div>
         <div class="cardset__overlay">
             <div class="icons-container">
-                <span class="material-icons cardset__icons">favorite_border</span>
+                <span data-like data-id="{{_id}}" class=" material-icons cardset__icons">favorite_border</span>
             </div>
             <div class="icons-container">
-                <span class="material-icons cardset__icons">create</span>
+                <span data-create data-id="{{_id}}" class=" material-icons cardset__icons authorized">create</span>
             </div>
             <div class="icons-container">
-                <span class="material-icons cardset__icons">fullscreen</span>
+                <span data-open data-id="{{_id}}" class="material-icons cardset__icons">fullscreen</span>
             </div>
         </div>
     </a>
