@@ -101,6 +101,7 @@
 .add-card__subtitle {
   display: block;
   margin-bottom: 10px;
+  cursor: pointer;
 
   @media screen and (min-width: $tablet) {
     display: inline-block;

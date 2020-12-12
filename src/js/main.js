@@ -4,4 +4,3 @@ import fetchFunctions from './fetchMe';
 import myModal from './modalClass';
 myModal.startListener();
 
-import './editCardLogic';

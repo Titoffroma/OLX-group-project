@@ -1,48 +1,45 @@
 import fetchFunctions from './fetchMe';
-import catMarkup from '../templates/category-list.hbs';
+import modalLogic from './addAndEditModalLogic';
 
 export default function () {
-    const photoElem = document.querySelector('#photoElem');
-    const outputImg = document.querySelectorAll('#output_image');
-    const openCatListBtn = document.querySelector('.open-category');
-    const categoryList = document.querySelector('.category-list')
+    modalLogic();
 
-    let i = 0;
+    const addCardForm = document.querySelector('.add-card__form');
+    addCardForm.addEventListener('submit', onFormSubmit);
 
-    photoElem.addEventListener('change', previewImage);
-    openCatListBtn.addEventListener('click', categoryRender, {
-      once: true,
-    });
+    function onFormSubmit(e) {
+        // e.preventDefault();
+ 
+        const formElements = e.currentTarget.elements;
 
-    function previewImage(event) {
-        const reader = new FileReader();
-        i += 1;
-        
-        reader.onload = function () {
-            if (i >= outputImg.length) {
-                const photoLabel = document.querySelector('.photo-label');
-                photoLabel.innerHTML = '';
-                outputImg[0].src = reader.result;
-                return;
-            }
-            
-            outputImg[i].src = reader.result;
+        const title = formElements.title.value;
+        const description = formElements.description.value;
+        const category = formElements.category.value;
+        const price = formElements.price.value;
+        const phone = formElements.phone.value;
+        const photo = formElements.file.files[0].name;
+
+        const formData = {
+            title,
+            description,
+            category,
+            price,
+            phone,
+            photo
+        };
+
+        const request = {
+            point: fetchFunctions.points.call,
+            body: formData,
+            method: 'POST',
         }
 
-        reader.readAsDataURL(event.target.files[0]);
-    }
-
-    function categoryRender() {
-        const request = {
-            point: fetchFunctions.points.cat,
-        };
-
-        async function getCategoryList() {
+        async function addNewCard() {
             let response = await fetchFunctions.getRequest(request);
-            const result = catMarkup(response);
-            categoryList.insertAdjacentHTML('afterbegin', result); 
-        };
-        getCategoryList(); 
+            console.log(response);
+        }
         
+        addNewCard(); 
     }
+   
 }
