@@ -1,4 +1,6 @@
 import renderCards from '../templates/cardset.hbs';
+import category from '../templates/category.hbs';
+import { load, save, remove } from './storage';
 
 // Небольшая инструкция
 // Импортирум экземпляр класса
@@ -35,7 +37,8 @@ const request = {
 };
 // А для для получения данных пользователя создается такой объект параметров запроса
 const newRequest = {
-  point: fetchFunctions.points.user,
+  point: fetchFunctions.points.find,
+  query: 'shirt',
 };
 
 // //////3/ Чтоб получить информацию с бэкэнда в классе имеются 3 метода:
@@ -46,22 +49,33 @@ async function some() {
   let response = await fetchFunctions.login(request);
   console.log('login -', response);
   response = await fetchFunctions.logout();
-  console.log('logout - всегда вернет undefined - ', response);
+  console.log('logout -', response);
   response = await fetchFunctions.getRequest(newRequest);
   console.log('get user - unauthorized -', response);
   response = await fetchFunctions.login(request);
   response = await fetchFunctions.getRequest(newRequest);
   console.log('get user - authorized -', response);
 }
-//some();
+// some();
 
-// //////4/ Раскоментируйте вызов функции trySome() для демонстрации рендера разметки по запросу
-async function trySome() {
-  const tryRequest = { point: fetchFunctions.points.call, query: '?page=1' };
-  const response = await fetchFunctions.getRequest(tryRequest);
-  console.log('Yo', response);
-  const markup = renderCards(response);
-  document.querySelector('main div.container').innerHTML = markup;
-}
+// // //////4/ Раскоментируйте вызов функции для демонстрации рендера разметки по запросу
+// (async () => {
+//   const request = {
+//     point: fetchFunctions.points.login,
+//     body: logInfo,
+//     method: 'POST',
+//   };
+//   const resp = await fetchFunctions.login(request);
+//   console.log(resp);
+//   const searchQuery = {
+//     point: fetchFunctions.points.call,
+//     query: '?page=1',
+//   };
+//   fetchFunctions.logout();
+//   const searchResult = await fetchFunctions.getRequest(searchQuery);
+//   console.log(searchResult);
 
-// trySome();
+//   document.querySelector('main div.container').innerHTML = category(
+//     searchResult,
+//   );
+// })();
