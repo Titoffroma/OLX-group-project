@@ -10,8 +10,8 @@
   </head>
   <body>
     <header>
+      <div class="header_button_menu_phone">
       <div class="container">
-        <div class="header_button_menu_phone">
           <nav class="container_nav">
             <div class="header_nav__wrap">
               <ul class="header_nav__list">
@@ -28,10 +28,17 @@
               </ul>
 
               <div class="header_button__wrap">
-                <a href="#" class="header_registration">Реєстрація / Увійти</a>
-                <button type="button" class="header_button__perm_identity">
+                <ul class="header_registration_identity" id="navigation" data-button>
+                  <li class="header_registration_identity__item">
+                    <button type="button" class="header_registration_link">Реєстрація / Увійти</a>
+                      </button>
+                  </li>
+                  <li class="header_registration_identity__item">
+                <button type="button" class="header_button__perm_identity" >
                   <span class="material-icons md-24">perm_identity</span>
                 </button>
+                </li>
+              </ul>
                 <button
                   type="button"
                   class="header_button__create"
@@ -42,7 +49,10 @@
                 </button>
               </div>
             </div>
-
+            </div>
+            </div>
+            <div class="header_button_menu_phone">
+            <div class="container">
             <div class="header_button_menu_tablet">
               <button
                 type="button"
@@ -57,8 +67,8 @@
                 </div>
               </button>
 
-              <div class="header_filter__wrap" id="navigation" data-menu>
-                <ul class="header_filter">
+              <div class="header_filter__wrap" >
+                <ul class="header_filter" id="navigation" data-menu>
                   <li class="header_filter__item">
                     <a href="#" class="header_filter__link">Нерухомість</a>
                   </li>
@@ -99,9 +109,9 @@
                 </div>
               </div>
             </div>
+            </div>
+            </div>
           </nav>
-        </div>
-      </div>
     </header>
     <main>
       <div class="container"></div>
