@@ -10,7 +10,7 @@ function openModalFind() {
   const markup = findModal();
   document.body.addEventListener('submit', render);
   return markup;
-}
+};
 
 
 
