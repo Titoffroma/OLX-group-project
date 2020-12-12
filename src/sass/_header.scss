@@ -164,7 +164,22 @@ a {
   align-items: center;
   margin-left: auto;
 }
+.header_filter {
+  display: flex;
+  align-items: center;
 
+  &__link {
+    &.active {
+      color: $accent;
+    }
+  }
+}
+
+@media screen and (min-width: $tablet) {
+  .header_filter__item:not(:last-child) {
+    margin-right: 42px;
+  }
+}
 .header_nav__wrap {
   position: relative;
   display: flex;
