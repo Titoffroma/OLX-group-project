@@ -92,11 +92,11 @@
     }
     &.old {
       color: $dark-grey;
+      padding-right: 10px;
     }
     &.del {
       color: $black;
       text-decoration: line-through;
-      margin-right: 10px;
     }
   }
 }
