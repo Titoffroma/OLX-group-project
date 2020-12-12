@@ -5,40 +5,30 @@
         </button>
         <div class="modal-content-inner"></div>
         <div class="modal-content-box">
-            <h4 class="modal-content-box_title">Футболка спортивна</h4>
-            <p class="modal-content-box_code">Код товару | 105-С</p>
+            <h4 class="modal-content-box_title">{{title}}</h4>
+            <p class="modal-content-box_code">Код товару | {{__v}}</p>
         </div>
-        <div class="modal-foto-box">
-            <div class="modal-product_foto">
-                <img src="./img/Goods-image@2x.png" alt="" />
+        <div class="modal-photo-box">
+            <div class="modal-product_photo">
+                <img class="main-modal-photo" src="{{imageUrls[0]}}" alt="product photo" />
             </div>
-            <div class="foto-wrapper">
-                <ul class="foto-list">
-                    <li class="foto-list_atem">
-                        <img src="./img/Goods-image@1x.png" alt="" />
+            <div class="photo-wrapper">
+                <ul class="photo-list">
+                    {{#each imageUrls}}
+                    <li class="photo-list_item">
+                        <img class="photo-list-item-img" src="{{this}}" alt="product photo" />
                     </li>
-                    <li class="foto-list_atem">
-                        <img src="./img/Goods-image@1x.png" alt="" />
-                    </li>
-                    <li class="foto-list_atem">
-                        <img src="./img/Goods-image@1x.png" alt="" />
-                    </li>
-                    <li class="foto-list_atem">
-                        <img src="./img/Goods-image@1x.png" alt="" />
-                    </li>
-                    <li class="foto-list_atem">
-                        <img src="./img/Goods-image@1x.png" alt="" />
-                    </li>
+                    {{/each}}
                 </ul>
             </div>
         </div>
 
         <div class="modal-content-wrapper">
             <div class="modal-content-box-down">
-                <h4 class="modal-content-box_title">Футболка спортивна</h4>
-                <p class="modal-content-box_code">Код товару | 105-С</p>
+                <h4 class="modal-content-box_title">{{title}}</h4>
+                <p class="modal-content-box_code">Код товару | {{__v}}</p>
             </div>
-            <p class="modal-content-wrapper_price">200.00 грн</p>
+            <p class="modal-content-wrapper_price">{{price}}.00 грн</p>
             <div class="modal-button-box">
                 Информация о <br />
                 продавце
@@ -46,20 +36,20 @@
             <div class="modal-button-box-info">
                 <p class="button-info_text">
                     <span class="button-info_accent">Ольга</span> - на OLX с нояб. 2018
-                <p class="button-info_text-number">063 850 4473</p>
+                <p class="button-info_text-number">{{phone}}</p>
                 </p>
             </div>
             <div class="modal-actions">
                 <ul class="actions-list">
-                    <li class="actions-atem">
-                        <p class="actions-atem_title">В обране</p>
-                        <button class="actions-atem_button">
+                    <li class="actions-item">
+                        <button class="actions-item_button">
+                            <p data-id="{{_id}}" class="actions-item_title">В обране</p>
                             <span class="material-icons md-16">favorite_border</span>
                         </button>
                     </li>
-                    <li class="actions-atem">
-                        <p class="actions-atem_title">Поділитися</p>
-                        <button class="actions-atem_button">
+                    <li class="actions-item">
+                        <button class="actions-item_button">
+                            <p class="actions-item_title">Поділитися</p>
                             <span class="material-icons md-16" width="10px">share</span>
                         </button>
                     </li>
@@ -67,9 +57,7 @@
             </div>
             <p class="modal-text-title">Опис:</p>
             <p class="modal-text">
-                Давно выяснено, что при оценке дизайна и композиции читаемый текст
-                мешает сосредоточиться. Lorem Ipsum используют потому, что тот
-                обеспечивает более или менее стандартное заполнение шаблона.
+                {{description}}
             </p>
         </div>
     </div>

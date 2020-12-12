@@ -1,151 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=no"
-    />
-    <title>OLX-team-project</title>
-  </head>
-  <body>
-    <header>
-      <div class="container">
-        <div class="header_button_menu_phone">
-          <nav class="container_nav">
-            <div class="header_nav__wrap">
-              <ul class="header_nav__list">
-                <li class="header_nav__item">
-                  <button type="button" class="header_button__search">
-                    <span
-                      data-modal="true"
-                      data-hbs="2"
-                      class="material-icons md-24"
-                      >search</span
-                    >
-                  </button>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>OLX-team-project</title>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="header_button_menu_phone">
+        <nav class="container_nav">
+          <div class="header_nav__wrap">
+            <ul class="header_nav__list">
+              <li class="header_nav__item">
+                <button type="button" class="header_button__search">
+                  <span data-modal="true" data-hbs="2" class="material-icons md-24">search</span>
+                </button>
+              </li>
+              <li class="header_nav__item">
+                <a href="#" class="header_logo__link">
+                  <img src="./img/Logo.svg" alt="Logo" />
+                </a>
+              </li>
+            </ul>
+
+            <div class="header_button__wrap">
+              <a data-modal="true" data-hbs="7" href="#" class="header_registration">Реєстрація / Увійти</a>
+              <button type="button" class="header_button__perm_identity">
+                <span data-modal="true" data-hbs="7" class="material-icons md-24">perm_identity</span>
+              </button>
+              <button type="button" class="header_button__create" data-modal="true" data-hbs="1">
+                Створити оголошення!
+              </button>
+            </div>
+          </div>
+
+          <div class="header_button_menu_tablet">
+            <button type="button" class="button-menu is-open" aria-expanded="false" aria-controls="navigation"
+              data-menu-button>
+              <div class="header-menu-icon" aria-label="menu switch">
+                <span class="icon-close material-icons md-24">clear</span>
+                <span class="icon-menu material-icons md-24">menu</span>
+              </div>
+            </button>
+
+            <div class="header_filter__wrap" id="navigation" data-menu>
+              <ul class="header_filter">
+                <li class="header_filter__item">
+                  <a href="#" class="header_filter__link">Нерухомість</a>
                 </li>
-                <li class="header_nav__item">
-                  <a href="#" class="header_logo__link">
-                    <img src="./img/Logo.svg" alt="Logo" />
-                  </a>
+                <li class="header_filter__item">
+                  <a href="#" class="header_filter__link">Транспорт</a>
+                </li>
+                <li class="header_filter__item">
+                  <a href="#" class="header_filter__link">Робота</a>
+                </li>
+                <li class="header_filter__item">
+                  <a href="#" class="header_filter__link">Електроніка</a>
+                </li>
+                <li class="header_filter__item">
+                  <a href="#" class="header_filter__link">Бізнес та послуги</a>
+                </li>
+                <li class="header_filter__item">
+                  <a href="#" class="header_filter__link">Відпочинок і спорт</a>
+                </li>
+                <li class="header_filter__item">
+                  <a href="#" class="header_filter__link">Віддам безкоштовно</a>
+                </li>
+                <li class="header_filter__item">
+                  <a href="#" class="header_filter__link">Обмін</a>
                 </li>
               </ul>
 
-              <div class="header_button__wrap">
-                <a
-                  data-modal="true"
-                  data-hbs="7"
-                  href="#"
-                  class="header_registration"
-                  >Реєстрація / Увійти</a
-                >
-                <button type="button" class="header_button__perm_identity">
-                  <span
-                    data-modal="true"
-                    data-hbs="7"
-                    class="material-icons md-24"
-                    >perm_identity</span
-                  >
+              <div class="header_filter_button">
+                <button type="button" class="header_button__replay">
+                  <span class="material-icons md-24">replay</span>
                 </button>
-                <button
-                  type="button"
-                  class="header_button__create"
-                  data-modal="true"
-                  data-hbs="1"
-                >
-                  Створити оголошення!
-                </button>
+                <p class="header_filter__replay">Очистити фільтри</p>
               </div>
             </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <section class="categories"></section>
+      <div class="pagination" data-pagination>
+        <a class="pagination__link active" href="#one">1</a>
+        <a class="pagination__link" href="#two">2</a>
+        <a class="pagination__link" href="#three">3</a>
+      </div>
+    </div>
+  </main>
 
-            <div class="header_button_menu_tablet">
-              <button
-                type="button"
-                class="button-menu is-open"
-                aria-expanded="false"
-                aria-controls="navigation"
-                data-menu-button
-              >
-                <div class="header-menu-icon" aria-label="menu switch">
-                  <span class="icon-close material-icons md-24">clear</span>
-                  <span class="icon-menu material-icons md-24">menu</span>
-                </div>
+  <footer class="footer">
+    <div class="container footer__container">
+      <p class="footer__text">
+        <span class="material-icons footer__copyright md-18">copyright</span>
+        2019 <span class="footer__vertikal-line">|</span> All Rights Reserved
+        <span class="footer__vertikal-line footer__vertikal-line-none">|</span>
+      </p>
+      <p class="footer__text">
+        Developed with
+        <span class="material-icons footer__head md-16">favorite </span> by
+        &nbsp
+        <ins>GoIT Students</ins>
+      </p>
+    </div>
+  </footer>
+  <div class="backdrop" data-close>
+    <div class="modal-product">
+      <button class="button-close">
+        <span class="material-icons" data-close>clear</span>
+      </button>
+      <div class="modal-content-inner"></div>
+      <div class="modal-content-box">
+        <h4 class="modal-content-box_title">Футболка спортивна</h4>
+        <p class="modal-content-box_code">Код товару | 105-С</p>
+      </div>
+      <div class="modal-foto-box">
+        <div class="modal-product_foto">
+          <img class="main-modal-photo" src="./img/Goods-image@2x.png" alt="" />
+        </div>
+        <div class="foto-wrapper">
+          <ul class="foto-list">
+            <li class="foto-list_atem">
+              <img class="photo-list-item-img" src="./img/Goods-image@1x.png" alt="" />
+            </li>
+            <li class="foto-list_atem">
+              <img class="photo-list-item-img" src="./img/Goods-image@1x.png" alt="" />
+            </li>
+            <li class="foto-list_atem">
+              <img class="photo-list-item-img"
+                src="https://i.pinimg.com/originals/dc/86/cc/dc86ccbef8613f949ed36ea40c20fa75.jpg" alt="" />
+            </li>
+            <li class="foto-list_atem">
+              <img class="photo-list-item-img" src="./img/Goods-image@1x.png" alt="" />
+            </li>
+            <li class="foto-list_atem">
+              <img class="photo-list-item-img" src="./img/Goods-image@1x.png" alt="" />
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="modal-content-wrapper">
+        <div class="modal-content-box-down">
+          <h4 class="modal-content-box_title">Футболка спортивна</h4>
+          <p class="modal-content-box_code">Код товару | 105-С</p>
+        </div>
+        <p class="modal-content-wrapper_price">200.00 грн</p>
+        <div class="modal-button-box">
+          Информация о <br />
+          продавце
+        </div>
+        <div class="modal-button-box-info">
+          <p class="button-info_text">
+            <span class="button-info_accent">Ольга</span> - на OLX с нояб. 2018
+          <p class="button-info_text-number">063 850 4473</p>
+          </p>
+        </div>
+        <div class="modal-actions">
+          <ul class="actions-list">
+            <li class="actions-atem">
+              <button class="actions-atem_button">
+                <p class="actions-atem_title">В обране</p>
+                <span class="material-icons md-16">favorite_border</span>
               </button>
-
-              <div class="header_filter__wrap" id="navigation" data-menu>
-                <ul class="header_filter">
-                  <li class="header_filter__item">
-                    <a href="#" class="header_filter__link">Нерухомість</a>
-                  </li>
-                  <li class="header_filter__item">
-                    <a href="#" class="header_filter__link">Транспорт</a>
-                  </li>
-                  <li class="header_filter__item">
-                    <a href="#" class="header_filter__link">Робота</a>
-                  </li>
-                  <li class="header_filter__item">
-                    <a href="#" class="header_filter__link">Електроніка</a>
-                  </li>
-                  <li class="header_filter__item">
-                    <a href="#" class="header_filter__link"
-                      >Бізнес та послуги</a
-                    >
-                  </li>
-                  <li class="header_filter__item">
-                    <a href="#" class="header_filter__link"
-                      >Відпочинок і спорт</a
-                    >
-                  </li>
-                  <li class="header_filter__item">
-                    <a href="#" class="header_filter__link"
-                      >Віддам безкоштовно</a
-                    >
-                  </li>
-                  <li class="header_filter__item">
-                    <a href="#" class="header_filter__link">Обмін</a>
-                  </li>
-                </ul>
-
-                <div class="header_filter_button">
-                  <button type="button" class="header_button__replay">
-                    <span class="material-icons md-24">replay</span>
-                  </button>
-                  <p class="header_filter__replay">Очистити фільтри</p>
-                </div>
-              </div>
-            </div>
-          </nav>
+            </li>
+            <li class="actions-atem">
+              <button class="actions-atem_button">
+                <p class="actions-atem_title">Поділитися</p>
+                <span class="material-icons md-16" width="10px">share</span>
+              </button>
+            </li>
+          </ul>
         </div>
-      </div>
-    </header>
-    <main>
-      <div class="container">
-        <section class="categories"></section>
-        <div class="pagination" data-pagination>
-          <a class="pagination__link active" href="#one">1</a>
-          <a class="pagination__link" href="#two">2</a>
-          <a class="pagination__link" href="#three">3</a>
-        </div>
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="container footer__container">
-        <p class="footer__text">
-          <span class="material-icons footer__copyright md-18">copyright</span>
-          2019 <span class="footer__vertikal-line">|</span> All Rights Reserved
-          <span class="footer__vertikal-line footer__vertikal-line-none"
-            >|</span
-          >
-        </p>
-        <p class="footer__text">
-          Developed with
-          <span class="material-icons footer__head md-16">favorite </span> by
-          &nbsp
-          <ins>GoIT Students</ins>
+        <p class="modal-text-title">Опис:</p>
+        <p class="modal-text">
+          Давно выяснено, что при оценке дизайна и композиции читаемый текст
+          мешает сосредоточиться. Lorem Ipsum используют потому, что тот
+          обеспечивает более или менее стандартное заполнение шаблона.
         </p>
       </div>
-    </footer>
-  </body>
+    </div>
+  </div>
+</body>
+
 </html>
