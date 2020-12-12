@@ -1,20 +1,19 @@
 import fetchFunctions from './fetchMe';
 import renderCategories from '../templates/category.hbs';
 import renderFilter from '../templates/filter.hbs';
-import renderList from '../templates/watchAll.hbs';
+import renderList from '../templates/cardset.hbs';
 
+appPage();
 const refs = {
   categoryList: document.querySelector('.categorylist'),
   pagination: document.querySelector('[data-pagination]'),
-  watchAll: document.querySelector('.categorylist__link'),
+  cardSet: document.querySelectorAll('.categorylist__description'),
 };
 
-appPage();
-refs.pagination.addEventListener('click', onPaginationPage);
+refs.pagination.addEventListener('click', onPaginationPage, {
+  once: true,
+});
 
-// {
-//   once: true;
-// }
 async function appPage() {
   const searchQuery = {
     point: fetchFunctions.points.call,
@@ -27,7 +26,7 @@ async function appPage() {
 }
 
 async function onPaginationPage(event) {
-  event.preventDefault();
+  //event.preventDefault();
 
   if (event.target.nodeName !== 'A') {
     return;
@@ -39,9 +38,10 @@ async function onPaginationPage(event) {
   }
 
   const currentPage = event.target;
+
+  const numderPage = currentPage.textContent;
   currentPage.classList.add('active');
 
-  const numderPage = event.target.textContent;
   const searchQuery = {
     point: fetchFunctions.points.call,
     query: `?page=${numderPage}`,
@@ -49,16 +49,18 @@ async function onPaginationPage(event) {
 
   const searchResult = await fetchFunctions.getRequest(searchQuery);
   const orderedSearch = renderCategories(searchResult);
-
+  toScroll();
   document.querySelector('section.categories').innerHTML = orderedSearch;
-
-  console.log(searchResult);
+  refs.pagination.addEventListener('click', onPaginationPage, {
+    once: true,
+  });
 }
 
-function openItemsByFilter() {
-  document.querySelector('section.categories').innerHTML = renderList(
-    searchResult,
-  );
-}
+export default { onPaginationPage, appPage };
 
-export default { onPaginationPage };
+function toScroll() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+}
