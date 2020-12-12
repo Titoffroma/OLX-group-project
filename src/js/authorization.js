@@ -13,7 +13,7 @@ try {
   const openModalBtn = document.querySelector(
     '[data-modal-type="authorization"]',
   );
-  openModalBtn.addEventListener('click', validate);
+  openModalBtn.addEventListener('click', validate, { once: true });
 } catch (error) {
   console.log('User already logged in!');
 }
