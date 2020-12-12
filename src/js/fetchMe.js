@@ -17,7 +17,7 @@ class FetchMe {
       google: '/auth/google/',
       user: '/user/',
       call: '/call/',
-      fav: '/call/favourite/',   //редактирование указать квери - ай ди 
+      fav: '/call/favourite/',   
       myFav: '/call/favourites/',
       myCalls: '/call/own/',   
       find: '/call/find?search=',
