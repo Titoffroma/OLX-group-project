@@ -111,7 +111,6 @@ async function googleAuthorization(evt) {
   let response = await fetchFunctions.getRequest({
     point: fetchFunctions.points.google,
   });
-  console.log(response);
 }
 function validate(evt) {
   loginBtn.addEventListener('click', validateLogin);
