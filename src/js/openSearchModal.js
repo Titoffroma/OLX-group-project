@@ -6,7 +6,7 @@ import fetchFunctions from './fetchMe'
 
 
 
-function openModalFind() {
+export default function openModalFind() {
   const markup = findModal();
   document.body.addEventListener('submit', render);
   return markup;
@@ -32,4 +32,3 @@ function render(event) {
       myModal.closeModal();
     });
 }
-export { openModalFind };

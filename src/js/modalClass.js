@@ -6,7 +6,8 @@ import myAdvert from '../templates/my-advert.hbs';
 import selectedAdvert from '../templates/selected-advert.hbs';
 import authorizationModal from '../templates/authorization-modal.hbs';
 import popupSearch from '../templates/pop-up-search.hbs';
-import { openModalFind } from '../js/openSearchModal';
+import  openModalFind  from '../js/openSearchModal';
+import openModalConfirm from '../js/openConfirmModal'
 
 
 
@@ -21,9 +22,7 @@ const hbsFunctions = [
   myAdvert,
   selectedAdvert,
   authorizationModal,
-  
-
-
+  openModalConfirm,
 ];
 
 
