@@ -4,6 +4,7 @@ import fetchFunctions from './fetchMe';
 import myModal from './modalClass';
 import { onPaginationPage } from './paginationCategories';
 import fetchLogin from './authorization.js';
+
 myModal.startListener();
 decideTologin();
 
@@ -14,3 +15,5 @@ export default function decideTologin() {
       .classList.add('authorized');
   document.body.querySelector('div.container').classList.remove('authorized');
 }
+
+
