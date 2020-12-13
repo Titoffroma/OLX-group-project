@@ -56,26 +56,66 @@ async function some() {
   response = await fetchFunctions.getRequest(newRequest);
   console.log('get user - authorized -', response);
 }
-//some();
+// some();
 
 // // //////4/ Раскоментируйте вызов функции для демонстрации рендера разметки по запросу
-// (async () => {
-//   const request = {
-//     point: fetchFunctions.points.login,
-//     body: logInfo,
-//     method: 'POST',
-//   };
-//   const resp = await fetchFunctions.login(request);
-//   console.log(resp);
-//   const searchQuery = {
-//     point: fetchFunctions.points.call,
-//     query: '?page=1',
-//   };
-//  fetchFunctions.logout();
-//   const searchResult = await fetchFunctions.getRequest(searchQuery);
-//   console.log(searchResult);
 
-//   document.querySelector('main div.container').innerHTML = category(
-//     searchResult,
-//   );
-// })();
+// const formFile = document.querySelector('.add-card__form');
+// const inputFile = document.getElementById('inputFile');
+// const button = document.querySelector('.submit-btn');
+
+// let i = 0;
+// let files = [];
+// let type = '';
+
+// const fileReader = new FileReader();
+
+// fileReader.onloadstart = () => {
+//   button.setAttribute('disabled', 'disabled');
+//   console.log('start');
+// };
+
+// fileReader.onload = e => {
+//   files.push(`${e.target.result}type=${type}`);
+//   console.log(files);
+//   button.removeAttribute('disabled');
+// };
+
+// inputFile.addEventListener('change', () => {
+//   if (i < 5) {
+//     type = inputFile.files[0].type;
+//     fileReader.readAsBinaryString(inputFile.files[0]);
+//     console.log(type);
+//     console.log('change');
+//     i++;
+//   }
+// });
+
+// formFile.addEventListener('submit', submitFiles);
+
+// async function submitFiles(event) {
+//   event.preventDefault();
+
+//   const bodyPhoto = {
+//     title: 'Logo',
+//     description: 'Logo for Instagram',
+//     category: 'business and services',
+//     price: 100,
+//     phone: '+380971468686',
+//     file: files,
+//   };
+
+//   const URL = 'https://callboard-backend.herokuapp.com/call';
+//   console.log(bodyPhoto);
+//   const answer = await fetch(URL, {
+//     method: 'POST',
+//     headers: {
+//       accept: 'application/json',
+//       'Content-Type': 'multipart/form-data',
+//       authorization: load('Token') ? load('Token').accessToken : '',
+//     },
+//     body: JSON.stringify(bodyPhoto),
+//   });
+
+//   console.log(answer);
+// }
