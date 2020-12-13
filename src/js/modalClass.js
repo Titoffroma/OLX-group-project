@@ -34,13 +34,13 @@ class Modal {
   startListener() {
     document.body.addEventListener('click', this.openModal, { once: true });
   }
-  openModal(event) {
+  async openModal(event) {
     if (event.target.dataset.modal == 'true') {
       event.preventDefault();
       const index = event.target.dataset.hbs;
       document
         .querySelector('body')
-        .insertAdjacentHTML('beforeend', this.functions[index]());
+        .insertAdjacentHTML('beforeend', await this.functions[index](event));
       const modalRef = document.querySelector('div[data-close]');
       document.body.style.overflow = 'hidden';
       modalRef.addEventListener('click', this.onClickCloseModal);

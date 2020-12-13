@@ -8,16 +8,16 @@
             <h4 class="modal-content-box_title">{{title}}</h4>
             <p class="modal-content-box_code">Код товару | {{__v}}</p>
         </div>
-        <div class="modal-photo-box">
+        <div class="modal-product-photo-box">
             <div class="modal-product_photo">
-                <img class="main-modal-photo" src="{{#each imageUrls}}{{#if @first}}{{this}}{{/if}}{{/each}}"
+                <img class="main-modal-product-photo" src="{{#each imageUrls}}{{#if @first}}{{this}}{{/if}}{{/each}}"
                     alt="product photo" />
             </div>
-            <div class="photo-wrapper">
-                <ul class="photo-list">
+            <div class="product-photo-wrapper">
+                <ul class="product-photo-list">
                     {{#each imageUrls}}
-                    <li class="photo-list_item">
-                        <img class="photo-list-item-img" src="{{this}}" alt="product photo" />
+                    <li class="product-photo-list_item">
+                        <img class="product-photo-list-item-img" src="{{this}}" alt="product photo" />
                     </li>
                     {{/each}}
                 </ul>
@@ -43,9 +43,9 @@
             <div class="modal-actions">
                 <ul class="actions-list">
                     <li class="actions-item">
-                        <button class="actions-item_button">
-                            <p data-id="{{_id}}" class="actions-item_title">В обране</p>
-                            <span class="material-icons md-16">favorite_border</span>
+                        <button data-id="{{_id}}" class="actions-item_button">
+                            <p class="actions-item_title">В обране</p>
+                            <span class="material-icons md-16 product-favorite-icon">favorite_border</span>
                         </button>
                     </li>
                     <li class="actions-item">
