@@ -16,10 +16,11 @@
                 <span data-like data-id="{{_id}}" class=" material-icons cardset__icons">favorite_border</span>
             </div>
             <div class="icons-container">
-                <span data-create data-id="{{_id}}" class=" material-icons cardset__icons authorized">create</span>
+                <span data-create data-id="{{_id}}" class=" material-icons cardset__icons unauthorized">create</span>
             </div>
             <div class="icons-container">
-                <span data-open data-id="{{_id}}" class="material-icons cardset__icons">fullscreen</span>
+                <span data-modal="true" data-hbs="10" data-open data-id="{{_id}}"
+                    class="material-icons cardset__icons">fullscreen</span>
             </div>
         </div>
     </a>
