@@ -23,7 +23,6 @@ function render(event) {
     }
 
     document.querySelector('main div.container').innerHTML = cardset(data);
-    myModal.closeModal();
     document.querySelector('.backdrop').click();
   });
 }
