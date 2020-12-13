@@ -9,8 +9,7 @@
     position: relative;
     overflow: hidden;
     box-shadow: $shade;
-    &:hover,
-    &:focus {
+    &:hover {
       & .cardset__overlay {
         transform: translateY(-100%);
         opacity: 1;
