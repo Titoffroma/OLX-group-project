@@ -1,0 +1,92 @@
+.modal-exit-confirmation-backdrop {
+  display: flex;
+  justify-content: center;
+
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.modal-exit-confirmation {
+  position: relative;
+  margin: 0 auto;
+  padding: 60px 20px;
+  width: 290px;
+  height: 205px;
+  background-color: $main-grey;
+
+  @media screen and (min-width: $tablet) {
+    padding: 60px 105px;
+    width: 650px;
+    height: 230px;
+  }
+}
+
+.modal-exit-confirm-button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-exit-confirm-button {
+  font-family: $Roboto;
+  font-style: normal;
+  font-weight: $medium;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+
+  width: 119px;
+  height: 50px;
+  border: 1px solid $dark-grey;
+
+  @media screen and (min-width: $tablet) {
+    width: 210px;
+    height: 60px;
+  }
+}
+
+.modal-exit-confirm-container-btn-cancel {
+  background-color: $main-grey;
+  color: $black;
+}
+
+.modal-exit-confirm-container-btn-out {
+  background-color: $accent;
+  color: $white;
+}
+
+.modal-exit-confirm-container-text {
+  font-family: $Roboto;
+  font-style: normal;
+  font-weight: $bold;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: $black;
+  margin-bottom: 20px;
+  @media screen and (min-width: $tablet) {
+    margin-bottom: 30px;
+  }
+}
+
+.modal-exit-confirm-container-btn-clear {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 20px;
+  right: 20px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: $black;
+
+  @media screen and (min-width: $tablet) {
+    top: 30px;
+    right: 30px;
+  }
+}

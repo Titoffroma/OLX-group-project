@@ -1,4 +1,6 @@
 import renderCards from '../templates/cardset.hbs';
+import category from '../templates/category.hbs';
+import { load, save, remove } from './storage';
 
 // Небольшая инструкция
 // Импортирум экземпляр класса
@@ -35,7 +37,8 @@ const request = {
 };
 // А для для получения данных пользователя создается такой объект параметров запроса
 const newRequest = {
-  point: fetchFunctions.points.user,
+  point: fetchFunctions.points.find,
+  query: 'shirt',
 };
 
 // //////3/ Чтоб получить информацию с бэкэнда в классе имеются 3 метода:
@@ -46,7 +49,7 @@ async function some() {
   let response = await fetchFunctions.login(request);
   console.log('login -', response);
   response = await fetchFunctions.logout();
-  console.log('logout - всегда вернет undefined - ', response);
+  console.log('logout -', response);
   response = await fetchFunctions.getRequest(newRequest);
   console.log('get user - unauthorized -', response);
   response = await fetchFunctions.login(request);
@@ -55,13 +58,64 @@ async function some() {
 }
 // some();
 
-// //////4/ Раскоментируйте вызов функции trySome() для демонстрации рендера разметки по запросу
-async function trySome() {
-  const tryRequest = { point: fetchFunctions.points.call, query: '?page=1' };
-  const response = await fetchFunctions.getRequest(tryRequest);
-  console.log('Yo', response);
-  const markup = renderCards(response);
-  document.querySelector('main div.container').innerHTML = markup;
-}
+// // //////4/ Раскоментируйте вызов функции для демонстрации рендера разметки по запросу
 
-// trySome();
+// const formFile = document.querySelector('.add-card__form');
+// const inputFile = document.getElementById('inputFile');
+// const button = document.querySelector('.submit-btn');
+
+// let i = 0;
+// let files = [];
+// let type = '';
+
+// const fileReader = new FileReader();
+
+// fileReader.onloadstart = () => {
+//   button.setAttribute('disabled', 'disabled');
+//   console.log('start');
+// };
+
+// fileReader.onload = e => {
+//   files.push(`${e.target.result}type=${type}`);
+//   console.log(files);
+//   button.removeAttribute('disabled');
+// };
+
+// inputFile.addEventListener('change', () => {
+//   if (i < 5) {
+//     type = inputFile.files[0].type;
+//     fileReader.readAsBinaryString(inputFile.files[0]);
+//     console.log(type);
+//     console.log('change');
+//     i++;
+//   }
+// });
+
+// formFile.addEventListener('submit', submitFiles);
+
+// async function submitFiles(event) {
+//   event.preventDefault();
+
+//   const bodyPhoto = {
+//     title: 'Logo',
+//     description: 'Logo for Instagram',
+//     category: 'business and services',
+//     price: 100,
+//     phone: '+380971468686',
+//     file: files,
+//   };
+
+//   const URL = 'https://callboard-backend.herokuapp.com/call';
+//   console.log(bodyPhoto);
+//   const answer = await fetch(URL, {
+//     method: 'POST',
+//     headers: {
+//       accept: 'application/json',
+//       'Content-Type': 'multipart/form-data',
+//       authorization: load('Token') ? load('Token').accessToken : '',
+//     },
+//     body: JSON.stringify(bodyPhoto),
+//   });
+
+//   console.log(answer);
+// }

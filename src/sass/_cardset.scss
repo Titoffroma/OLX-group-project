@@ -82,6 +82,9 @@
     color: $white;
     opacity: 0;
     transition: opacity $transition;
+    &.unauthorized {
+      display: none;
+    }
   }
   &__price {
     font-weight: $bold;
@@ -92,11 +95,16 @@
     }
     &.old {
       color: $dark-grey;
+      padding: 0 3px;
     }
     &.del {
       color: $black;
       text-decoration: line-through;
-      margin-right: 10px;
+      padding-right: 7px;
     }
   }
+}
+
+.container.authorized .unauthorized {
+  display: block;
 }

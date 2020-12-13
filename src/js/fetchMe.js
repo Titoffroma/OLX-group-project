@@ -72,12 +72,13 @@ class FetchMe {
       method,
       headers: this.headers,
     };
-    if (contentType)
+    if (contentType) {
       opt.headers = {
         accept: 'application/json',
         'Content-Type': 'multipart/form-data',
         authorization: load('Token') ? load('Token').accessToken : '',
       };
+    }
     if (body) opt.body = JSON.stringify(body);
     const params = point ? opt : false;
     const url = this.URL + point + query;
@@ -100,11 +101,13 @@ class FetchMe {
         await response.json().then(data => pushError(data.message));
         return;
       }
+
       return await response.json();
     } catch (err) {
       console.log('mistake', err.message);
     }
   }
+
   async refresh(url, opt) {
     const option = {
       method: 'POST',

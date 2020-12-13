@@ -10,39 +10,66 @@
   </head>
   <body>
     <header>
-      <div class="container">
-        <div class="header_button_menu_phone">
-          <nav class="container_nav">
-            <div class="header_nav__wrap">
-              <ul class="header_nav__list">
-                <li class="header_nav__item">
-                  <button type="button" class="header_button__search">
-                    <span class="material-icons md-24">search</span>
+      <div class="header_button_menu_phone">
+        <nav class="container_nav">
+          <div class="header_nav__wrap">
+            <ul class="header_nav__list">
+              <li class="header_nav__item">
+                <button type="button" class="header_button__search">
+                  <span
+                    data-modal="true"
+                    data-hbs="2"
+                    class="material-icons md-24"
+                    >search</span
+                  >
+                </button>
+              </li>
+              <li class="header_nav__item">
+                <a href="#" class="header_logo__link">
+                  <img src="./img/Logo.svg" alt="Logo" data-clear-filter />
+                </a>
+              </li>
+            </ul>
+
+            <div class="header_button__wrap">
+              <ul
+                class="header_registration_identity"
+                id="navigation"
+                data-button
+              >
+                <li class="header_registration_identity__item">
+                  <a
+                    data-modal-type="authorization"
+                    data-modal="true"
+                    data-hbs="8"
+                    href="#"
+                    class="header_registration_link"
+                    >Реєстрація / Увійти</a
+                  >
+                </li>
+                <li class="header_registration_identity__item">
+                  <button type="button" class="header_button__perm_identity">
+                    <span
+                      data-modal-type="authorization"
+                      data-modal="true"
+                      data-hbs="8"
+                      class="material-icons md-24"
+                      >perm_identity</span
+                    >
                   </button>
                 </li>
-                <li class="header_nav__item">
-                  <a href="#" class="header_logo__link">
-                    <img src="./img/Logo.svg" alt="Logo" />
-                  </a>
-                </li>
               </ul>
-
-              <div class="header_button__wrap">
-                <a href="#" class="header_registration">Реєстрація / Увійти</a>
-                <button type="button" class="header_button__perm_identity">
-                  <span class="material-icons md-24">perm_identity</span>
-                </button>
-                <button
-                  type="button"
-                  class="header_button__create"
-                  data-modal="true"
-                  data-hbs="1"
-                >
-                  Створити оголошення!
-                </button>
-              </div>
+              <button
+                type="button"
+                class="header_button__create"
+                data-modal="true"
+                data-hbs="1"
+              >
+                Створити оголошення!
+              </button>
             </div>
-
+          </div>
+          <div class="header_button_menu_phone">
             <div class="header_button_menu_tablet">
               <button
                 type="button"
@@ -51,14 +78,14 @@
                 aria-controls="navigation"
                 data-menu-button
               >
-                <div class="header-menu-icon" aria-label="menu switch">
+                <span class="header-menu-icon" aria-label="menu switch">
                   <span class="icon-close material-icons md-24">clear</span>
                   <span class="icon-menu material-icons md-24">menu</span>
-                </div>
+                </span>
               </button>
 
-              <div class="header_filter__wrap" id="navigation" data-menu>
-                <ul class="header_filter">
+              <div class="header_filter__wrap">
+                <ul class="header_filter" data-menu>
                   <li class="header_filter__item">
                     <a href="#" class="header_filter__link">Нерухомість</a>
                   </li>
@@ -90,22 +117,26 @@
                     <a href="#" class="header_filter__link">Обмін</a>
                   </li>
                 </ul>
-
                 <div class="header_filter_button">
                   <button type="button" class="header_button__replay">
-                    <span class="material-icons md-24">replay</span>
+                    <span class="material-icons md-24" data-clear-filter
+                      >replay</span
+                    >
                   </button>
-                  <p class="header_filter__replay">Очистити фільтри</p>
+                  <p class="header_filter__replay" data-clear-filter>
+                    Очистити фільтри
+                  </p>
                 </div>
               </div>
             </div>
-          </nav>
-        </div>
+          </div>
+        </nav>
       </div>
     </header>
     <main>
       <div class="container"></div>
     </main>
+
     <footer class="footer">
       <div class="container footer__container">
         <p class="footer__text">
@@ -117,9 +148,8 @@
         </p>
         <p class="footer__text">
           Developed with
-          <span class="material-icons footer__head md-16">favorite </span> by
-          &nbsp
-          <ins>GoIT Students</ins>
+          <span class="material-icons footer__head md-16">favorite </span
+          >"by&nbsp;"<ins>GoIT Students</ins>
         </p>
       </div>
     </footer>

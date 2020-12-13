@@ -1,9 +1,31 @@
 import renderCardlist from '../templates/card.hbs';
-
 import openAddCardModal from './addCardLogic';
 import openEditCardModal from './editCardLogic';
+import renderAddCard from '../templates/add-card.hbs';
+import popupExitConfirm from '../templates/pop-up-exit-confirm.hbs';
+import myOffice from '../templates/my-office.hbs';
+import myAdvert from '../templates/my-advert.hbs';
+import selectedAdvert from '../templates/selected-advert.hbs';
+import popupSearch from '../templates/pop-up-search.hbs';
+import openModalFind from './openSearchModal';
+import openModalConfirm from './openConfirmModal';
+import openModalAuth from './authorization';
+import openModalProduct from './productModal';
 
-const hbsFunctions = [renderCardlist, openAddCardModal, openEditCardModal];
+const hbsFunctions = [
+  renderCardlist,
+  openAddCardModal,
+  openModalFind,
+  popupSearch,
+  popupExitConfirm,
+  myOffice,
+  myAdvert,
+  selectedAdvert,
+  openModalAuth,
+  openModalConfirm,
+  openModalProduct,
+  openEditCardModal
+];
 
 class Modal {
   constructor(functions) {
@@ -13,22 +35,19 @@ class Modal {
     this.onClickCloseModal = this.onClickCloseModal.bind(this);
   }
   startListener() {
-    document.body.addEventListener('click', this.openModal, {
-      once: true,
-    });
+    document.body.addEventListener('click', this.openModal, { once: true });
   }
   openModal(event) {
-    event.preventDefault();
     if (event.target.dataset.modal == 'true') {
+      event.preventDefault();
       const index = event.target.dataset.hbs;
       document
         .querySelector('body')
         .insertAdjacentHTML('beforeend', this.functions[index]());
       const modalRef = document.querySelector('div[data-close]');
-      console.log(modalRef);
+      document.body.style.overflow = 'hidden';
       modalRef.addEventListener('click', this.onClickCloseModal);
       window.addEventListener('keydown', this.onEscapeCloseModal);
-      return;
     }
     this.startListener();
   }
@@ -37,9 +56,7 @@ class Modal {
     window.removeEventListener('keydown', this.onEscapeCloseModal);
     backdrop.removeEventListener('click', this.onClickCloseModal);
     backdrop.remove();
-    document.body.addEventListener('click', this.openModal, {
-      once: true,
-    });
+    document.body.style.overflowY = 'scroll';
   }
   onEscapeCloseModal(event) {
     if (event.code === 'Escape') {
@@ -47,8 +64,8 @@ class Modal {
     }
   }
   onClickCloseModal(event) {
-    // event.preventDefault();
     if (event.target.hasAttribute('data-close')) {
+      event.preventDefault();
       this.closeModal();
     }
   }
@@ -56,6 +73,3 @@ class Modal {
 const myModal = new Modal(hbsFunctions);
 
 export default myModal;
-
-// <button data-modal="true">
-// <el data-close>
