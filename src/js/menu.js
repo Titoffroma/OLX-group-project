@@ -1,16 +1,27 @@
+
 (() => {
   const menuBtnRef = document.querySelector('[data-menu-button]');
-  const mobileMenuRef = document.querySelector('[data-menu]');
-  const mobileMenuButt = document.querySelector('[data-button]');
+  const menuBtnRefClose = document.querySelector('[data-menu-close]');
+  const containerMenu = document.querySelector('[data-menu]');
+  const mobileBackd = document.querySelector('[data-backref]');
 
-  menuBtnRef.addEventListener('click', () => {
-    const expanded =
-      menuBtnRef.getAttribute('aria-expanded') === 'true' || false;
+  const toggleMenu = () => {
 
-    menuBtnRef.classList.toggle('is-open');
-    menuBtnRef.setAttribute('aria-expanded', !expanded);
+    menuBtnRef.addEventListener('click', openMenu);
+    menuBtnRefClose.addEventListener('click', closeMenu);
 
-    mobileMenuRef.classList.toggle('is-open');
-    mobileMenuButt.classList.toggle('is-open');
-  });
-})();
+    function openMenu() {
+      const expanded = menuBtnRef.getAttribute('aria-expanded') === 'true' || false;
+      document.body.classList.toggle('scroll-hidden');
+      menuBtnRef.setAttribute('aria-expanded', !expanded);
+      mobileBackd.classList.add('is-visible');
+      containerMenu.classList.add('is-open');
+    };
+
+    function closeMenu() {
+      mobileBackd.classList.remove('is-visible');
+      containerMenu.classList.remove('is-open');
+    }
+  }
+  })();
+  

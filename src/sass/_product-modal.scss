@@ -31,11 +31,13 @@
     display: flex;
     padding: 55px 55px 60px;
     width: 725px;
+    min-height: 614px;
   }
 
   @media screen and (min-width: $desktop) {
-    padding: 55px 105px 60px;
+    padding: 60px;
     width: 860px;
+    min-width: 670px;
   }
 }
 .button-close {
@@ -69,37 +71,79 @@
   }
 }
 
-.modal-foto-box {
-}
-.modal-product_foto {
+.modal-product_photo {
+  width: 253px;
+  height: 253px;
+  @media screen and(min-width:$tablet) {
+    width: 280px;
+    height: 350px;
+  }
+  @media screen and(min-width:$desktop) {
+    width: 380px;
+    height: 470px;
+  }
   & img {
-    max-width: 100%;
-    height: auto;
+    width: 253px;
+    height: 253px;
+    @media screen and(min-width:$tablet) {
+      width: 280px;
+      height: 350px;
+    }
+    @media screen and(min-width:$desktop) {
+      width: 380px;
+      height: 470px;
+    }
+
     margin: auto;
   }
 }
+.main-modal-product-photo {
+  object-fit: cover;
+}
 
-.foto-wrapper {
+.product-photo-wrapper {
+  display: none;
+  @media screen and(min-width:$tablet) {
+    display: block;
+  }
   margin-top: 10px;
 }
-.foto-list {
+.product-photo-list {
   display: flex;
-  height: 73px;
-  &_atem {
+  &_item {
+    @media screen and (min-width: $tablet) {
+      width: 52px;
+      height: 56px;
+    }
+    @media screen and (min-width: $desktop) {
+      width: 68px;
+      height: 73px;
+    }
     overflow: hidden;
     & img {
-      max-width: 100%;
-      height: auto;
+      width: 52px;
+      height: 56px;
+      @media screen and (min-width: $desktop) {
+        width: 68px;
+        height: 73px;
+      }
+      object-fit: cover;
       margin: auto;
     }
   }
-  &_atem:not(:first-child) {
+  &_item:not(:first-child) {
     margin-left: 10px;
   }
 }
 
 .modal-content-box {
   margin-bottom: 20px;
+  &-down {
+    display: none;
+    @media screen and(min-width:$tablet) {
+      display: block;
+    }
+  }
   @media screen and (min-width: $tablet) {
     display: none;
   }
@@ -130,6 +174,7 @@
     font-size: 18px;
     line-height: 1.16;
 
+    margin-top: 30px;
     margin-bottom: 30px;
     @media screen and (min-width: $tablet) {
       margin-bottom: 40px;
@@ -155,9 +200,11 @@
   width: 255px;
   border: none;
 
-  font-weight: $medium;
+  font-weight: $normal;
   font-size: 12px;
   line-height: 1.16;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 
   @media screen and (min-width: $tablet) {
     width: 300px;
@@ -213,7 +260,7 @@
   display: flex;
   margin-bottom: 32px;
 }
-.actions-atem {
+.actions-item {
   display: flex;
   align-items: center;
 
@@ -236,13 +283,11 @@
     background-color: transparent;
     text-decoration: none;
 
-    &:hover .actions-atem_title,
-    &:focus .actions-atem_title {
+    &:hover .actions-item_title {
       color: $accent;
     }
 
-    &:hover .material-icons,
-    &:focus .material-icons {
+    &:hover .material-icons {
       cursor: pointer;
       color: $accent;
     }
@@ -274,6 +319,6 @@
   line-height: 1.14;
 }
 
-.photo-list-item-img {
+.product-photo-list-item-img {
   cursor: pointer;
 }
