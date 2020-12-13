@@ -1,6 +1,5 @@
 import findModal from '../templates/pop-up-search.hbs';
 import cardset from '../templates/cardset.hbs';
-import myModal from './modalClass';
 import fetchFunctions from './fetchMe';
 import { pushError } from './pnotify';
 

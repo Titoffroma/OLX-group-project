@@ -14,13 +14,11 @@ export default function openMyFavorite() {
 function render(event) {
     event.preventDefault();
     const request = {
-        point: fetchFunctions.points.myFav,
-        
-      };
+        point: fetchFunctions.points.myFav
+    };
+    
     fetchFunctions.getRequest(request).then(data => {
-        
-     
-         document.querySelector('main div.container').innerHTML = cardset(data);
+        document.querySelector('main div.container').innerHTML = cardset(data);
       myModal.closeModal();
     });
 }

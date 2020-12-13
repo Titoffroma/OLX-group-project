@@ -1,7 +1,6 @@
 import renderCardlist from '../templates/card.hbs';
 import renderAddCard from '../templates/add-card.hbs';
 import popupExitConfirm from '../templates/pop-up-exit-confirm.hbs';
-import myOffice from '../templates/my-office.hbs';
 import myAdvert from '../templates/my-advert.hbs';
 import selectedAdvert from '../templates/selected-advert.hbs';
 import popupSearch from '../templates/pop-up-search.hbs';
@@ -17,7 +16,6 @@ const hbsFunctions = [
   openModalFind,
   popupSearch,
   popupExitConfirm,
-  myOffice,
   myAdvert,
   selectedAdvert,
   openModalAuth,
