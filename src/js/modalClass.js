@@ -6,17 +6,25 @@ import myAdvert from '../templates/my-advert.hbs';
 import selectedAdvert from '../templates/selected-advert.hbs';
 import authorizationModal from '../templates/authorization-modal.hbs';
 import popupSearch from '../templates/pop-up-search.hbs';
+import  openModalFind  from '../js/openSearchModal';
+import openModalConfirm from '../js/openConfirmModal'
+
+
+
 
 const hbsFunctions = [
   renderCardlist,
   renderAddCard,
+  openModalFind,
   popupSearch,
   popupExitConfirm,
   myOffice,
   myAdvert,
   selectedAdvert,
   authorizationModal,
+  openModalConfirm,
 ];
+
 
 class Modal {
   constructor(functions) {
@@ -55,6 +63,7 @@ class Modal {
     }
   }
   onClickCloseModal(event) {
+
     if (event.target.hasAttribute('data-close')) {
       event.preventDefault();
       this.closeModal();

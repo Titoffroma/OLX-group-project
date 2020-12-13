@@ -17,9 +17,9 @@ class FetchMe {
       google: '/auth/google/',
       user: '/user/',
       call: '/call/',
-      fav: '/call/favourite/',
+      fav: '/call/favourite/',   
       myFav: '/call/favourites/',
-      myCalls: '/call/own/',
+      myCalls: '/call/own/',   
       find: '/call/find?search=',
       cat: '/call/categories',
       catCalls: '/call/specific/',
@@ -89,6 +89,7 @@ class FetchMe {
         await response.json().then(data => pushError(data.message));
         return;
       }
+      
       return await response.json();
     } catch (err) {
       console.log('mistake', err.message);

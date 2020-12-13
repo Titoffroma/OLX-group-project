@@ -56,7 +56,7 @@ async function some() {
   response = await fetchFunctions.getRequest(newRequest);
   console.log('get user - authorized -', response);
 }
-// some();
+//some();
 
 // // //////4/ Раскоментируйте вызов функции для демонстрации рендера разметки по запросу
 // (async () => {
@@ -71,7 +71,7 @@ async function some() {
 //     point: fetchFunctions.points.call,
 //     query: '?page=1',
 //   };
-//   fetchFunctions.logout();
+//  fetchFunctions.logout();
 //   const searchResult = await fetchFunctions.getRequest(searchQuery);
 //   console.log(searchResult);
 
