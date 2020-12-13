@@ -3,4 +3,7 @@ import { pushError, removeError } from './pnotify';
 import fetchFunctions from './fetchMe';
 import myModal from './modalClass';
 import { onPaginationPage } from './paginationCategories';
+import renderPage  from '../js/openPage'
 myModal.startListener();
+
+

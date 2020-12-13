@@ -1,29 +1,11 @@
-import './sass/main.scss';
-import './js/main.js';
-import 'material-design-icons/iconfont/material-icons.css';
-import './js/menu.js';
-import './js/filter.js';
-import './js/fetchMeDescription';
-//import './js/authorization';
-
-import fetchFunctions from './js/fetchMe'
-
-const logInfo = {
-  email: 'titoff.roma@gmail.com',
-    password: 'qweqwe12',
-  
-};
-const request = {
-  point: fetchFunctions.points.login,
-  body: logInfo,
-  method: 'POST',
-};
-(async () => {
-    await fetchFunctions.login(request);
-    console.log(request)
-})();
+import myOffice from '../templates/my-office.hbs'
+import mySelectedAd from '../templates/my-advert.hbs'
+// import mySelectedAd from '../templates/selected-advert.hbs'
+import cardset from '../templates/selected-advert.hbs';
 
 
+
+import fetchFunctions from './fetchMe'
 
 
 export default function renderPage(event)
@@ -36,7 +18,7 @@ export default function renderPage(event)
 
 function render(event) {
     console.log(event.target)
-    if (event.target.dataset.office) {
+    if (event.target.hasAttribute('data-office')) {
         const request = { point: fetchFunctions.points.user, }
 
         fetchFunctions.getRequest(request).then(data => {
@@ -47,7 +29,7 @@ function render(event) {
     }
 
 
-    if (event.target.dataset.advert) {
+    if (event.target.hasAttribute('data-advert')) {
         const newRequest = {
             point: fetchFunctions.points.myCalls,
         
@@ -60,7 +42,7 @@ function render(event) {
         return
     }
 
-    if (event.target.dataset.favor)
+    if (event.target.hasAttribute('data-favor'))
     {
         const requestFav = {
         point: fetchFunctions.points.myFav,

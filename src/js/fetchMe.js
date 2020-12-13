@@ -52,7 +52,7 @@ class FetchMe {
       };
       return await response;
     }
-    pushError(response.message);
+   pushError(response.message);
   }
   async login(opt) {
     return await this.getRequest(opt).then(data => {
