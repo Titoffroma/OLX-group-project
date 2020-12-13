@@ -15,12 +15,15 @@ function logOut(event) {
   {
     const request = {
     point: fetchFunctions.points.call,
-    query: '?page=1',
-  };
-
+      query: '?page=1',
+    };
+    
     fetchFunctions.getRequest(request).then(data => {
     const orderedSearch = renderCategories(data);
       document.querySelector('main div.container').innerHTML = orderedSearch;
+
+      fetchFunctions.logout()
+
     }) }
 };
 

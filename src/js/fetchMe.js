@@ -17,9 +17,9 @@ class FetchMe {
       google: '/auth/google/',
       user: '/user/',
       call: '/call/',
-      fav: '/call/favourite/',   
+      fav: '/call/favourite/',
       myFav: '/call/favourites/',
-      myCalls: '/call/own/',   
+      myCalls: '/call/own/',
       find: '/call/find?search=',
       cat: '/call/categories',
       catCalls: '/call/specific/',
@@ -28,7 +28,7 @@ class FetchMe {
   get headers() {
     return {
       'Content-Type': 'application/json',
-      authorization: load('Token') ? load('Token').accessToken : '',
+      authorization: load('Token') ? `Bearer ${load('Token').accessToken}` : '',
     };
   }
   get token() {
@@ -52,7 +52,7 @@ class FetchMe {
       };
       return await response;
     }
-    pushError(response.message);
+   pushError(response.message);
   }
   async login(opt) {
     return await this.getRequest(opt).then(data => {
@@ -61,17 +61,31 @@ class FetchMe {
       return data;
     });
   }
-  async getRequest({ point, method = 'GET', body = null, query = '' }) {
+  async getRequest({
+    point,
+    method = 'GET',
+    body = null,
+    query = '',
+    contentType = false,
+  }) {
     const opt = {
       method,
       headers: this.headers,
     };
+    if (contentType) {
+      opt.headers = {
+        accept: 'application/json',
+        'Content-Type': 'multipart/form-data',
+        authorization: load('Token')
+          ? `Bearer ${load('Token').accessToken}`
+          : '',
+      };
+    }
     if (body) opt.body = JSON.stringify(body);
     const params = point ? opt : false;
     const url = this.URL + point + query;
     return await this.sendRequest(url, params);
   }
-
   async sendRequest(url, params) {
     try {
       if (!params) {
@@ -89,7 +103,7 @@ class FetchMe {
         await response.json().then(data => pushError(data.message));
         return;
       }
-      
+
       return await response.json();
     } catch (err) {
       console.log('mistake', err.message);
@@ -101,7 +115,7 @@ class FetchMe {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        authorization: load('Token').refreshToken,
+        authorization: `Bearer ${load('Token').refreshToken}`,
       },
       body: JSON.stringify({ sid: load('Token').sid }),
     };
@@ -117,5 +131,6 @@ class FetchMe {
     }
   }
 }
+
 const fetchFunctions = new FetchMe();
 export default fetchFunctions;

@@ -1,7 +1,8 @@
 import renderCardlist from '../templates/card.hbs';
+import openAddCardModal from './addCardLogic';
+import openEditCardModal from './editCardLogic';
 import renderAddCard from '../templates/add-card.hbs';
 import popupExitConfirm from '../templates/pop-up-exit-confirm.hbs';
-import myOffice from '../templates/my-office.hbs';
 import myAdvert from '../templates/my-advert.hbs';
 import selectedAdvert from '../templates/selected-advert.hbs';
 import popupSearch from '../templates/pop-up-search.hbs';
@@ -10,18 +11,19 @@ import openModalConfirm from './openConfirmModal';
 import openModalAuth from './authorization';
 import openModalProduct from './productModal';
 
+
 const hbsFunctions = [
   renderCardlist,
-  renderAddCard,
+  openAddCardModal,
   openModalFind,
   popupSearch,
   popupExitConfirm,
-  myOffice,
   myAdvert,
   selectedAdvert,
   openModalAuth,
   openModalConfirm,
   openModalProduct,
+  openEditCardModal,
 ];
 
 class Modal {
@@ -34,13 +36,13 @@ class Modal {
   startListener() {
     document.body.addEventListener('click', this.openModal, { once: true });
   }
-  openModal(event) {
+  async openModal(event) {
     if (event.target.dataset.modal == 'true') {
       event.preventDefault();
       const index = event.target.dataset.hbs;
       document
         .querySelector('body')
-        .insertAdjacentHTML('beforeend', this.functions[index]());
+        .insertAdjacentHTML('beforeend', await this.functions[index](event));
       const modalRef = document.querySelector('div[data-close]');
       document.body.style.overflow = 'hidden';
       modalRef.addEventListener('click', this.onClickCloseModal);

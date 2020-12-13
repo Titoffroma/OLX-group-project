@@ -14,7 +14,7 @@
 
   margin-right: 14px;
   margin-left: 40px;
-  display: none;
+  // display: none;
 
   @media screen and (min-width: $tablet) {
     display: block;
@@ -32,7 +32,7 @@
   }
 
   @media screen and (min-width: $desktop) {
-    display: none;
+    // display: none;
   }
 }
 
@@ -45,101 +45,99 @@ a {
   color: inherit;
 }
 
-.header {
-  &_nav__list {
-    display: flex;
-    align-items: center;
+.header_nav__list {
+  display: flex;
+  align-items: center;
+}
+
+.header_button__wrap {
+  display: flex;
+  align-items: center;
+}
+
+.header_logo__link {
+  display: block;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  @media screen and (max-width: 1279px) {
+    width: 50px;
+    height: 20px;
   }
 
-  &_button__wrap {
-    display: flex;
-    align-items: center;
+  @media screen and (min-width: $desktop) {
+    width: 56px;
+    height: 22px;
+  }
+}
+
+.header_registration_link {
+  font-weight: $medium;
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: $black;
+  background-color: $main-grey;
+
+  margin-right: 19px;
+
+  @media screen and (max-width: 1279px) {
+    margin-right: 0px;
   }
 
-  &_logo__link {
+  @media screen and (min-width: $desktop) {
     display: block;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translateX(-50%);
+  }
+}
 
-    @media screen and (max-width: 1279px) {
-      width: 50px;
-      height: 20px;
-    }
+.header_button__create {
+  font-weight: $medium;
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  background-color: $accent;
+  color: $white;
+  // display: none;
 
-    @media screen and (min-width: $desktop) {
-      width: 56px;
-      height: 22px;
-    }
+  @media screen and (min-width: $tablet) {
+    width: 188px;
+    height: 70px;
+    display: block;
   }
 
-  &_registration_link {
-    font-weight: $medium;
-    font-size: 12px;
-    line-height: 1.17;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    color: $black;
-    background-color: $main-grey;
-
-    margin-right: 19px;
-
-    @media screen and (max-width: 1279px) {
-      margin-right: 0px;
-    }
-
-    @media screen and (min-width: $desktop) {
-      display: block;
-    }
+  @media screen and (min-width: $desktop) {
+    width: 214px;
+    height: 70px;
   }
+}
 
-  &_button__create {
-    font-weight: $medium;
-    font-size: 12px;
-    line-height: 1.17;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    background-color: $accent;
-    color: $white;
-    display: none;
+.header_filter {
+  font-weight: $bold;
+  font-size: 14px;
+  line-height: 1.14;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: $black;
 
-    @media screen and (min-width: $tablet) {
-      width: 188px;
-      height: 70px;
-      display: block;
-    }
-
-    @media screen and (min-width: $desktop) {
-      width: 214px;
-      height: 70px;
-    }
+  @media screen and (max-width: 1279px) {
+    padding-top: 140px;
   }
+}
 
-  &_filter {
-    font-weight: $bold;
-    font-size: 14px;
-    line-height: 1.14;
-    text-align: center;
-    letter-spacing: 0.02em;
-    color: $black;
+.header_filter__replay {
+  font-weight: $normal;
+  font-size: 12px;
+  line-height: 1.25;
+  letter-spacing: 0.03em;
+  color: $black;
+  // display: none;
 
-    @media screen and (max-width: 1279px) {
-      padding-top: 140px;
-    }
-  }
-
-  &_filter__replay {
-    font-weight: $normal;
-    font-size: 12px;
-    line-height: 1.25;
-    letter-spacing: 0.03em;
-    color: $black;
-    display: none;
-
-    @media screen and (min-width: $tablet) {
-      display: block;
-    }
+  @media screen and (min-width: $tablet) {
+    display: block;
   }
 }
 
@@ -181,65 +179,6 @@ a {
   }
 }
 
-.button-menu {
-  background-color: $main-grey;
-
-  min-width: 43px;
-  height: 70px;
-  display: flex;
-  align-items: center;
-
-  margin: 0;
-  padding: 0;
-
-  @media screen and (min-width: $tablet) {
-    border: 1px solid $stroke-grey;
-    border-bottom: none;
-    border-left: none;
-    border-top: none;
-  }
-
-  @media screen and (min-width: $desktop) {
-    display: none;
-  }
-
-  .icon-menu {
-    display: none;
-  }
-
-  &.is-open .icon-menu {
-    display: block;
-  }
-
-  &.is-open .icon-close {
-    display: none;
-  }
-
-  @media screen and (max-width: 479px) {
-    position: absolute;
-    z-index: 2;
-    top: 0%;
-    right: 70%;
-    transform: translateX(-50%);
-  }
-
-  @media screen and (min-width: $phone) and (max-width: 767px) {
-    position: absolute;
-    z-index: 2;
-    top: 0%;
-    right: 70%;
-    transform: translateX(-50%);
-  }
-}
-.icon-close {
-  @media screen and (max-width: 1279px) {
-    position: absolute;
-    top: 40%;
-    left: 200%;
-    transform: translateX(200%);
-  }
-}
-
 .header_filter {
   @media screen and (min-width: $desktop) {
     display: flex;
@@ -258,7 +197,7 @@ a {
     height: 1024px;
   }
   @media screen and (max-width: 1279px) {
-    display: none;
+    // display: none;
     background-color: $main-grey;
     position: absolute;
     top: 0;
@@ -287,7 +226,7 @@ a {
     border-right: none;
 
     display: flex;
-    display: none;
+    // display: none;
     background-color: $main-grey;
     position: absolute;
     z-index: 8;
@@ -304,10 +243,6 @@ a {
       max-width: 338px;
       width: 100%;
       height: 70px;
-    }
-
-    &.is-open {
-      display: block;
     }
   }
 }
@@ -344,4 +279,66 @@ a {
   border-top: none;
   border-left: none;
   border-right: none;
+}
+
+.data-back {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $overlay;
+
+  @media screen and (max-width: $desktop) {
+    opacity: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  @media screen and (min-width: $desktop) {
+    width: auto;
+    position: static;
+    background-color: transparent;
+  }
+}
+
+.scroll-hidden {
+  @media screen and (max-width: $desktop) {
+    overflow: hidden;
+  }
+
+  @media screen and (max-width: $desktop) {
+    .header_nav__menu-button.is-open .icon-menu {
+      display: none;
+    }
+
+    .data-back.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}
+
+.menu-container {
+  @media screen and (max-width: $desktop) {
+    position: fixed;
+    z-index: 1;
+
+    @media screen and (max-width: $tablet) {
+      min-width: 338px;
+    }
+
+    &.is-open {
+      left: 0;
+      overflow-y: scroll;
+    }
+  }
+}
+
+.close-button {
+  position: absolute;
+  top: 5%;
+  right: 80%;
+
+  @media screen and (min-width: $desktop) {
+  }
 }
