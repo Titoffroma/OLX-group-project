@@ -1,9 +1,14 @@
 import editCardModal from '../templates/edit-card.hbs';
-
 import fetchFunctions from './fetchMe';
 import modalLogic from './addAndEditModalLogic';
 
-export default function () {
+export default function openEditCardModal() {
+  const markup = editCardModal();
+  document.body.addEventListener('submit', onOpenEditCardModal);
+  return markup;
+}
+
+function onOpenEditCardModal () {
     modalLogic();
     const refs = {
         checkboxEl: document.querySelector('.checkbox-field'),
@@ -27,53 +32,49 @@ export default function () {
         // e.preventDefault();
  
         const formElements = e.currentTarget.elements;
-
         const title = formElements.title.value;
         const description = formElements.description.value;
         const category = formElements.category.value;
         const price = formElements.price.value;
         const phone = formElements.phone.value;
-        const photo = formElements.file.files[0].name;
+        const fileUrl = formElements.file.files[0].name;
+        const fileType = formElements.file.files[0].type;
 
         const changedFormData = {
             title,
             description,
             category,
-            price,
+            price: Number(price),
             phone,
-            photo
+            file: `${fileUrl}; type=${fileType}`,
         };
 
         if (!formElements.checkbox.checked) {
-             const patchRequest = {
+            const cardToPatch = {
                 point: fetchFunctions.points.call,
                 body: changedFormData,
                 method: 'PATCH',
-                // query: '1'
-            }
-
+                contentType: true,
+                // query: 'id???'
+            };
             async function patchCard() {
-                let response = await fetchFunctions.getRequest(patchRequest);
+                let response = await fetchFunctions.getRequest(cardToPatch);
                 console.log(response);
-            }
-            
+            };
             patchCard(); 
         } else {
-            const deleteRequest = {
+            const cardToDelete = {
                 point: fetchFunctions.points.call,
                 method: 'DELETE',
-                // query: '1'
-            }
-
+                contentType: true,
+                // query: 'id???'
+            };
             async function deleteCard() {
-                let response = await fetchFunctions.getRequest(deleteRequest);
+                let response = await fetchFunctions.getRequest(cardToDelete);
                 console.log(response);
-            }
-            
+            };
             deleteCard(); 
         }
-
-       
     }
 }
 

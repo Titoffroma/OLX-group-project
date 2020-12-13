@@ -20,12 +20,15 @@ class FetchMe {
       fav: '/call/favourite/',
       myFav: '/call/favourites/',
       myCalls: '/call/own/',
-      find: '/call/find/',
+      find: '/call/find?search=',
       cat: '/call/categories',
+      catCalls: '/call/specific/',
     };
-    this.headers = {
+  }
+  get headers() {
+    return {
       'Content-Type': 'application/json',
-      authorization: '',
+      authorization: load('Token') ? load('Token').accessToken : '',
     };
   }
   get token() {
@@ -39,14 +42,17 @@ class FetchMe {
     }
   }
   async logout() {
-    const opt = { point: this.points.logout, method: 'POST', logout: true };
-    await this.getRequest(opt);
-    remove('Token');
-    this.token = {
-      accessToken: '',
-      refreshToken: '',
-      sid: '',
-    };
+    const response = await this.getRequest({ point: false });
+    if (response.ok) {
+      remove('Token');
+      this.token = {
+        accessToken: '',
+        refreshToken: '',
+        sid: '',
+      };
+      return await response;
+    }
+    pushError(response.message);
   }
   async login(opt) {
     return await this.getRequest(opt).then(data => {
@@ -60,28 +66,35 @@ class FetchMe {
     method = 'GET',
     body = null,
     query = '',
-    logout = false,
+    contentType = false,
   }) {
     const opt = {
       method,
       headers: this.headers,
     };
+    if (contentType)
+      opt.headers = {
+        accept: 'application/json',
+        'Content-Type': 'multipart/form-data',
+        authorization: load('Token') ? load('Token').accessToken : '',
+      };
     if (body) opt.body = JSON.stringify(body);
-    if (load('Token')) opt.headers.authorization = load('Token').accessToken;
-    const par = logout ? false : opt;
+    const params = point ? opt : false;
     const url = this.URL + point + query;
-    return await this.sendRequest(url, par);
+    return await this.sendRequest(url, params);
   }
-  async sendRequest(url, opt) {
+  async sendRequest(url, params) {
     try {
-      if (!opt)
-        return fetch(url, {
+      if (!params) {
+        const response = await fetch(this.URL + this.points.logout, {
           method: 'POST',
-          headers: { accept: '*/*', authorization: this.token.accessToken },
+          headers: { accept: '*/*', authorization: this.headers.authorization },
         });
-      const response = await fetch(url, opt);
+        return response;
+      }
+      const response = await fetch(url, params);
       if (response.status === 401) {
-        const newResponse = await this.refresh(url, opt);
+        const newResponse = await this.refresh(url, params);
         return await newResponse.json();
       } else if (!response.ok) {
         await response.json().then(data => pushError(data.message));
@@ -113,5 +126,6 @@ class FetchMe {
     }
   }
 }
+
 const fetchFunctions = new FetchMe();
 export default fetchFunctions;

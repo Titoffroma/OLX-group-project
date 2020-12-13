@@ -1,7 +1,7 @@
 <div class="backdrop">
     <div class="add-card__modal">
-        <button class="icon-btn" data-close>
-            <span class="material-icons">clear</span>
+        <button class="icon-btn">
+            <span class="material-icons" data-close>clear</span>
         </button>
         <p class="add-card__title">Редагувати оголошення</p>
         <form class="add-card__form">
@@ -11,24 +11,41 @@
                         <span class="add-card__subtitle">Назва товару</span>
                         <input class="add-card__input" type="text" name="title" value="{{title}}" required />
                     </label>
+                    <p class="error-message"></p>
                 </li>
                 <li class="add-card__item">
                     <label class="add-card__label">
                         <span class="add-card__subtitle">Фото</span>
                         <ul class="photo-list">
+                            {{#each imageUrls}}
                             <li class="photo-item">
-                                <input id="photoElem" class="photo-input" type="file" name="file" value="file" multiple
+                                <input id="photoElem" class="photo-input" type="file" name="file" multiple
                                     accept="image/*" />
-                                <img id="output_image" />
+                                <label for="photoElem" class="photo-label"><span
+                                        class="material-icons">add</span></label>
+                                <img id="output_image" src="{{this}}" />
                             </li>
                             <li class="photo-item">
                                 <label for="photoElem" class="photo-label"><span
                                         class="material-icons">add</span></label>
-                                <img id="output_image" />
+                                <img id="output_image" src="{{this}}" />
                             </li>
-                            <li class="photo-item"><img id="output_image" /></li>
-                            <li class="photo-item"><img id="output_image" /></li>
-                            <li class="photo-item"><img id="output_image" /></li>
+                            <li class="photo-item">
+                                <label for="photoElem" class="photo-label"><span
+                                        class="material-icons">add</span></label>
+                                <img id="output_image" src="{{this}}" />
+                            </li>
+                            <li class="photo-item">
+                                <label for="photoElem" class="photo-label"><span
+                                        class="material-icons">add</span></label>
+                                <img id="output_image" src="{{this}}" />
+                            </li>
+                            <li class="photo-item">
+                                <label for="photoElem" class="photo-label"><span
+                                        class="material-icons">add</span></label>
+                                <img id="output_image" src="{{this}}" />
+                            </li>
+                            {{/each}}
                         </ul>
                     </label>
                 </li>
@@ -38,6 +55,7 @@
                         <textarea rows="3" class="add-card__input description"
                             name="description">{{description}}</textarea>
                     </label>
+                    <p class="error-message"></p>
                 </li>
                 <li class="add-card__item">
                     <label class="add-card__label notice select-field">
@@ -49,6 +67,7 @@
                             <span class="material-icons" width="10px" height="5px">arrow_drop_down</span>
                         </button>
                     </label>
+                    <p class="error-message"></p>
                 </li>
                 <li class="add-card__item">
                     <label class="add-card__label notice">
@@ -57,6 +76,7 @@
                         <span class="notice-label">0.00</span>
                         <span class="price-valuta">грн</span>
                     </label>
+                    <p class="error-message"></p>
                 </li>
                 <li class="add-card__item">
                     <label class="add-card__label notice">
@@ -64,6 +84,7 @@
                         <input class="add-card__input" type="tel" name="phone" placeholder=" " value="{{phone}}" />
                         <span class="notice-label">+38 (0--) --- -- --</span>
                     </label>
+                    <p class="error-message"></p>
                 </li>
                 <li class="add-card__item">
                     <label class="checkbox-field">

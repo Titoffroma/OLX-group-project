@@ -298,9 +298,11 @@
 }
 
 .photo-label {
+  position: absolute;
   display: flex;
   align-items: center;
   text-align: center;
+  opacity: 0;
 
   font-size: 22px;
   line-height: 1.18;
@@ -308,6 +310,10 @@
 
   color: $dark-grey;
   cursor: pointer;
+
+  &.active {
+    opacity: 1;
+  }
 }
 
 #output_image {
@@ -394,4 +400,22 @@
 
 .category-list {
   position: absolute;
+}
+
+.invalid {
+  border-color: $main-red;
+}
+
+.error-message {
+  color: $main-red;
+  margin-top: 5px;
+  font-size: 12px;
+
+  @media screen and (min-width: $tablet) {
+    margin-left: 160px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    margin-left: 210px;
+  }
 }

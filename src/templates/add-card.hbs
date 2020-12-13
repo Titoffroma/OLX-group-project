@@ -11,6 +11,7 @@
                         <span class="add-card__subtitle">Назва товару</span>
                         <input class="add-card__input" type="text" name="title" required />
                     </label>
+                    <p class="error-message"></p>
                 </li>
                 <li class="add-card__item">
                     <label class="add-card__label">
@@ -23,10 +24,26 @@
                                         class="material-icons">add</span></label>
                                 <img id="output_image" />
                             </li>
-                            <li class="photo-item"><img id="output_image" /></li>
-                            <li class="photo-item"><img id="output_image" /></li>
-                            <li class="photo-item"><img id="output_image" /></li>
-                            <li class="photo-item"><img id="output_image" /></li>
+                            <li class="photo-item">
+                                <label for="photoElem" class="photo-label"><span
+                                        class="material-icons">add</span></label>
+                                <img id="output_image" />
+                            </li>
+                            <li class="photo-item">
+                                <label for="photoElem" class="photo-label"><span
+                                        class="material-icons">add</span></label>
+                                <img id="output_image" />
+                            </li>
+                            <li class="photo-item">
+                                <label for="photoElem" class="photo-label"><span
+                                        class="material-icons">add</span></label>
+                                <img id="output_image" />
+                            </li>
+                            <li class="photo-item">
+                                <label for="photoElem" class="photo-label"><span
+                                        class="material-icons">add</span></label>
+                                <img id="output_image" />
+                            </li>
                         </ul>
                     </label>
                 </li>
@@ -35,6 +52,7 @@
                         <span class="add-card__subtitle">Опис товару</span>
                         <textarea rows="3" class="add-card__input description" name="description" required></textarea>
                     </label>
+                    <p class="error-message"></p>
                 </li>
                 <li class="add-card__item">
                     <label class="add-card__label notice select-field">
@@ -46,7 +64,7 @@
                             <span class="material-icons" width="10px" height="5px">arrow_drop_down</span>
                         </button>
                     </label>
-
+                    <p class="error-message"></p>
                 </li>
                 <li class="add-card__item">
                     <label class="add-card__label notice">
@@ -55,6 +73,7 @@
                         <span class="notice-label">0.00</span>
                         <span class="price-valuta">грн</span>
                     </label>
+                    <p class="error-message"></p>
                 </li>
                 <li class="add-card__item">
                     <label class="add-card__label notice">
@@ -62,6 +81,7 @@
                         <input class="add-card__input" type="tel" name="phone" placeholder=" " required />
                         <span class="notice-label">+38 (0--) --- -- --</span>
                     </label>
+                    <p class="error-message"></p>
                 </li>
             </ul>
             <button class="submit-btn" type="submit">Додати</button>
