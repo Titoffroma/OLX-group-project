@@ -10,7 +10,8 @@
         </div>
         <div class="modal-photo-box">
             <div class="modal-product_photo">
-                <img class="main-modal-photo" src="{{imageUrls[0]}}" alt="product photo" />
+                <img class="main-modal-photo" src="{{#each imageUrls}}{{#if @first}}{{this}}{{/if}}{{/each}}"
+                    alt="product photo" />
             </div>
             <div class="photo-wrapper">
                 <ul class="photo-list">

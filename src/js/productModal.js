@@ -1,13 +1,18 @@
-import
 const aboutSellerContOpened = document.querySelector('.modal-button-box-info');
 const aboutSellerContClosed = document.querySelector('.modal-button-box');
 const photoCont = document.querySelector('.modal-foto-box');
 const mainModalPhoto = document.querySelector('.main-modal-photo');
-try {
+import hbs from '../templates/product-modal.hbs';
+
+export default function openModalProduct(evt) {
+  const markup = hbs();
+  document.body.addEventListener('click', modalProduct);
+  return markup;
+}
+
+function modalProduct(evt) {
   aboutSellerContOpened.addEventListener('click', openInfoAboutSeller);
   photoCont.addEventListener('click', changePhoto);
-} catch (error) {
-  console.log(error);
 }
 
 function openInfoAboutSeller(evt) {
