@@ -24,7 +24,7 @@ const hbsFunctions = [
   openModalAuth,
   openModalConfirm,
   openModalProduct,
-  openEditCardModal
+  openEditCardModal,
 ];
 
 class Modal {

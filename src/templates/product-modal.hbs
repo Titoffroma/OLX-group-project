@@ -30,22 +30,26 @@
                 <p class="modal-content-box_code">Код товару | {{__v}}</p>
             </div>
             <p class="modal-content-wrapper_price">{{price}}.00 грн</p>
-            <div class="modal-button-box">
-                Информация о <br />
-                продавце
-            </div>
-            <div class="modal-button-box-info">
-                <p class="button-info_text">
-                    <span class="button-info_accent">Ольга</span> - на OLX с нояб. 2018
-                <p class="button-info_text-number">{{phone}}</p>
-                </p>
+            <div class="modal-button-box-position">
+                <div class="modal-button-box-info">
+                    <p class="button-info_text">
+                        <span class="button-info_accent">Ольга</span><span> - на OLX с нояб. 2018</span>
+                    </p>
+                    <a class="button-info_text-number" href="tel:{{phone}}">{{phone}}</a>
+                    </p>
+                </div>
+                <div class="modal-button-box">
+                    Информация о <br />
+                    продавце
+                </div>
             </div>
             <div class="modal-actions">
                 <ul class="actions-list">
                     <li class="actions-item">
-                        <button data-id="{{_id}}" class="actions-item_button">
-                            <p class="actions-item_title">В обране</p>
-                            <span class="material-icons md-16 product-favorite-icon">favorite_border</span>
+                        <button class="actions-item_button">
+                            <p class="actions-item_title" data-id="{{_id}}">В обране</p>
+                            <span class="material-icons md-16 product-favorite-icon"
+                                data-id="{{_id}}">favorite_border</span>
                         </button>
                     </li>
                     <li class="actions-item">

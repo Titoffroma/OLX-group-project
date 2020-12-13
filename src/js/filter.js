@@ -22,6 +22,8 @@ async function Mycallback(event) {
       query: event.target.dataset.filter,
     };
     const response = await fetchFunctions.getRequest(request);
-    document.querySelector('div.container').innerHTML = renderCards(response);
+    document.querySelector('main div.container').innerHTML = renderCards(
+      response,
+    );
   }
 }

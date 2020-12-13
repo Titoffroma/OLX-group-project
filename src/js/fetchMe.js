@@ -28,7 +28,7 @@ class FetchMe {
   get headers() {
     return {
       'Content-Type': 'application/json',
-      authorization: load('Token') ? load('Token').accessToken : '',
+      authorization: load('Token') ? `Bearer ${load('Token').accessToken}` : '',
     };
   }
   get token() {
@@ -76,7 +76,9 @@ class FetchMe {
       opt.headers = {
         accept: 'application/json',
         'Content-Type': 'multipart/form-data',
-        authorization: load('Token') ? load('Token').accessToken : '',
+        authorization: load('Token')
+          ? `Bearer ${load('Token').accessToken}`
+          : '',
       };
     }
     if (body) opt.body = JSON.stringify(body);
@@ -113,7 +115,7 @@ class FetchMe {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        authorization: load('Token').refreshToken,
+        authorization: `Bearer ${load('Token').refreshToken}`,
       },
       body: JSON.stringify({ sid: load('Token').sid }),
     };
