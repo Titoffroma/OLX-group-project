@@ -104,3 +104,7 @@
     }
   }
 }
+
+.container.authorized .unauthorized {
+  display: block;
+}

@@ -4,18 +4,24 @@ import popupExitConfirm from '../templates/pop-up-exit-confirm.hbs';
 import myOffice from '../templates/my-office.hbs';
 import myAdvert from '../templates/my-advert.hbs';
 import selectedAdvert from '../templates/selected-advert.hbs';
-import authorizationModal from '../templates/authorization-modal.hbs';
 import popupSearch from '../templates/pop-up-search.hbs';
+import openModalFind from './openSearchModal';
+import openModalConfirm from './openConfirmModal';
+import openModalAuth from './authorization';
+import openModalProduct from './productModal';
 
 const hbsFunctions = [
   renderCardlist,
   renderAddCard,
+  openModalFind,
   popupSearch,
   popupExitConfirm,
   myOffice,
   myAdvert,
   selectedAdvert,
-  authorizationModal,
+  openModalAuth,
+  openModalConfirm,
+  openModalProduct,
 ];
 
 class Modal {

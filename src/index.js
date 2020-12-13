@@ -4,4 +4,6 @@ import 'material-design-icons/iconfont/material-icons.css';
 import './js/menu.js';
 import './js/filter.js';
 import './js/fetchMeDescription';
-import './js/authorization';
+import './js/productModal';
+//import './js/authorization';
+
