@@ -1,6 +1,7 @@
 import { pushError, removeError } from './pnotify';
 import fetchFunctions from './fetchMe';
 import hbs from '../templates/authorization-modal.hbs';
+import desideTologin from './main.js';
 function validate(evt) {
   evt.preventDefault();
   let errors;
@@ -27,7 +28,7 @@ function validate(evt) {
     let response = await fetchFunctions.login(request);
 
     if (response) {
-      document.body.querySelector('div.container').classList.add('authorized');
+      desideTologin();
       authBackdrop.click();
     }
   }
@@ -66,7 +67,7 @@ function validate(evt) {
   function validatePassword() {
     const p = passwordInput.value;
 
-    if (p.length < 8) {
+    if (p.length < 7) {
       errors.push('Your password must be at least 8 characters');
       pushError('Your password must be at least 8 characters');
     }
