@@ -1,7 +1,6 @@
 import renderCardlist from '../templates/card.hbs';
 import openAddCardModal from './addCardLogic';
 import openEditCardModal from './editCardLogic';
-import renderAddCard from '../templates/add-card.hbs';
 import popupExitConfirm from '../templates/pop-up-exit-confirm.hbs';
 import myAdvert from '../templates/my-advert.hbs';
 import selectedAdvert from '../templates/selected-advert.hbs';
@@ -11,7 +10,6 @@ import openModalConfirm from './openConfirmModal';
 import openModalAuth from './authorization';
 import openModalProduct from './productModal';
 
-
 const hbsFunctions = [
   renderCardlist,
   openAddCardModal,
@@ -20,8 +18,10 @@ const hbsFunctions = [
   popupExitConfirm,
   myAdvert,
   selectedAdvert,
+  ,
   openModalAuth,
   openModalConfirm,
+  ,
   openModalProduct,
   openEditCardModal,
 ];

@@ -11,9 +11,9 @@ decideTologin();
 export default function decideTologin() {
   if (load('Token'))
     return document.body
-      .querySelector('div.container')
+      .querySelector('main div.container')
       .classList.add('authorized');
-  document.body.querySelector('div.container').classList.remove('authorized');
+  document.body
+    .querySelector('main div.container')
+    .classList.remove('authorized');
 }
-
-

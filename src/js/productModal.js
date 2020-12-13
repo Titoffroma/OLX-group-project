@@ -4,12 +4,13 @@ import fetchFunctions from './fetchMe';
 
 console.log(load('Token'));
 
+document.body.addEventListener('click', modalProduct);
+
 export default async function openModalProduct(evt) {
   const id = evt.target.getAttribute('data-callid');
   const title = evt.target.getAttribute('data-title');
   const data = await fetchProduct(id, title);
   const markup = hbs(data);
-  document.body.addEventListener('click', modalProduct);
   return markup;
 }
 
@@ -27,10 +28,9 @@ async function fetchProduct(id, title) {
 }
 
 function modalProduct(evt) {
-  // evt.preventDefault();
+  evt.preventDefault();
 
   const favoriteIcon = document.querySelector('.product-favorite-icon');
-  const toFavorite = document.querySelector('.actions-item_button');
   const aboutSellerContOpened = document.querySelector(
     '.modal-button-box-info',
   );
@@ -62,13 +62,29 @@ function modalProduct(evt) {
 
   async function addToFavorite(evt) {
     const id = evt.target.getAttribute('data-id');
-    const options = {
-      point: `${fetchFunctions.points.fav}${id}`,
-      method: 'POST',
+    const opt = {
+      point: fetchFunctions.points.myFav,
     };
-    const response = await fetchFunctions.getRequest(options);
-    if (response) {
-      favoriteIcon.style.color = '#FF6B09';
+    const resp = await fetchFunctions.getRequest(opt);
+
+    if (!resp.favourites.find(el => el._id === id)) {
+      const options = {
+        point: `${fetchFunctions.points.fav}${id}`,
+        method: 'POST',
+      };
+      const response = await fetchFunctions.getRequest(options);
+      if (response) {
+        evt.target.style.color = '#FF6B09';
+      }
+    } else {
+      const options = {
+        point: `${fetchFunctions.points.fav}${id}`,
+        method: 'DELETE',
+      };
+      const response = await fetchFunctions.getRequest(options);
+      if (response) {
+        evt.target.style.color = '#bbbbbb';
+      }
     }
   }
 }

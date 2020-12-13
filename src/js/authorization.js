@@ -2,6 +2,7 @@ import { pushError, removeError } from './pnotify';
 import fetchFunctions from './fetchMe';
 import hbs from '../templates/authorization-modal.hbs';
 import desideTologin from './main.js';
+
 function validate(evt) {
   evt.preventDefault();
   let errors = [];
@@ -12,6 +13,10 @@ function validate(evt) {
   const passwordInput = document.querySelector('#authorization-modal-password');
   const loginBtn = document.querySelector('.authorization-modal-login');
   const registerBtn = document.querySelector('.authorization-modal-register');
+
+  if (evt.target === loginBtn) return validateLogin(evt);
+  if (evt.target === registerBtn) return validateRegistration(evt);
+  if (evt.target === registerBtn) return googleAuthorization(evt);
 
   async function fetchLogin() {
     const info = {
@@ -106,13 +111,9 @@ function validate(evt) {
     });
     console.log(response);
   }
-
-  loginBtn.addEventListener('click', validateLogin);
-  registerBtn.addEventListener('click', validateRegistration);
-  googleAuthBtn.addEventListener('click', googleAuthorization);
 }
 
-export default function openModalAuth(params) {
+export default function openModalAuth() {
   const markup = hbs();
   document.body.addEventListener('click', validate);
   return markup;

@@ -1,5 +1,6 @@
 import { load, save, remove } from './storage';
 import { pushError } from './pnotify';
+import decideTologin from './main';
 
 class FetchMe {
   constructor() {
@@ -50,14 +51,16 @@ class FetchMe {
         refreshToken: '',
         sid: '',
       };
+      decideTologin();
       return await response;
     }
-   pushError(response.message);
+    pushError(response.message);
   }
   async login(opt) {
     return await this.getRequest(opt).then(data => {
       this.token = data;
       save('Token', data);
+      decideTologin();
       return data;
     });
   }
@@ -124,6 +127,7 @@ class FetchMe {
       response.json().then(data => {
         this.token = data;
         save('Token', this.token);
+        decideTologin();
       });
       return await this.sendRequest(url, opt);
     } catch (err) {
