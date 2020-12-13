@@ -4,13 +4,10 @@ import popupExitConfirm from '../templates/pop-up-exit-confirm.hbs';
 import myOffice from '../templates/my-office.hbs';
 import myAdvert from '../templates/my-advert.hbs';
 import selectedAdvert from '../templates/selected-advert.hbs';
-import authorizationModal from '../templates/authorization-modal.hbs';
 import popupSearch from '../templates/pop-up-search.hbs';
-import  openModalFind  from '../js/openSearchModal';
-import openModalConfirm from '../js/openConfirmModal'
-
-
-
+import openModalFind from './openSearchModal';
+import openModalConfirm from './openConfirmModal';
+import openModalAuth from './authorization';
 
 const hbsFunctions = [
   renderCardlist,
@@ -21,10 +18,9 @@ const hbsFunctions = [
   myOffice,
   myAdvert,
   selectedAdvert,
-  authorizationModal,
+  openModalAuth,
   openModalConfirm,
 ];
-
 
 class Modal {
   constructor(functions) {
@@ -63,7 +59,6 @@ class Modal {
     }
   }
   onClickCloseModal(event) {
-
     if (event.target.hasAttribute('data-close')) {
       event.preventDefault();
       this.closeModal();
