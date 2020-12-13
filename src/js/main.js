@@ -3,11 +3,9 @@ import { pushError, removeError } from './pnotify';
 import fetchFunctions from './fetchMe';
 import myModal from './modalClass';
 import { onPaginationPage } from './paginationCategories';
-<<<<<<< HEAD
-
-=======
+import './editProduct';
 import fetchLogin from './authorization.js';
->>>>>>> main
+
 myModal.startListener();
 desideTologin();
 

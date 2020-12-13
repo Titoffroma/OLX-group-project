@@ -8,22 +8,20 @@ const logInfo = {
 };
 
 const newRequest = {
-  //    point: fetchFunctions.points.login,
-    point: fetchFunctions.points.find,
+    point: fetchFunctions.points.user,
    //   body: logInfo,
-    query: '1',
- //     method:'POST'
+   // query: '1',
 };
 
 async function openEditCard() {
    const response = await fetchFunctions.getRequest(newRequest);
-   console.log('get user - unauthorized -', response[1]);
+   console.log('get user - unauthorized -', response);
    
-   const markup = editCardHbs(response[1]);
- // document.querySelector('main').innerHTML = markup;
+   const markup = editCardHbs(response);
+  document.querySelector('main').innerHTML = markup;
 
   function onEditCard(e) {
-     e.preventDefault();
+    e.preventDefault();
     const refs = {
       checkboxEl: document.querySelector('.checkbox-field'),
       submitBtn: document.querySelector('.on-change'),
@@ -37,15 +35,15 @@ async function openEditCard() {
         const category = formElements.category.value;
         const price = formElements.price.value;
         const phone = formElements.phone.value;
-        //const photo = formElements.file.files[0].name;
+       // const photo = formElements.file.files[0].name;
 
         const changedFormData = {
             title,
             description,
             category,
-            price,
-            phone,
-            //photo
+          price,
+          phone,
+        // photo,
         };
 
     if (!e.target.elements.checkbox.checked) {
@@ -53,8 +51,8 @@ async function openEditCard() {
        const patchRequest = {
                 point: fetchFunctions.points.call,
                 body: changedFormData,
-                method: 'PATCH',
-                query: '5fcd4aa4def4362c44184e33',
+                method: 'POST',
+               // query: '5fcd4aa4def4362c44184e33',
             }
 
             async function patchCard() {
@@ -63,11 +61,11 @@ async function openEditCard() {
       }
       patchCard()
         } else {
-      // refs.submitBtn.textContent = 'Видалити';
+       //refs.submitBtn.textContent = 'Видалити';
        const deleteRequest = {
                 point: fetchFunctions.points.call,
                 method: 'DELETE',
-                query: '5fcd4aa4def4362c44184e33'
+               // query: '5fcd4aa4def4362c44184e33'
             }
 
             async function deleteCard() {
