@@ -84,7 +84,6 @@ class FetchMe {
     const url = this.URL + point + query;
     return await this.sendRequest(url, params);
   }
-
   async sendRequest(url, params) {
     try {
       if (!params) {
@@ -130,5 +129,6 @@ class FetchMe {
     }
   }
 }
+
 const fetchFunctions = new FetchMe();
 export default fetchFunctions;

@@ -5,9 +5,9 @@ import myModal from './modalClass';
 import { onPaginationPage } from './paginationCategories';
 import fetchLogin from './authorization.js';
 myModal.startListener();
-desideTologin();
+decideTologin();
 
-export default function desideTologin() {
+export default function decideTologin() {
   if (load('Token'))
     return document.body
       .querySelector('div.container')
