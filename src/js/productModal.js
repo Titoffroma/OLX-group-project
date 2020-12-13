@@ -11,6 +11,7 @@ export default function openModalProduct(evt) {
 }
 
 function modalProduct(evt) {
+  evt.preventDefault();
   aboutSellerContOpened.addEventListener('click', openInfoAboutSeller);
   photoCont.addEventListener('click', changePhoto);
 }

@@ -8,6 +8,7 @@ import popupSearch from '../templates/pop-up-search.hbs';
 import openModalFind from './openSearchModal';
 import openModalConfirm from './openConfirmModal';
 import openModalAuth from './authorization';
+import openModalProduct from './productModal';
 
 const hbsFunctions = [
   renderCardlist,
@@ -20,6 +21,7 @@ const hbsFunctions = [
   selectedAdvert,
   openModalAuth,
   openModalConfirm,
+  openModalProduct,
 ];
 
 class Modal {
