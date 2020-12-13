@@ -3,7 +3,7 @@ import fetchFunctions from './fetchMe';
 import hbs from '../templates/authorization-modal.hbs';
 function validate(evt) {
   evt.preventDefault();
-  let errors;
+  let errors = [];
 
   const authBackdrop = document.querySelector('.authorization-backdrop');
   const googleAuthBtn = document.querySelector('.google-auth');
@@ -66,7 +66,7 @@ function validate(evt) {
   function validatePassword() {
     const p = passwordInput.value;
 
-    if (p.length < 8) {
+    if (p.length <= 8) {
       errors.push('Your password must be at least 8 characters');
       pushError('Your password must be at least 8 characters');
     }
@@ -82,7 +82,7 @@ function validate(evt) {
 
   function validateLoginForRegistration() {
     if (loginInput.value.length === 0) {
-      pushError('Enter login');
+      pushError('Enter email');
     } else if (loginInput.value.length <= 5) {
       pushError('Your login must be at least 6 characters');
     }
