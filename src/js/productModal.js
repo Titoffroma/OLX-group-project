@@ -4,8 +4,7 @@ const photoCont = document.querySelector('.modal-foto-box');
 const mainModalPhoto = document.querySelector('.main-modal-photo');
 import hbs from '../templates/product-modal.hbs';
 
-export default function openModalProduct(evt) {
-  evt.preventDefault();
+export default function openModalProduct() {
   const markup = hbs();
   document.body.addEventListener('click', modalProduct);
   return markup;
