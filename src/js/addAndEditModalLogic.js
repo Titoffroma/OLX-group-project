@@ -10,7 +10,8 @@ export default function () {
         addCardForm: document.querySelector('.add-card__form'),
         photoLabel: document.querySelectorAll('.photo-label'),
         formInputs: document.querySelectorAll('.add-card__input'),
-        errorMessage: document.querySelectorAll('.error-message')
+        errorMessage: document.querySelectorAll('.error-message'),
+        selectBtn: document.querySelector('.open-category')
     }
 
     let i = -1;
@@ -27,6 +28,7 @@ export default function () {
         const reader = new FileReader();
         i += 1;
         reader.onload = function () {
+            
             if (i < refs.outputImg.length -1) {
                 refs.outputImg[i].src = reader.result;
             photoLabelList[i].classList.remove('active');
@@ -43,7 +45,7 @@ export default function () {
         const request = {
             point: fetchFunctions.points.cat,
         };
-
+        
         async function getCategoryList() {
             let response = await fetchFunctions.getRequest(request);
             const result = catMarkup(response);
