@@ -113,3 +113,6 @@
     color: $accent;
   }
 }
+.container.authorized .categorylist .unauthorized {
+  color: $accent;
+}

@@ -5,7 +5,9 @@ export default function renderOffice() {
   const user = load('Token').user;
 
   if (!user) document.querySelector('.header_registration_link').click();
-
+  user.favourites.map(el => {
+    el.liked = 'liked';
+  });
   const info = {
     'My Calls': user.calls,
     'My Favourites': user.favourites,
