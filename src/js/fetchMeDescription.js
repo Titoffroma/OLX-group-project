@@ -60,15 +60,15 @@ async function some() {
 
 // // //////4/ Раскоментируйте вызов функции для демонстрации рендера разметки по запросу
 
-// const formFile = document.querySelector('.add-card__form');
-// const inputFile = document.getElementById('inputFile');
-// const button = document.querySelector('.submit-btn');
+const formFile = document.querySelector('.add-card__form');
+const inputFile = document.getElementById('inputFile');
+const button = document.querySelector('.submit-btn');
 
-// let i = 0;
-// let files = [];
-// let type = '';
+let i = 0;
+let files = [];
+let type = '';
 
-// const fileReader = new FileReader();
+const fileReader = new FileReader();
 
 // fileReader.onloadstart = () => {
 //   button.setAttribute('disabled', 'disabled');
@@ -90,32 +90,44 @@ async function some() {
 //     i++;
 //   }
 // });
+// const formData = new FormData();
+
+// const myHeaders = new Headers();
 
 // formFile.addEventListener('submit', submitFiles);
+// inputFile.addEventListener('input', function () {
+//   console.log(inputFile.files[0]);
+//   formData.append('file', inputFile.files[0]);
+// });
 
 // async function submitFiles(event) {
 //   event.preventDefault();
 
+//   formData.append('title', 'Boy');
+//   formData.append('description', 'Logo for Instagram');
+//   formData.append('category', 'business and services');
+//   formData.append('price', '300');
+//   formData.append('phone', '+380971468686');
+
+//   myHeaders.append('Authorization', `Bearer ${load('Token').accessToken}`);
+
 //   const bodyPhoto = {
-//     title: 'Logo',
+//     title: 'Palm',
 //     description: 'Logo for Instagram',
 //     category: 'business and services',
 //     price: 100,
 //     phone: '+380971468686',
-//     file: files,
+//     file: inputFile.files[0],
 //   };
 
 //   const URL = 'https://callboard-backend.herokuapp.com/call';
-//   console.log(bodyPhoto);
-//   const answer = await fetch(URL, {
+//   const requestOptions = {
 //     method: 'POST',
-//     headers: {
-//       accept: 'application/json',
-//       'Content-Type': 'multipart/form-data',
-//       authorization: load('Token') ? load('Token').accessToken : '',
-//     },
-//     body: JSON.stringify(bodyPhoto),
-//   });
-
+//     redirect: 'follow',
+//     headers: myHeaders,
+//     body: formData,
+//   };
+//   console.log(requestOptions);
+//   const answer = await fetch(URL, requestOptions);
 //   console.log(answer);
 // }
