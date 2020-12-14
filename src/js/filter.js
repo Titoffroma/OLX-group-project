@@ -4,6 +4,7 @@ import renderCategories from '../templates/category.hbs';
 import renderPagination from '../templates/pagination.hbs';
 import fetchFunctions from './fetchMe.js';
 import renderOffice from './myOffice';
+import decideTologin from './main';
 
 async function renderFilter() {
   const filterUL = document.querySelector('.header_filter');
@@ -25,7 +26,8 @@ async function appPage() {
     query: '?page=1',
   };
   const searchResult = await fetchFunctions.getRequest(searchQuery);
-  const orderedSearch = renderPagination(searchResult);
+  const markup = await decideTologin(searchResult);
+  const orderedSearch = renderPagination(markup);
   document.querySelector('main div.container').innerHTML = orderedSearch;
 }
 
@@ -47,7 +49,8 @@ async function onPaginationPage(event) {
     query: `?page=${numderPage}`,
   };
   const searchResult = await fetchFunctions.getRequest(searchQuery);
-  const orderedSearch = renderCategories(searchResult);
+  const markup = await decideTologin(searchResult);
+  const orderedSearch = renderCategories(markup);
   document.querySelector('section.categories').innerHTML = orderedSearch;
   window.scrollTo({
     top: 0,
@@ -63,8 +66,9 @@ async function Mycallback(event) {
       query: event.target.dataset.filter,
     };
     const response = await fetchFunctions.getRequest(request);
+    const markup = await decideTologin(response);
     document.querySelector('main div.container').innerHTML = renderCards(
-      response,
+      markup,
     );
   }
   if (event.target.hasAttribute('data-clear-filter')) {

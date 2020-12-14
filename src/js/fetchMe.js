@@ -127,9 +127,9 @@ class FetchMe {
       response.json().then(data => {
         this.token = data;
         save('Token', this.token);
-        decideTologin();
+        // decideTologin();
       });
-      return await this.sendRequest(url, opt);
+      if (url) return await this.sendRequest(url, opt);
     } catch (err) {
       console.log('mistake 2', err.message);
     }

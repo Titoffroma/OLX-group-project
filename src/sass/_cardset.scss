@@ -81,7 +81,8 @@
     color: $white;
     opacity: 0;
     transition: opacity $transition;
-    &.unauthorized {
+    &.unauthorized,
+    &.unlogged {
       display: none;
     }
   }
