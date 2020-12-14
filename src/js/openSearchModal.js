@@ -23,5 +23,9 @@ function render(event) {
 
     document.querySelector('main div.container').innerHTML = cardset(data);
     document.querySelector('.backdrop').click();
+    if (data.length === 0) {
+      pushError('Sorry, we could not find any call!');
+      return;
+    }
   });
 }

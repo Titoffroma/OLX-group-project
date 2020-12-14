@@ -3,7 +3,6 @@ import openAddCardModal from './addCardLogic';
 import openEditCardModal from './editCardLogic';
 import popupExitConfirm from '../templates/pop-up-exit-confirm.hbs';
 import myAdvert from '../templates/my-advert.hbs';
-import selectedAdvert from '../templates/selected-advert.hbs';
 import popupSearch from '../templates/pop-up-search.hbs';
 import openModalFind from './openSearchModal';
 import openModalConfirm from './openConfirmModal';
@@ -17,7 +16,7 @@ const hbsFunctions = [
   popupSearch,
   popupExitConfirm,
   myAdvert,
-  selectedAdvert,
+  ,
   ,
   openModalAuth,
   openModalConfirm,

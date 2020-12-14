@@ -2,8 +2,6 @@ import { load, save, remove } from './storage';
 import hbs from '../templates/product-modal.hbs';
 import fetchFunctions from './fetchMe';
 
-console.log(load('Token'));
-
 document.body.addEventListener('click', modalProduct);
 
 export default async function openModalProduct(evt) {
@@ -28,8 +26,6 @@ async function fetchProduct(id, title) {
 }
 
 function modalProduct(evt) {
-  evt.preventDefault();
-
   const favoriteIcon = document.querySelector('.product-favorite-icon');
   const aboutSellerContOpened = document.querySelector(
     '.modal-button-box-info',
@@ -38,13 +34,14 @@ function modalProduct(evt) {
   const photoCont = document.querySelector('.modal-product-photo-box');
   const mainModalPhoto = document.querySelector('.main-modal-product-photo');
 
-  console.log(evt.target);
-
   if (evt.target.classList.contains('product-photo-list-item-img'))
     return changePhoto(evt);
   if (evt.target.hasAttribute('data-id')) return addToFavorite(evt);
   if (evt.target.classList.contains('modal-button-box'))
     return openInfoAboutSeller(evt);
+  if (evt.target.nodeName === 'SPAN') return;
+  if (evt.target.nodeName === 'BUTTON') return;
+  evt.preventDefault();
 
   function openInfoAboutSeller(evt) {
     aboutSellerContClosed.style.opacity = '0';
@@ -56,11 +53,11 @@ function modalProduct(evt) {
   }
 
   function changePhoto(evt) {
-    console.log(evt.target.src);
     mainModalPhoto.src = evt.target.src;
   }
 
   async function addToFavorite(evt) {
+    evt.preventDefault();
     const id = evt.target.getAttribute('data-id');
     const opt = {
       point: fetchFunctions.points.myFav,

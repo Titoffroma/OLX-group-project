@@ -104,6 +104,11 @@
   }
 }
 
-.container.authorized .unauthorized {
-  display: block;
+.container.authorized {
+  & .unauthorized {
+    display: block;
+  }
+  & .cardset__icons.liked {
+    color: $accent;
+  }
 }
