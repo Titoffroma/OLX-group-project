@@ -34,7 +34,6 @@ async function onPaginationPage(event) {
   const pagination = document.querySelector('div[data-pagination]');
   event.preventDefault();
   if (event.target.nodeName !== 'A') {
-    return;
   }
   const currentActivePage = pagination.querySelector('.active');
   if (currentActivePage) {
@@ -78,7 +77,7 @@ async function Mycallback(event) {
   const currentFilter = event.target;
   currentFilter.classList.add('active');
   if (event.target.hasAttribute('data-clear-filter')) {
-    return appPage();
+    appPage();
   }
   if (event.target.classList.contains('pagination__link')) {
     event.preventDefault();
@@ -91,4 +90,5 @@ async function Mycallback(event) {
     const response = await fetchFunctions.logout();
     if (response) appPage();
   }
+  if (event.target.closest('.cardset')) event.preventDefault();
 }

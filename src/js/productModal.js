@@ -3,8 +3,6 @@ import hbs from '../templates/product-modal.hbs';
 import fetchFunctions from './fetchMe';
 import desideTologin from './main.js';
 
-const changeLike = { like: null };
-
 document.body.addEventListener('click', modalProduct);
 
 export default async function openModalProduct(evt) {
@@ -50,9 +48,7 @@ function modalProduct(evt) {
     return openInfoAboutSeller(evt);
   if (evt.target.nodeName === 'SPAN') return;
   if (evt.target.nodeName === 'BUTTON') return;
-  evt.preventDefault();
-
-  function openInfoAboutSeller(evt) {
+  function openInfoAboutSeller() {
     aboutSellerContClosed.style.opacity = '0';
     aboutSellerContOpened.style.opacity = '1';
 
@@ -66,8 +62,6 @@ function modalProduct(evt) {
   }
 
   async function addToFavorite(evt) {
-    evt.preventDefault();
-    console.log(evt.target);
     const id = evt.target.getAttribute('data-id');
     const opt = {
       point: fetchFunctions.points.myFav,
@@ -82,7 +76,7 @@ function modalProduct(evt) {
       const response = await fetchFunctions.getRequest(options);
       if (response) {
         evt.target.classList.add('liked');
-        if (changeLike.like) changeLike.like.classList.add('liked');
+        return;
       }
     } else {
       const options = {
@@ -92,10 +86,8 @@ function modalProduct(evt) {
       const response = await fetchFunctions.getRequest(options);
       if (response) {
         evt.target.classList.remove('liked');
-        if (changeLike.like) changeLike.like.classList.remove('liked');
+        return;
       }
     }
   }
 }
-
-export { modalProduct };
