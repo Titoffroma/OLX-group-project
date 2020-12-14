@@ -70,6 +70,13 @@ async function Mycallback(event) {
       markup,
     );
   }
+
+  const controlActiveFilter = document.body.querySelector('.active');
+  if (controlActiveFilter) {
+    controlActiveFilter.classList.remove('active');
+  }
+  const currentFilter = event.target;
+  currentFilter.classList.add('active');
   if (event.target.hasAttribute('data-clear-filter')) {
     return appPage();
   }
