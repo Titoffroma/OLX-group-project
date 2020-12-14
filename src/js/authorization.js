@@ -1,121 +1,118 @@
-import { load, save, remove } from './storage';
 import { pushError, removeError } from './pnotify';
 import fetchFunctions from './fetchMe';
 import hbs from '../templates/authorization-modal.hbs';
+
 function validate(evt) {
-  if (evt.target.getAttribute('data-modal-type') === 'authorization') {
-    const authBackdrop = document.querySelector('.authorization-backdrop');
-    const googleAuthBtn = document.querySelector('.google-auth');
-    const loginInput = document.querySelector('#authorization-modal-email');
-    const passwordInput = document.querySelector(
-      '#authorization-modal-password',
-    );
-    const loginBtn = document.querySelector('.authorization-modal-login');
-    const registerBtn = document.querySelector('.authorization-modal-register');
+  evt.preventDefault();
+  let errors = [];
 
-    async function fetchLogin() {
-      const info = {
-        email: loginInput.value,
-        password: passwordInput.value,
-      };
+  const authBackdrop = document.querySelector('.authorization-backdrop');
+  const googleAuthBtn = document.querySelector('.google-auth');
+  const loginInput = document.querySelector('#authorization-modal-email');
+  const passwordInput = document.querySelector('#authorization-modal-password');
+  const loginBtn = document.querySelector('.authorization-modal-login');
+  const registerBtn = document.querySelector('.authorization-modal-register');
 
-      const request = {
-        point: fetchFunctions.points.login,
-        body: info,
-        method: 'POST',
-      };
+  if (evt.target === loginBtn) return validateLogin(evt);
+  if (evt.target === registerBtn) return validateRegistration(evt);
+  if (evt.target === registerBtn) return googleAuthorization(evt);
 
-      let response = await fetchFunctions.login(request);
+  async function fetchLogin() {
+    const info = {
+      email: loginInput.value,
+      password: passwordInput.value,
+    };
 
-      if (response) {
-        authBackdrop.click();
+    const request = {
+      point: fetchFunctions.points.login,
+      body: info,
+      method: 'POST',
+    };
+
+    let response = await fetchFunctions.login(request);
+
+    if (response) {
+      document.querySelector('img[data-clear-filter]').click();
+      authBackdrop.click();
+    }
+  }
+
+  async function fetchRegistration() {
+    const info = {
+      email: loginInput.value,
+      password: passwordInput.value,
+    };
+    const request = {
+      point: fetchFunctions.points.reg,
+      body: info,
+      method: 'POST',
+    };
+    try {
+      let response = await fetchFunctions.getRequest(request);
+      if (response.id) {
+        await fetchLogin();
       }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  function validateLogin(evt) {
+    evt.preventDefault();
+    if (loginInput.value.length === 0) {
+      errors.push('Empty email input!');
+      pushError('Empty email input!');
+      return;
     }
 
-    async function fetchRegistration() {
-      const info = {
-        email: loginInput.value,
-        password: passwordInput.value,
-      };
-      const request = {
-        point: fetchFunctions.points.reg,
-        body: info,
-        method: 'POST',
-      };
-      try {
-        let response = await fetchFunctions.getRequest(request);
-        if (response.id) {
-          await fetchLogin();
-        }
-      } catch (error) {
-        console.log(error);
-      }
+    fetchLogin();
+  }
+
+  function validatePassword() {
+    const p = passwordInput.value;
+    if (p.length <= 8) {
+      errors.push('Your password must be at least 8 characters');
+      pushError('Your password must be at least 8 characters');
     }
-
-    let errors;
-
-    function validateLogin(evt) {
-      evt.preventDefault();
-      if (loginInput.value.length === 0) {
-        errors.push('Empty email input!');
-        pushError('Empty email input!');
-        return;
-      }
-
-      fetchLogin();
+    if (p.search(/[a-z]/i) < 0) {
+      errors.push('Your password must contain at least one letter.');
+      pushError('Your password must contain at least one letter.');
     }
-
-    function validatePassword() {
-      const p = passwordInput.value;
-
-      if (p.length < 8) {
-        errors.push('Your password must be at least 8 characters');
-        pushError('Your password must be at least 8 characters');
-      }
-      if (p.search(/[a-z]/i) < 0) {
-        errors.push('Your password must contain at least one letter.');
-        pushError('Your password must contain at least one letter.');
-      }
-      if (p.search(/[0-9]/) < 0) {
-        errors.push('Your password must contain at least one digit.');
-        pushError('Your password must contain at least one digit.');
-      }
+    if (p.search(/[0-9]/) < 0) {
+      errors.push('Your password must contain at least one digit.');
+      pushError('Your password must contain at least one digit.');
     }
+  }
 
-    function validateLoginForRegistration() {
-      if (loginInput.value.length === 0) {
-        pushError('Enter login');
-      } else if (loginInput.value.length <= 5) {
-        pushError('Your login must be at least 6 characters');
-      }
+  function validateLoginForRegistration() {
+    if (loginInput.value.length === 0) {
+      pushError('Enter email');
+    } else if (loginInput.value.length <= 5) {
+      pushError('Your login must be at least 6 characters');
     }
+  }
 
-    function validateRegistration(evt) {
-      evt.preventDefault();
-      errors = [];
+  function validateRegistration(evt) {
+    evt.preventDefault();
+    errors = [];
 
-      validatePassword();
-      validateLoginForRegistration();
+    validatePassword();
+    validateLoginForRegistration();
 
-      if (errors.length < 1) {
-        fetchRegistration();
-      }
+    if (errors.length < 1) {
+      fetchRegistration();
     }
+  }
 
-    async function googleAuthorization(evt) {
-      let response = await fetchFunctions.getRequest({
-        point: fetchFunctions.points.google,
-      });
-      console.log(response);
-    }
-
-    loginBtn.addEventListener('click', validateLogin);
-    registerBtn.addEventListener('click', validateRegistration);
-    googleAuthBtn.addEventListener('click', googleAuthorization);
+  async function googleAuthorization(evt) {
+    let response = await fetchFunctions.getRequest({
+      point: fetchFunctions.points.google,
+    });
+    console.log(response);
   }
 }
 
-export default function openModalAuth(params) {
+export default function openModalAuth() {
   const markup = hbs();
   document.body.addEventListener('click', validate);
   return markup;

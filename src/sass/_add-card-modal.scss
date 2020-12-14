@@ -102,6 +102,7 @@
 .add-card__subtitle {
   display: block;
   margin-bottom: 10px;
+  cursor: pointer;
 
   @media screen and (min-width: $tablet) {
     display: inline-block;
@@ -146,6 +147,7 @@
 
 .notice {
   position: relative;
+  cursor: text;
 
   & .add-card__input::-webkit-inner-spin-button {
     display: none;
@@ -297,9 +299,11 @@
 }
 
 .photo-label {
+  position: absolute;
   display: flex;
   align-items: center;
   text-align: center;
+  opacity: 0;
 
   font-size: 22px;
   line-height: 1.18;
@@ -307,6 +311,24 @@
 
   color: $dark-grey;
   cursor: pointer;
+
+  &.active {
+    opacity: 1;
+  }
+}
+
+#output_image {
+  max-width: 76px;
+  max-height: 46px;
+
+  @media screen and (min-width: $tablet) {
+    max-width: 83px;
+    max-height: 50px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    max-width: 78px;
+  }
 }
 
 .checkbox-field {
@@ -374,5 +396,33 @@
   & .submit-btn {
     font-weight: 500;
     text-transform: none;
+  }
+}
+
+.category-list {
+  position: absolute;
+}
+
+.invalid {
+  border-color: $main-red;
+}
+
+.error-message {
+  color: $main-red;
+  margin-top: 5px;
+  font-size: 12px;
+
+  @media screen and (min-width: $tablet) {
+    margin-left: 160px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    margin-left: 210px;
+  }
+}
+.material-icons.add-plus {
+  color: $dark-grey;
+  &.hidden {
+    display: none;
   }
 }

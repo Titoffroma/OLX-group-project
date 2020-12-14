@@ -161,6 +161,7 @@ a {
   display: flex;
   align-items: center;
   margin-left: auto;
+  cursor: pointer;
 }
 
 .header_nav__wrap {
@@ -264,6 +265,10 @@ a {
   @media screen and (max-width: 1279px) {
     display: inline-flex;
     margin-left: 34px;
+  }
+
+  &.active {
+    color: $accent;
   }
 }
 .header_button_menu_tablet {

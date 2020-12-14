@@ -1,5 +1,6 @@
 import { load, save, remove } from './storage';
 import { pushError } from './pnotify';
+import decideTologin from './main';
 
 class FetchMe {
   constructor() {
@@ -9,6 +10,7 @@ class FetchMe {
       refreshToken: '',
       sid: '',
     };
+    this.count = 0;
     this.points = {
       reg: '/auth/register/',
       login: '/auth/login/',
@@ -17,9 +19,9 @@ class FetchMe {
       google: '/auth/google/',
       user: '/user/',
       call: '/call/',
-      fav: '/call/favourite/',   
+      fav: '/call/favourite/',
       myFav: '/call/favourites/',
-      myCalls: '/call/own/',   
+      myCalls: '/call/own/',
       find: '/call/find?search=',
       cat: '/call/categories',
       catCalls: '/call/specific/',
@@ -28,7 +30,7 @@ class FetchMe {
   get headers() {
     return {
       'Content-Type': 'application/json',
-      authorization: load('Token') ? load('Token').accessToken : '',
+      authorization: load('Token') ? `Bearer ${load('Token').accessToken}` : '',
     };
   }
   get token() {
@@ -37,7 +39,7 @@ class FetchMe {
   set token(token) {
     let i = 0;
     for (let key in token) {
-      this._token[Object.keys(token)[i]] = token[Object.keys(token)[i]];
+      this._token[Object.keys(this._token)[i]] = token[key];
       i += 1;
     }
   }
@@ -45,11 +47,13 @@ class FetchMe {
     const response = await this.getRequest({ point: false });
     if (response.ok) {
       remove('Token');
+      remove('User');
       this.token = {
         accessToken: '',
         refreshToken: '',
         sid: '',
       };
+      decideTologin();
       return await response;
     }
     pushError(response.message);
@@ -58,20 +62,37 @@ class FetchMe {
     return await this.getRequest(opt).then(data => {
       this.token = data;
       save('Token', data);
+      save('User', data.user);
+      decideTologin();
       return data;
     });
   }
-  async getRequest({ point, method = 'GET', body = null, query = '' }) {
+  async getRequest({
+    point,
+    method = 'GET',
+    body = null,
+    query = '',
+    contentType = false,
+  }) {
     const opt = {
       method,
       headers: this.headers,
     };
+    if (contentType) {
+      opt.redirect = 'follow';
+      opt.headers = {
+        accept: 'application/json',
+        'Content-Type': 'multipart/form-data',
+        authorization: load('Token')
+          ? `Bearer ${load('Token').accessToken}`
+          : '',
+      };
+    }
     if (body) opt.body = JSON.stringify(body);
     const params = point ? opt : false;
     const url = this.URL + point + query;
     return await this.sendRequest(url, params);
   }
-
   async sendRequest(url, params) {
     try {
       if (!params) {
@@ -89,33 +110,41 @@ class FetchMe {
         await response.json().then(data => pushError(data.message));
         return;
       }
-      
+      this.count = 0;
       return await response.json();
     } catch (err) {
-      console.log('mistake', err.message);
+      console.log('mistake in request', err.message);
     }
   }
 
   async refresh(url, opt) {
+    const body = { sid: load('Token').sid };
     const option = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        authorization: load('Token').refreshToken,
+        accept: 'application/json',
+        authorization: `Bearer ${load('Token').refreshToken}`,
       },
-      body: JSON.stringify({ sid: load('Token').sid }),
+      body: JSON.stringify(body),
     };
     try {
       const response = await fetch(this.URL + this.points.refresh, option);
       response.json().then(data => {
         this.token = data;
+        console.log('refresh', this.token);
         save('Token', this.token);
+        decideTologin();
       });
-      return await this.sendRequest(url, opt);
+      if (this.count < 5) {
+        this.count += 1;
+        return await this.sendRequest(url, opt);
+      }
     } catch (err) {
-      console.log('mistake 2', err.message);
+      console.log('mistake in refresh', err.message);
     }
   }
 }
+
 const fetchFunctions = new FetchMe();
 export default fetchFunctions;
