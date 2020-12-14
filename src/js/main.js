@@ -8,7 +8,6 @@ decideTologin();
 
 export default async function decideTologin(param) {
   let user = load('Token').user;
-  console.log(user);
   if (user) {
     document.body
       .querySelector('main div.container')
@@ -24,8 +23,6 @@ export default async function decideTologin(param) {
           }
         });
       } else {
-        console.dir(param);
-        console.log('obj');
         for (let keys in param) {
           param[keys].map(el => {
             for (let i = 0; i < fav.length; i++) {
