@@ -9,8 +9,7 @@
     position: relative;
     overflow: hidden;
     box-shadow: $shade;
-    &:hover,
-    &:focus {
+    &:hover {
       & .cardset__overlay {
         transform: translateY(-100%);
         opacity: 1;
@@ -19,7 +18,7 @@
         opacity: 1;
       }
       & .cardset__image {
-        object-position: top;
+        object-position: top left;
       }
     }
   }
@@ -82,7 +81,8 @@
     color: $white;
     opacity: 0;
     transition: opacity $transition;
-    &.unauthorized {
+    &.unauthorized,
+    &.unlogged:not(.logged) {
       display: none;
     }
   }
@@ -105,6 +105,14 @@
   }
 }
 
-.container.authorized .unauthorized {
-  display: block;
+.container.authorized {
+  & .unauthorized {
+    display: block;
+  }
+  & .cardset__icons.liked {
+    color: $accent;
+  }
+}
+.container.authorized .my-office .unauthorized {
+  color: $accent;
 }
