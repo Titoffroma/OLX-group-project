@@ -117,33 +117,33 @@ class FetchMe {
     }
   }
 
-  async refresh(url, opt) {
-    const body = { sid: load('Token').sid };
-    const option = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        accept: 'application/json',
-        authorization: `Bearer ${load('Token').refreshToken}`,
-      },
-      body: JSON.stringify(body),
-    };
-    try {
-      const response = await fetch(this.URL + this.points.refresh, option);
-      response.json().then(data => {
-        this.token = data;
-        console.log('refresh', this.token);
-        save('Token', this.token);
-        decideTologin();
-      });
-      if (this.count < 5) {
-        this.count += 1;
-        return await this.sendRequest(url, opt);
-      }
-    } catch (err) {
-      console.log('mistake in refresh', err.message);
-    }
-  }
+  // async refresh(url, opt) {
+  //   const body = { sid: load('Token').sid };
+  //   const option = {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       accept: 'application/json',
+  //       authorization: `Bearer ${load('Token').refreshToken}`,
+  //     },
+  //     body: JSON.stringify(body),
+  //   };
+  //   try {
+  //     const response = await fetch(this.URL + this.points.refresh, option);
+  //     response.json().then(data => {
+  //       this.token = data;
+  //       console.log('refresh', this.token);
+  //       save('Token', this.token);
+  //       decideTologin();
+  //     });
+  //     if (this.count < 5) {
+  //       this.count += 1;
+  //       return await this.sendRequest(url, opt);
+  //     }
+  //   } catch (err) {
+  //     console.log('mistake in refresh', err.message);
+  //   }
+  // }
 }
 
 const fetchFunctions = new FetchMe();

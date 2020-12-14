@@ -60,15 +60,15 @@ async function some() {
 
 // // //////4/ Раскоментируйте вызов функции для демонстрации рендера разметки по запросу
 
-const formFile = document.querySelector('.add-card__form');
-const inputFile = document.getElementById('inputFile');
-const button = document.querySelector('.submit-btn');
+// const formFile = document.querySelector('.add-card__form');
+// const inputFile = document.getElementById('inputFile');
+// const button = document.querySelector('.submit-btn');
 
-let i = 0;
-let files = [];
-let type = '';
+// let i = 0;
+// let files = [];
+// let type = '';
 
-const fileReader = new FileReader();
+// const fileReader = new FileReader();
 
 // fileReader.onloadstart = () => {
 //   button.setAttribute('disabled', 'disabled');
