@@ -10,6 +10,7 @@ class FetchMe {
       refreshToken: '',
       sid: '',
     };
+    this.count = 0;
     this.points = {
       reg: '/auth/register/',
       login: '/auth/login/',
@@ -109,9 +110,10 @@ class FetchMe {
         await response.json().then(data => pushError(data.message));
         return;
       }
+      this.count = 0;
       return await response.json();
     } catch (err) {
-      console.log('mistake', err.message);
+      console.log('mistake in request', err.message);
     }
   }
 
@@ -134,9 +136,12 @@ class FetchMe {
         save('Token', this.token);
         decideTologin();
       });
-      if (url) return await this.sendRequest(url, opt);
+      if (this.count < 5) {
+        this.count += 1;
+        return await this.sendRequest(url, opt);
+      }
     } catch (err) {
-      console.log('mistake 2', err.message);
+      console.log('mistake in refresh', err.message);
     }
   }
 }
