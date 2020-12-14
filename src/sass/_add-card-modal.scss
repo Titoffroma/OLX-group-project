@@ -420,3 +420,9 @@
     margin-left: 210px;
   }
 }
+.material-icons.add-plus {
+  color: $dark-grey;
+  &.hidden {
+    display: none;
+  }
+}

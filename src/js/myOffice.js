@@ -1,50 +1,19 @@
-import myAdvert from '../templates/my-advert.hbs'
-import mySelectedAd from '../templates/selected-advert.hbs'
-import fetchFunctions from './fetchMe';
+import { load, save, remove } from './storage';
+import myAdvert from '../templates/my-advert.hbs';
+import decideTologin from './main';
 
-    
-async function renderOffice (event) {
-    const request = {
-        point: fetchFunctions.points.myCalls,
-    };
-    
-    const newRequest = {
-        point: fetchFunctions.points.myFav,
-    };
-    
-    if (event.target.hasAttribute('data-advert'))
-    {
-       await fetchFunctions.getRequest(request).then(data => {
-            document.querySelector('main div.container').innerHTML = myAdvert(data)
-        });
-        
-        return
-    }
-    
-    if (event.target.hasAttribute('data-favor')) {
-        
-      await fetchFunctions.getRequest(newRequest).then(data => {
-            document.querySelector('main div.container').innerHTML = mySelectedAd(data)
-        })
+export default async function renderOffice() {
+  await decideTologin();
+  const user = load('User');
 
-        return
-    }
-
-
-    if (event.target.hasAttribute('data-office')) {
-       
-        
-        await fetchFunctions.getRequest(request).then(data => {
-            document.querySelector('main div.container').innerHTML = myAdvert(data)  
-        })
-        
-        await fetchFunctions.getRequest(newRequest).then(data => {
-             document.querySelector('main div.container').insertAdjacentHTML('beforeend', mySelectedAd(data) ) 
-        })
-      
-        return
-    }
-
+  if (!user) return document.querySelector('.header_registration_link').click();
+  user.favourites.map(el => {
+    el.liked = 'liked';
+  });
+  user.calls.map(el => (el.logged = 'logged'));
+  const info = {
+    'My Calls': user.calls,
+    'My Favourites': user.favourites,
+  };
+  document.querySelector('main div.container').innerHTML = myAdvert(info);
 }
-
-

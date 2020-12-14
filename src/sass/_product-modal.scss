@@ -306,6 +306,9 @@
       background-color: $white;
 
       transition: color $transition;
+      &.product-favorite-icon.liked {
+        color: $accent;
+      }
     }
   }
 }
@@ -325,4 +328,8 @@
 
 .product-photo-list-item-img {
   cursor: pointer;
+}
+
+.actions-item_button.unlogged {
+  display: none;
 }
