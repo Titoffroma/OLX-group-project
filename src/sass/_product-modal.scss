@@ -306,6 +306,9 @@
       background-color: $white;
 
       transition: color $transition;
+      &.product-favorite-icon.liked {
+        color: $accent;
+      }
     }
   }
 }

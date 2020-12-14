@@ -8,6 +8,7 @@ export default async function openModalProduct(evt) {
   const id = evt.target.getAttribute('data-callid');
   const title = evt.target.getAttribute('data-title');
   const data = await fetchProduct(id, title);
+  if (evt.target.hasAttribute('data-liked')) data.liked = 'liked';
   const markup = hbs(data);
   return markup;
 }
