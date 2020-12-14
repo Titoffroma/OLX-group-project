@@ -281,6 +281,9 @@ a {
   border-right: none;
 }
 
+.my-account {
+}
+
 .data-back {
   position: fixed;
   top: 0;
@@ -315,6 +318,12 @@ a {
       opacity: 1;
       pointer-events: auto;
     }
+  }
+}
+
+.header_nav__menu-button {
+  @media screen and (min-width: $desktop) {
+    display: none;
   }
 }
 
