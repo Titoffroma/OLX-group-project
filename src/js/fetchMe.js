@@ -76,6 +76,7 @@ class FetchMe {
       headers: this.headers,
     };
     if (contentType) {
+      opt.redirect = 'follow';
       opt.headers = {
         accept: 'application/json',
         'Content-Type': 'multipart/form-data',
@@ -118,6 +119,7 @@ class FetchMe {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        accept: 'application/json',
         authorization: `Bearer ${load('Token').refreshToken}`,
       },
       body: JSON.stringify({ sid: load('Token').sid }),
@@ -126,8 +128,9 @@ class FetchMe {
       const response = await fetch(this.URL + this.points.refresh, option);
       response.json().then(data => {
         this.token = data;
+        console.log('refresh', this.token);
         save('Token', this.token);
-        // decideTologin();
+        decideTologin();
       });
       if (url) return await this.sendRequest(url, opt);
     } catch (err) {
