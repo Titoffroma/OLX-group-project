@@ -15,10 +15,9 @@ async function renderFilter() {
   const response = await fetchFunctions.getRequest(filterRequest);
   filterUL.innerHTML = hbsFunction(response);
   document.body.addEventListener('click', Mycallback);
+  appPage();
 }
 renderFilter();
-
-appPage();
 
 async function appPage() {
   const searchQuery = {
@@ -75,9 +74,14 @@ async function Mycallback(event) {
     return appPage();
   }
   if (event.target.classList.contains('pagination__link')) {
+    event.preventDefault();
     onPaginationPage(event);
   }
   if (event.target.hasAttribute('data-office')) {
     renderOffice();
+  }
+  if (event.target.hasAttribute('data-out')) {
+    const response = await fetchFunctions.logout();
+    if (response) appPage();
   }
 }

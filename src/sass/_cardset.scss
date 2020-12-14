@@ -82,7 +82,7 @@
     opacity: 0;
     transition: opacity $transition;
     &.unauthorized,
-    &.unlogged {
+    &.unlogged:not(.logged) {
       display: none;
     }
   }

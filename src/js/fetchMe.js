@@ -38,7 +38,7 @@ class FetchMe {
   set token(token) {
     let i = 0;
     for (let key in token) {
-      this._token[Object.keys(token)[i]] = token[Object.keys(token)[i]];
+      this._token[Object.keys(this._token)[i]] = token[key];
       i += 1;
     }
   }
@@ -46,6 +46,7 @@ class FetchMe {
     const response = await this.getRequest({ point: false });
     if (response.ok) {
       remove('Token');
+      remove('User');
       this.token = {
         accessToken: '',
         refreshToken: '',
@@ -60,6 +61,7 @@ class FetchMe {
     return await this.getRequest(opt).then(data => {
       this.token = data;
       save('Token', data);
+      save('User', data.user);
       decideTologin();
       return data;
     });
@@ -107,7 +109,6 @@ class FetchMe {
         await response.json().then(data => pushError(data.message));
         return;
       }
-
       return await response.json();
     } catch (err) {
       console.log('mistake', err.message);
@@ -115,6 +116,7 @@ class FetchMe {
   }
 
   async refresh(url, opt) {
+    const body = { sid: load('Token').sid };
     const option = {
       method: 'POST',
       headers: {
@@ -122,7 +124,7 @@ class FetchMe {
         accept: 'application/json',
         authorization: `Bearer ${load('Token').refreshToken}`,
       },
-      body: JSON.stringify({ sid: load('Token').sid }),
+      body: JSON.stringify(body),
     };
     try {
       const response = await fetch(this.URL + this.points.refresh, option);

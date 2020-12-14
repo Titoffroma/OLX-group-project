@@ -1,7 +1,6 @@
 import { pushError, removeError } from './pnotify';
 import fetchFunctions from './fetchMe';
 import hbs from '../templates/authorization-modal.hbs';
-import desideTologin from './main.js';
 
 function validate(evt) {
   evt.preventDefault();
@@ -33,7 +32,7 @@ function validate(evt) {
     let response = await fetchFunctions.login(request);
 
     if (response) {
-      desideTologin();
+      document.querySelector('img[data-clear-filter]').click();
       authBackdrop.click();
     }
   }

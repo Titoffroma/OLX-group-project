@@ -1,16 +1,24 @@
 import { load, save, remove } from './storage';
 import hbs from '../templates/product-modal.hbs';
 import fetchFunctions from './fetchMe';
+import desideTologin from './main.js';
 
-let changeLike = null;
+const changeLike = { like: null };
 
 document.body.addEventListener('click', modalProduct);
 
 export default async function openModalProduct(evt) {
+  if (evt.target.getAttribute('data-hbs') == '11')
+    console.log(
+      evt.target
+        .closest('.cardset__overlay')
+        .querySelector('.cardset__icons.unauthorized'),
+    );
   const id = evt.target.getAttribute('data-callid');
   const title = evt.target.getAttribute('data-title');
   const data = await fetchProduct(id, title);
   if (evt.target.hasAttribute('data-liked')) data.liked = 'liked';
+  if (!load('User')) data.out = 'unlogged';
   const markup = hbs(data);
   return markup;
 }
@@ -29,7 +37,6 @@ async function fetchProduct(id, title) {
 }
 
 function modalProduct(evt) {
-  console.log(evt.target);
   if (evt.target.hasAttribute('data-id')) return addToFavorite(evt);
   if (!evt.target.closest('.backdrop')) return;
   const aboutSellerContOpened = document.querySelector(
@@ -60,10 +67,7 @@ function modalProduct(evt) {
 
   async function addToFavorite(evt) {
     evt.preventDefault();
-    if (evt.target.getAttribute('data-hbs') === '11')
-      changeLike = evt.target
-        .closest('.cardset__overlay')
-        .querySelector('.cardset__icons.unauthorized');
+    console.log(evt.target);
     const id = evt.target.getAttribute('data-id');
     const opt = {
       point: fetchFunctions.points.myFav,
@@ -78,7 +82,7 @@ function modalProduct(evt) {
       const response = await fetchFunctions.getRequest(options);
       if (response) {
         evt.target.classList.add('liked');
-        if (changeLike) changeLike.classList.add('liked');
+        if (changeLike.like) changeLike.like.classList.add('liked');
       }
     } else {
       const options = {
@@ -88,7 +92,7 @@ function modalProduct(evt) {
       const response = await fetchFunctions.getRequest(options);
       if (response) {
         evt.target.classList.remove('liked');
-        if (changeLike) changeLike.classList.remove('liked');
+        if (changeLike.like) changeLike.like.classList.remove('liked');
       }
     }
   }
