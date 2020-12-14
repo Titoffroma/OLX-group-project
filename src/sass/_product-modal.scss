@@ -72,6 +72,7 @@
 }
 
 .modal-product_photo {
+  overflow: hidden;
   width: 253px;
   height: 253px;
   @media screen and(min-width:$tablet) {
@@ -332,4 +333,38 @@
 
 .actions-item_button.unlogged {
   display: none;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-400px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(400px);
+  }
+}
+.animate-product-photo-appear {
+  animation-name: fadeIn;
+  animation-duration: 250ms;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.animate-product-photo-disappear {
+  animation-name: fadeOut;
+  animation-duration: 500ms;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }

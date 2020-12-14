@@ -58,7 +58,60 @@ function modalProduct(evt) {
   }
 
   function changePhoto(evt) {
-    mainModalPhoto.src = evt.target.src;
+    if (document.documentElement.clientWidth < 768) {
+      mainModalPhoto.addEventListener('touchstart', handleTouchStart, false);
+      mainModalPhoto.addEventListener('touchmove', handleTouchMove, false);
+      const allPhotos = document.querySelectorAll(
+        '.product-photo-list-item-img',
+      );
+
+      const xDown = null;
+      const yDown = null;
+
+      function getTouches(evt) {
+        return (
+          evt.touches || // browser API
+          evt.originalEvent.touches
+        ); // jQuery
+      }
+
+      function handleTouchStart(evt) {
+        const firstTouch = getTouches(evt)[0];
+        xDown = firstTouch.clientX;
+        yDown = firstTouch.clientY;
+      }
+
+      function handleTouchMove(evt) {
+        if (!xDown || !yDown) {
+          return;
+        }
+
+        var xUp = evt.touches[0].clientX;
+        var yUp = evt.touches[0].clientY;
+
+        var xDiff = xDown - xUp;
+        var yDiff = yDown - yUp;
+
+        if (Math.abs(xDiff) > Math.abs(yDiff)) {
+          /*most significant*/
+          if (xDiff > 0) {
+            /* left swipe */
+          } else {
+            /* right swipe */
+          }
+        }
+        /* reset values */
+        xDown = null;
+        yDown = null;
+      }
+    }
+    mainModalPhoto.classList.remove('animate-product-photo-appear');
+    mainModalPhoto.classList.add('animate-product-photo-disappear');
+    setTimeout(() => {
+      mainModalPhoto.src = evt.target.src;
+      mainModalPhoto.classList.remove('animate-product-photo-disappear');
+      mainModalPhoto.classList.add('animate-product-photo-appear');
+    }, 200);
   }
 
   async function addToFavorite(evt) {
