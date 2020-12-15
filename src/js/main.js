@@ -27,7 +27,6 @@ export default async function decideTologin(param) {
             }
           });
         } else {
-          console.log(param);
           for (let keys in param) {
             param[keys].map(el => {
               for (let i = 0; i < fav.length; i++) {
@@ -41,7 +40,7 @@ export default async function decideTologin(param) {
         return param;
       }
     }
-    return;
+    return param;
   }
   document.body
     .querySelector('main div.container')
