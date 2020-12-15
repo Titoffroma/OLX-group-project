@@ -380,3 +380,7 @@
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
+
+.active-photo {
+  background-color: $accent;
+}
