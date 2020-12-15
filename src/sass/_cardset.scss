@@ -82,7 +82,7 @@
     opacity: 0;
     transition: opacity $transition;
     &.unauthorized,
-    &.unlogged {
+    &.unlogged:not(.logged) {
       display: none;
     }
   }
@@ -112,7 +112,4 @@
   & .cardset__icons.liked {
     color: $accent;
   }
-}
-.container.authorized .my-office .unauthorized {
-  color: $accent;
 }

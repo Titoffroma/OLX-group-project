@@ -1,4 +1,4 @@
-<li class="cardset__item">
+<li class="cardset__item {{fav}}">
     <a href="" class="cardset__link">
         <picture class="cardset__picture">
             <img class="cardset__image" srcset="{{#each imageUrls}}{{#if @first}}{{this}}{{/if}}{{/each}} 352w"
@@ -11,18 +11,18 @@
                         class="cardset__price old">{{oldPrice}}</span></span>{{/if}}<span
                     class="cardset__price new">{{price}} грн</span></p>
         </div>
-        <div class="cardset__overlay">
+        <div class="cardset__overlay" data-liked="{{liked}}">
             <div class="icons-container">
-                <span data-like data-id="{{_id}}" data-title="{{title}}"
+                <span data-like data-id="{{_id}}" data-idl data-title="{{title}}"
                     class=" material-icons cardset__icons unauthorized {{liked}}">favorite_border</span>
             </div>
             <div class="icons-container">
-                <span data-create data-changeid="{{_id}}" data-title="{{title}}"
-                    class=" material-icons cardset__icons unlogged">create</span>
+                <span data-create data-modal="true" data-hbs="6" data-changeid="{{_id}}" data-title="{{title}}"
+                    class=" material-icons cardset__icons unlogged {{logged}}">create</span>
             </div>
             <div class="icons-container">
                 <span data-modal="true" data-hbs="11" data-open data-callid="{{_id}}" data-title="{{title}}"
-                    data-{{liked}} class="material-icons cardset__icons">fullscreen</span>
+                    class="material-icons cardset__icons">fullscreen</span>
             </div>
         </div>
     </a>
