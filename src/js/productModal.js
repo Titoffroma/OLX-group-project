@@ -97,11 +97,19 @@ function modalProduct(evt) {
       const response = await fetchFunctions.getRequest(options);
       if (response) {
         evt.target.classList.remove('liked');
-        if (liked)
-          return (evt.target.closest('.cardset__overlay').dataset.liked = '');
+        if (liked) {
+          if (evt.target.closest('.fav')) {
+            evt.target.closest('.fav').remove();
+            return (evt.target.closest('.cardset__overlay').dataset.liked = '');
+          }
+        }
         if (heartInCard) {
           heartInCard.classList.remove('liked');
           heartInCard.closest('.cardset__overlay').dataset.liked = '';
+          if (heartInCard.closest('.fav')) {
+            heartInCard.closest('.fav').remove();
+            document.querySelector('.backdrop').click();
+          }
           heartInCard = null;
           return;
         }

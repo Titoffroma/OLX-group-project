@@ -17,9 +17,7 @@ export default async function decideTologin(param) {
     const user = await fetchFunctions.getRequest(opt);
     if (user) {
       save('User', user);
-      document.body
-        .querySelector('main div.container')
-        .classList.add('authorized');
+      document.body.classList.add('authorized');
       if (param) {
         const fav = user.favourites;
         if (Array.isArray(param)) {
@@ -31,7 +29,6 @@ export default async function decideTologin(param) {
             }
           });
         } else {
-          console.log(param);
           for (let keys in param) {
             param[keys].map(el => {
               for (let i = 0; i < fav.length; i++) {
@@ -45,10 +42,8 @@ export default async function decideTologin(param) {
         return param;
       }
     }
-    return;
+    return param;
   }
-  document.body
-    .querySelector('main div.container')
-    .classList.remove('authorized');
+  document.body.classList.remove('authorized');
   return param;
 }
