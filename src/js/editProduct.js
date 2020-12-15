@@ -1,7 +1,7 @@
 import fetchFunctions from './fetchMe';
 import editCardHbs from '../templates/edit-card.hbs';
 import modalLogic from './addAndEditModalLogic';
-import fetchProduct from './productModal';
+//import fetchProduct from './productModal';
 
 
 async function productFetch(id, title) {
@@ -24,10 +24,10 @@ export default async function openEditCard(evt) {
     const data = await productFetch(id, title);
   
     const markup = editCardHbs(data);
-
+console.log(data);
     function onEditCard(e) {
       //e.preventDefault();
-      //modalLogic();
+      modalLogic();
       const refs = {
         checkboxEl: document.querySelector('.checkbox-field'),
         submitBtn: document.querySelector('.on-change'),
