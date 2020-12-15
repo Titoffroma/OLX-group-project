@@ -9,7 +9,8 @@
     position: relative;
     overflow: hidden;
     box-shadow: $shade;
-    &:hover {
+    &:hover,
+    &:focus {
       & .cardset__overlay {
         transform: translateY(-100%);
         opacity: 1;
@@ -18,7 +19,7 @@
         opacity: 1;
       }
       & .cardset__image {
-        object-position: top left;
+        transform: scale(1.1);
       }
     }
   }
@@ -26,7 +27,7 @@
     object-fit: cover;
     object-position: center center;
     will-change: object-position;
-    transition: object-position $transition;
+    transition: transform $transition;
     width: 100%;
     height: calc((100vw - 30px) * 275 / 290);
     @media screen and (min-width: $tablet),
