@@ -11,7 +11,7 @@
                         class="cardset__price old">{{oldPrice}}</span></span>{{/if}}<span
                     class="cardset__price new">{{price}} грн</span></p>
         </div>
-        <div class="cardset__overlay">
+        <div class="cardset__overlay" data-liked="{{liked}}">
             <div class="icons-container">
                 <span data-like data-id="{{_id}}" data-idl data-title="{{title}}"
                     class=" material-icons cardset__icons unauthorized {{liked}}">favorite_border</span>
@@ -22,7 +22,7 @@
             </div>
             <div class="icons-container">
                 <span data-modal="true" data-hbs="11" data-open data-callid="{{_id}}" data-title="{{title}}"
-                    data-{{liked}} class="material-icons cardset__icons">fullscreen</span>
+                    class="material-icons cardset__icons">fullscreen</span>
             </div>
         </div>
     </a>

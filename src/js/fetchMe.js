@@ -105,7 +105,8 @@ class FetchMe {
       const response = await fetch(url, params);
       if (response.status === 401) {
         const data = await response.json();
-        if (reponse.message === 'unauthorized') return;
+        if (reponse.message === 'unauthorized')
+          return console.log('returned on unauthorized');
         const newResponse = await this.refresh(url, params);
         return await newResponse.json();
       } else if (!response.ok) {

@@ -5,17 +5,18 @@ import desideTologin from './main.js';
 
 document.body.addEventListener('click', modalProduct);
 
+let heartInCard = null;
+
 export default async function openModalProduct(evt) {
   if (evt.target.getAttribute('data-hbs') == '11')
-    console.log(
-      evt.target
-        .closest('.cardset__overlay')
-        .querySelector('.cardset__icons.unauthorized'),
-    );
+    heartInCard = evt.target
+      .closest('.cardset__overlay')
+      .querySelector('.cardset__icons.unauthorized');
   const id = evt.target.getAttribute('data-callid');
   const title = evt.target.getAttribute('data-title');
   const data = await fetchProduct(id, title);
-  if (evt.target.hasAttribute('data-liked')) data.liked = 'liked';
+  if (evt.target.closest('.cardset__overlay').dataset.liked === 'liked')
+    data.liked = 'liked';
   if (!load('User')) data.out = 'unlogged';
   const markup = hbs(data);
   return markup;
@@ -62,6 +63,7 @@ function modalProduct(evt) {
   }
 
   async function addToFavorite(evt) {
+    const liked = evt.target.hasAttribute('data-idl') ? true : false;
     const id = evt.target.getAttribute('data-id');
     const opt = {
       point: fetchFunctions.points.myFav,
@@ -76,7 +78,15 @@ function modalProduct(evt) {
       const response = await fetchFunctions.getRequest(options);
       if (response) {
         evt.target.classList.add('liked');
-        return;
+        if (liked)
+          return (evt.target.closest('.cardset__overlay').dataset.liked =
+            'liked');
+        if (heartInCard) {
+          heartInCard.classList.add('liked');
+          heartInCard.closest('.cardset__overlay').dataset.liked = 'liked';
+          heartInCard = null;
+          return;
+        }
       }
     } else {
       const options = {
@@ -86,7 +96,14 @@ function modalProduct(evt) {
       const response = await fetchFunctions.getRequest(options);
       if (response) {
         evt.target.classList.remove('liked');
-        return;
+        if (liked)
+          return (evt.target.closest('.cardset__overlay').dataset.liked = '');
+        if (heartInCard) {
+          heartInCard.classList.remove('liked');
+          heartInCard.closest('.cardset__overlay').dataset.liked = '';
+          heartInCard = null;
+          return;
+        }
       }
     }
   }
