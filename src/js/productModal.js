@@ -34,6 +34,7 @@ async function fetchProduct(id, title) {
     }
   });
 }
+export { fetchProduct };
 
 function modalProduct(evt) {
   if (evt.target.hasAttribute('data-id')) return addToFavorite(evt);
