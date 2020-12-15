@@ -1,0 +1,25 @@
+.backdrop {
+  position: fixed;
+  left: 50%;
+  bottom: 50%;
+  z-index: 1;
+}
+.preloader {
+  text-align: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 4px;
+  background-color: #ff6b09;
+  transition: all 0.7s;
+
+  animation: preLoader 1.5s cubic-bezier(1, 1, 0, 1) infinite;
+}
+@keyframes preLoader {
+  50% {
+    transform: rotate(-360deg);
+  }
+  50% {
+    border-radius: 50%;
+    transform: rotate(360deg);
+  }
+}
