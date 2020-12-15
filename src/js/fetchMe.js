@@ -104,10 +104,19 @@ class FetchMe {
       }
       const response = await fetch(url, params);
       if (response.status === 401) {
-        const newResponse = await this.refresh(url, params);
-        return await newResponse.json();
+        const data = await response.json();
+        if (data.message === 'unauthorized')
+          return console.log('returned on unauthorized');
+        if (!this.count) {
+          this.count += 1;
+          const newResponse = await this.refresh(url, params);
+          return await newResponse.json();
+        }
       } else if (!response.ok) {
-        await response.json().then(data => pushError(data.message));
+        const data = await response.json();
+        pushError(data.message);
+        console.log('data - ', data);
+        console.log('response - ', response);
         return;
       }
       this.count = 0;
@@ -130,16 +139,14 @@ class FetchMe {
     };
     try {
       const response = await fetch(this.URL + this.points.refresh, option);
-      response.json().then(data => {
+      const data = await response.json();
+      if (response.ok) {
         this.token = data;
         console.log('refresh', this.token);
         save('Token', this.token);
-        decideTologin();
-      });
-      if (this.count < 5) {
-        this.count += 1;
         return await this.sendRequest(url, opt);
       }
+      return pushError(data.message);
     } catch (err) {
       console.log('mistake in refresh', err.message);
     }

@@ -1,56 +1,54 @@
 import addCardModal from '../templates/add-card.hbs'
 import fetchFunctions from './fetchMe';
 import modalLogic from './addAndEditModalLogic';
+import { load, save, remove } from './storage';
 
 export default function openAddCardModal() {
   const markup = addCardModal();
-  document.body.addEventListener('submit', onOpenAddCardModal);
+  document.body.addEventListener('click', addCardModalClick, {once: true});
   return markup;
 }
 
-function onOpenAddCardModal() {
+function addCardModalClick() {
     modalLogic();
-    
-    const addCardForm = document.querySelector('.add-card__form');
-    addCardForm.addEventListener('submit', onFormSubmit);
+    onOpenAddCardModal();
+}
 
-    function onFormSubmit(e) {
-        // e.preventDefault();
- 
+function onOpenAddCardModal() { 
+    const photoElem = document.querySelector('#photoElem');
+    const addCardForm = document.querySelector('.add-card__form');
+    const formData = new FormData();
+    const myHeaders = new Headers();
+
+    addCardForm.addEventListener('submit', onFormSubmit);
+    photoElem.addEventListener('input', function () {
+        formData.append('file', photoElem.files[0]);
+    });
+
+    async function onFormSubmit(e) {
+        e.preventDefault();
         const formElements = e.currentTarget.elements;
         const title = formElements.title.value;
         const description = formElements.description.value;
         const category = formElements.category.value;
         const price = formElements.price.value;
         const phone = formElements.phone.value;
-        const fileUrl = formElements.file.files[0].name;
-        const fileType = formElements.file.files[0].type;
-
-        const formData = {
-            title,
-            description,
-            category,
-            price: Number(price),
-            phone,
-            file: `${fileUrl}; type=${fileType}`,
-        };
-
-        console.log(formData);
-
-        const cardToAdd = {
-            point: fetchFunctions.points.call,
-            body: formData,
-            method: 'POST',
-            contentType: true,
-        }
-
-
-        async function addNewCard() {
-            let response = await fetchFunctions.getRequest(cardToAdd);
-            console.log(response);
-        }
         
-        addNewCard(); 
+        formData.append('title', title);
+        formData.append('description', description);
+        formData.append('category', category);
+        formData.append('price', Number(price));
+        formData.append('phone', phone);
+        myHeaders.append('Authorization', `Bearer ${load('Token').accessToken}`);
+        const URL = 'https://callboard-backend.herokuapp.com/call';
+        const requestOptions = {
+            method: 'POST',
+            redirect: 'follow',
+            headers: myHeaders,
+            body: formData,
+        };
+        // console.log(requestOptions);
+        const answer = await fetch(URL, requestOptions);
+        console.log(answer);
     }
-   
 }

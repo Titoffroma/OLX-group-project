@@ -8,6 +8,7 @@ import openModalFind from './openSearchModal';
 import openModalConfirm from './openConfirmModal';
 import openModalAuth from './authorization';
 import openModalProduct from './productModal';
+import openEditCard from './editProduct';
 
 const hbsFunctions = [
   renderCardlist,
@@ -16,7 +17,7 @@ const hbsFunctions = [
   popupSearch,
   popupExitConfirm,
   myAdvert,
-  ,
+  openEditCard,
   ,
   openModalAuth,
   openModalConfirm,

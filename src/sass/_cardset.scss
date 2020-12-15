@@ -105,14 +105,11 @@
   }
 }
 
-.container.authorized {
+body.authorized {
   & .unauthorized {
     display: block;
   }
   & .cardset__icons.liked {
     color: $accent;
   }
-}
-.container.authorized .my-office .unauthorized {
-  color: $accent;
 }
