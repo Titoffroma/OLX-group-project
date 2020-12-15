@@ -9,11 +9,13 @@ export default async function renderOffice() {
   if (!user) return document.querySelector('.header_registration_link').click();
   user.favourites.map(el => {
     el.liked = 'liked';
+    el.fav = 'fav';
   });
   user.calls.map(el => (el.logged = 'logged'));
   const info = {
     'My Calls': user.calls,
     'My Favourites': user.favourites,
   };
+  console.log(user.favourites);
   document.querySelector('main div.container').innerHTML = myAdvert(info);
 }
