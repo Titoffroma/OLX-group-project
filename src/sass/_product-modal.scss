@@ -103,20 +103,27 @@
 }
 
 .product-photo-wrapper {
-  display: none;
-  @media screen and(min-width:$tablet) {
-    display: block;
-  }
   margin-top: 10px;
 }
 .product-photo-list {
   display: flex;
+  @media screen and (max-width: $tablet) {
+    justify-content: center;
+    align-items: center;
+  }
+
   &_item {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #c4c4c4;
     @media screen and (min-width: $tablet) {
+      border-radius: 0;
       width: 52px;
       height: 56px;
     }
     @media screen and (min-width: $desktop) {
+      border-radius: 0;
       width: 68px;
       height: 73px;
     }
@@ -124,7 +131,12 @@
     & img {
       width: 52px;
       height: 56px;
+      display: none;
+      @media screen and (min-width: $tablet) {
+        display: block;
+      }
       @media screen and (min-width: $desktop) {
+        display: block;
         width: 68px;
         height: 73px;
       }

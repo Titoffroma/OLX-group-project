@@ -2,6 +2,7 @@ import { load, save, remove } from './storage';
 import hbs from '../templates/product-modal.hbs';
 import fetchFunctions from './fetchMe';
 import desideTologin from './main.js';
+import { all } from 'core-js/fn/promise';
 
 document.body.addEventListener('click', modalProduct);
 
@@ -64,15 +65,40 @@ function modalProduct(evt) {
       const allPhotos = document.querySelectorAll(
         '.product-photo-list-item-img',
       );
+      let indexOfPhoto = 0;
+      allPhotos.map();
+      function nextPhotoPag() {
+        if (!(indexOfPhoto + 1 === allPhotos.length)) {
+          all.Photos[indexOfPhoto].classList.toggle('active-photo');
+          indexOfPhoto++;
+          mainModalPhoto.src = allPhotos[indexOfPhoto].src;
+          all.Photos[indexOfPhoto].classList.toggle('active-photo');
+        } else {
+          all.Photos[indexOfPhoto].classList.toggle('active-photo');
+          indexOfPhoto = 0;
+          mainModalPhoto.src = allPhotos[indexOfPhoto].src;
+          all.Photos[indexOfPhoto].classList.toggle('active-photo');
+        }
+      }
+      function previousPhotoPag() {
+        if (!(indexOfPhoto === 0)) {
+          all.Photos[indexOfPhoto].classList.toggle('active-photo');
+          indexOfPhoto--;
+          mainModalPhoto.src = allPhotos[indexOfPhoto].src;
+          all.Photos[indexOfPhoto].classList.toggle('active-photo');
+        } else {
+          all.Photos[indexOfPhoto].classList.toggle('active-photo');
+          indexOfPhoto = allPhotos.length - 1;
+          mainModalPhoto.src = allPhotos[indexOfPhoto].src;
+          all.Photos[indexOfPhoto].classList.toggle('active-photo');
+        }
+      }
 
       const xDown = null;
       const yDown = null;
 
       function getTouches(evt) {
-        return (
-          evt.touches || // browser API
-          evt.originalEvent.touches
-        ); // jQuery
+        return evt.touches;
       }
 
       function handleTouchStart(evt) {
@@ -95,9 +121,9 @@ function modalProduct(evt) {
         if (Math.abs(xDiff) > Math.abs(yDiff)) {
           /*most significant*/
           if (xDiff > 0) {
-            /* left swipe */
+            previousPhotoPag();
           } else {
-            /* right swipe */
+            nextPhotoPag();
           }
         }
         /* reset values */
