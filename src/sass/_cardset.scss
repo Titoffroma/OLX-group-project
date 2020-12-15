@@ -105,7 +105,7 @@
   }
 }
 
-.container.authorized {
+body.authorized {
   & .unauthorized {
     display: block;
   }
