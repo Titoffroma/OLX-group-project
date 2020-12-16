@@ -5,11 +5,17 @@ import myModal from './modalClass';
 //import { onPaginationPage } from './paginationCategories';
 import './editProduct';
 import fetchLogin from './authorization.js';
-
+import addPreloader from './preloader.js';
 
 myModal.startListener();
 
 export default async function decideTologin(param) {
+  const preloaderParent = document.querySelector('main');
+  if (!document.querySelector('.preloader-backdrop')) {
+    addPreloader(preloaderParent);
+    preloaderParent.children[0].style.height = '100vh';
+    preloaderParent.children[0].style.zIndex = '1000000';
+  }
   if (load('Token')) {
     const opt = {
       point: fetchFunctions.points.user,
