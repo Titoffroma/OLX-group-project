@@ -13,18 +13,21 @@ async function renderFilter() {
     point: fetchFunctions.points.cat,
   };
   const response = await fetchFunctions.getRequest(filterRequest);
+  console.log(response);
   filterUL.innerHTML = hbsFunction(response);
   document.body.addEventListener('click', Mycallback);
   appPage();
 }
 renderFilter();
 
-async function appPage() {
+async function appPage(sales) {
   const searchQuery = {
     point: fetchFunctions.points.call,
     query: '?page=1',
   };
   const searchResult = await fetchFunctions.getRequest(searchQuery);
+  if (sales) return searchResult.sales;
+  console.log(searchResult);
   const markup = await decideTologin(searchResult);
   const orderedSearch = renderPagination(markup);
   document.querySelector('main div.container').innerHTML = orderedSearch;
@@ -63,7 +66,12 @@ async function Mycallback(event) {
       point: fetchFunctions.points.catCalls,
       query: event.target.dataset.filter,
     };
-    const response = await fetchFunctions.getRequest(request);
+    let response = null;
+    if (event.target.dataset.filter === 'sales') {
+      response = await appPage(true);
+    } else {
+      response = await fetchFunctions.getRequest(request);
+    }
     const markup = await decideTologin(response);
     document.querySelector('main div.container').innerHTML = renderCards(
       markup,
