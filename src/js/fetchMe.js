@@ -5,14 +5,14 @@ import decideTologin from './main';
 class FetchMe {
   constructor() {
     this.URL = 'https://callboard-backend.herokuapp.com';
-    this.debounce = 1000;
+    this.debounce = 500;
     this.permit = false;
     this._token = {
       accessToken: '',
       refreshToken: '',
       sid: '',
     };
-    this.atOnce = 5;
+    this.atOnce = 8;
     this.count = 0;
     this.refreshCount = 0;
     this.points = {
@@ -121,14 +121,11 @@ class FetchMe {
         if (!this.refreshCount) {
           this.refreshCount += 1;
           const newResponse = await this.refresh(url, params);
-          console.log(newResponse);
           return await newResponse;
         }
       } else if (!response.ok) {
         const data = await response.json();
         pushError(data.message);
-        console.log('data - ', data);
-        console.log('response - ', response);
         return;
       }
       this.refreshCount = 0;
@@ -155,7 +152,6 @@ class FetchMe {
       const data = await response.json();
       if (response.ok) {
         this.token = data;
-        console.log('refresh');
         save('Token', this.token);
         opt.headers = this.headers;
         return await this.sendRequest(url, opt);
