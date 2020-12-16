@@ -2,19 +2,22 @@ import { load, save, remove } from './storage';
 import hbs from '../templates/product-modal.hbs';
 import fetchFunctions from './fetchMe';
 import desideTologin from './main.js';
+import addPreloader from './preloader';
 
 document.body.addEventListener('click', modalProduct);
 
 let heartInCard = null;
 
 export default async function openModalProduct(evt) {
-  if (evt.target.getAttribute('data-hbs') == '11')
-    heartInCard = evt.target
-      .closest('.cardset__overlay')
-      .querySelector('.cardset__icons.unauthorized');
+  if (evt.target.getAttribute('data-hbs') == '11') {
+    const card = evt.target.closest('.cardset__overlay');
+    addPreloader(card.closest('.cardset__item'));
+    heartInCard = card.querySelector('.cardset__icons.unauthorized');
+  }
   const id = evt.target.getAttribute('data-callid');
   const title = evt.target.getAttribute('data-title');
   const data = await fetchProduct(id, title);
+
   if (evt.target.closest('.cardset__overlay').dataset.liked === 'liked')
     data.liked = 'liked';
   if (!load('User')) data.out = 'unlogged';

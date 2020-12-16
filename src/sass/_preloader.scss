@@ -1,13 +1,16 @@
 .preloader-backdrop {
   position: sticky;
   top: 0;
-  z-index: 10000000;
+  z-index: 90000;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: #f5f6fb;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.cardset__item .preloader-backdrop {
+  background: $overlay;
 }
 .preloader {
   width: 70px;

@@ -9,8 +9,11 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   background: #f5f6fb;
+}
+footer {
+  margin-top: auto;
 }
 img,
 a {

@@ -38,11 +38,11 @@ class Modal {
   }
   async openModal(event) {
     if (event.target.dataset.modal == 'true') {
-      event.preventDefault();
       const index = event.target.dataset.hbs;
-      document
-        .querySelector('body')
-        .insertAdjacentHTML('beforeend', await this.functions[index](event));
+      const markup = await this.functions[index](event);
+      if (!markup) return;
+      event.preventDefault();
+      document.querySelector('body').insertAdjacentHTML('beforeend', markup);
       const modalRef = document.querySelector('div[data-close]');
       document.body.style.overflow = 'hidden';
       modalRef.addEventListener('click', this.onClickCloseModal);

@@ -5,6 +5,9 @@
   @include Cardset-Responsive($phone, 15px, 15px, 1);
   @include Cardset-Responsive($tablet, 20px, 20px, 2);
   @include Cardset-Responsive($desktop, 20px, 20px, 4);
+  &__item {
+    position: relative;
+  }
   &__link {
     position: relative;
     overflow: hidden;
@@ -40,7 +43,7 @@
   }
   &__description {
     position: relative;
-    z-index: 10;
+    z-index: 99000;
     height: 75px;
     width: 100%;
     padding: 20px;
