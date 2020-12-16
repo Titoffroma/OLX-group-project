@@ -44,6 +44,9 @@ class Modal {
       event.preventDefault();
       document.body.insertAdjacentHTML('beforeend', markup);
       const modalRef = document.querySelector('div[data-close]');
+      setTimeout(() => {
+        modalRef.classList.add('opened');
+      }, 500);
       document.body.style.overflow = 'hidden';
       modalRef.addEventListener('click', this.onClickCloseModal);
       window.addEventListener('keydown', this.onEscapeCloseModal);
@@ -54,7 +57,10 @@ class Modal {
     const backdrop = document.querySelector('div[data-close]');
     window.removeEventListener('keydown', this.onEscapeCloseModal);
     backdrop.removeEventListener('click', this.onClickCloseModal);
-    backdrop.remove();
+    backdrop.classList.remove('opened');
+    setTimeout(() => {
+      backdrop.remove();
+    }, 500);
     document.body.style.overflowY = 'scroll';
   }
   onEscapeCloseModal(event) {

@@ -1,32 +1,4 @@
-// .backdrop {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100%;
-//   overflow-y: scroll;
-
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-
-//   background: $overlay;
-
-//   opacity: 1;
-//   transition: opacity $transition;
-// }
 .modal-product {
-  display: block;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-
-  padding: 25px 20px 30px;
-  width: 290px;
-  margin: 0 auto;
-  background-color: $white;
-
   @media screen and (min-width: $tablet) {
     display: flex;
     padding: 55px 55px 60px;
