@@ -17,44 +17,56 @@ async function productFetch(id, title) {
   });
 }
 
+ 
 
 export default async function openEditCard(evt) {
     const id = evt.target.getAttribute('data-changeid');
     const title = evt.target.getAttribute('data-title');
     const data = await productFetch(id, title);
+    
+  const markup = editCardHbs(data);
   
-    const markup = editCardHbs(data);
-console.log(data);
+
+  document.body.addEventListener('click', () => { 
+    if (ref.btnChekRef.checked === true) {
+      document.querySelector(`.on-change`).textContent = 'Видалити';
+    } else {
+      document.querySelector(`.on-change`).textContent = 'Зберегти';
+    }
+
+   });
+
     function onEditCard(e) {
-      //e.preventDefault();
+     // e.preventDefault();
       modalLogic();
       const refs = {
         checkboxEl: document.querySelector('.checkbox-field'),
         submitBtn: document.querySelector('.on-change'),
         addCardForm: document.querySelector('.add-card__form'),
+        photo: document.querySelector('#photoElem'),
       };
-
+      
+    
       const formElements = e.target.elements;
-
       const title = formElements.title.value;
       const description = formElements.description.value;
       const category = formElements.category.value;
       const price = formElements.price.value;
       const phone = formElements.phone.value;
-      // const fileUrl = formElements.file.files[0].name;
-      // const fileType = formElements.file.files[0].type;
-     
-
+    
       const changedFormData = {
         title,
         description,
         category,
         price,
         phone,
-        // file: `${fileUrl}; type=${fileType}`,
+       // file,
       };
 
-    
+    const formData = new FormData();
+      refs.photo.addEventListener('change', () => {
+      })
+
 
       if (!e.target.elements.checkbox.checked) {
         const patchRequest = {
@@ -82,10 +94,15 @@ console.log(data);
         deleteCard()
       }
     };
+
+  document.body.addEventListener('submit', onEditCard);
+  const ref = {
+    get btnChekRef() {
+      return document.querySelector(`.checkbox`);
+    },
+  };
+  return markup;
   
-    document.body.addEventListener('submit', onEditCard);
-    return markup;
-    
   
 };
 
