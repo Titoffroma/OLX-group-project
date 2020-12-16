@@ -21,6 +21,7 @@ async function render(event) {
     pushError('Sorry, we could not find any call!');
     return;
   }
+  history.pushState(request.query, '', request.query)
   const markup = await decideTologin(data);
   document.querySelector('main div.container').innerHTML = cardset(markup);
   document.querySelector('.backdrop').click();

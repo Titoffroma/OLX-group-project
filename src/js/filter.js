@@ -20,6 +20,11 @@ async function renderFilter() {
 renderFilter();
 
 async function appPage() {
+  if (location.pathname !== history.state) {
+    const value = location.pathname
+    history.pushState(value, '', value)
+    return
+  };
   const searchQuery = {
     point: fetchFunctions.points.call,
     query: '?page=1',
@@ -33,8 +38,7 @@ async function appPage() {
 async function onPaginationPage(event) {
   const pagination = document.querySelector('div[data-pagination]');
   event.preventDefault();
-  if (event.target.nodeName !== 'A') {
-  }
+  addPathName(event);
   const currentActivePage = pagination.querySelector('.active');
   if (currentActivePage) {
     currentActivePage.classList.remove('active');
@@ -59,6 +63,7 @@ async function onPaginationPage(event) {
 async function Mycallback(event) {
   if (event.target.hasAttribute('data-filter')) {
     event.preventDefault();
+    addPathName(event);
     const request = {
       point: fetchFunctions.points.catCalls,
       query: event.target.dataset.filter,
@@ -78,6 +83,7 @@ async function Mycallback(event) {
   currentFilter.classList.add('active');
   if (event.target.hasAttribute('data-clear-filter')) {
     appPage();
+    history.pushState(null, null, '/')
   }
   if (event.target.classList.contains('pagination__link')) {
     event.preventDefault();
@@ -92,3 +98,8 @@ async function Mycallback(event) {
   }
   if (event.target.closest('.cardset')) event.preventDefault();
 }
+
+function addPathName(e) {
+  const query = e.target.getAttribute('href')
+  history.pushState(query, null, query)
+};
