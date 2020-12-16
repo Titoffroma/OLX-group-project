@@ -9,7 +9,6 @@ import { save } from './storage';
 
 export default async function renderFilter() {
   const filterUL = document.querySelector('.header_filter');
-  const clearFilterRef = document.querySelector('.header_filter_button');
   const filterRequest = {
     point: fetchFunctions.points.cat,
   };
@@ -57,13 +56,6 @@ async function onPaginationPage(event) {
 }
 
 async function Mycallback(event) {
-  //  if (event.target.dataset.hbs === '1') {
-  //   if (!document.body.classList.contains('authorized')) {
-  //       return document.querySelector('a[data-hbs="8"]').click();
-  // } 
-  //   return 
-  // }
-  
   if (event.target.hasAttribute('data-filter')) {
     event.preventDefault();
     const request = {
@@ -80,6 +72,9 @@ async function Mycallback(event) {
     document.querySelector('main div.container').innerHTML = renderCards(
       markup,
     );
+    window.scrollTo({
+      top: 0,
+    });
   }
   if (event.target.classList.contains('pagination__link')) {
     const controlActiveFilter = document.body.querySelector(
@@ -90,10 +85,10 @@ async function Mycallback(event) {
     }
     const currentFilter = event.target;
     currentFilter.classList.add('active');
-    if (event.target.hasAttribute('data-clear-filter')) {
-      appPage();
-    }
     onPaginationPage(event);
+  }
+  if (event.target.hasAttribute('data-clear-filter')) {
+    appPage();
   }
 
   if (event.target.hasAttribute('data-office')) {

@@ -12,7 +12,7 @@ class FetchMe {
       refreshToken: '',
       sid: '',
     };
-    this.atOnce = 8;
+    this.atOnce = 3;
     this.count = 0;
     this.refreshCount = 0;
     this.points = {
@@ -47,13 +47,6 @@ class FetchMe {
       i += 1;
     }
   }
-  timeout() {
-    this.permit = true;
-    setTimeout(() => {
-      this.permit = false;
-      this.count = 0;
-    }, this.debounce);
-  }
   async logout() {
     const response = await this.getRequest({ point: false });
     if (response.ok) {
@@ -78,6 +71,11 @@ class FetchMe {
       return data;
     });
   }
+  timeout() {
+    setTimeout(() => {
+      this.count = 0;
+    }, this.debounce);
+  }
   async getRequest({
     point,
     method = 'GET',
@@ -85,7 +83,9 @@ class FetchMe {
     query = '',
     contentType = false,
   }) {
-    if (this.permit || this.count > this.atOnce) return;
+    console.log('try');
+    if (this.count > this.atOnce) return;
+    console.log('send');
     const opt = {
       method,
       headers: this.headers,
@@ -103,8 +103,8 @@ class FetchMe {
     if (body) opt.body = JSON.stringify(body);
     const params = point ? opt : false;
     const url = this.URL + point + query;
+    if (this.count === 0) this.timeout();
     this.count += 1;
-    if (this.count === this.atOnce) this.timeout();
     return await this.sendRequest(url, params);
   }
   async sendRequest(url, params) {
@@ -134,7 +134,6 @@ class FetchMe {
       console.log('mistake in request', err.message);
     }
   }
-
   async refresh(url, opt) {
     if (!load('Token')) return pushError('Please, log in to proceed.');
     const body = { sid: load('Token').sid };
