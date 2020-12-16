@@ -5,14 +5,16 @@ import renderPagination from '../templates/pagination.hbs';
 import fetchFunctions from './fetchMe.js';
 import renderOffice from './myOffice';
 import decideTologin from './main';
+import { save } from './storage';
 
-async function renderFilter() {
+export default async function renderFilter() {
   const filterUL = document.querySelector('.header_filter');
   const clearFilterRef = document.querySelector('.header_filter_button');
   const filterRequest = {
     point: fetchFunctions.points.cat,
   };
   const response = await fetchFunctions.getRequest(filterRequest);
+  save('cats', response);
   filterUL.innerHTML = hbsFunction(response);
   document.body.addEventListener('click', Mycallback);
   appPage();
@@ -57,6 +59,13 @@ async function onPaginationPage(event) {
 }
 
 async function Mycallback(event) {
+  //  if (event.target.dataset.hbs === '1') {
+  //   if (!document.body.classList.contains('authorized')) {
+  //       return document.querySelector('a[data-hbs="8"]').click();
+  // } 
+  //   return 
+  // }
+  
   if (event.target.hasAttribute('data-filter')) {
     event.preventDefault();
     const request = {
