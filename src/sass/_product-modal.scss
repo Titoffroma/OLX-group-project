@@ -22,7 +22,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
 
-  padding: 55px 20px 60px;
+  padding: 25px 20px 30px;
   width: 290px;
   margin: 0 auto;
   background-color: $white;
@@ -160,7 +160,7 @@
     line-height: 1.16;
     color: $dark-grey;
 
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 
   @media screen and (min-width: $tablet) {
@@ -262,7 +262,7 @@
 
 .actions-list {
   display: flex;
-  margin-bottom: 32px;
+  margin-bottom: 30px;
 }
 .actions-item {
   display: flex;
