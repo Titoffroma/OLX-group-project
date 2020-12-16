@@ -13,7 +13,6 @@ async function renderFilter() {
     point: fetchFunctions.points.cat,
   };
   const response = await fetchFunctions.getRequest(filterRequest);
-  console.log(response);
   filterUL.innerHTML = hbsFunction(response);
   document.body.addEventListener('click', Mycallback);
   appPage();
@@ -27,7 +26,6 @@ async function appPage(sales) {
   };
   const searchResult = await fetchFunctions.getRequest(searchQuery);
   if (sales) return searchResult.sales;
-  console.log(searchResult);
   const markup = await decideTologin(searchResult);
   const orderedSearch = renderPagination(markup);
   document.querySelector('main div.container').innerHTML = orderedSearch;
@@ -36,8 +34,6 @@ async function appPage(sales) {
 async function onPaginationPage(event) {
   const pagination = document.querySelector('div[data-pagination]');
   event.preventDefault();
-  if (event.target.nodeName !== 'A') {
-  }
   const currentActivePage = pagination.querySelector('.active');
   if (currentActivePage) {
     currentActivePage.classList.remove('active');
@@ -55,7 +51,6 @@ async function onPaginationPage(event) {
   document.querySelector('section.categories').innerHTML = orderedSearch;
   window.scrollTo({
     top: 0,
-    behavior: 'smooth',
   });
 }
 
@@ -77,20 +72,21 @@ async function Mycallback(event) {
       markup,
     );
   }
-
-  const controlActiveFilter = document.body.querySelector('.active');
-  if (controlActiveFilter) {
-    controlActiveFilter.classList.remove('active');
-  }
-  const currentFilter = event.target;
-  currentFilter.classList.add('active');
-  if (event.target.hasAttribute('data-clear-filter')) {
-    appPage();
-  }
   if (event.target.classList.contains('pagination__link')) {
-    event.preventDefault();
+    const controlActiveFilter = document.body.querySelector(
+      'pagination__link.active',
+    );
+    if (controlActiveFilter) {
+      controlActiveFilter.classList.remove('active');
+    }
+    const currentFilter = event.target;
+    currentFilter.classList.add('active');
+    if (event.target.hasAttribute('data-clear-filter')) {
+      appPage();
+    }
     onPaginationPage(event);
   }
+
   if (event.target.hasAttribute('data-office')) {
     renderOffice();
   }
