@@ -346,6 +346,7 @@
 .actions-item_button.unlogged {
   display: none;
 }
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -366,9 +367,49 @@
     transform: translateX(400px);
   }
 }
+@keyframes leftSlide {
+  from {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-400px);
+  }
+}
+@keyframes leftSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-400px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+@keyframes rightSlide {
+  from {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(400px);
+  }
+}
+@keyframes rightSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(400px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
 .animate-product-photo-appear {
   animation-name: fadeIn;
-  animation-duration: 250ms;
+  animation-duration: 200ms;
   animation-timing-function: ease-in;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
@@ -376,6 +417,34 @@
 .animate-product-photo-disappear {
   animation-name: fadeOut;
   animation-duration: 500ms;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.animate-product-photo-right-slide {
+  animation-name: rightSlide;
+  animation-duration: 500ms;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.animate-product-photo-left-slide {
+  animation-name: leftSlide;
+  animation-duration: 500ms;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.animate-product-photo-right-slideIn {
+  animation-name: rightSlideIn;
+  animation-duration: 200ms;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.animate-product-photo-left-slideIn {
+  animation-name: leftSlideIn;
+  animation-duration: 200ms;
   animation-timing-function: ease-out;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;

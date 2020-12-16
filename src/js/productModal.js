@@ -23,6 +23,13 @@ export default async function openModalProduct(evt) {
   if (evt.target.hasAttribute('data-liked')) data.liked = 'liked';
   if (!load('User')) data.out = 'unlogged';
   slider();
+  setTimeout(() => {
+    const nodeArrayPhotos = document.querySelectorAll(
+      '.product-photo-list-item-img',
+    );
+    const allPhotos = Array.from(nodeArrayPhotos);
+    allPhotos[0].parentElement.classList.add('active-photo');
+  }, 200);
   const markup = hbs(data);
   return markup;
 }
@@ -149,35 +156,51 @@ function slider() {
         '.product-photo-list-item-img',
       );
       const allPhotos = Array.from(nodeArrayPhotos);
-      console.log('Left slide!');
-      if (!(indexOfPhoto + 1 === allPhotos.length)) {
-        console.log(allPhotos[indexOfPhoto].parentNode);
-        if (
-          allPhotos[indexOfPhoto].parentNode.classList.contains('active-photo')
-        ) {
-          allPhotos[indexOfPhoto].parentNode.classList.remove('active-photo');
+      if (allPhotos.length === 1) return;
+      mainModalPhoto.classList.remove('animate-product-photo-left-slideIn');
+      mainModalPhoto.classList.remove('animate-product-photo-right-slideIn');
+      mainModalPhoto.classList.add('animate-product-photo-left-slide');
+      setTimeout(() => {
+        mainModalPhoto.classList.remove('animate-product-photo-left-slide');
+        mainModalPhoto.classList.add('animate-product-photo-right-slideIn');
+        console.log('Left slide!');
+        if (!(indexOfPhoto + 1 === allPhotos.length)) {
+          console.log(allPhotos[indexOfPhoto].parentNode);
+          if (
+            allPhotos[indexOfPhoto].parentNode.classList.contains(
+              'active-photo',
+            )
+          ) {
+            allPhotos[indexOfPhoto].parentNode.classList.remove('active-photo');
+          }
+          indexOfPhoto++;
+          mainModalPhoto.src = allPhotos[indexOfPhoto].src;
+          if (
+            !allPhotos[indexOfPhoto].parentNode.classList.contains(
+              'active-photo',
+            )
+          ) {
+            allPhotos[indexOfPhoto].parentNode.classList.add('active-photo');
+          }
+        } else {
+          if (
+            allPhotos[indexOfPhoto].parentNode.classList.contains(
+              'active-photo',
+            )
+          ) {
+            allPhotos[indexOfPhoto].parentNode.classList.remove('active-photo');
+          }
+          indexOfPhoto = 0;
+          mainModalPhoto.src = allPhotos[indexOfPhoto].src;
+          if (
+            !allPhotos[indexOfPhoto].parentNode.classList.contains(
+              'active-photo',
+            )
+          ) {
+            allPhotos[indexOfPhoto].parentNode.classList.add('active-photo');
+          }
         }
-        indexOfPhoto++;
-        mainModalPhoto.src = allPhotos[indexOfPhoto].src;
-        if (
-          !allPhotos[indexOfPhoto].parentNode.classList.contains('active-photo')
-        ) {
-          allPhotos[indexOfPhoto].parentNode.classList.add('active-photo');
-        }
-      } else {
-        if (
-          allPhotos[indexOfPhoto].parentNode.classList.contains('active-photo')
-        ) {
-          allPhotos[indexOfPhoto].parentNode.classList.remove('active-photo');
-        }
-        indexOfPhoto = 0;
-        mainModalPhoto.src = allPhotos[indexOfPhoto].src;
-        if (
-          !allPhotos[indexOfPhoto].parentNode.classList.contains('active-photo')
-        ) {
-          allPhotos[indexOfPhoto].parentNode.classList.add('active-photo');
-        }
-      }
+      }, 200);
     }
     function previousPhotoPag() {
       const mainModalPhoto = document.querySelector(
@@ -187,18 +210,50 @@ function slider() {
         '.product-photo-list-item-img',
       );
       const allPhotos = Array.from(nodeArrayPhotos);
-      console.log('Right slide!');
-      if (!(indexOfPhoto === 0)) {
-        allPhotos[indexOfPhoto].parentNode.classList.toggle('active-photo');
-        indexOfPhoto--;
-        mainModalPhoto.src = allPhotos[indexOfPhoto].src;
-        allPhotos[indexOfPhoto].parentNode.classList.toggle('active-photo');
-      } else {
-        allPhotos[indexOfPhoto].parentNode.classList.toggle('active-photo');
-        indexOfPhoto = allPhotos.length - 1;
-        mainModalPhoto.src = allPhotos[indexOfPhoto].src;
-        allPhotos[indexOfPhoto].parentNode.classList.toggle('active-photo');
-      }
+      if (allPhotos.length === 1) return;
+      mainModalPhoto.classList.remove('animate-product-photo-left-slideIn');
+      mainModalPhoto.classList.remove('animate-product-photo-right-slideIn');
+      mainModalPhoto.classList.add('animate-product-photo-right-slide');
+      setTimeout(() => {
+        mainModalPhoto.classList.remove('animate-product-photo-right-slide');
+        mainModalPhoto.classList.add('animate-product-photo-left-slideIn');
+        console.log('Right slide!');
+        if (!(indexOfPhoto === 0)) {
+          if (
+            allPhotos[indexOfPhoto].parentNode.classList.contains(
+              'active-photo',
+            )
+          ) {
+            allPhotos[indexOfPhoto].parentNode.classList.remove('active-photo');
+          }
+          indexOfPhoto--;
+          mainModalPhoto.src = allPhotos[indexOfPhoto].src;
+          if (
+            !allPhotos[indexOfPhoto].parentNode.classList.contains(
+              'active-photo',
+            )
+          ) {
+            allPhotos[indexOfPhoto].parentNode.classList.add('active-photo');
+          }
+        } else {
+          if (
+            allPhotos[indexOfPhoto].parentNode.classList.contains(
+              'active-photo',
+            )
+          ) {
+            allPhotos[indexOfPhoto].parentNode.classList.remove('active-photo');
+          }
+          indexOfPhoto = allPhotos.length - 1;
+          mainModalPhoto.src = allPhotos[indexOfPhoto].src;
+          if (
+            !allPhotos[indexOfPhoto].parentNode.classList.contains(
+              'active-photo',
+            )
+          ) {
+            allPhotos[indexOfPhoto].parentNode.classList.add('active-photo');
+          }
+        }
+      }, 200);
     }
   } else {
     return;
