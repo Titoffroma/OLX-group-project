@@ -1,84 +1,86 @@
 import catMarkup from '../templates/category-list.hbs';
-import getCats from './filter';
 import { load } from './storage';
 
 export default function () {
-    const refs = {
-        photoElem: document.querySelector('#photoElem'),
-        outputImg: document.querySelectorAll('#output_image'),
-        openCatListEl: document.querySelector('.select-field'),
-        categoryList: document.querySelector('.category-list'),
-        addCardForm: document.querySelector('.add-card__form'),
-        photoLabel: document.querySelectorAll('.photo-label'),
-        formInputs: document.querySelectorAll('.add-card__input'),
-        errorMessage: document.querySelectorAll('.error-message'),
-        selectBtn: document.querySelector('.open-category'),
-        phoneInput: document.querySelector('input[name="phone"]'),
-        categoryInput: document.querySelector('.select-input'),
-        priceInput: document.querySelector('.price-input'),
+  const refs = {
+    photoElem: document.querySelector('#photoElem'),
+    outputImg: document.querySelectorAll('#output_image'),
+    openCatListEl: document.querySelector('.select-field'),
+    categoryList: document.querySelector('.category-list'),
+    addCardForm: document.querySelector('.add-card__form'),
+    photoLabel: document.querySelectorAll('.photo-label'),
+    formInputs: document.querySelectorAll('.add-card__input'),
+    errorMessage: document.querySelectorAll('.error-message'),
+    selectBtn: document.querySelector('.open-category'),
+    phoneInput: document.querySelector('input[name="phone"]'),
+    categoryInput: document.querySelector('.select-input'),
+    priceInput: document.querySelector('.price-input'),
+  };
+
+  categoryRender();
+  validateInput();
+
+  refs.photoElem.addEventListener('change', previewImage);
+  let i = -1;
+  const photoLabelList = Array.from(refs.photoLabel);
+  photoLabelList[0].classList.add('active');
+
+  function previewImage(event) {
+    const reader = new FileReader();
+    i += 1;
+    reader.onload = function () {
+      if (i < refs.outputImg.length - 1) {
+        refs.outputImg[i].src = reader.result;
+        photoLabelList[i].classList.remove('active');
+        refs.photoLabel[i + 1].classList.add('active');
+      }
+      refs.outputImg[i].src = reader.result;
+      photoLabelList[i].classList.remove('active');
     };
 
-    categoryRender();
-    validateInput();
+    reader.readAsDataURL(event.target.files[0]);
+  }
 
-    refs.photoElem.addEventListener('change', previewImage);
-    let i = -1;
-    const photoLabelList = Array.from(refs.photoLabel);
-    photoLabelList[0].classList.add('active');
+  function categoryRender() {
+    refs.categoryList.insertAdjacentHTML('afterbegin', catMarkup(load('cats')));
+  }
 
-    function previewImage(event) {
-        const reader = new FileReader();
-        i += 1;
-        reader.onload = function () {
-            
-            if (i < refs.outputImg.length -1) {
-                refs.outputImg[i].src = reader.result;
-            photoLabelList[i].classList.remove('active');
-            refs.photoLabel[i+1].classList.add('active');
-            }
-            refs.outputImg[i].src = reader.result;
-            photoLabelList[i].classList.remove('active');
+  function validateInput() {
+    const formInputList = Array.from(refs.formInputs);
+    formInputList.forEach(input => {
+      input.addEventListener('blur', event => {
+        const currentIndex = formInputList.indexOf(event.currentTarget);
+        const errorsMessageList = Array.from(refs.errorMessage);
+
+        if (input.value.trim() === '') {
+          input.classList.add('invalid');
+
+          errorsMessageList[currentIndex].innerHTML =
+            'Заповніть будьласка це поле';
+        } else {
+          input.classList.remove('invalid');
+          errorsMessageList[currentIndex].classList.add('visually-hidden');
         }
+      });
+    });
 
-        reader.readAsDataURL(event.target.files[0]);  
-    }
+    refs.categoryInput.addEventListener('input', () => {
+      if (
+        refs.categoryInput.value === 'free' ||
+        refs.categoryInput.value === 'work' ||
+        refs.categoryInput.value === 'trade'
+      ) {
+        refs.priceInput.value = 0;
+        refs.priceInput.setAttribute('disabled', 'disabled');
+        refs.priceInput.classList.remove('invalid');
+        document.querySelector('.price-error').innerHTML = '';
+      }
+    });
 
-    function categoryRender() {
-        getCats();
-        refs.categoryList.insertAdjacentHTML('afterbegin', catMarkup(load('cats')));   
-    }
-
-    function validateInput() {
-        const formInputList = Array.from(refs.formInputs);
-        formInputList.forEach(input => {
-            input.addEventListener('blur', (event) => {
-                const currentIndex = formInputList.indexOf(event.currentTarget);
-                const errorsMessageList = Array.from(refs.errorMessage);
-
-                if (input.value.trim() === '') {
-                    input.classList.add('invalid');
-                    
-                    errorsMessageList[currentIndex].innerHTML = 'Заповніть будьласка це поле';
-                } else {
-                    input.classList.remove('invalid');
-                    errorsMessageList[currentIndex].classList.add('visually-hidden');
-                };
-            })
-        });
-        
-        refs.categoryInput.addEventListener('input', () => {
-            if (refs.categoryInput.value === 'free' || refs.categoryInput.value === 'work' || refs.categoryInput.value === 'trade') {
-                refs.priceInput.value = 0;
-                refs.priceInput.setAttribute('disabled', 'disabled');
-                refs.priceInput.classList.remove('invalid');
-                document.querySelector('.price-error').innerHTML = '';
-            }
-        });
-
-        refs.phoneInput.addEventListener('input', () => {
-            if (!Number(refs.phoneInput.value) && refs.phoneInput.value !== '+') {
-                refs.phoneInput.value = '';
-            }
-        });
-    }
+    refs.phoneInput.addEventListener('input', () => {
+      if (!Number(refs.phoneInput.value) && refs.phoneInput.value !== '+') {
+        refs.phoneInput.value = '';
+      }
+    });
+  }
 }
