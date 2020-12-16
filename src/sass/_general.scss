@@ -9,8 +9,11 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   background: #f5f6fb;
+}
+footer {
+  margin-top: auto;
 }
 img,
 a {
@@ -28,7 +31,11 @@ button {
   background-color: none;
   cursor: pointer;
 }
+main {
+  position: relative;
+}
 .container {
+  position: relative;
   width: 100%;
   padding: 0 15px;
   @media screen and (min-width: $tablet) {

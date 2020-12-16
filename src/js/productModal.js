@@ -1,26 +1,30 @@
 import { load, save, remove } from './storage';
 import hbs from '../templates/product-modal.hbs';
 import fetchFunctions from './fetchMe';
-
 const refs = {
   get element() {
     return document.querySelector('.main-modal-product-photo');
   },
 };
+import desideTologin from './main.js';
+import addPreloader from './preloader';
 
 document.body.addEventListener('click', modalProduct);
 
+let heartInCard = null;
+
 export default async function openModalProduct(evt) {
-  if (evt.target.getAttribute('data-hbs') == '11')
-    console.log(
-      evt.target
-        .closest('.cardset__overlay')
-        .querySelector('.cardset__icons.unauthorized'),
-    );
+  if (evt.target.getAttribute('data-hbs') == '11') {
+    const card = evt.target.closest('.cardset__overlay');
+    addPreloader(card.closest('.cardset__item'));
+    heartInCard = card.querySelector('.cardset__icons.unauthorized');
+  }
   const id = evt.target.getAttribute('data-callid');
   const title = evt.target.getAttribute('data-title');
   const data = await fetchProduct(id, title);
-  if (evt.target.hasAttribute('data-liked')) data.liked = 'liked';
+
+  if (evt.target.closest('.cardset__overlay').dataset.liked === 'liked')
+    data.liked = 'liked';
   if (!load('User')) data.out = 'unlogged';
   slider();
   setTimeout(() => {
@@ -46,6 +50,7 @@ async function fetchProduct(id, title) {
     }
   });
 }
+export { fetchProduct };
 
 function modalProduct(evt) {
   if (evt.target.hasAttribute('data-id')) return addToFavorite(evt);
@@ -81,6 +86,7 @@ function modalProduct(evt) {
   }
 
   async function addToFavorite(evt) {
+    const liked = evt.target.hasAttribute('data-idl') ? true : false;
     const id = evt.target.getAttribute('data-id');
     const opt = {
       point: fetchFunctions.points.myFav,
@@ -95,7 +101,15 @@ function modalProduct(evt) {
       const response = await fetchFunctions.getRequest(options);
       if (response) {
         evt.target.classList.add('liked');
-        return;
+        if (liked)
+          return (evt.target.closest('.cardset__overlay').dataset.liked =
+            'liked');
+        if (heartInCard) {
+          heartInCard.classList.add('liked');
+          heartInCard.closest('.cardset__overlay').dataset.liked = 'liked';
+          heartInCard = null;
+          return;
+        }
       }
     } else {
       const options = {
@@ -105,7 +119,22 @@ function modalProduct(evt) {
       const response = await fetchFunctions.getRequest(options);
       if (response) {
         evt.target.classList.remove('liked');
-        return;
+        if (liked) {
+          if (evt.target.closest('.fav')) {
+            evt.target.closest('.fav').remove();
+            return (evt.target.closest('.cardset__overlay').dataset.liked = '');
+          }
+        }
+        if (heartInCard) {
+          heartInCard.classList.remove('liked');
+          heartInCard.closest('.cardset__overlay').dataset.liked = '';
+          if (heartInCard.closest('.fav')) {
+            heartInCard.closest('.fav').remove();
+            document.querySelector('.backdrop').click();
+          }
+          heartInCard = null;
+          return;
+        }
       }
     }
   }

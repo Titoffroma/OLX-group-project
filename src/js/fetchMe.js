@@ -5,12 +5,16 @@ import decideTologin from './main';
 class FetchMe {
   constructor() {
     this.URL = 'https://callboard-backend.herokuapp.com';
+    this.debounce = 500;
+    this.permit = false;
     this._token = {
       accessToken: '',
       refreshToken: '',
       sid: '',
     };
+    this.atOnce = 3;
     this.count = 0;
+    this.refreshCount = 0;
     this.points = {
       reg: '/auth/register/',
       login: '/auth/login/',
@@ -67,6 +71,11 @@ class FetchMe {
       return data;
     });
   }
+  timeout() {
+    setTimeout(() => {
+      this.count = 0;
+    }, this.debounce);
+  }
   async getRequest({
     point,
     method = 'GET',
@@ -74,6 +83,9 @@ class FetchMe {
     query = '',
     contentType = false,
   }) {
+    console.log('try');
+    if (this.count > this.atOnce) return;
+    console.log('send');
     const opt = {
       method,
       headers: this.headers,
@@ -91,6 +103,8 @@ class FetchMe {
     if (body) opt.body = JSON.stringify(body);
     const params = point ? opt : false;
     const url = this.URL + point + query;
+    if (this.count === 0) this.timeout();
+    this.count += 1;
     return await this.sendRequest(url, params);
   }
   async sendRequest(url, params) {
@@ -104,20 +118,24 @@ class FetchMe {
       }
       const response = await fetch(url, params);
       if (response.status === 401) {
-        const newResponse = await this.refresh(url, params);
-        return await newResponse.json();
+        if (!this.refreshCount) {
+          this.refreshCount += 1;
+          const newResponse = await this.refresh(url, params);
+          return await newResponse;
+        }
       } else if (!response.ok) {
-        await response.json().then(data => pushError(data.message));
+        const data = await response.json();
+        pushError(data.message);
         return;
       }
-      this.count = 0;
+      this.refreshCount = 0;
       return await response.json();
     } catch (err) {
       console.log('mistake in request', err.message);
     }
   }
-
   async refresh(url, opt) {
+    if (!load('Token')) return pushError('Please, log in to proceed.');
     const body = { sid: load('Token').sid };
     const option = {
       method: 'POST',
@@ -130,16 +148,14 @@ class FetchMe {
     };
     try {
       const response = await fetch(this.URL + this.points.refresh, option);
-      response.json().then(data => {
+      const data = await response.json();
+      if (response.ok) {
         this.token = data;
-        console.log('refresh', this.token);
         save('Token', this.token);
-        decideTologin();
-      });
-      if (this.count < 5) {
-        this.count += 1;
+        opt.headers = this.headers;
         return await this.sendRequest(url, opt);
       }
+      return pushError(data.message);
     } catch (err) {
       console.log('mistake in refresh', err.message);
     }

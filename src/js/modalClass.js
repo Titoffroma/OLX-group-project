@@ -8,6 +8,7 @@ import openModalFind from './openSearchModal';
 import openModalConfirm from './openConfirmModal';
 import openModalAuth from './authorization';
 import openModalProduct from './productModal';
+import openEditCard from './editProduct';
 
 const hbsFunctions = [
   renderCardlist,
@@ -16,7 +17,7 @@ const hbsFunctions = [
   popupSearch,
   popupExitConfirm,
   myAdvert,
-  ,
+  openEditCard,
   ,
   openModalAuth,
   openModalConfirm,
@@ -37,11 +38,11 @@ class Modal {
   }
   async openModal(event) {
     if (event.target.dataset.modal == 'true') {
-      event.preventDefault();
       const index = event.target.dataset.hbs;
-      document
-        .querySelector('body')
-        .insertAdjacentHTML('beforeend', await this.functions[index](event));
+      const markup = await this.functions[index](event);
+      if (!markup) return;
+      event.preventDefault();
+      document.querySelector('body').insertAdjacentHTML('beforeend', markup);
       const modalRef = document.querySelector('div[data-close]');
       document.body.style.overflow = 'hidden';
       modalRef.addEventListener('click', this.onClickCloseModal);

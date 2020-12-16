@@ -2,10 +2,20 @@ import { load, save, remove } from './storage';
 import { pushError, removeError } from './pnotify';
 import fetchFunctions from './fetchMe';
 import myModal from './modalClass';
+//import { onPaginationPage } from './paginationCategories';
+import './editProduct';
+import fetchLogin from './authorization.js';
+import addPreloader from './preloader.js';
 
 myModal.startListener();
 
 export default async function decideTologin(param) {
+  const preloaderParent = document.querySelector('main');
+  if (!document.querySelector('.preloader-backdrop')) {
+    addPreloader(preloaderParent);
+    preloaderParent.children[0].style.height = '100vh';
+    preloaderParent.children[0].style.zIndex = '1000000';
+  }
   if (load('Token')) {
     const opt = {
       point: fetchFunctions.points.user,
@@ -13,9 +23,7 @@ export default async function decideTologin(param) {
     const user = await fetchFunctions.getRequest(opt);
     if (user) {
       save('User', user);
-      document.body
-        .querySelector('main div.container')
-        .classList.add('authorized');
+      document.body.classList.add('authorized');
       if (param) {
         const fav = user.favourites;
         if (Array.isArray(param)) {
@@ -27,7 +35,6 @@ export default async function decideTologin(param) {
             }
           });
         } else {
-          console.log(param);
           for (let keys in param) {
             param[keys].map(el => {
               for (let i = 0; i < fav.length; i++) {
@@ -41,10 +48,8 @@ export default async function decideTologin(param) {
         return param;
       }
     }
-    return;
+    return param;
   }
-  document.body
-    .querySelector('main div.container')
-    .classList.remove('authorized');
+  document.body.classList.remove('authorized');
   return param;
 }
