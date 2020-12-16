@@ -6,7 +6,7 @@ function validate(evt) {
   evt.preventDefault();
   let errors = [];
 
-  const authBackdrop = document.querySelector('.authorization-backdrop');
+  const authBackdrop = document.querySelector('.backdrop');
   const googleAuthBtn = document.querySelector('.google-auth');
   const loginInput = document.querySelector('#authorization-modal-email');
   const passwordInput = document.querySelector('#authorization-modal-password');

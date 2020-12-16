@@ -87,7 +87,7 @@
         box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.15);
         background-color: $main-grey;
 
-        z-index: 10;
+        z-index: 15;
 
         @media screen and (min-width: $desktop) {
           right: 215px;
@@ -176,7 +176,7 @@ a {
     position: absolute;
     top: 97px;
     left: 64px;
-    z-index: 100;
+    z-index: 19;
     @media screen and (min-width: $tablet) {
       left: 73px;
     }
@@ -214,7 +214,7 @@ a {
     position: fixed;
     bottom: 15px;
     right: 20px;
-    z-index: 100;
+    z-index: 19;
   }
 
   @media screen and (min-width: $tablet) {
@@ -414,8 +414,7 @@ a {
     opacity: 0;
     pointer-events: none;
 
-    z-index: 100;
-
+    z-index: 19;
     &.is-open {
       opacity: 1;
       overflow-y: auto;
@@ -438,7 +437,7 @@ a {
 
   @media screen and (max-width: $desktop) {
     position: fixed;
-    z-index: 100;
+    z-index: 19;
 
     @media screen and (min-width: $tablet) and (max-width: 1279px) {
       width: 338px;
@@ -455,7 +454,7 @@ a {
     height: 144px;
     display: none;
     position: relative;
-    z-index: 100;
+    z-index: 19;
     top: 0;
     left: 0;
     flex-direction: column;
@@ -482,7 +481,7 @@ a {
     background-color: $main-grey;
     position: absolute;
     display: block;
-    z-index: 10;
+    z-index: 15;
     top: 95px;
     left: 34px;
     @media screen and (min-width: $tablet) {
@@ -571,7 +570,7 @@ a {
         position: absolute;
         top: 25px;
         right: 25px;
-        z-index: 100;
+        z-index: 19;
       }
     }
 
