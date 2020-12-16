@@ -42,7 +42,7 @@ class Modal {
       const markup = await this.functions[index](event);
       if (!markup) return;
       event.preventDefault();
-      document.querySelector('body').insertAdjacentHTML('beforeend', markup);
+      document.body.insertAdjacentHTML('beforeend', markup);
       const modalRef = document.querySelector('div[data-close]');
       document.body.style.overflow = 'hidden';
       modalRef.addEventListener('click', this.onClickCloseModal);

@@ -1,4 +1,5 @@
 window.addEventListener('load', delPreloader);
+
 const addPreloader = parent => {
   const markup =
     '<div class="preloader-backdrop"><div class="preloader"></div></div>';
@@ -16,8 +17,9 @@ const delPreloader = () => {
   preloader.classList.add('faiding');
   setTimeout(() => {
     preloader.remove();
-    document.body.style.overflow = 'auto';
-  }, 3000);
+    if (document.querySelector('.backdrop')) return;
+    document.body.style.overflowY = 'scroll';
+  }, 2000);
 };
 addPreloader();
 export default addPreloader;
