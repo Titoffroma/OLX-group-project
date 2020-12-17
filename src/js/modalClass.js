@@ -9,6 +9,7 @@ import openModalConfirm from './openConfirmModal';
 import openModalAuth from './authorization';
 import openModalProduct from './productModal';
 import openEditCard from './editProduct';
+import teamModal from './team-modal';
 import { measureAndFixScroll } from './preloader';
 
 const hbsFunctions = [
@@ -25,6 +26,7 @@ const hbsFunctions = [
   ,
   openModalProduct,
   openEditCardModal,
+  teamModal,
 ];
 
 class Modal {

@@ -34,13 +34,8 @@ async function appPage(sales) {
 }
 
 async function onPaginationPage(event) {
-  const pagination = document.querySelector('div[data-pagination]');
   event.preventDefault();
-  const currentActivePage = pagination.querySelector('.active');
-  console.log(currentActivePage.textContent);
-  currentActivePage.classList.remove('active');
-  const currentPage = event.target;
-  currentPage.classList.add('active');
+  toggleActive(event);
   const numderPage = event.target.textContent;
   const searchQuery = {
     point: fetchFunctions.points.call,
@@ -52,7 +47,14 @@ async function onPaginationPage(event) {
   document.querySelector('section.categories').innerHTML = orderedSearch;
   window.scrollTo({
     top: 0,
+    behavior: 'smooth',
   });
+}
+
+function toggleActive(event) {
+  const pagination = document.querySelector('div[data-pagination]');
+  pagination.querySelector('.active').classList.remove('active');
+  event.target.classList.add('active');
 }
 
 async function Mycallback(event) {
@@ -77,14 +79,6 @@ async function Mycallback(event) {
     });
   }
   if (event.target.classList.contains('pagination__link')) {
-    const controlActiveFilter = document.body.querySelector(
-      'pagination__link.active',
-    );
-    if (controlActiveFilter) {
-      controlActiveFilter.classList.remove('active');
-    }
-    const currentFilter = event.target;
-    currentFilter.classList.add('active');
     onPaginationPage(event);
   }
   if (event.target.hasAttribute('data-clear-filter')) {
