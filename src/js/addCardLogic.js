@@ -33,6 +33,7 @@ function onOpenAddCardModal(event) {
   });
 
   async function onFormSubmit(e) {
+    e.preventDefault();
     const formElements = e.currentTarget.elements;
     const title = formElements.title.value;
     const description = formElements.description.value;

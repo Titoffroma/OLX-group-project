@@ -14,9 +14,9 @@
   // filterActive.addEventListener('click', closeMenu);
   // mobileBackd.addEventListener('click', openCabinet);
 
-  body.addEventListener('click', () => {
+  body.addEventListener('click', event => {
     openMenu();
-    closeMenu();
+    closeMenu(event);
     openCabinet();
   });
 
