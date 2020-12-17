@@ -7,7 +7,8 @@ const slider = event => {
   const slided = Math.round((Y - y) / slider.offsetHeight);
   if (slidesTotal === 1) return;
   if (event.target.dataset.slide === 'right') {
-    if (slided + 1 === slidesTotal) return;
+    if (slided + 1 === slidesTotal)
+      return (slide.style.transform = 'translateY(0)');
     slide.style.transform = `translateY(-${
       (slided + 1) * slider.offsetHeight
     }px)`;
