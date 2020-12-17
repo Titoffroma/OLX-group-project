@@ -5,7 +5,7 @@ import renderPagination from '../templates/pagination.hbs';
 import fetchFunctions from './fetchMe.js';
 import renderOffice from './myOffice';
 import decideTologin from './main';
-import {updateState} from './history/mainHistory';
+import {updatedContent, updateState} from './history/mainHistory';
 
 import { save } from './storage';
 import slider from './slider';
@@ -54,7 +54,7 @@ async function onPaginationPage(event) {
   const markup = await decideTologin(searchResult);
   const orderedSearch = renderCategories(markup);
   document.querySelector('section.categories').innerHTML = orderedSearch;
-  updateState(`${searchQuery.query}`)
+  updateState(searchQuery.query)
   window.scrollTo({
     top: 0,
   });
@@ -66,6 +66,7 @@ async function onPaginationPage(event) {
 
 
 async function Mycallback(event) {
+  const path = event.target.getAttribute('href')
   if (event.target.hasAttribute('data-filter')) {
     event.preventDefault();
     const request = {
@@ -74,11 +75,14 @@ async function Mycallback(event) {
     };
     let response = null;
     if (event.target.dataset.filter === 'sales') {
+      
+      updateState(path, '', path)
+      updatedContent()
+      renderOffice();
       response = await appPage(true);
     } else {
       response = await fetchFunctions.getRequest(request);
-      let value = event.target.getAttribute('data-category');
-      updateState(`/category?value=${value}`);
+      updateState(`/category?value=${path}`);
     }  
     const markup = await decideTologin(response);
     document.querySelector('main div.container').innerHTML = renderCards(
@@ -104,8 +108,11 @@ async function Mycallback(event) {
   }
   if (event.target.hasAttribute('data-clear-filter')) {
     appPage();
+    updateState('/', '', '/')
   }
   if (event.target.hasAttribute('data-office')) {
+    const url = 'user'
+    updateState(url, '', url)
     renderOffice();
   }
   if (event.target.hasAttribute('data-out')) {

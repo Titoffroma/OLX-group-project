@@ -7,3 +7,5 @@ import './js/filter.js';
 import './js/fetchMeDescription';
 import './js/productModal';
 import './js/authorization';
+
+
