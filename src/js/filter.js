@@ -5,8 +5,9 @@ import renderPagination from '../templates/pagination.hbs';
 import fetchFunctions from './fetchMe.js';
 import renderOffice from './myOffice';
 import decideTologin from './main';
+import {updateState} from './history/mainHistory';
 
-async function renderFilter() {
+export default async function renderFilter() {
   const filterUL = document.querySelector('.header_filter');
   const clearFilterRef = document.querySelector('.header_filter_button');
   const filterRequest = {
@@ -20,15 +21,7 @@ async function renderFilter() {
 renderFilter();
 
 
-  
-
 async function appPage(sales) {
-  if (location.pathname !== history.state) {
-    const value = location.pathname
-    history.pushState(value, '', value)
-    return
-  };
-
   const searchQuery = {
     point: fetchFunctions.points.call,
     query: '?page=1',
@@ -43,10 +36,6 @@ async function appPage(sales) {
 async function onPaginationPage(event) {
   const pagination = document.querySelector('div[data-pagination]');
   event.preventDefault();
-
-  addPathName(event);
-
-
   const currentActivePage = pagination.querySelector('.active');
   if (currentActivePage) {
     currentActivePage.classList.remove('active');
@@ -62,15 +51,20 @@ async function onPaginationPage(event) {
   const markup = await decideTologin(searchResult);
   const orderedSearch = renderCategories(markup);
   document.querySelector('section.categories').innerHTML = orderedSearch;
+  updateState(`${searchQuery.query}`)
   window.scrollTo({
     top: 0,
   });
 }
 
+
+
+
+
+
 async function Mycallback(event) {
   if (event.target.hasAttribute('data-filter')) {
     event.preventDefault();
-    addPathName(event);
     const request = {
       point: fetchFunctions.points.catCalls,
       query: event.target.dataset.filter,
@@ -80,7 +74,9 @@ async function Mycallback(event) {
       response = await appPage(true);
     } else {
       response = await fetchFunctions.getRequest(request);
-    }
+      let value = event.target.getAttribute('data-category');
+      updateState(`/category?value=${value}`);
+    }  
     const markup = await decideTologin(response);
     document.querySelector('main div.container').innerHTML = renderCards(
       markup,
@@ -91,7 +87,7 @@ async function Mycallback(event) {
 
   if (event.target.classList.contains('pagination__link')) {
     const controlActiveFilter = document.body.querySelector(
-      'pagination__link.active',
+      '.pagination__link.active',
     );
     if (controlActiveFilter) {
       controlActiveFilter.classList.remove('active');
@@ -100,7 +96,6 @@ async function Mycallback(event) {
     currentFilter.classList.add('active');
     if (event.target.hasAttribute('data-clear-filter')) {
       appPage();
-      history.pushState(null, null, '/')
     }
     onPaginationPage(event);
   }
@@ -114,8 +109,3 @@ async function Mycallback(event) {
   }
   if (event.target.closest('.cardset')) event.preventDefault();
 }
-
-function addPathName(e) {
-  const query = e.target.getAttribute('href')
-  history.pushState(query, null, query)
-};

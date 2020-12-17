@@ -6,6 +6,9 @@ import myModal from './modalClass';
 import './editProduct';
 import fetchLogin from './authorization.js';
 import addPreloader from './preloader.js';
+import '../js/history/categoryHistory.js'
+
+
 
 myModal.startListener();
 

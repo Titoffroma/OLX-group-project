@@ -2,6 +2,8 @@ import { load, save, remove } from './storage';
 import hbs from '../templates/product-modal.hbs';
 import fetchFunctions from './fetchMe';
 import desideTologin from './main.js';
+import {addPathName} from '../js/filter';
+import {updateState, updatedContent} from './history/mainHistory';
 
 document.body.addEventListener('click', modalProduct);
 
@@ -14,6 +16,8 @@ export default async function openModalProduct(evt) {
       .querySelector('.cardset__icons.unauthorized');
   const id = evt.target.getAttribute('data-callid');
   const title = evt.target.getAttribute('data-title');
+  updateState(`/goods?value=${title}`);
+  updatedContent()
   const data = await fetchProduct(id, title);
   if (evt.target.closest('.cardset__overlay').dataset.liked === 'liked')
     data.liked = 'liked';
