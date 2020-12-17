@@ -78,7 +78,7 @@ async function Mycallback(event) {
   }
   if (event.target.classList.contains('pagination__link')) {
     const controlActiveFilter = document.body.querySelector(
-      'pagination__link.active',
+      '.pagination__link.active',
     );
     if (controlActiveFilter) {
       controlActiveFilter.classList.remove('active');
