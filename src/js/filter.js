@@ -7,9 +7,10 @@ import renderOffice from './myOffice';
 import decideTologin from './main';
 import {updatedContent, updateState} from './history/mainHistory';
 
+
+
 import { save } from './storage';
 import slider from './slider';
-
 
 export default async function renderFilter() {
   const filterUL = document.querySelector('.header_filter');
@@ -24,7 +25,6 @@ export default async function renderFilter() {
 }
 renderFilter();
 
-
 async function appPage(sales) {
   const searchQuery = {
     point: fetchFunctions.points.call,
@@ -38,13 +38,8 @@ async function appPage(sales) {
 }
 
 async function onPaginationPage(event) {
-  const pagination = document.querySelector('div[data-pagination]');
   event.preventDefault();
-  const currentActivePage = pagination.querySelector('.active');
-  console.log(currentActivePage.textContent);
-  currentActivePage.classList.remove('active');
-  const currentPage = event.target;
-  currentPage.classList.add('active');
+  toggleActive(event);
   const numderPage = event.target.textContent;
   const searchQuery = {
     point: fetchFunctions.points.call,
@@ -55,16 +50,19 @@ async function onPaginationPage(event) {
   const orderedSearch = renderCategories(markup);
   document.querySelector('section.categories').innerHTML = orderedSearch;
   updateState(searchQuery.query)
+
+  
   window.scrollTo({
     top: 0,
+    behavior: 'smooth',
   });
+  document.querySelector('section.categories').innerHTML = orderedSearch;
 }
-
-
-
-
-
-
+function toggleActive(event) {
+  const pagination = document.querySelector('div[data-pagination]');
+  pagination.querySelector('.active').classList.remove('active');
+  event.target.classList.add('active');
+}
 async function Mycallback(event) {
   const path = event.target.getAttribute('href')
   if (event.target.hasAttribute('data-filter')) {
@@ -84,6 +82,8 @@ async function Mycallback(event) {
       response = await fetchFunctions.getRequest(request);
       updateState(`/category?value=${path}`);
     }  
+
+  
     const markup = await decideTologin(response);
     document.querySelector('main div.container').innerHTML = renderCards(
       markup,
@@ -93,17 +93,7 @@ async function Mycallback(event) {
     });
   }
 
-
-
   if (event.target.classList.contains('pagination__link')) {
-    const controlActiveFilter = document.body.querySelector(
-      '.pagination__link.active',
-    );
-    if (controlActiveFilter) {
-      controlActiveFilter.classList.remove('active');
-    }
-    const currentFilter = event.target;
-    currentFilter.classList.add('active');
     onPaginationPage(event);
   }
   if (event.target.hasAttribute('data-clear-filter')) {
