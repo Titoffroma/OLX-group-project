@@ -7,7 +7,11 @@ const refs = {
   },
 };
 import desideTologin from './main.js';
+
+
+import {updateState, updatedContent} from './history/mainHistory';
 import addPreloader from './preloader';
+
 
 document.body.addEventListener('click', modalProduct);
 
@@ -21,6 +25,8 @@ export default async function openModalProduct(evt) {
   }
   const id = evt.target.getAttribute('data-callid');
   const title = evt.target.getAttribute('data-title');
+  updateState(`/goods?value=${title}`);
+  updatedContent()
   const data = await fetchProduct(id, title);
 
   if (evt.target.closest('.cardset__overlay').dataset.liked === 'liked')
