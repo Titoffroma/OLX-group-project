@@ -543,6 +543,9 @@ a {
       position: relative;
       top: 100%;
     }
+    @media screen and (min-width: $desktop) {
+      display: none;
+    }
   }
 
   &__close {
