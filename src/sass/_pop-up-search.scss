@@ -23,6 +23,7 @@
   border-top: none;
   border-right: none;
   border-left: none;
+  outline: none;
   border-bottom: 1px solid $black;
   background-color: transparent;
   color: white;
@@ -78,8 +79,4 @@
     top: 25px;
     right: 20px;
   }
-}
-
-.light-btn {
-  margin-right: 30px;
 }

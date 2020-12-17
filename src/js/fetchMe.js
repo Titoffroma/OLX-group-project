@@ -83,9 +83,7 @@ class FetchMe {
     query = '',
     contentType = false,
   }) {
-    console.log('try');
     if (this.count > this.atOnce) return;
-    console.log('send');
     const opt = {
       method,
       headers: this.headers,

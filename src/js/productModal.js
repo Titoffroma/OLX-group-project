@@ -7,7 +7,11 @@ const refs = {
   },
 };
 import desideTologin from './main.js';
+
+
+import {updateState, updatedContent} from './history/mainHistory';
 import addPreloader from './preloader';
+
 
 document.body.addEventListener('click', modalProduct);
 
@@ -21,6 +25,8 @@ export default async function openModalProduct(evt) {
   }
   const id = evt.target.getAttribute('data-callid');
   const title = evt.target.getAttribute('data-title');
+  updateState(`/goods?value=${title}`);
+  updatedContent()
   const data = await fetchProduct(id, title);
 
   if (evt.target.closest('.cardset__overlay').dataset.liked === 'liked')
@@ -86,6 +92,7 @@ function modalProduct(evt) {
   }
 
   async function addToFavorite(evt) {
+    evt.target.classList.add('tapped');
     const liked = evt.target.hasAttribute('data-idl') ? true : false;
     const id = evt.target.getAttribute('data-id');
     const opt = {
@@ -101,6 +108,7 @@ function modalProduct(evt) {
       const response = await fetchFunctions.getRequest(options);
       if (response) {
         evt.target.classList.add('liked');
+        evt.target.classList.remove('tapped');
         if (liked)
           return (evt.target.closest('.cardset__overlay').dataset.liked =
             'liked');
@@ -119,6 +127,7 @@ function modalProduct(evt) {
       const response = await fetchFunctions.getRequest(options);
       if (response) {
         evt.target.classList.remove('liked');
+        evt.target.classList.remove('tapped');
         if (liked) {
           if (evt.target.closest('.fav')) {
             evt.target.closest('.fav').remove();

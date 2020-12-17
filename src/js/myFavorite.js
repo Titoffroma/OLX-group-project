@@ -1,9 +1,9 @@
-import mySelectedAd from '../templates/selected-advert.hbs'
-import cardset from '../templates/selected-advert.hbs';
+import mySelectedAd from '../templates/favoriteAdv.hbs'
+
 import myModal from './modalClass';
 import fetchFunctions from './fetchMe'
 
-export default function openMyFavorite() {
+ function openMyFavorite() {
   const markup = mySelectedAd();
   document.body.addEventListener('click', render);
   return markup;
@@ -11,14 +11,13 @@ export default function openMyFavorite() {
 
 
 
-function render(event) {
-    event.preventDefault();
+export default function renderFavorite() {
+    
     const request = {
         point: fetchFunctions.points.myFav
     };
     
     fetchFunctions.getRequest(request).then(data => {
-        document.querySelector('main div.container').innerHTML = cardset(data);
-      myModal.closeModal();
-    });
+        document.querySelector('main div.container').innerHTML = mySelectedAd(data);
+      });
 }

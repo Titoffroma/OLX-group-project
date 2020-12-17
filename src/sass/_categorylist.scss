@@ -39,7 +39,6 @@
       padding-bottom: 65px;
     }
   }
-
   &__description {
     display: flex;
     flex-wrap: wrap;
@@ -65,11 +64,6 @@
         background-color: $accent;
         cursor: pointer;
         color: $white;
-      }
-
-      //через js добавить класс .visually-hidden
-      @media screen and (max-width: 479px) {
-        display: none;
       }
     }
   }
@@ -104,22 +98,33 @@
     color: $accent;
     text-decoration: underline;
   }
+  &__btn {
+    @media screen and (max-width: $tablet - 1) {
+      display: none;
+    }
+  }
 }
+
 .category-list__slider {
   overflow: hidden;
   position: relative;
-  height: calc(((100vw - 30px) * 275 / 290) + 75px);
+  height: calc((((100vw - 30px) * 275 / 290) + 75px) * 2 + 30px);
   @media screen and (min-width: $tablet),
     screen and (min-width: $phone) and (orientation: landscape) {
-    height: calc(((100vw - 64px) / 2 * 275 / 352) + 75px);
+    height: calc(((100vw - 64px) / 2 * 275 / 352) + 95px);
   }
   @media screen and (min-width: $desktop) {
-    height: calc(((100vw - 100px) / 4 * 275 / 295) + 75px);
+    height: calc(((100vw - 100px) / 4 * 275 / 295) + 95px);
   }
 }
 .categorylist .cardset {
   position: absolute;
+  left: 0;
+  right: 0;
   & > li {
-    margin-bottom: 0;
+    @media screen and (min-width: $tablet),
+      screen and (min-width: $phone) and (orientation: landscape) {
+      margin-bottom: 20px;
+    }
   }
 }
