@@ -1,3 +1,8 @@
+// .data-back.is-open {
+//   body & {
+//     overflow: hidden;
+//   }
+// }
 .header {
   border-bottom: 1px solid $stroke-grey;
 }
@@ -454,7 +459,7 @@ a {
     height: 144px;
     flex-direction: column;
     margin-bottom: 40px;
-    padding-top: 25px;
+    padding-top: 95px;
     padding-left: 64px;
 
     border-top: 1px solid $stroke-grey;
@@ -537,14 +542,14 @@ a {
     padding: 25px;
     padding-left: 0;
     max-height: 70px;
-    border-right: 1px solid $stroke-grey;
 
-    @media screen and (min-width: $tablet) {
-      position: relative;
-      top: 100%;
+    @media screen and (max-width: 767px) {
+      border-right: 1px solid $stroke-grey;
     }
     @media screen and (min-width: $desktop) {
       display: none;
+      position: relative;
+      top: 100%;
     }
   }
 
