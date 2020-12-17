@@ -9,6 +9,7 @@
     <title>OLX-team-project</title>
   </head>
   <body>
+    <div class="preloader-backdrop"><div class="preloader"></div></div>
     <header>
       <div class="container header">
         <div class="header_button_menu_phone">
@@ -45,7 +46,6 @@
                   >search</span
                 >
               </button>
-
               <button
                 class="light-btn header_button__mycab"
                 type="button"
@@ -117,9 +117,10 @@
                 data-hbs="1"
               >
                 <span
+                  data-modal="true"
                   data-hbs="1"
                   class="header_button__create text"
-                  data-modal="true"
+
                   >Створити оголошення!</span
                 >
                 <span

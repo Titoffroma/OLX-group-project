@@ -1,0 +1,48 @@
+.preloader-backdrop {
+  position: sticky;
+  top: 0;
+  z-index: 17;
+  width: 100%;
+  height: 100%;
+  background-color: #f5f6fb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cardset__item .preloader-backdrop {
+  background: $overlay;
+}
+.preloader {
+  width: 70px;
+  height: 70px;
+  border-radius: 4px;
+  background-color: #ff6b09;
+  transition: all 0.7s;
+
+  animation: preLoader 1.5s cubic-bezier(1, 1, 0, 1) infinite;
+}
+@keyframes preLoader {
+  50% {
+    transform: rotate(-360deg);
+    opacity: 0.8;
+  }
+  50% {
+    border-radius: 50%;
+    transform: rotate(360deg);
+    opacity: 1;
+  }
+}
+@keyframes Faiding {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.9;
+  }
+}
+.faiding {
+  animation: Faiding 1.5s cubic-bezier(1, 1, 0, 1) forwards;
+}

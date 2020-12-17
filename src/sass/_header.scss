@@ -78,7 +78,6 @@
 
   &__mycab_link {
     display: none;
-
     @media screen and (min-width: $tablet) {
       position: absolute;
       padding-top: 20px;
@@ -184,7 +183,7 @@ a {
     position: absolute;
     top: 97px;
     left: 64px;
-    z-index: 100;
+    z-index: 19;
     @media screen and (min-width: $tablet) {
       left: 73px;
     }
@@ -222,7 +221,7 @@ a {
     position: fixed;
     bottom: 15px;
     right: 20px;
-    z-index: 100;
+    z-index: 19;
   }
 
   @media screen and (min-width: $tablet) {
@@ -413,6 +412,9 @@ a {
   }
 }
 
+.my-account {
+}
+
 .data-back {
   position: fixed;
   top: 0;
@@ -425,10 +427,8 @@ a {
   @media screen and (max-width: 1279px) {
     display: none;
     pointer-events: none;
-
     pointer-events: auto;
     z-index: 100;
-
     &.is-open {
       display: block;
     }
@@ -455,7 +455,6 @@ a {
 
   &__my-account {
     position: relative;
-
     z-index: 100;
     top: 0;
     left: 0;
@@ -485,7 +484,7 @@ a {
     background-color: $main-grey;
     position: absolute;
     display: block;
-    z-index: 10;
+    z-index: 15;
     top: 95px;
     left: 34px;
     @media screen and (min-width: $tablet) {

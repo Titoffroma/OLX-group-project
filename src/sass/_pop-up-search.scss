@@ -1,15 +1,6 @@
-.pop-up-search-backdrop {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-
-  background-color: $overlay;
-}
-
 .pop-up-search-container {
   position: relative;
+  margin: auto;
   padding: 50px 20px 60px;
   width: 290px;
   height: 152px;

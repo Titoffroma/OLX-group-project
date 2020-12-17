@@ -1,32 +1,4 @@
-// .backdrop {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100%;
-//   overflow-y: scroll;
-
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-
-//   background: $overlay;
-
-//   opacity: 1;
-//   transition: opacity $transition;
-// }
 .modal-product {
-  display: block;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-
-  padding: 55px 20px 60px;
-  width: 290px;
-  margin: 0 auto;
-  background-color: $white;
-
   @media screen and (min-width: $tablet) {
     display: flex;
     padding: 55px 55px 60px;
@@ -72,6 +44,7 @@
 }
 
 .modal-product_photo {
+  overflow: hidden;
   width: 253px;
   height: 253px;
   @media screen and(min-width:$tablet) {
@@ -102,20 +75,27 @@
 }
 
 .product-photo-wrapper {
-  display: none;
-  @media screen and(min-width:$tablet) {
-    display: block;
-  }
   margin-top: 10px;
 }
 .product-photo-list {
   display: flex;
+  @media screen and (max-width: $tablet) {
+    justify-content: center;
+    align-items: center;
+  }
+
   &_item {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #c4c4c4;
     @media screen and (min-width: $tablet) {
+      border-radius: 0;
       width: 52px;
       height: 56px;
     }
     @media screen and (min-width: $desktop) {
+      border-radius: 0;
       width: 68px;
       height: 73px;
     }
@@ -123,7 +103,12 @@
     & img {
       width: 52px;
       height: 56px;
+      display: none;
+      @media screen and (min-width: $tablet) {
+        display: block;
+      }
       @media screen and (min-width: $desktop) {
+        display: block;
         width: 68px;
         height: 73px;
       }
@@ -160,7 +145,7 @@
     line-height: 1.16;
     color: $dark-grey;
 
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 
   @media screen and (min-width: $tablet) {
@@ -262,7 +247,7 @@
 
 .actions-list {
   display: flex;
-  margin-bottom: 32px;
+  margin-bottom: 30px;
 }
 .actions-item {
   display: flex;
@@ -332,4 +317,111 @@
 
 .actions-item_button.unlogged {
   display: none;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-400px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(400px);
+  }
+}
+@keyframes leftSlide {
+  from {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-400px);
+  }
+}
+@keyframes leftSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-400px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+@keyframes rightSlide {
+  from {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(400px);
+  }
+}
+@keyframes rightSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(400px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+.animate-product-photo-appear {
+  animation-name: fadeIn;
+  animation-duration: 200ms;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.animate-product-photo-disappear {
+  animation-name: fadeOut;
+  animation-duration: 500ms;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.animate-product-photo-right-slide {
+  animation-name: rightSlide;
+  animation-duration: 500ms;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.animate-product-photo-left-slide {
+  animation-name: leftSlide;
+  animation-duration: 500ms;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.animate-product-photo-right-slideIn {
+  animation-name: rightSlideIn;
+  animation-duration: 200ms;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.animate-product-photo-left-slideIn {
+  animation-name: leftSlideIn;
+  animation-duration: 200ms;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.active-photo {
+  background-color: $accent;
 }
