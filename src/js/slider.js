@@ -7,7 +7,6 @@ const slider = event => {
   const slided = Math.round((Y - y) / slider.offsetHeight);
   if (slidesTotal === 1) return;
   if (event.target.dataset.slide === 'right') {
-    console.log(slidesTotal, slided);
     if (slided + 1 === slidesTotal) return;
     slide.style.transform = `translateY(-${
       (slided + 1) * slider.offsetHeight
@@ -15,7 +14,6 @@ const slider = event => {
   }
   if (event.target.dataset.slide === 'left') {
     if (y === Y) return;
-    console.log(slidesTotal, slided);
     if (-slided + 1 === slidesTotal) return;
     slide.style.transform = `translateY(${
       (-slided + 1) * slider.offsetHeight
