@@ -36,9 +36,8 @@ async function onPaginationPage(event) {
   const pagination = document.querySelector('div[data-pagination]');
   event.preventDefault();
   const currentActivePage = pagination.querySelector('.active');
-  if (currentActivePage) {
-    currentActivePage.classList.remove('active');
-  }
+  console.log(currentActivePage.textContent);
+  currentActivePage.classList.remove('active');
   const currentPage = event.target;
   currentPage.classList.add('active');
   const numderPage = event.target.textContent;
@@ -51,7 +50,7 @@ async function onPaginationPage(event) {
   const orderedSearch = renderCategories(markup);
   document.querySelector('section.categories').innerHTML = orderedSearch;
   window.scrollTo({
-    top: 0,
+    bottom: 0,
   });
 }
 
