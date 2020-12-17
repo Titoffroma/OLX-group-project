@@ -85,8 +85,7 @@
     display: none;
 
     &.inCab {
-      @media screen and (min-width: $tablet) {
-        display: block;
+      @media screen and (min-width: $tablet) and (max-width: 1279px) {
         position: absolute;
         padding-top: 20px;
         padding-left: 20px;
@@ -623,6 +622,12 @@ body.authorized {
   }
   & .mycab_link {
     @media screen and (min-width: $tablet) {
+      display: block;
+    }
+  }
+
+  & .header_button__mycab_link.inCab {
+    @media screen and (min-width: $tablet) and (max-width: 1279px) {
       display: block;
     }
   }
