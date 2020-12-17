@@ -17,7 +17,7 @@ export default async function renderFilter() {
   save('cats', response);
   filterUL.innerHTML = hbsFunction(response);
   document.body.addEventListener('click', Mycallback);
-  appPage();  
+  appPage();
 }
 renderFilter();
 
@@ -31,7 +31,6 @@ async function appPage(sales) {
   const markup = await decideTologin(searchResult);
   const orderedSearch = renderPagination(markup);
   document.querySelector('main div.container').innerHTML = orderedSearch;
-  slider();
 }
 
 async function onPaginationPage(event) {
@@ -51,9 +50,8 @@ async function onPaginationPage(event) {
   const markup = await decideTologin(searchResult);
   const orderedSearch = renderCategories(markup);
   document.querySelector('section.categories').innerHTML = orderedSearch;
-  slider();
   window.scrollTo({
-    bottom: 0,
+    top: 0,
   });
 }
 
@@ -91,15 +89,14 @@ async function Mycallback(event) {
   }
   if (event.target.hasAttribute('data-clear-filter')) {
     appPage();
-    slider();
   }
   if (event.target.hasAttribute('data-office')) {
     renderOffice();
-    // slider();
   }
   if (event.target.hasAttribute('data-out')) {
     const response = await fetchFunctions.logout();
     if (response) appPage();
   }
   if (event.target.closest('.cardset')) event.preventDefault();
+  if (event.target.hasAttribute('data-slide')) slider(event);
 }

@@ -1,7 +1,6 @@
 import { load, save, remove } from './storage';
 import myAdvert from '../templates/my-advert.hbs';
 import decideTologin from './main';
-import slider from './slider';
 
 export default async function renderOffice() {
   await decideTologin();
@@ -19,5 +18,4 @@ export default async function renderOffice() {
   };
   console.log(user.favourites);
   document.querySelector('main div.container').innerHTML = myAdvert(info);
-  slider();
 }

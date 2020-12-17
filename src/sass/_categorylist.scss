@@ -105,3 +105,21 @@
     text-decoration: underline;
   }
 }
+.category-list__slider {
+  overflow: hidden;
+  position: relative;
+  height: calc(((100vw - 30px) * 275 / 290) + 75px);
+  @media screen and (min-width: $tablet),
+    screen and (min-width: $phone) and (orientation: landscape) {
+    height: calc(((100vw - 64px) / 2 * 275 / 352) + 75px);
+  }
+  @media screen and (min-width: $desktop) {
+    height: calc(((100vw - 100px) / 4 * 275 / 295) + 75px);
+  }
+}
+.categorylist .cardset {
+  position: absolute;
+  & > li {
+    margin-bottom: 0;
+  }
+}
