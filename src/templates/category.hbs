@@ -3,16 +3,17 @@
     <li class="categorylist">
         <div class="categorylist__description">
             <button class="categorylist__btn left">
-                <span class="material-icons arrow-left">keyboard_arrow_left</span>
+                <span data-slide="left" class="material-icons arrow-left">keyboard_arrow_left</span>
             </button>
             <h3 class="categorylist__title">{{@key}}</h3>
             <a href="" class="categorylist__link" data-filter="{{@key}}">Дивитися всі</a>
             <button class="categorylist__btn right">
-                <span class="material-icons arrow-right">keyboard_arrow_right</span>
+                <span data-slide="right" class="material-icons arrow-right">keyboard_arrow_right</span>
             </button>
         </div>
-
-        {{>./cardset}}
+        <div class="category-list__slider">
+            {{>./cardset}}
+        </div>
     </li>
     {{/each}}
 </ul>
