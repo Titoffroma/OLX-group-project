@@ -10,7 +10,7 @@
         </div>
         <div class="modal-product-photo-box">
             <div class="modal-product_photo">
-                <img onerror="placeholderIMG('{{_id}}')" data-id="{{_id}}" class=" main-modal-product-photo"
+                <img onerror="placeholderIMG('{{_id}}')" data-idp="{{_id}}" class=" main-modal-product-photo"
                     srcset="{{#each imageUrls}}{{#if @first}}{{this}}{{/if}}{{/each}}" src="../img/notImage.png"
                     alt="product photo" />
             </div>
@@ -18,8 +18,9 @@
                 <ul class="product-photo-list">
                     {{#each imageUrls}}
                     <li class="product-photo-list_item">
-                        <img onerror="placeholderIMG('{{_id}}')" data-id="{{_id}}" class="product-photo-list-item-img"
-                            src="{{this}}" alt="product photo" />
+                        <img onerror="placeholderIMG('{{../_id}}{{@index}}')" data-idp="{{../_id}}{{@index}}"
+                            class="product-photo-list-item-img" srcset="{{this}}" src="../img/notImage.png"
+                            alt="product photo" />
                     </li>
                     {{/each}}
                 </ul>
