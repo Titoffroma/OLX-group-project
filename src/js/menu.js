@@ -3,7 +3,7 @@
   const body = document.querySelector('.header_button_menu_phone');
   const mobileBackd = document.querySelector('[data-backref]');
 
-  // const filterActive = document.querySelector('.header_filter');
+  //const filterActive = document.querySelector('.header_filter');
 
   const filterActive = document.querySelector('#menu-container');
   const entryButton = document.querySelector('span[data-hbs="8"]');

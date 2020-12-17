@@ -192,7 +192,7 @@ a {
     position: absolute;
     top: 97px;
     left: 64px;
-    z-index: 19;
+    z-index: 100;
     @media screen and (min-width: $tablet) {
       left: 73px;
     }
@@ -627,6 +627,10 @@ body.authorized {
     }
   }
 
+  .header_registration.link-mob {
+    display: none;
+  }
+
   @media screen and (min-width: $desktop) {
     .header_registration.link {
       display: none;
@@ -648,9 +652,6 @@ body.authorized {
       border-bottom: 1px solid $stroke-grey;
     }
 
-    .header_registration.link-mob {
-      display: none;
-    }
     .my-account {
       &__exit,
       &__cabinet-box {
