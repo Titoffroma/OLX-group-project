@@ -1,6 +1,6 @@
+<div data-modal class="backdrop" data-close>
+  <div class="backdrop__modal modal-product">
 
-<div data-modal" class="backdrop" data-close>
-    <div class="modal-product">
         <button class="button-close">
             <span class="material-icons" data-close>clear</span>
         </button>
@@ -11,14 +11,17 @@
         </div>
         <div class="modal-product-photo-box">
             <div class="modal-product_photo">
-                <img class="main-modal-product-photo" src="{{#each imageUrls}}{{#if @first}}{{this}}{{/if}}{{/each}}"
+                <img onerror="placeholderIMG('{{_id}}')" data-idp="{{_id}}" class=" main-modal-product-photo"
+                    srcset="{{#each imageUrls}}{{#if @first}}{{this}}{{/if}}{{/each}}" src="../img/notImage.png"
                     alt="product photo" />
             </div>
             <div class="product-photo-wrapper">
                 <ul class="product-photo-list">
                     {{#each imageUrls}}
                     <li class="product-photo-list_item">
-                        <img class="product-photo-list-item-img" src="{{this}}" alt="product photo" />
+                        <img onerror="placeholderIMG('{{../_id}}{{@index}}')" data-idp="{{../_id}}{{@index}}"
+                            class="product-photo-list-item-img" srcset="{{this}}" src="../img/notImage.png"
+                            alt="product photo" />
                     </li>
                     {{/each}}
                 </ul>

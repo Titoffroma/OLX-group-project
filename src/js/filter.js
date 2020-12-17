@@ -7,13 +7,17 @@ import renderOffice from './myOffice';
 import decideTologin from './main';
 import {updateState} from './history/mainHistory';
 
+import { save } from './storage';
+import slider from './slider';
+
+
 export default async function renderFilter() {
   const filterUL = document.querySelector('.header_filter');
-  const clearFilterRef = document.querySelector('.header_filter_button');
   const filterRequest = {
     point: fetchFunctions.points.cat,
   };
   const response = await fetchFunctions.getRequest(filterRequest);
+  save('cats', response);
   filterUL.innerHTML = hbsFunction(response);
   document.body.addEventListener('click', Mycallback);
   appPage();
@@ -37,9 +41,8 @@ async function onPaginationPage(event) {
   const pagination = document.querySelector('div[data-pagination]');
   event.preventDefault();
   const currentActivePage = pagination.querySelector('.active');
-  if (currentActivePage) {
-    currentActivePage.classList.remove('active');
-  }
+  console.log(currentActivePage.textContent);
+  currentActivePage.classList.remove('active');
   const currentPage = event.target;
   currentPage.classList.add('active');
   const numderPage = event.target.textContent;
@@ -81,6 +84,9 @@ async function Mycallback(event) {
     document.querySelector('main div.container').innerHTML = renderCards(
       markup,
     );
+    window.scrollTo({
+      top: 0,
+    });
   }
 
 
@@ -94,12 +100,11 @@ async function Mycallback(event) {
     }
     const currentFilter = event.target;
     currentFilter.classList.add('active');
-    if (event.target.hasAttribute('data-clear-filter')) {
-      appPage();
-    }
     onPaginationPage(event);
   }
-
+  if (event.target.hasAttribute('data-clear-filter')) {
+    appPage();
+  }
   if (event.target.hasAttribute('data-office')) {
     renderOffice();
   }
@@ -108,4 +113,5 @@ async function Mycallback(event) {
     if (response) appPage();
   }
   if (event.target.closest('.cardset')) event.preventDefault();
+  if (event.target.hasAttribute('data-slide')) slider(event);
 }
