@@ -124,6 +124,27 @@
   }
 }
 
+.select-input {
+  background-image: url('../img/arrow-drop-down.svg');
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-origin: border-box;
+  background-position: 218px 25px;
+
+  @media screen and (min-width: $tablet) {
+    background-position: 425px 25px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    background-position: 409px 25px;
+  }
+
+  &:hover,
+  &:focus {
+    background-image: none;
+  }
+}
+
 .notice-label {
   position: absolute;
   bottom: 0;

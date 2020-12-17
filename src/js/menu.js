@@ -1,24 +1,27 @@
 (() => {
   const menuBtnRef = document.querySelector('[data-menu-button]');
-  const body = document.querySelector('.container_nav');
+  const body = document.querySelector('.header_button_menu_phone');
   const mobileBackd = document.querySelector('[data-backref]');
 
-  const filterActive = document.querySelector('.header_filter li');
-  const entryButton = document.querySelector('[data-hbs="8"]');
-  const exitButton = document.querySelector('[data-hbs="9"]');
+  // const myCabList = document.querySelector('a[data-ind]');
+
+  const filterActive = document.querySelector('#menu-container');
+  const entryButton = document.querySelector('span[data-hbs="8"]');
+  const exitButton = document.querySelector('span[data-hbs="9"]');
   const mycabinet = document.querySelector('[data-office]');
 
-  //const headerWindow = document.querySelector('.container_nav');
+  const headerWindow = document.querySelector('.container_nav');
 
-  // body.addEventListener('click', openMenu);
-  // filterActive.addEventListener('click', closeMenu);
-  // mobileBackd.addEventListener('click', openCabinet);
+  menuBtnRef.addEventListener('click', openMenu);
+  filterActive.addEventListener('click', closeMenu);
+  headerWindow.addEventListener('click', openCabinet);
+  body.addEventListener('click', close);
 
-  body.addEventListener('click', event => {
-    openMenu();
-    closeMenu(event);
-    openCabinet();
-  });
+  // body.addEventListener('click', event => {
+  //   openMenu();
+  //   closeMenu(event);
+  //   openCabinet();
+  // });
 
   function openMenu() {
     const expanded =
@@ -28,22 +31,26 @@
     menuBtnRef.classList.toggle('is-open');
   }
 
+  function close(event) {}
+
   function closeMenu(event) {
-    if (event.target.nodeName === 'A') {
-      openMenu();
+    if (event.target.nodeName === 'A' || 'BUTTON') {
+      mobileBackd.classList.toggle('is-open');
+      menuBtnRef.classList.toggle('is-open');
     }
   }
 
   function openCabinet() {
-    // const expanded2 =
-    //   entryButton.getAttribute('aria-expanded') === 'true' || false;
-    // entryButton.setAttribute('aria-expanded', !expanded2);
-    // const expanded3 =
-    //   exitButton.getAttribute('aria-expanded') === 'true' || false;
-    // exitButton.setAttribute('aria-expanded', !expanded3);
-
     entryButton.classList.toggle('outMyCabinet');
     mycabinet.classList.toggle('inMyCabinet');
     exitButton.classList.toggle('inMyCabinet');
   }
+
+  // const cabinetItem = document.querySelector('[data-ind="2"]');
+
+  // function cabinetList() {
+  //   cabinetItem.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  // }
+
+  // mycabinet.addEventListener('click', cabinetList);
 })();

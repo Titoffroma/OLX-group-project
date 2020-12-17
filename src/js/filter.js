@@ -6,6 +6,7 @@ import fetchFunctions from './fetchMe.js';
 import renderOffice from './myOffice';
 import decideTologin from './main';
 import { save } from './storage';
+import slider from './slider';
 
 export default async function renderFilter() {
   const filterUL = document.querySelector('.header_filter');
@@ -36,9 +37,8 @@ async function onPaginationPage(event) {
   const pagination = document.querySelector('div[data-pagination]');
   event.preventDefault();
   const currentActivePage = pagination.querySelector('.active');
-  if (currentActivePage) {
-    currentActivePage.classList.remove('active');
-  }
+  console.log(currentActivePage.textContent);
+  currentActivePage.classList.remove('active');
   const currentPage = event.target;
   currentPage.classList.add('active');
   const numderPage = event.target.textContent;
@@ -98,4 +98,5 @@ async function Mycallback(event) {
     if (response) appPage();
   }
   if (event.target.closest('.cardset')) event.preventDefault();
+  if (event.target.hasAttribute('data-slide')) slider(event);
 }

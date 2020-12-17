@@ -1,3 +1,8 @@
+// .data-back.is-open {
+//   body & {
+//     overflow: hidden;
+//   }
+// }
 .header {
   border-bottom: 1px solid $stroke-grey;
 }
@@ -269,10 +274,6 @@ a {
     &.is-open {
       display: block;
     }
-
-    // .entry & {
-    //   padding-top: 240px;
-    // }
   }
 
   @media screen and (min-width: $desktop) {
@@ -411,10 +412,6 @@ a {
     height: 70px;
   }
 }
-
-.my-account {
-}
-
 .data-back {
   position: fixed;
   top: 0;
@@ -462,7 +459,7 @@ a {
     height: 144px;
     flex-direction: column;
     margin-bottom: 40px;
-    padding-top: 25px;
+    padding-top: 95px;
     padding-left: 64px;
 
     border-top: 1px solid $stroke-grey;
@@ -548,6 +545,11 @@ a {
 
     @media screen and (max-width: 767px) {
       border-right: 1px solid $stroke-grey;
+    }
+    @media screen and (min-width: $desktop) {
+      display: none;
+      position: relative;
+      top: 100%;
     }
   }
 
@@ -638,10 +640,10 @@ body.authorized {
       padding-top: 210px;
     }
 
-.header_button__my-account{
-  border-bottom: 1px solid $stroke-grey;
-}
-     
+    .header_button__my-account {
+      border-bottom: 1px solid $stroke-grey;
+    }
+
     .header_registration.link-mob {
       display: none;
     }

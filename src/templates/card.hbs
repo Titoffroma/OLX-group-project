@@ -1,7 +1,7 @@
 <li class="cardset__item {{fav}}">
     <a href="" class="cardset__link">
         <picture class="cardset__picture">
-            <img onerror="placeholderIMG('{{_id}}')" data-id="{{_id}}"" class=" cardset__image"
+            <img onerror="placeholderIMG('{{_id}}')" data-idp="{{_id}}"" class=" cardset__image"
                 srcset="{{#each imageUrls}}{{#if @first}}{{this}}{{/if}}{{/each}} 352w"
                 sizes="(min-width: 1280px) 25vw,(min-width: 768px) 50vw, (min-width: 480px) and (orientation: landscape) 50vw, 100vw"
                 src="{{#each imageUrls}}{{#unless this}}../img/notImage.png{{/unless}}{{#if @first}}{{this}}{{/if}}{{/each}}"

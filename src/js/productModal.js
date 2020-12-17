@@ -16,7 +16,7 @@ let heartInCard = null;
 export default async function openModalProduct(evt) {
   if (evt.target.getAttribute('data-hbs') == '11') {
     const card = evt.target.closest('.cardset__overlay');
-    addPreloader(card.closest('.cardset__item'));
+    addPreloader(card, true);
     heartInCard = card.querySelector('.cardset__icons.unauthorized');
   }
   const id = evt.target.getAttribute('data-callid');
@@ -86,6 +86,7 @@ function modalProduct(evt) {
   }
 
   async function addToFavorite(evt) {
+    evt.target.classList.add('tapped');
     const liked = evt.target.hasAttribute('data-idl') ? true : false;
     const id = evt.target.getAttribute('data-id');
     const opt = {
@@ -101,6 +102,7 @@ function modalProduct(evt) {
       const response = await fetchFunctions.getRequest(options);
       if (response) {
         evt.target.classList.add('liked');
+        evt.target.classList.remove('tapped');
         if (liked)
           return (evt.target.closest('.cardset__overlay').dataset.liked =
             'liked');
@@ -119,6 +121,7 @@ function modalProduct(evt) {
       const response = await fetchFunctions.getRequest(options);
       if (response) {
         evt.target.classList.remove('liked');
+        evt.target.classList.remove('tapped');
         if (liked) {
           if (evt.target.closest('.fav')) {
             evt.target.closest('.fav').remove();

@@ -5,13 +5,11 @@ export default function () {
   const refs = {
     photoElem: document.querySelector('#photoElem'),
     outputImg: document.querySelectorAll('#output_image'),
-    openCatListEl: document.querySelector('.select-field'),
     categoryList: document.querySelector('.category-list'),
     addCardForm: document.querySelector('.add-card__form'),
     photoLabel: document.querySelectorAll('.photo-label'),
     formInputs: document.querySelectorAll('.add-card__input'),
     errorMessage: document.querySelectorAll('.error-message'),
-    selectBtn: document.querySelector('.open-category'),
     phoneInput: document.querySelector('input[name="phone"]'),
     categoryInput: document.querySelector('.select-input'),
     priceInput: document.querySelector('.price-input'),
@@ -74,6 +72,8 @@ export default function () {
         refs.priceInput.setAttribute('disabled', 'disabled');
         refs.priceInput.classList.remove('invalid');
         document.querySelector('.price-error').innerHTML = '';
+      } else {
+        refs.priceInput.removeAttribute('disabled')
       }
     });
 
