@@ -1,3 +1,18 @@
+@keyframes pulseOut {
+  0% {
+    transform: scale(1);
+    color: $white;
+  }
+  50% {
+    transform: scale(1.2);
+    color: $accent;
+  }
+  100% {
+    transform: scale(1);
+    color: $white;
+  }
+}
+
 .modal-product {
   @media screen and (min-width: $tablet) {
     display: flex;
@@ -291,11 +306,26 @@
       background-color: $white;
 
       transition: color $transition;
-      &.product-favorite-icon.liked {
-        color: $accent;
-      }
     }
   }
+}
+
+.product-favorite-icon {
+  &.liked {
+    color: $accent;
+  }
+  &.tapped {
+    animation-name: pulseOut;
+    animation-duration: 500ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in;
+  }
+}
+.cardset__icons.unauthorized.tapped {
+  animation-name: pulseOut;
+  animation-duration: 500ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
 }
 
 .modal-text-title {
