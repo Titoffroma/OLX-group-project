@@ -47,7 +47,7 @@ class Modal {
       const markup = await this.functions[index](event);
       if (!markup) return;
       event.preventDefault();
-      document.body.insertAdjacentHTML('beforeend', markup);
+      document.body.insertAdjacentHTML('afterbegin', markup);
       const modalRef = document.querySelector('div[data-close]');
       setTimeout(() => {
         modalRef.classList.add('opened');
