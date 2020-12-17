@@ -90,8 +90,9 @@ async function Mycallback(event) {
   if (event.target.hasAttribute('data-clear-filter')) {
     appPage();
   }
-
+  console.log('1', event.target);
   if (event.target.hasAttribute('data-office')) {
+    console.log('2', event.target);
     renderOffice();
   }
   if (event.target.hasAttribute('data-out')) {
