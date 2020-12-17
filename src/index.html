@@ -285,7 +285,8 @@
     <img src="./img/notImage.png" alt="" style="display: none" />
     <script>
       function placeholderIMG(id) {
-        const imgtoLoad = document.querySelector(`img[data-id="${id}"]`);
+        const imgtoLoad = document.querySelector(`img[data-idp="${id}"]`);
+        console.log(id);
         if (imgtoLoad) {
           imgtoLoad.srcset = './img/notImage.png';
           imgtoLoad.src = './img/notImage.png';
