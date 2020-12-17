@@ -16,7 +16,7 @@ let heartInCard = null;
 export default async function openModalProduct(evt) {
   if (evt.target.getAttribute('data-hbs') == '11') {
     const card = evt.target.closest('.cardset__overlay');
-    addPreloader(card.closest('.cardset__item'));
+    addPreloader(card.closest('.cardset__item'), true);
     heartInCard = card.querySelector('.cardset__icons.unauthorized');
   }
   const id = evt.target.getAttribute('data-callid');

@@ -16,25 +16,26 @@ const measureAndFixScroll = function () {
   return contRightPadRaw;
 };
 
-const addPreloader = parent => {
+const addPreloader = (parent, option) => {
   const markup =
     '<div class="preloader-backdrop"><div class="preloader"></div></div>';
   if (parent) {
     parent.insertAdjacentHTML('afterbegin', markup);
-    console.log('Add');
   }
-  delPreloader(parent);
+  delPreloader(option);
 };
 
-const delPreloader = parent => {
+const delPreloader = option => {
   const preloader = document.querySelector('.preloader-backdrop');
-  const initialPad = measureAndFixScroll();
-  document.body.style.overflow = 'hidden';
-  preloader.style.position = 'absolute';
   preloader.classList.add('faiding');
+  const initialPad = !option ? measureAndFixScroll() : option;
+  if (!option) {
+    document.body.style.overflow = 'hidden';
+    preloader.style.position = 'absolute';
+  }
   setTimeout(() => {
     preloader.remove();
-    if (document.querySelector('.backdrop')) return;
+    if (option) return;
     document.body.style.overflowY = 'scroll';
     document.body.style.paddingRight = initialPad;
   }, 2000);
