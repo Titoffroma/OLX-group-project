@@ -98,9 +98,8 @@
     color: $accent;
     text-decoration: underline;
   }
-  &__btn-left,
-  &__btn-right {
-    @media screen and (max-width: $phone - 1) {
+  &__btn {
+    @media screen and (max-width: $tablet - 1) {
       display: none;
     }
   }
