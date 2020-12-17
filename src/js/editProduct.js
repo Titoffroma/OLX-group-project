@@ -22,7 +22,7 @@ export default async function openEditCard(evt) {
   const id = evt.target.getAttribute('data-changeid');
   const title = evt.target.getAttribute('data-title');
   const data = await productFetch(id, title);
-
+  const imgUrl = data.imageUrls;
   const markup = editCardHbs(data);
 
   
@@ -44,12 +44,8 @@ export default async function openEditCard(evt) {
     }
   });
     cardForm.addEventListener('submit', onFormSubmit);
-    photoElem.addEventListener('change', function () {
-      if (!photoElem.files[0]) {
-        return;
-      } else {
-       formData.set('file', photoElem.files[0]);
-    }
+    const ttt = photoElem.addEventListener('change', function () {
+      formData.append('file', photoElem.files[0]);
     });
       
     async function onFormSubmit(e) {
@@ -61,12 +57,21 @@ export default async function openEditCard(evt) {
     const category = formElements.category.value;
     const price = formElements.price.value;
     const phone = formElements.phone.value;
-
+         // console.log(imgUrl);
+          
+          // if (imgUrl.length = 0) {
+          //  return
+          // } else {
+          //   // formData.append('file', imgUrl);
+          // }  
+         // formData.getAll('file');
+         
     formData.set('title', title);
     formData.set('description', description);
     formData.set('category', category);
     formData.set('price', Number(price));
     formData.set('phone', phone);
+       // console.log(formData.get('file')); 
     myHeaders.append('Authorization', `Bearer ${load('Token').accessToken}`);
     const URL = `https://callboard-backend.herokuapp.com/call/${id}`;
     const requestOptions = {
