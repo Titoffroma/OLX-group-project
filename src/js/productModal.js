@@ -1,6 +1,11 @@
 import { load, save, remove } from './storage';
 import hbs from '../templates/product-modal.hbs';
 import fetchFunctions from './fetchMe';
+const refs = {
+  get element() {
+    return document.querySelector('.main-modal-product-photo');
+  },
+};
 import desideTologin from './main.js';
 import addPreloader from './preloader';
 
@@ -11,7 +16,7 @@ let heartInCard = null;
 export default async function openModalProduct(evt) {
   if (evt.target.getAttribute('data-hbs') == '11') {
     const card = evt.target.closest('.cardset__overlay');
-    addPreloader(card.closest('.cardset__item'));
+    addPreloader(card, true);
     heartInCard = card.querySelector('.cardset__icons.unauthorized');
   }
   const id = evt.target.getAttribute('data-callid');
@@ -21,6 +26,14 @@ export default async function openModalProduct(evt) {
   if (evt.target.closest('.cardset__overlay').dataset.liked === 'liked')
     data.liked = 'liked';
   if (!load('User')) data.out = 'unlogged';
+  slider();
+  setTimeout(() => {
+    const nodeArrayPhotos = document.querySelectorAll(
+      '.product-photo-list-item-img',
+    );
+    const allPhotos = Array.from(nodeArrayPhotos);
+    allPhotos[0].parentElement.classList.add('active-photo');
+  }, 200);
   const markup = hbs(data);
   return markup;
 }
@@ -63,7 +76,13 @@ function modalProduct(evt) {
   }
 
   function changePhoto(evt) {
-    mainModalPhoto.src = evt.target.src;
+    mainModalPhoto.classList.remove('animate-product-photo-appear');
+    mainModalPhoto.classList.add('animate-product-photo-disappear');
+    setTimeout(() => {
+      mainModalPhoto.src = evt.target.src;
+      mainModalPhoto.classList.remove('animate-product-photo-disappear');
+      mainModalPhoto.classList.add('animate-product-photo-appear');
+    }, 200);
   }
 
   async function addToFavorite(evt) {
@@ -118,5 +137,154 @@ function modalProduct(evt) {
         }
       }
     }
+  }
+}
+function slider() {
+  if (document.documentElement.clientWidth < 768) {
+    var initialPoint;
+    var finalPoint;
+    let indexOfPhoto = 0;
+    document.addEventListener(
+      'touchstart',
+      function (event) {
+        if (event.target !== refs.element) return;
+        event.preventDefault();
+        event.stopPropagation();
+        initialPoint = event.changedTouches[0];
+      },
+      false,
+    );
+    document.addEventListener(
+      'touchend',
+      function (event) {
+        if (event.target !== refs.element) return;
+        event.preventDefault();
+        event.stopPropagation();
+        finalPoint = event.changedTouches[0];
+        var xAbs = Math.abs(initialPoint.pageX - finalPoint.pageX);
+        var yAbs = Math.abs(initialPoint.pageY - finalPoint.pageY);
+        if (xAbs > 20 || yAbs > 20) {
+          if (xAbs > yAbs) {
+            if (finalPoint.pageX < initialPoint.pageX) {
+              nextPhotoPag();
+            } else {
+              previousPhotoPag();
+            }
+          }
+        }
+      },
+      false,
+    );
+    console.log('Hello! Im mobile');
+
+    function nextPhotoPag() {
+      const mainModalPhoto = document.querySelector(
+        '.main-modal-product-photo',
+      );
+      const nodeArrayPhotos = document.querySelectorAll(
+        '.product-photo-list-item-img',
+      );
+      const allPhotos = Array.from(nodeArrayPhotos);
+      if (allPhotos.length === 1) return;
+      mainModalPhoto.classList.remove('animate-product-photo-left-slideIn');
+      mainModalPhoto.classList.remove('animate-product-photo-right-slideIn');
+      mainModalPhoto.classList.add('animate-product-photo-left-slide');
+      setTimeout(() => {
+        mainModalPhoto.classList.remove('animate-product-photo-left-slide');
+        mainModalPhoto.classList.add('animate-product-photo-right-slideIn');
+        console.log('Left slide!');
+        if (!(indexOfPhoto + 1 === allPhotos.length)) {
+          console.log(allPhotos[indexOfPhoto].parentNode);
+          if (
+            allPhotos[indexOfPhoto].parentNode.classList.contains(
+              'active-photo',
+            )
+          ) {
+            allPhotos[indexOfPhoto].parentNode.classList.remove('active-photo');
+          }
+          indexOfPhoto++;
+          mainModalPhoto.src = allPhotos[indexOfPhoto].src;
+          if (
+            !allPhotos[indexOfPhoto].parentNode.classList.contains(
+              'active-photo',
+            )
+          ) {
+            allPhotos[indexOfPhoto].parentNode.classList.add('active-photo');
+          }
+        } else {
+          if (
+            allPhotos[indexOfPhoto].parentNode.classList.contains(
+              'active-photo',
+            )
+          ) {
+            allPhotos[indexOfPhoto].parentNode.classList.remove('active-photo');
+          }
+          indexOfPhoto = 0;
+          mainModalPhoto.src = allPhotos[indexOfPhoto].src;
+          if (
+            !allPhotos[indexOfPhoto].parentNode.classList.contains(
+              'active-photo',
+            )
+          ) {
+            allPhotos[indexOfPhoto].parentNode.classList.add('active-photo');
+          }
+        }
+      }, 200);
+    }
+    function previousPhotoPag() {
+      const mainModalPhoto = document.querySelector(
+        '.main-modal-product-photo',
+      );
+      const nodeArrayPhotos = document.querySelectorAll(
+        '.product-photo-list-item-img',
+      );
+      const allPhotos = Array.from(nodeArrayPhotos);
+      if (allPhotos.length === 1) return;
+      mainModalPhoto.classList.remove('animate-product-photo-left-slideIn');
+      mainModalPhoto.classList.remove('animate-product-photo-right-slideIn');
+      mainModalPhoto.classList.add('animate-product-photo-right-slide');
+      setTimeout(() => {
+        mainModalPhoto.classList.remove('animate-product-photo-right-slide');
+        mainModalPhoto.classList.add('animate-product-photo-left-slideIn');
+        console.log('Right slide!');
+        if (!(indexOfPhoto === 0)) {
+          if (
+            allPhotos[indexOfPhoto].parentNode.classList.contains(
+              'active-photo',
+            )
+          ) {
+            allPhotos[indexOfPhoto].parentNode.classList.remove('active-photo');
+          }
+          indexOfPhoto--;
+          mainModalPhoto.src = allPhotos[indexOfPhoto].src;
+          if (
+            !allPhotos[indexOfPhoto].parentNode.classList.contains(
+              'active-photo',
+            )
+          ) {
+            allPhotos[indexOfPhoto].parentNode.classList.add('active-photo');
+          }
+        } else {
+          if (
+            allPhotos[indexOfPhoto].parentNode.classList.contains(
+              'active-photo',
+            )
+          ) {
+            allPhotos[indexOfPhoto].parentNode.classList.remove('active-photo');
+          }
+          indexOfPhoto = allPhotos.length - 1;
+          mainModalPhoto.src = allPhotos[indexOfPhoto].src;
+          if (
+            !allPhotos[indexOfPhoto].parentNode.classList.contains(
+              'active-photo',
+            )
+          ) {
+            allPhotos[indexOfPhoto].parentNode.classList.add('active-photo');
+          }
+        }
+      }, 200);
+    }
+  } else {
+    return;
   }
 }

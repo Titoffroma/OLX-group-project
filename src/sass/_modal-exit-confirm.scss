@@ -1,15 +1,6 @@
-.modal-exit-confirmation-backdrop {
-  display: flex;
-  justify-content: center;
-
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-}
-
 .modal-exit-confirmation {
   position: relative;
-  margin: 0 auto;
+  margin: auto;
   padding: 60px 20px;
   width: 290px;
   height: 205px;

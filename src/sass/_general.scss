@@ -55,3 +55,58 @@ main {
   border: 0;
   clip: rect(0 0 0 0);
 }
+
+.backdrop {
+  display: flex;
+  position: fixed;
+  z-index: 21;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  background: $overlay;
+  opacity: 0;
+  transition: opacity $transition;
+  &.opened {
+    opacity: 1;
+    & .backdrop__modal {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  &__modal {
+    position: relative;
+    padding: 55px 20px 60px;
+    width: 290px;
+    margin: auto;
+    background-color: $white;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+
+    transform: scale(0.8);
+    transition: opacity $transition, transform $transition;
+    &.opened {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    @media screen and (min-width: $tablet) {
+      padding: 55px 55px 60px;
+      width: 725px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      padding: 55px 105px 60px;
+      width: 860px;
+    }
+  }
+}
+.scrollbar-measure {
+  width: 100px;
+  height: 100px;
+  overflow: scroll;
+  position: absolute;
+  top: -9999px;
+}

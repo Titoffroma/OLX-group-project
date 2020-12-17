@@ -1,26 +1,49 @@
 (() => {
   const menuBtnRef = document.querySelector('[data-menu-button]');
-  const menuBtnRefClose = document.querySelector('[data-menu-close]');
+  const body = document.querySelector('.container_nav');
   const mobileBackd = document.querySelector('[data-backref]');
 
-  menuBtnRef.addEventListener('click', openMenu);
-  menuBtnRefClose.addEventListener('click', closeMenu);
+  const filterActive = document.querySelector('.header_filter li');
+  const entryButton = document.querySelector('[data-hbs="8"]');
+  const exitButton = document.querySelector('[data-hbs="9"]');
+  const mycabinet = document.querySelector('[data-office]');
+
+  //const headerWindow = document.querySelector('.container_nav');
+
+  // body.addEventListener('click', openMenu);
+  // filterActive.addEventListener('click', closeMenu);
+  // mobileBackd.addEventListener('click', openCabinet);
+
+  body.addEventListener('click', event => {
+    openMenu();
+    closeMenu(event);
+    openCabinet();
+  });
 
   function openMenu() {
     const expanded =
       menuBtnRef.getAttribute('aria-expanded') === 'true' || false;
-    document.body.classList.toggle('scroll-hidden');
     menuBtnRef.setAttribute('aria-expanded', !expanded);
-    mobileBackd.classList.add('is-open');
-    menuBtnRefClose.classList.add('is-open');
+    mobileBackd.classList.toggle('is-open');
+    menuBtnRef.classList.toggle('is-open');
   }
 
-  function closeMenu() {
-    const expanded =
-      menuBtnRef.getAttribute('aria-expanded') === 'true' || false;
-    menuBtnRef.classList.remove('is-open');
-    menuBtnRefClose.classList.remove('is-open');
-    menuBtnRef.setAttribute('aria-expanded', !expanded);
-    mobileBackd.classList.remove('is-open');
+  function closeMenu(event) {
+    if (event.target.nodeName === 'A') {
+      openMenu();
+    }
+  }
+
+  function openCabinet() {
+    // const expanded2 =
+    //   entryButton.getAttribute('aria-expanded') === 'true' || false;
+    // entryButton.setAttribute('aria-expanded', !expanded2);
+    // const expanded3 =
+    //   exitButton.getAttribute('aria-expanded') === 'true' || false;
+    // exitButton.setAttribute('aria-expanded', !expanded3);
+
+    entryButton.classList.toggle('outMyCabinet');
+    mycabinet.classList.toggle('inMyCabinet');
+    exitButton.classList.toggle('inMyCabinet');
   }
 })();

@@ -64,35 +64,38 @@
     }
 
     @media screen and (min-width: $desktop) {
-      display: block;
       position: absolute;
-      right: 208px;
+      right: 268px;
     }
+  }
+
+  &__mycab-exit {
+    display: none;
+    position: absolute;
+    right: 234px;
+    background-color: $main-grey;
   }
 
   &__mycab_link {
     display: none;
-    .entry_desktop & {
-      @media screen and (min-width: $tablet) {
-        display: block;
-        position: absolute;
-        padding-top: 20px;
-        padding-left: 20px;
-        padding-bottom: 20px;
-        width: 152px;
-        height: 94px;
-        top: 70px;
-        right: 190px;
-        overflow: hidden;
-        box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.15);
-        background-color: $main-grey;
+    @media screen and (min-width: $tablet) {
+      position: absolute;
+      padding-top: 20px;
+      padding-left: 20px;
+      padding-bottom: 20px;
+      width: 152px;
+      height: 94px;
+      top: 70px;
+      right: 190px;
+      overflow: hidden;
+      box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.15);
+      background-color: $main-grey;
 
-        z-index: 10;
+      z-index: 10;
 
-        @media screen and (min-width: $desktop) {
-          right: 215px;
-          width: 206px;
-        }
+      @media screen and (min-width: $desktop) {
+        right: 215px;
+        width: 206px;
       }
     }
   }
@@ -161,14 +164,18 @@ a {
   background-color: $main-grey;
 
   &.link {
-    display: none;
+    //display: none;
     margin-right: 19px;
 
     @media screen and (min-width: $desktop) {
-      display: block;
+      //display: block;
       //display: none;
       position: absolute;
       right: 208px;
+    }
+
+    @media screen and (max-width: 1279px) {
+      display: none;
     }
   }
 
@@ -176,7 +183,7 @@ a {
     position: absolute;
     top: 97px;
     left: 64px;
-    z-index: 100;
+    z-index: 19;
     @media screen and (min-width: $tablet) {
       left: 73px;
     }
@@ -184,9 +191,9 @@ a {
       display: none;
     }
 
-    .entry & {
-      display: none;
-    }
+    // .entry & {
+    //   display: none;
+    // }
   }
 }
 
@@ -214,7 +221,7 @@ a {
     position: fixed;
     bottom: 15px;
     right: 20px;
-    z-index: 100;
+    z-index: 19;
   }
 
   @media screen and (min-width: $tablet) {
@@ -245,6 +252,11 @@ a {
   letter-spacing: 0.02em;
   color: $black;
 
+  & :hover,
+  :focus {
+    color: $accent;
+  }
+
   @media screen and (max-width: 1279px) {
     padding-top: 140px;
     border: 1px solid $stroke-grey;
@@ -257,10 +269,6 @@ a {
     &.is-open {
       display: block;
     }
-
-    .entry & {
-      padding-top: 240px;
-    }
   }
 
   @media screen and (min-width: $desktop) {
@@ -272,15 +280,15 @@ a {
   }
 
   @media screen and (max-width: 767px) {
-    max-width: 305px;
-    width: 100%;
+    min-width: 305px;
+    //width: 100%;
     height: 815px;
     border: 1px solid $stroke-grey;
   }
 
   @media screen and (min-width: $tablet) and (max-width: 1279px) {
     min-width: 338px;
-    width: 100%;
+    // width: 100%;
     height: 1024px;
   }
 
@@ -393,12 +401,12 @@ a {
 
 .header_button_menu_tablet {
   display: flex;
-  height: 70px;
+
   @media screen and (min-width: $tablet) and (max-width: 1279px) {
     border-top: 1px solid $stroke-grey;
+    height: 70px;
   }
 }
-
 .data-back {
   position: fixed;
   top: 0;
@@ -406,17 +414,15 @@ a {
   width: 100%;
   height: 100%;
   background-color: $overlay;
+  overflow-y: auto;
 
   @media screen and (max-width: 1279px) {
-    opacity: 0;
+    display: none;
     pointer-events: none;
-
+    pointer-events: auto;
     z-index: 100;
-
     &.is-open {
-      opacity: 1;
-      overflow-y: auto;
-      pointer-events: auto;
+      display: block;
     }
   }
   @media screen and (min-width: $desktop) {
@@ -426,41 +432,32 @@ a {
   }
 }
 
-// .scroll-hidden {
-//   overflow: hidden;
-// }
-
 .menu-container {
-  min-width: 305px;
+  //max-width: 305px;
 
   @media screen and (max-width: $desktop) {
-    position: fixed;
-    z-index: 100;
+    // position: fixed;
+    // z-index: 100;
+    width: 305px;
 
     @media screen and (min-width: $tablet) and (max-width: 1279px) {
       width: 338px;
     }
-
-    // &.is-open {
-    //   // left: 0;
-    //   //overflow-y: scroll;
-    // }
   }
 
   &__my-account {
-    width: 100%;
-    height: 144px;
-    display: none;
     position: relative;
     z-index: 100;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 144px;
     flex-direction: column;
-
     margin-bottom: 40px;
     padding-top: 25px;
     padding-left: 64px;
-    border: 1px solid $stroke-grey;
+
+    border-top: 1px solid $stroke-grey;
 
     @media screen and (min-width: $tablet) {
       padding-left: 52px;
@@ -469,17 +466,17 @@ a {
       display: none;
     }
 
-    .entry & {
-      opacity: 1;
-      display: flex;
-    }
+    // .entry & {
+    //   opacity: 1;
+    //   display: flex;
+    // }
   }
 
   .header_button__perm_identity {
     background-color: $main-grey;
     position: absolute;
     display: block;
-    z-index: 10;
+    z-index: 15;
     top: 95px;
     left: 34px;
     @media screen and (min-width: $tablet) {
@@ -490,44 +487,47 @@ a {
       display: none;
     }
   }
+}
 
-  .my-account {
-    &__mobile {
-      background-color: $main-grey;
+.my-account {
+  &__mobile {
+    background-color: $main-grey;
+    display: flex;
+  }
+  &__exit {
+    display: none;
+    margin-left: auto;
+    height: 30px;
+    margin-right: 20px;
+    background-color: $main-grey;
+    @media screen and (min-width: $tablet) {
+      margin-right: 30px;
+    }
+  }
+  &__cabinet-box {
+    display: none;
+
+    width: 100%;
+    margin-left: 20px;
+
+    margin-bottom: 20px;
+  }
+
+  &__cabinet {
+    display: none;
+    flex-wrap: wrap;
+
+    margin-bottom: 25px;
+    font-weight: $bold;
+    font-size: 14px;
+    line-height: 1.14;
+    align-items: center;
+    letter-spacing: 0.02em;
+    color: $black;
+    background-color: $main-grey;
+
+    &__cabinet_link {
       display: flex;
-    }
-    &__exit {
-      margin-left: auto;
-      height: 30px;
-      margin-right: 20px;
-      background-color: $main-grey;
-      @media screen and (min-width: $tablet) {
-        margin-right: 30px;
-      }
-    }
-    &__cabinet-box {
-      width: 100%;
-      margin-left: 20px;
-
-      margin-bottom: 20px;
-    }
-
-    &__cabinet {
-      display: flex;
-      flex-wrap: wrap;
-
-      margin-bottom: 25px;
-      font-weight: $bold;
-      font-size: 14px;
-      line-height: 1.14;
-      align-items: center;
-      letter-spacing: 0.02em;
-      color: $black;
-      background-color: $main-grey;
-
-      &__cabinet_link {
-        display: flex;
-      }
     }
   }
 }
@@ -537,13 +537,29 @@ a {
     padding: 25px;
     padding-left: 0;
     max-height: 70px;
+    border-right: 1px solid $stroke-grey;
 
-    @media screen and (max-width: 767px) {
-      border-right: 1px solid $stroke-grey;
+    @media screen and (min-width: $tablet) {
+      position: relative;
+      top: 100%;
+    }
+    @media screen and (min-width: $desktop) {
+      display: none;
     }
   }
 
-  &__menu-button-open {
+  &__close {
+    @media screen and (max-width: 1279px) {
+      height: 70px;
+      border-bottom: 1px solid $stroke-grey;
+    }
+  }
+}
+
+.menu-button {
+  background-color: $main-grey;
+
+  & .menu-button-open {
     background-color: $main-grey;
     width: 20px;
     height: 20px;
@@ -553,34 +569,87 @@ a {
       top: 95px;
       left: 2px;
     }
-
-    &.is-open {
-      display: none;
-    }
   }
 
-  &__menu-button-close {
+  .is-open {
+    overflow: hidden;
+  }
+
+  & .menu-button-close {
     display: none;
 
-    &.is-open {
-      @media screen and (max-width: 1279px) {
-        display: block;
-        position: absolute;
-        top: 25px;
-        right: 25px;
-        z-index: 100;
-      }
+    @media screen and (max-width: 1279px) {
+      position: fixed;
+      left: 267px;
+      top: 25px;
+      z-index: 110;
+      width: 24px;
+      height: 24px;
     }
 
     @media screen and (min-width: $tablet) {
-      top: 10%;
-      right: 24px;
+      left: 290px;
+    }
+  }
+}
+
+.menu-button.is-open {
+  & .menu-button-close {
+    display: block;
+  }
+  & .menu-button-open {
+    display: none;
+  }
+}
+
+body.authorized {
+  @media screen and (min-width: $desktop) {
+    & .inMyCabinet {
+      display: block;
+    }
+
+    & .outMyCabinet {
+      display: none;
+    }
+  }
+  & .mycab_link {
+    @media screen and (min-width: $tablet) {
+      display: block;
     }
   }
 
-  &__close {
-    @media screen and (max-width: 1279px) {
-      height: 70px;
+  @media screen and (min-width: $desktop) {
+    .header_registration.link {
+      display: none;
+    }
+    & .header_button__mycab {
+      display: block;
+      &-exit {
+        display: block;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1279px) {
+    .data-back.is-open .header_filter {
+      padding-top: 210px;
+    }
+
+    .header_button__my-account {
+      border-bottom: 1px solid $stroke-grey;
+    }
+
+    .header_registration.link-mob {
+      display: none;
+    }
+    .my-account {
+      &__exit,
+      &__cabinet-box {
+        display: block;
+      }
+      &__cabinet {
+        display: flex;
+      }
     }
   }
 }
