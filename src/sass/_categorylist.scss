@@ -119,6 +119,8 @@
 }
 .categorylist .cardset {
   position: absolute;
+  left: 0;
+  right: 0;
   & > li {
     @media screen and (min-width: $tablet),
       screen and (min-width: $phone) and (orientation: landscape) {
