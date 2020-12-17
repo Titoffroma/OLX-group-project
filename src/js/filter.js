@@ -44,11 +44,11 @@ async function onPaginationPage(event) {
   const searchResult = await fetchFunctions.getRequest(searchQuery);
   const markup = await decideTologin(searchResult);
   const orderedSearch = renderCategories(markup);
-  document.querySelector('section.categories').innerHTML = orderedSearch;
   window.scrollTo({
     top: 0,
     behavior: 'smooth',
   });
+  document.querySelector('section.categories').innerHTML = orderedSearch;
 }
 
 function toggleActive(event) {
