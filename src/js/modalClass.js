@@ -9,6 +9,7 @@ import openModalConfirm from './openConfirmModal';
 import openModalAuth from './authorization';
 import openModalProduct from './productModal';
 import openEditCard from './editProduct';
+import { measureAndFixScroll } from './preloader';
 
 const hbsFunctions = [
   renderCardlist,
@@ -32,6 +33,10 @@ class Modal {
     this.openModal = this.openModal.bind(this);
     this.onEscapeCloseModal = this.onEscapeCloseModal.bind(this);
     this.onClickCloseModal = this.onClickCloseModal.bind(this);
+    this.scroll = '';
+  }
+  get oldScroll() {
+    return measureAndFixScroll();
   }
   startListener() {
     document.body.addEventListener('click', this.openModal, { once: true });
@@ -48,6 +53,7 @@ class Modal {
         modalRef.classList.add('opened');
       }, 500);
       document.body.style.overflow = 'hidden';
+      this.scroll = this.oldScroll;
       modalRef.addEventListener('click', this.onClickCloseModal);
       window.addEventListener('keydown', this.onEscapeCloseModal);
     }
@@ -62,6 +68,7 @@ class Modal {
       backdrop.remove();
     }, 500);
     document.body.style.overflowY = 'scroll';
+    document.body.style.paddingRight = this.scroll;
   }
   onEscapeCloseModal(event) {
     if (event.code === 'Escape') {
