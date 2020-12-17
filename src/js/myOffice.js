@@ -6,7 +6,7 @@ export default async function renderOffice() {
   await decideTologin();
   const user = load('User');
 
-  if (!user) return document.querySelector('.header_registration_link').click();
+  if (!user) return document.querySelector('.header_registration link').click();
   user.favourites.map(el => {
     el.liked = 'liked';
     el.fav = 'fav';

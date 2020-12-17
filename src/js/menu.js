@@ -3,7 +3,7 @@
   const body = document.querySelector('.header_button_menu_phone');
   const mobileBackd = document.querySelector('[data-backref]');
 
-  // const myCabList = document.querySelector('a[data-ind]');
+  //const filterActive = document.querySelector('.header_filter');
 
   const filterActive = document.querySelector('#menu-container');
   const entryButton = document.querySelector('span[data-hbs="8"]');
@@ -12,9 +12,9 @@
 
   const headerWindow = document.querySelector('.container_nav');
 
-  menuBtnRef.addEventListener('click', openMenu);
-  filterActive.addEventListener('click', closeMenu);
-  headerWindow.addEventListener('click', openCabinet);
+  menuBtnRef.addEventListener('click', openMenu, { once: true });
+  filterActive.addEventListener('click', closeMenu, { once: true });
+  headerWindow.addEventListener('click', openCabinet, { once: true });
   body.addEventListener('click', close);
 
   // body.addEventListener('click', event => {
@@ -24,6 +24,7 @@
   // });
 
   function openMenu() {
+    menuBtnRef.addEventListener('click', openMenu, { once: true });
     const expanded =
       menuBtnRef.getAttribute('aria-expanded') === 'true' || false;
     menuBtnRef.setAttribute('aria-expanded', !expanded);
@@ -34,23 +35,40 @@
   function close(event) {}
 
   function closeMenu(event) {
+    filterActive.addEventListener('click', closeMenu, { once: true });
     if (event.target.nodeName === 'A' || 'BUTTON') {
       mobileBackd.classList.toggle('is-open');
       menuBtnRef.classList.toggle('is-open');
     }
+    return;
   }
 
   function openCabinet() {
+    headerWindow.addEventListener('click', openCabinet, { once: true });
     entryButton.classList.toggle('outMyCabinet');
     mycabinet.classList.toggle('inMyCabinet');
     exitButton.classList.toggle('inMyCabinet');
+    if (document.body.classList.contains('authorized')) {
+      //entryBtnTablet.classList.remove('[data-hbs="8"]');
+      //entryCabTablet.classList.add('inCab');
+      // entryButton.classList.toggle('outMyCabinet');
+    }
   }
 
-  // const cabinetItem = document.querySelector('[data-ind="2"]');
+  const entryBtnTablet = document.querySelector('.header_button__identity');
+  const entryCabTablet = document.querySelector('.header_button__mycab_link');
+
+  // entryBtnTablet.addEventListener('click', openCabinetTablet, { once: true });
+
+  //function openCabinetTablet() {}
+
+  // const cabinetItem = document.querySelector('[data-index]');
+  // const item = document.querySelector('.my-office');
+
+  // item.addEventListener('click', cabinetList, { once: true });
 
   // function cabinetList() {
-  //   cabinetItem.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  //   mycabinet.addEventListener('click', cabinetList, { once: true });
+  //   cabinetItem.scrollIntoView({ block: 'start', behavior: 'smooth' });
   // }
-
-  // mycabinet.addEventListener('click', cabinetList);
 })();

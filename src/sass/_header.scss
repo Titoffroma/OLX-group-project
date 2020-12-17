@@ -83,24 +83,28 @@
 
   &__mycab_link {
     display: none;
-    @media screen and (min-width: $tablet) {
-      position: absolute;
-      padding-top: 20px;
-      padding-left: 20px;
-      padding-bottom: 20px;
-      width: 152px;
-      height: 94px;
-      top: 70px;
-      right: 190px;
-      overflow: hidden;
-      box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.15);
-      background-color: $main-grey;
 
-      z-index: 10;
+    &.inCab {
+      @media screen and (min-width: $tablet) {
+        display: block;
+        position: absolute;
+        padding-top: 20px;
+        padding-left: 20px;
+        padding-bottom: 20px;
+        width: 152px;
+        height: 94px;
+        top: 70px;
+        right: 190px;
+        overflow: hidden;
+        box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.15);
+        background-color: $main-grey;
 
-      @media screen and (min-width: $desktop) {
-        right: 215px;
-        width: 206px;
+        z-index: 10;
+
+        @media screen and (min-width: $desktop) {
+          right: 215px;
+          width: 206px;
+        }
       }
     }
   }
@@ -188,7 +192,7 @@ a {
     position: absolute;
     top: 97px;
     left: 64px;
-    z-index: 19;
+    z-index: 100;
     @media screen and (min-width: $tablet) {
       left: 73px;
     }
@@ -257,8 +261,8 @@ a {
   letter-spacing: 0.02em;
   color: $black;
 
-  & :hover,
-  :focus {
+  &__link:hover,
+  &__link:focus {
     color: $accent;
   }
 
@@ -623,6 +627,10 @@ body.authorized {
     }
   }
 
+  .header_registration.link-mob {
+    display: none;
+  }
+
   @media screen and (min-width: $desktop) {
     .header_registration.link {
       display: none;
@@ -644,9 +652,6 @@ body.authorized {
       border-bottom: 1px solid $stroke-grey;
     }
 
-    .header_registration.link-mob {
-      display: none;
-    }
     .my-account {
       &__exit,
       &__cabinet-box {

@@ -1,0 +1,17 @@
+<ul class="my-office">
+    {{#each this}}
+    <li class="categorylist">
+        <div class="categorylist__description">
+            <button class="categorylist__btn left">
+                <span class="material-icons">keyboard_arrow_left</span>
+            </button>
+            <h3 class="categorylist__title" data-index="{{@index}}">{{@key}}</h3>
+            <button class="categorylist__btn right">
+                <span class="material-icons">keyboard_arrow_right</span>
+            </button>
+        </div>
+
+        {{>./cardset}}
+    </li>
+    {{/each}}
+</ul>

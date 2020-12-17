@@ -5,6 +5,8 @@ import renderPagination from '../templates/pagination.hbs';
 import fetchFunctions from './fetchMe.js';
 import renderOffice from './myOffice';
 import decideTologin from './main';
+import { updateState } from './history/mainHistory';
+
 import { save } from './storage';
 import slider from './slider';
 
@@ -34,13 +36,8 @@ async function appPage(sales) {
 }
 
 async function onPaginationPage(event) {
-  const pagination = document.querySelector('div[data-pagination]');
   event.preventDefault();
-  const currentActivePage = pagination.querySelector('.active');
-  console.log(currentActivePage.textContent);
-  currentActivePage.classList.remove('active');
-  const currentPage = event.target;
-  currentPage.classList.add('active');
+  toggleActive(event);
   const numderPage = event.target.textContent;
   const searchQuery = {
     point: fetchFunctions.points.call,
@@ -49,12 +46,18 @@ async function onPaginationPage(event) {
   const searchResult = await fetchFunctions.getRequest(searchQuery);
   const markup = await decideTologin(searchResult);
   const orderedSearch = renderCategories(markup);
-  document.querySelector('section.categories').innerHTML = orderedSearch;
+  updateState(`${searchQuery.query}`);
   window.scrollTo({
     top: 0,
+    behavior: 'smooth',
   });
+  document.querySelector('section.categories').innerHTML = orderedSearch;
 }
-
+function toggleActive(event) {
+  const pagination = document.querySelector('div[data-pagination]');
+  pagination.querySelector('.active').classList.remove('active');
+  event.target.classList.add('active');
+}
 async function Mycallback(event) {
   if (event.target.hasAttribute('data-filter')) {
     event.preventDefault();
@@ -67,6 +70,8 @@ async function Mycallback(event) {
       response = await appPage(true);
     } else {
       response = await fetchFunctions.getRequest(request);
+      let value = event.target.getAttribute('data-category');
+      updateState(`/category?value=${value}`);
     }
     const markup = await decideTologin(response);
     document.querySelector('main div.container').innerHTML = renderCards(
@@ -76,7 +81,9 @@ async function Mycallback(event) {
       top: 0,
     });
   }
+
   if (event.target.classList.contains('pagination__link')) {
+
     const controlActiveFilter = document.body.querySelector(
       '.pagination__link.active',
     );
@@ -85,6 +92,7 @@ async function Mycallback(event) {
     }
     const currentFilter = event.target;
     currentFilter.classList.add('active');
+
     onPaginationPage(event);
   }
   if (event.target.hasAttribute('data-clear-filter')) {
