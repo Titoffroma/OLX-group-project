@@ -81,10 +81,15 @@ function modalProduct(evt) {
   }
 
   function changePhoto(evt) {
+    const nodeArrayPhotos = document.querySelectorAll(
+      '.product-photo-list-item-img',
+    );
+    const allPhotos = Array.from(nodeArrayPhotos);
+    if (allPhotos.length === 1) return;
     mainModalPhoto.classList.remove('animate-product-photo-appear');
     mainModalPhoto.classList.add('animate-product-photo-disappear');
     setTimeout(() => {
-      mainModalPhoto.src = evt.target.src;
+      mainModalPhoto.srcset = evt.target.srcset;
       mainModalPhoto.classList.remove('animate-product-photo-disappear');
       mainModalPhoto.classList.add('animate-product-photo-appear');
     }, 200);
@@ -192,7 +197,6 @@ function slider() {
       },
       false,
     );
-    console.log('Hello! Im mobile');
 
     function nextPhotoPag() {
       const mainModalPhoto = document.querySelector(
@@ -209,9 +213,7 @@ function slider() {
       setTimeout(() => {
         mainModalPhoto.classList.remove('animate-product-photo-left-slide');
         mainModalPhoto.classList.add('animate-product-photo-right-slideIn');
-        console.log('Left slide!');
         if (!(indexOfPhoto + 1 === allPhotos.length)) {
-          console.log(allPhotos[indexOfPhoto].parentNode);
           if (
             allPhotos[indexOfPhoto].parentNode.classList.contains(
               'active-photo',
@@ -220,7 +222,7 @@ function slider() {
             allPhotos[indexOfPhoto].parentNode.classList.remove('active-photo');
           }
           indexOfPhoto++;
-          mainModalPhoto.src = allPhotos[indexOfPhoto].src;
+          mainModalPhoto.srcset = allPhotos[indexOfPhoto].srcset;
           if (
             !allPhotos[indexOfPhoto].parentNode.classList.contains(
               'active-photo',
@@ -237,7 +239,7 @@ function slider() {
             allPhotos[indexOfPhoto].parentNode.classList.remove('active-photo');
           }
           indexOfPhoto = 0;
-          mainModalPhoto.src = allPhotos[indexOfPhoto].src;
+          mainModalPhoto.srcset = allPhotos[indexOfPhoto].srcset;
           if (
             !allPhotos[indexOfPhoto].parentNode.classList.contains(
               'active-photo',
@@ -263,7 +265,6 @@ function slider() {
       setTimeout(() => {
         mainModalPhoto.classList.remove('animate-product-photo-right-slide');
         mainModalPhoto.classList.add('animate-product-photo-left-slideIn');
-        console.log('Right slide!');
         if (!(indexOfPhoto === 0)) {
           if (
             allPhotos[indexOfPhoto].parentNode.classList.contains(
@@ -273,7 +274,7 @@ function slider() {
             allPhotos[indexOfPhoto].parentNode.classList.remove('active-photo');
           }
           indexOfPhoto--;
-          mainModalPhoto.src = allPhotos[indexOfPhoto].src;
+          mainModalPhoto.srcset = allPhotos[indexOfPhoto].srcset;
           if (
             !allPhotos[indexOfPhoto].parentNode.classList.contains(
               'active-photo',
@@ -290,7 +291,7 @@ function slider() {
             allPhotos[indexOfPhoto].parentNode.classList.remove('active-photo');
           }
           indexOfPhoto = allPhotos.length - 1;
-          mainModalPhoto.src = allPhotos[indexOfPhoto].src;
+          mainModalPhoto.srcset = allPhotos[indexOfPhoto].srcset;
           if (
             !allPhotos[indexOfPhoto].parentNode.classList.contains(
               'active-photo',
