@@ -18,18 +18,15 @@
               <div class="header_nav__menu-button">
                 <button
                   type="button"
-                  class="menu-button"
+                  class="header_nav__menu-button-open"
                   aria-label="button menu"
                   aria-expanded="false"
-                  aria-controls="menu-container"
+                  aria-controls="sideBar"
                   data-menu-button
                 >
-                  <span class="menu-button-open material-icons md-24"
-                    >menu</span
-                  >
-                  <span class="menu-button-close material-icons md-24"
-                    >clear</span
-                  >
+                  <span class="header-menu-icon" aria-label="menu switch">
+                    <span class="icon-menu material-icons md-24">menu</span>
+                  </span>
                 </button>
               </div>
 
@@ -39,11 +36,13 @@
                 /></a>
               </div>
               <button type="button" class="header_button__search">
-                <span data-modal="true" data-hbs="2" class="material-icons"
+                <span
+                  data-modal="true"
+                  data-hbs="2"
+                  class="material-icons md-24"
                   >search</span
                 >
               </button>
-
               <button
                 class="light-btn header_button__mycab"
                 type="button"
@@ -52,22 +51,7 @@
               >
                 Мій кабінет
               </button>
-              <button
-                class="header_button__mycab-exit"
-                type="button"
-                class="header_button__search"
-                data-modal="true"
-                aria-expanded="false"
-                data-hbs="9"
-              >
-                <span
-                  class="material-icons"
-                  data-modal="true"
-                  data-hbs="9"
-                  aria-expanded="false"
-                  >input</span
-                >
-              </button>
+
               <div class="header_button header_button__mycab_link">
                 <a
                   class="cabinet_link"
@@ -92,7 +76,6 @@
               <a
                 data-modal-type="authorization"
                 data-modal="true"
-                aria-expanded="false"
                 data-hbs="8"
                 href="#"
                 class="header_registration link"
@@ -103,7 +86,7 @@
                   data-modal-type="authorization"
                   data-modal="true"
                   data-hbs="8"
-                  class="material-icons"
+                  class="material-icons md-24"
                   >perm_identity</span
                 >
               </button>
@@ -114,43 +97,35 @@
                 data-modal="true"
                 data-hbs="1"
               >
-                <span
-                  data-hbs="1"
-                  class="header_button__create text"
-                  data-modal="true"
-                  >Створити оголошення!</span
-                >
-                <span
-                  data-hbs="1"
-                  class="material-icons header_button__create mobile"
-                  data-modal="true"
+                <span class="material-icons header_button__create mobile"
                   >add</span
+                >
+                <span class="header_button__create text"
+                  >Створити оголошення!</span
                 >
               </button>
             </div>
 
             <div class="header_button_menu_phone">
               <div class="header_button_menu_tablet">
-                <div class="">
-                  <div class="data-back" data-backref id="menu-container">
-                    <div class="menu-container" id="menu-container">
+                <div class="data-back" data-backref data-menu>
+                  <div class="menu-container" id="menu-container">
+                    <div class="header_nav__close">
                       <button
                         type="button"
-                        class="header_button__perm_identity"
+                        class="header_nav__menu-button-close"
+                        aria-label="button menu"
+                        aria-expanded="false"
+                        aria-controls="sideBar"
+                        data-menu-close
                       >
-                        <span class="material-icons">perm_identity</span>
-                      </button>
-
-                      <div class="menu-container__my-account">
-                        <div class="my-account__mobile">
-                          <button
-                            class="header_button my-account__cabinet"
-                            type="button"
-                            data-office
+                        <span class="header-menu-icon" aria-label="menu switch">
+                          <span class="icon-close material-icons md-24"
+                            >clear</span
                           >
-                            Мій кабінет
-                            <span class="material-icons">arrow_drop_up</span>
-                          </button>
+                        </span>
+                      </button>
+                    </div>
 
                           <button
                             class="my-account__exit"
@@ -195,61 +170,109 @@
                         data-modal-type="authorization"
                         data-modal="true"
                         data-hbs="8"
-                        aria-expanded="false"
-                        href="#"
-                        class="header_registration link-mob"
-                        >Реєстрація / Увійти</a
+                        class="material-icons md-24"
+                        >perm_identity</span
                       >
+                    </button>
 
-                      <div class="header_filter__wrap">
-                        <ul class="header_filter">
-                          <li class="header_filter__item">
-                            <a href="#" class="header_filter__link"
-                              >Нерухомість</a
-                            >
-                          </li>
-                          <li class="header_filter__item">
-                            <a href="#" class="header_filter__link"
-                              >Транспорт</a
-                            >
-                          </li>
-                          <li class="header_filter__item">
-                            <a href="#" class="header_filter__link">Робота</a>
-                          </li>
-                          <li class="header_filter__item">
-                            <a href="#" class="header_filter__link"
-                              >Електроніка</a
-                            >
-                          </li>
-                          <li class="header_filter__item">
-                            <a href="#" class="header_filter__link"
-                              >Бізнес та послуги</a
-                            >
-                          </li>
-                          <li class="header_filter__item">
-                            <a href="#" class="header_filter__link"
-                              >Відпочинок і спорт</a
-                            >
-                          </li>
-                          <li class="header_filter__item">
-                            <a href="#" class="header_filter__link"
-                              >Віддам безкоштовно</a
-                            >
-                          </li>
-                          <li class="header_filter__item">
-                            <a href="#" class="header_filter__link">Обмін</a>
-                          </li>
-                        </ul>
+                    <div class="menu-container__my-account">
+                      <div class="my-account__mobile">
+                        <button
+                          class="header_button my-account__cabinet"
+                          type="button"
+                          data-office
+                        >
+                          Мій кабінет
+                          <span class="material-icons">arrow_drop_up</span>
+                        </button>
+
+                        <button
+                          class="my-account__exit"
+                          type="button"
+                          class="header_button__search"
+                          data-modal="true"
+                          data-hbs="9"
+                        >
+                          <span class="material-icons">input</span>
+                        </button>
                       </div>
+                      <div class="header_button my-account__cabinet-box">
+                        <a
+                          class="cabinet_link"
+                          data-modal-type="cabinet_link"
+                          data-modal="true"
+                          data-hbs=""
+                          href="#"
+                        >
+                          Мої оголошення
+                        </a>
+                        <a
+                          class="cabinet_link"
+                          data-modal-type="cabinet_link"
+                          data-modal="true"
+                          data-hbs=""
+                          href="#"
+                        >
+                          Обране
+                        </a>
+                      </div>
+                    </div>
+                    <a
+                      data-modal-type="authorization"
+                      data-modal="true"
+                      data-hbs="8"
+                      href="#"
+                      class="header_registration link-mob"
+                      >Реєстрація / Увійти</a
+                    >
+
+                    <div class="header_filter__wrap">
+                      <ul class="header_filter">
+                        <li class="header_filter__item">
+                          <a href="#" class="header_filter__link"
+                            >Нерухомість</a
+                          >
+                        </li>
+                        <li class="header_filter__item">
+                          <a href="#" class="header_filter__link">Транспорт</a>
+                        </li>
+                        <li class="header_filter__item">
+                          <a href="#" class="header_filter__link">Робота</a>
+                        </li>
+                        <li  class="header_filter__item">
+                          <a href="#" class="header_filter__link"
+                            >Електроніка</a
+                          >
+                        </li>
+                        <li  class="header_filter__item">
+                          <a href="#" class="header_filter__link"
+                            >Бізнес та послуги</a
+                          >
+                        </li>
+                        <li class="header_filter__item">
+                          <a href="#" class="header_filter__link"
+                            >Відпочинок і спорт</a
+                          >
+                        </li>
+                        <li class="header_filter__item">
+                          <a href="#" class="header_filter__link"
+                            >Віддам безкоштовно</a
+                          >
+                        </li>
+                        <li class="header_filter__item">
+                          <a href="#" class="header_filter__link">Обмін</a>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
                 <div class="header_filter_button">
                   <button type="button" class="header_button__replay">
-                    <span class="material-icons" data-clear-filter>replay</span>
+                    <span class="material-icons md-24" data-clear-filter
+                      >replay</span
+                    >
                   </button>
-                  <p id="btn-clear" class="header_filter__replay" data-clear-filter>
-                    Очистити фільтри</p>
+                  <p id="btn-clear" class="header_filter__replay" data-clear-filter>Очистити фільтри</p>
                 </div>
               </div>
             </div>
