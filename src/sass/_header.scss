@@ -342,6 +342,9 @@ a {
     @media screen and (max-width: 1279px) {
       display: inline-flex;
       margin-left: 34px;
+      width: 100%;
+      height: 100%;
+      align-items: center;
     }
 
     &.active {
