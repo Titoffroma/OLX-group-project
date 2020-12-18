@@ -1,4 +1,4 @@
-import { load, save } from './storage';
+import { load, remove, save } from './storage';
 import fetchFunctions from './fetchMe';
 import myModal from './modalClass';
 import './editProduct';
@@ -16,6 +16,7 @@ export default async function decideTologin(param) {
       const query = el.split('=');
       token[query[0]] = query[1];
     });
+    location.href = location.href.split('?')[0];
     save('Token', token);
   }
   const preloaderParent = document.querySelector('main');
