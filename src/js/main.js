@@ -1,14 +1,9 @@
-import { load, save, remove } from './storage';
-import { pushError, removeError } from './pnotify';
+import { load, save } from './storage';
 import fetchFunctions from './fetchMe';
 import myModal from './modalClass';
-//import { onPaginationPage } from './paginationCategories';
 import './editProduct';
-import fetchLogin from './authorization.js';
 import addPreloader from './preloader.js';
-import '../js/history/categoryHistory.js'
-
-
+import '../js/history/categoryHistory.js';
 
 myModal.startListener();
 

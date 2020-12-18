@@ -1,4 +1,5 @@
-import { pushError, removeError } from './pnotify';
+import { pushError } from './pnotify';
+import { load } from './storage';
 import fetchFunctions from './fetchMe';
 import hbs from '../templates/authorization-modal.hbs';
 
@@ -113,6 +114,10 @@ function validate(evt) {
 }
 
 export default function openModalAuth() {
+  if (load('User')) {
+    document.querySelector('button[data-office]').click();
+    return false;
+  }
   const markup = hbs();
   document.body.addEventListener('click', validate);
   return markup;
