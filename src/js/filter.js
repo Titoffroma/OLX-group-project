@@ -5,9 +5,7 @@ import renderPagination from '../templates/pagination.hbs';
 import fetchFunctions from './fetchMe.js';
 import renderOffice from './myOffice';
 import decideTologin from './main';
-import {updatedContent, updateState} from './history/mainHistory';
-
-
+import { updatedContent, updateState } from './history/mainHistory';
 
 import { save } from './storage';
 import slider from './slider';
@@ -49,9 +47,8 @@ async function onPaginationPage(event) {
   const markup = await decideTologin(searchResult);
   const orderedSearch = renderCategories(markup);
   document.querySelector('section.categories').innerHTML = orderedSearch;
-  updateState(searchQuery.query)
+  updateState(searchQuery.query);
 
-  
   window.scrollTo({
     top: 0,
     behavior: 'smooth',
@@ -64,7 +61,7 @@ function toggleActive(event) {
   event.target.classList.add('active');
 }
 async function Mycallback(event) {
-  const path = event.target.getAttribute('href')
+  const path = event.target.getAttribute('href');
   if (event.target.hasAttribute('data-filter')) {
     event.preventDefault();
     const request = {
@@ -73,17 +70,15 @@ async function Mycallback(event) {
     };
     let response = null;
     if (event.target.dataset.filter === 'sales') {
-      
-      updateState(path, '', path)
-      updatedContent()
+      updateState(path, '', path);
+      updatedContent();
       renderOffice();
       response = await appPage(true);
     } else {
       response = await fetchFunctions.getRequest(request);
       updateState(`/category?value=${path}`);
-    }  
+    }
 
-  
     const markup = await decideTologin(response);
     document.querySelector('main div.container').innerHTML = renderCards(
       markup,
@@ -98,11 +93,11 @@ async function Mycallback(event) {
   }
   if (event.target.hasAttribute('data-clear-filter')) {
     appPage();
-    updateState('/', '', '/')
+    updateState('/', '', '/');
   }
   if (event.target.hasAttribute('data-office')) {
-    const url = 'user'
-    updateState(url, '', url)
+    const url = 'user';
+    updateState(url, '', url);
     renderOffice();
   }
   if (event.target.hasAttribute('data-out')) {
@@ -111,4 +106,18 @@ async function Mycallback(event) {
   }
   if (event.target.closest('.cardset')) event.preventDefault();
   if (event.target.hasAttribute('data-slide')) slider(event);
+
+  if (event.target.hasAttribute('data-office-link')) {
+    const index = event.target.getAttribute('data-office-link');
+    let int = 0;
+    if (!document.querySelector('.my-office')) {
+      document.querySelector('[data-office]').click();
+      int = 3000;
+    }
+    setTimeout(() => {
+      document
+        .querySelector(`li[data-index="${index}"]`)
+        .scrollIntoView({ block: 'start', behavior: 'smooth' });
+    }, int);
+  }
 }

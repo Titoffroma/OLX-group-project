@@ -3,8 +3,10 @@ import { load } from './storage';
 import fetchFunctions from './fetchMe';
 import hbs from '../templates/authorization-modal.hbs';
 
+const urlLocation = location.href;
+if (urlLocation.includes('')) console.log(urlLocation);
+
 function validate(evt) {
-  evt.preventDefault();
   let errors = [];
 
   const authBackdrop = document.querySelector('.backdrop');
@@ -13,10 +15,9 @@ function validate(evt) {
   const passwordInput = document.querySelector('#authorization-modal-password');
   const loginBtn = document.querySelector('.authorization-modal-login');
   const registerBtn = document.querySelector('.authorization-modal-register');
-
+  if (evt.target === googleAuthBtn) return;
   if (evt.target === loginBtn) return validateLogin(evt);
   if (evt.target === registerBtn) return validateRegistration(evt);
-  if (evt.target === registerBtn) return googleAuthorization(evt);
 
   async function fetchLogin() {
     const info = {
@@ -33,8 +34,7 @@ function validate(evt) {
     let response = await fetchFunctions.login(request);
 
     if (response) {
-      document.querySelector('img[data-clear-filter]').click();
-      authBackdrop.click();
+      location.reload();
     }
   }
 
@@ -104,15 +104,7 @@ function validate(evt) {
       fetchRegistration();
     }
   }
-
-  async function googleAuthorization(evt) {
-    let response = await fetchFunctions.getRequest({
-      point: fetchFunctions.points.google,
-    });
-    console.log(response);
-  }
 }
-
 export default function openModalAuth() {
   if (load('User')) {
     document.querySelector('button[data-office]').click();
