@@ -1,4 +1,4 @@
-import { fun1, fun2, fun3, fun4, fun6, fun7, fun8 } from './updatePageHistory' 
+import { fun2, fun3, fun4, fun6, fun7, fun8 } from './updatePageHistory' 
 import renderFilter from '../filter'
 import renderOffice from '../myOffice'
 
@@ -9,9 +9,9 @@ export const routers = [
         meta: { auth: false}
     },
     {
-        path:'/account',
-        component: renderOffice,
-        meta: { auth: false}
+        path:'/user',
+        component: fun1,
+        meta: { auth: true}
     },
     // {
     //     path:'/page',
@@ -39,3 +39,10 @@ export const routers = [
         meta: { auth: false}
     }
 ];
+
+
+
+function fun1 ()
+{
+    console.log('HI');
+}

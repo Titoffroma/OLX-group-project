@@ -1,4 +1,5 @@
-.pagination {
+.pagination,
+.pagination-all {
   display: flex;
 
   padding-bottom: 30px;
@@ -17,7 +18,8 @@
   letter-spacing: 0.02em;
   text-transform: uppercase;
 
-  &__link {
+  &__link,
+  .btn-pag {
     display: flex;
     justify-content: center;
     align-items: center;
