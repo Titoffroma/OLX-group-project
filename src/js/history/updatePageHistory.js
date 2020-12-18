@@ -1,13 +1,11 @@
 import { getDataSearch, getDataCategory } from './callHistory'
-
-// let title = document.querySelector('.container');
 import renderCards from '../../templates/cardset.hbs';
-// import fetchFunctions from './js/fetchMe.js';
+import fetchFunctions from '../fetchMe';
 // import renderFilter from './js/filter'
 // import mySelectedAd from './templates/my-advert.hbs'
 // import renderOffice from './js/myOffice'
-
-
+import decideTologin from '../main';
+import renderPagination from '../../templates/pagination.hbs'
 
 
 export function fun5 () {
@@ -33,4 +31,11 @@ export async function  fun7 () {
 export async function  fun8 () {
     const search = new URL(location.href).search;
    
+}
+
+export async function  fun9 () {
+    const url = new URL(location.href).search;
+    const data = await getDataCategory(url.split('=')[1]);
+   
+    document.querySelector('main div.container').innerHTML = renderCards(data)
 }

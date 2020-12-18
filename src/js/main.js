@@ -7,6 +7,7 @@ import './editProduct';
 import fetchLogin from './authorization.js';
 import addPreloader from './preloader.js';
 import '../js/history/categoryHistory.js'
+import '../js/history/mainHistory.js'
 
 
 
