@@ -45,9 +45,9 @@ export default async function openEditCard(evt) {
   });
     cardForm.addEventListener('submit', onFormSubmit);
     photoElem.addEventListener('change', function (e) {
-        formData.append('file', photoElem.files[0]);        
+      formData.append('file', photoElem.files[0]); 
     });
-      
+     
     async function onFormSubmit(e) {
       e.preventDefault()
         if (!e.target.elements.checkbox.checked) {
@@ -57,7 +57,7 @@ export default async function openEditCard(evt) {
     const category = formElements.category.value;
     const price = formElements.price.value;
     const phone = formElements.phone.value;
-    
+     
     formData.set('title', title);
     formData.set('description', description);
     formData.set('category', category);
@@ -69,7 +69,7 @@ export default async function openEditCard(evt) {
       method: 'PATCH',
       redirect: 'follow',
       headers: myHeaders,
-      body: formData,
+      body:  formData
     };
 
     const answer = await fetch(URL, requestOptions);
