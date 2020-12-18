@@ -8,6 +8,16 @@ import '../js/history/categoryHistory.js';
 myModal.startListener();
 
 export default async function decideTologin(param) {
+  const urlSearch = location.search;
+  if (urlSearch.includes('accessToken')) {
+    const searchQuery = urlSearch.slice(1).split('&');
+    let token = {};
+    searchQuery.map(el => {
+      const query = el.split('=');
+      token[query[0]] = query[1];
+    });
+    save('Token', token);
+  }
   const preloaderParent = document.querySelector('main');
   if (!document.querySelector('.preloader-backdrop')) {
     addPreloader(preloaderParent);
