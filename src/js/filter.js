@@ -6,6 +6,7 @@ import fetchFunctions from './fetchMe.js';
 import renderOffice from './myOffice';
 import decideTologin from './main';
 import { updatedContent, updateState } from './history/mainHistory';
+import paginationAll from './pagination-for-All';
 
 import { save } from './storage';
 import slider from './slider';
@@ -80,9 +81,10 @@ async function Mycallback(event) {
     }
 
     const markup = await decideTologin(response);
-    document.querySelector('main div.container').innerHTML = renderCards(
-      markup,
-    );
+    // document.querySelector('main div.container').innerHTML = renderCards(
+    //   markup,
+    // );
+    paginationAll(markup);
     window.scrollTo({
       top: 0,
     });
