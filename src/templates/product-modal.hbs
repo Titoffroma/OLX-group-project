@@ -1,5 +1,5 @@
 <div data-modal class="backdrop" data-close>
-  <div class="backdrop__modal modal-product">
+    <div class="backdrop__modal modal-product">
 
         <button class="button-close">
             <span class="material-icons" data-close>clear</span>
@@ -49,9 +49,11 @@
             </div>
             <div class="modal-actions">
                 <ul class="actions-list">
-                    <li class="actions-item">
+                    <li class="actions-item {{out}}">
                         <button class="actions-item_button {{out}}">
-                            <p class="actions-item_title" data-id="{{_id}}">В обране</p>
+                            <p class="actions-item_title" data-id="{{_id}}">
+                                {{#if liked}}З обраного{{else}}В обране{{/if}}
+                            </p>
                             <span class="material-icons md-16 product-favorite-icon {{liked}}" data-id="{{_id}}"
                                 data-ids>favorite_border</span>
                         </button>

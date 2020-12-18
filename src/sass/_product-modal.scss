@@ -266,7 +266,7 @@
 }
 .actions-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 
   &:first-child {
     margin-right: 47px;
@@ -277,6 +277,12 @@
     line-height: 1.16;
     color: $dark-grey;
     transition: color $transition;
+    &.tapped {
+      animation-name: pulseOut;
+      animation-duration: 500ms;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in;
+    }
   }
   &_button {
     display: flex;

@@ -8,16 +8,15 @@ const refs = {
 };
 import desideTologin from './main.js';
 
-
-import {updateState, updatedContent} from './history/mainHistory';
+import { updateState, updatedContent } from './history/mainHistory';
 import addPreloader from './preloader';
-
 
 document.body.addEventListener('click', modalProduct);
 
 let heartInCard = null;
 
 export default async function openModalProduct(evt) {
+  heartInCard = null;
   if (evt.target.getAttribute('data-hbs') == '11') {
     const card = evt.target.closest('.cardset__overlay');
     addPreloader(card, true);
@@ -26,12 +25,12 @@ export default async function openModalProduct(evt) {
   const id = evt.target.getAttribute('data-callid');
   const title = evt.target.getAttribute('data-title');
   updateState(`/goods?value=${title}`);
-  updatedContent()
+  updatedContent();
   const data = await fetchProduct(id, title);
 
   if (evt.target.closest('.cardset__overlay').dataset.liked === 'liked')
     data.liked = 'liked';
-  if (!load('User')) data.out = 'unlogged';
+  if (!load('User')) data.out = 'visually-hidden';
   slider();
   setTimeout(() => {
     const nodeArrayPhotos = document.querySelectorAll(
@@ -113,10 +112,14 @@ function modalProduct(evt) {
           return (evt.target.closest('.cardset__overlay').dataset.liked =
             'liked');
         if (heartInCard) {
+          if (evt.target.classList.contains('actions-item_title')) {
+            evt.target.textContent = 'З обраного';
+          } else {
+            evt.target.previousElementSibling.textContent = 'З обраного';
+            evt.target.previousElementSibling.classList.add('liked');
+          }
           heartInCard.classList.add('liked');
           heartInCard.closest('.cardset__overlay').dataset.liked = 'liked';
-          heartInCard = null;
-          return;
         }
       }
     } else {
@@ -135,13 +138,18 @@ function modalProduct(evt) {
           }
         }
         if (heartInCard) {
+          if (evt.target.classList.contains('actions-item_title')) {
+            evt.target.textContent = 'В обране';
+          } else {
+            evt.target.previousElementSibling.textContent = 'В обране';
+            evt.target.previousElementSibling.classList.remove('liked');
+          }
           heartInCard.classList.remove('liked');
           heartInCard.closest('.cardset__overlay').dataset.liked = '';
           if (heartInCard.closest('.fav')) {
             heartInCard.closest('.fav').remove();
             document.querySelector('.backdrop').click();
           }
-          heartInCard = null;
           return;
         }
       }
