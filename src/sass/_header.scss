@@ -670,6 +670,9 @@ body.authorized {
 
 .hide {
   display: none;
+  @media screen and(min-width:$desktop) {
+    display: block;
+  }
 }
 
 .menu-button .burger-is-open {

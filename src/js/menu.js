@@ -17,6 +17,9 @@
     '.header_button__identity span',
   );
   const entryCabTablet = document.querySelector('.header_button__mycab_link');
+  if (document.documentElement.clientWidth < 1280) {
+    mobileBackd.classList.add('hide');
+  }
 
   menuBtnRef.addEventListener('click', openMenu, { once: true });
   filterActive.addEventListener('click', closeMenu, { once: true });
