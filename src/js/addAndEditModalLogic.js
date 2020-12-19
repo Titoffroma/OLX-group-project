@@ -40,7 +40,7 @@ export default function () {
   }
 
   function categoryRender() {
-    refs.categoryList.insertAdjacentHTML('afterbegin', catMarkup(load('cats')));
+    refs.categoryInput.insertAdjacentHTML('afterbegin', catMarkup(load('cats')));
   }
 
   function validateInput() {

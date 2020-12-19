@@ -132,6 +132,7 @@
   background-size: auto;
   background-origin: border-box;
   background-position: 218px 25px;
+  appearance: none;
 
   @media screen and (min-width: $tablet) {
     background-position: 425px 25px;
@@ -139,11 +140,6 @@
 
   @media screen and (min-width: $desktop) {
     background-position: 409px 25px;
-  }
-
-  &:hover,
-  &:focus {
-    background-image: none;
   }
 }
 

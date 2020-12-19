@@ -76,9 +76,9 @@
                 <li class="add-card__item">
                     <label class="add-card__label notice select-field">
                         <span class="add-card__subtitle">Категорія товару</span>
-                        <input list="categories" class="add-card__input select-input" type="text" name="category"
-                            value="{{category}}" required />
-                        <div class="category-list"></div>
+                        <select class="add-card__input select-input" name="category" required>
+                            <option value="{{category}}">{{category}}</option>
+                        </select>
                     </label>
                     <p class="error-message"></p>
                 </li>
