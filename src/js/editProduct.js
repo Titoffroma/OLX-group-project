@@ -22,7 +22,7 @@ export default async function openEditCard(evt) {
   const id = evt.target.getAttribute('data-changeid');
   const title = evt.target.getAttribute('data-title');
   const data = await productFetch(id, title);
-
+  const imgUrl = data.imageUrls;
   const markup = editCardHbs(data);
 
   
@@ -36,7 +36,7 @@ export default async function openEditCard(evt) {
   const formData = new FormData();
   const myHeaders = new Headers();
   
-    document.body.addEventListener('click', () => {
+    ref.btnChekRef.addEventListener('click', () => {
     if (ref.btnChekRef.checked === true) {
       document.querySelector(`.on-change`).textContent = 'Видалити';
     } else {
@@ -44,14 +44,10 @@ export default async function openEditCard(evt) {
     }
   });
     cardForm.addEventListener('submit', onFormSubmit);
-    photoElem.addEventListener('change', function () {
-      if (!photoElem.files[0]) {
-        return;
-      } else {
-       formData.set('file', photoElem.files[0]);
-    }
+    photoElem.addEventListener('change', function (e) {
+      formData.append('file', photoElem.files[0]); 
     });
-      
+     
     async function onFormSubmit(e) {
       e.preventDefault()
         if (!e.target.elements.checkbox.checked) {
@@ -61,19 +57,19 @@ export default async function openEditCard(evt) {
     const category = formElements.category.value;
     const price = formElements.price.value;
     const phone = formElements.phone.value;
-
+     
     formData.set('title', title);
     formData.set('description', description);
     formData.set('category', category);
     formData.set('price', Number(price));
-    formData.set('phone', phone);
+    formData.set('phone', phone); 
     myHeaders.append('Authorization', `Bearer ${load('Token').accessToken}`);
     const URL = `https://callboard-backend.herokuapp.com/call/${id}`;
     const requestOptions = {
       method: 'PATCH',
       redirect: 'follow',
       headers: myHeaders,
-      body: formData,
+      body:  formData
     };
 
     const answer = await fetch(URL, requestOptions);
