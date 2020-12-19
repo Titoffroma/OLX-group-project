@@ -15,6 +15,11 @@
   & .material-icons {
     font-weight: 500;
   }
+  transition: transform $transition;
+  &:hover,
+  &:focus {
+    transform: scale(1.5);
+  }
 
   @media screen and (min-width: $tablet) {
     top: 25px;
