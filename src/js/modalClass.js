@@ -68,9 +68,9 @@ class Modal {
     backdrop.classList.remove('opened');
     setTimeout(() => {
       backdrop.remove();
+      document.body.style.overflowY = 'scroll';
+      document.body.style.paddingRight = this.scroll;
     }, 500);
-    document.body.style.overflowY = 'scroll';
-    document.body.style.paddingRight = this.scroll;
   }
   onEscapeCloseModal(event) {
     if (event.code === 'Escape') {
