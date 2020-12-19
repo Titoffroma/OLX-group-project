@@ -21,7 +21,6 @@ function openMenu(event) {
   event.preventDefault();
   const expanded = menuBtnRef.getAttribute('aria-expanded') === 'true' || false;
   scrollFix.initialPadding = measureAndFixScroll();
-  console.log('set', scrollFix.initialPadding);
   menuBtnRef.setAttribute('aria-expanded', !expanded);
   mobileBackd.classList.toggle('hide');
   closeBurgerMenu.classList.toggle('hide');
@@ -46,7 +45,6 @@ function closeMenu(event) {
       closeBurgerMenu.classList.toggle('hide');
       document.body.style.overflow = 'auto';
       document.body.style.paddingRight = scrollFix.initialPadding;
-      console.log('get', scrollFix.initialPadding);
     }, 250);
   }
   return;

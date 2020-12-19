@@ -1,5 +1,4 @@
 import hbsFunction from '../templates/filter.hbs';
-import renderCards from '../templates/cardset.hbs';
 import renderCategories from '../templates/category.hbs';
 import renderPagination from '../templates/pagination.hbs';
 import fetchFunctions from './fetchMe.js';
@@ -8,9 +7,10 @@ import decideTologin from './main';
 import { updatedContent, updateState } from './history/mainHistory';
 import paginationAll from './pagination-for-All';
 import { openMenu, closeMenu } from './menu';
-
 import { save } from './storage';
 import slider from './slider';
+
+renderFilter();
 
 export default async function renderFilter() {
   const filterUL = document.querySelector('.header_filter');
@@ -23,7 +23,6 @@ export default async function renderFilter() {
   document.body.addEventListener('click', Mycallback);
   appPage();
 }
-renderFilter();
 
 async function appPage(sales) {
   const searchQuery = {
@@ -82,13 +81,7 @@ async function Mycallback(event) {
     }
 
     const markup = await decideTologin(response);
-    // document.querySelector('main div.container').innerHTML = renderCards(
-    //   markup,
-    // );
     paginationAll(markup);
-    window.scrollTo({
-      top: 0,
-    });
   }
 
   if (event.target.classList.contains('pagination__link')) {
@@ -123,8 +116,6 @@ async function Mycallback(event) {
         .scrollIntoView({ block: 'start', behavior: 'smooth' });
     }, int);
   }
-  //   const menuBtnCloseRef = document.querySelector('[data-menu-close]');
-  // const menuBtnOpenRef = document.querySelector('[data-menu-open]');
   if (event.target.hasAttribute('data-menu-open')) {
     openMenu(event);
   }
