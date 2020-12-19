@@ -20,7 +20,7 @@ function addCardModalClick(event) {
 }
 
 function onOpenAddCardModal(event) {
-  event.preventDefault();
+  // event.preventDefault();
   const photoElem = document.querySelector('#photoElem');
   const addCardForm = document.querySelector('.add-card__form');
   const closeBtn = document.querySelector('span[data-close]');
