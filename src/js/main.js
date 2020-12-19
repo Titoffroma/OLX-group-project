@@ -3,7 +3,9 @@ import fetchFunctions from './fetchMe';
 import myModal from './modalClass';
 import './editProduct';
 import addPreloader from './preloader.js';
-import '../js/history/categoryHistory.js';
+import '../js/history/categoryHistory.js'
+import '../js/history/mainHistory.js'
+
 
 myModal.startListener();
 

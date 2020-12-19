@@ -9,6 +9,7 @@
   const entryButton = document.querySelector('[data-hbs="8"]');
   const exitButton = document.querySelector('span[data-hbs="9"]');
   const mycabinet = document.querySelector('[data-office]');
+  const closeBurgerMenu = document.querySelector('.menu-button-close');
 
   const headerWindow = document.querySelector('.container_nav');
 
@@ -16,6 +17,9 @@
     '.header_button__identity span',
   );
   const entryCabTablet = document.querySelector('.header_button__mycab_link');
+  if (document.documentElement.clientWidth < 1280) {
+    mobileBackd.classList.add('hide');
+  }
 
   menuBtnRef.addEventListener('click', openMenu, { once: true });
   filterActive.addEventListener('click', closeMenu, { once: true });
@@ -28,16 +32,26 @@
     const expanded =
       menuBtnRef.getAttribute('aria-expanded') === 'true' || false;
     menuBtnRef.setAttribute('aria-expanded', !expanded);
-    mobileBackd.classList.toggle('is-open');
-    menuBtnRef.classList.toggle('is-open');
+    mobileBackd.classList.toggle('hide');
+    closeBurgerMenu.classList.toggle('hide');
+    setTimeout(() => {
+      mobileBackd.classList.toggle('is-hidden');
+      menuBtnRef.classList.toggle('is-hidden');
+      closeBurgerMenu.classList.toggle('burger-is-open');
+    }, 250);
   }
 
   function closeMenu(event) {
     event.preventDefault();
     filterActive.addEventListener('click', closeMenu, { once: true });
     if (event.target.nodeName === 'A' || 'BUTTON') {
-      mobileBackd.classList.toggle('is-open');
-      menuBtnRef.classList.toggle('is-open');
+      mobileBackd.classList.toggle('is-hidden');
+      menuBtnRef.classList.toggle('is-hidden');
+      closeBurgerMenu.classList.toggle('burger-is-open');
+      setTimeout(() => {
+        mobileBackd.classList.toggle('hide');
+        closeBurgerMenu.classList.toggle('hide');
+      }, 250);
     }
     return;
   }

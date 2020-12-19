@@ -426,14 +426,20 @@ a {
   height: 100%;
   background-color: $overlay;
   overflow-y: auto;
+  z-index: 120;
 
   @media screen and (max-width: 1279px) {
-    display: none;
-    pointer-events: none;
-    pointer-events: auto;
-    z-index: 100;
-    &.is-open {
-      display: block;
+    display: block;
+    opacity: 1;
+    transform: translateY(0px);
+    transition-property: transform, opacity;
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    &.is-hidden {
+      transform: translateY(400px);
+      opacity: 0;
+      pointer-events: none;
+      pointer-events: auto;
+      z-index: 100;
     }
   }
   @media screen and (min-width: $desktop) {
@@ -587,8 +593,6 @@ a {
   }
 
   & .menu-button-close {
-    display: none;
-
     @media screen and (max-width: 1279px) {
       position: fixed;
       left: 267px;
@@ -596,20 +600,15 @@ a {
       z-index: 110;
       width: 24px;
       height: 24px;
+      transform: translateY(400px);
+      opacity: 0;
+      transition-property: transform, opacity;
+      transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     @media screen and (min-width: $tablet) {
       left: 290px;
     }
-  }
-}
-
-.menu-button.is-open {
-  & .menu-button-close {
-    display: block;
-  }
-  & .menu-button-open {
-    display: none;
   }
 }
 
@@ -670,4 +669,18 @@ body.authorized {
       }
     }
   }
+}
+
+.hide {
+  display: none;
+  @media screen and(min-width:$desktop) {
+    display: block;
+  }
+}
+
+.menu-button .burger-is-open {
+  display: block;
+  z-index: 121;
+  transform: translateY(0px);
+  opacity: 1;
 }
