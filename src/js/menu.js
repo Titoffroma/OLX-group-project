@@ -1,8 +1,18 @@
+import { measureAndFixScroll } from './preloader';
 (() => {
   const menuBtnRef = document.querySelector('[data-menu-button]');
   const body = document.querySelector('.header_button_menu_phone');
   const mobileBackd = document.querySelector('[data-backref]');
 
+  const scrollFix = {
+    _initialPadding: 0,
+    get initialPadding() {
+      return this._initialPadding;
+    },
+    set initialPadding(padding) {
+      this._initialPadding = padding;
+    },
+  };
   //const filterActive = document.querySelector('.header_filter');
 
   const filterActive = document.querySelector('#menu-container');
@@ -31,9 +41,12 @@
     menuBtnRef.addEventListener('click', openMenu, { once: true });
     const expanded =
       menuBtnRef.getAttribute('aria-expanded') === 'true' || false;
+    scrollFix.initialPadding = measureAndFixScroll();
     menuBtnRef.setAttribute('aria-expanded', !expanded);
     mobileBackd.classList.toggle('hide');
     closeBurgerMenu.classList.toggle('hide');
+    document.body.style.overflow = 'hidden';
+
     setTimeout(() => {
       mobileBackd.classList.toggle('is-hidden');
       menuBtnRef.classList.toggle('is-hidden');
@@ -48,9 +61,12 @@
       mobileBackd.classList.toggle('is-hidden');
       menuBtnRef.classList.toggle('is-hidden');
       closeBurgerMenu.classList.toggle('burger-is-open');
+
       setTimeout(() => {
         mobileBackd.classList.toggle('hide');
         closeBurgerMenu.classList.toggle('hide');
+        document.body.style.overflow = 'auto';
+        document.body.style.paddingRight = scrollFix.initialPadding;
       }, 250);
     }
     return;
