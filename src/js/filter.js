@@ -7,6 +7,7 @@ import renderOffice from './myOffice';
 import decideTologin from './main';
 import { updatedContent, updateState } from './history/mainHistory';
 import paginationAll from './pagination-for-All';
+import { openMenu, closeMenu } from './menu';
 
 import { save } from './storage';
 import slider from './slider';
@@ -121,5 +122,13 @@ async function Mycallback(event) {
         .querySelector(`li[data-index="${index}"]`)
         .scrollIntoView({ block: 'start', behavior: 'smooth' });
     }, int);
+  }
+  //   const menuBtnCloseRef = document.querySelector('[data-menu-close]');
+  // const menuBtnOpenRef = document.querySelector('[data-menu-open]');
+  if (event.target.hasAttribute('data-menu-open')) {
+    openMenu(event);
+  }
+  if (event.target.hasAttribute('data-menu-close')) {
+    closeMenu(event);
   }
 }

@@ -1,6 +1,7 @@
 window.addEventListener('load', delPreloader);
 
 const measureAndFixScroll = function () {
+  if (getComputedStyle(document.body).overflowY === 'hidden') return;
   const scrollDiv = document.createElement('div');
   scrollDiv.className = 'scrollbar-measure';
   document.body.appendChild(scrollDiv);
