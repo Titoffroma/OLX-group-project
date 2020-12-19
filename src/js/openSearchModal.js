@@ -3,12 +3,12 @@ import cardset from '../templates/cardset.hbs';
 import fetchFunctions from './fetchMe';
 import { pushError } from './pnotify';
 import decideTologin from './main';
-import {updateState} from './history/mainHistory';
-import {updatedContent} from './history/mainHistory';
+import { updateState } from './history/mainHistory';
+import { updatedContent } from './history/mainHistory';
 
 export default function openModalFind() {
   const markup = findModal();
-  document.body.addEventListener('submit', render);
+  document.body.addEventListener('submit', render, { once: true });
   return markup;
 }
 
@@ -24,12 +24,8 @@ async function render(event) {
     return;
   }
   updateState(`/search?value=${request.query}`);
-  updatedContent()
+  updatedContent();
   const markup = await decideTologin(data);
   document.querySelector('main div.container').innerHTML = cardset(markup);
   document.querySelector('.backdrop').click();
-  if (data.length === 0) {
-    pushError('Sorry, we could not find any call!');
-    return;
-  }
 }

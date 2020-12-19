@@ -26,30 +26,29 @@ export default async function paginationAll(data) {
   }
   const pagination = document.querySelector('.pagination-all');
   pagination.firstElementChild.classList.add('active');
-  document.body.addEventListener('click', onPaginationAllPage);
+  // document.body.addEventListener('click', onPaginationAllPage);
 }
 
 async function onPaginationAllPage(event) {
-  if (event.target.classList.contains('btn-pag')) {
-    const currentActivePage = document.body.querySelector('.btn-pag.active');
-    if (currentActivePage) {
-      currentActivePage.classList.remove('active');
-    }
-
-    const currentPage = event.target;
-    currentPage.classList.add('active');
-
-    const from = currentPage.dataset.from * onPage;
-    const to = (currentPage.dataset.to - 1) * onPage;
-    const sliced = dataM.slice(from, to);
-
-    document.querySelector('section.categories').innerHTML = await renderCards(
-      sliced,
-    );
-
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+  const currentActivePage = document.body.querySelector('.btn-pag.active');
+  if (currentActivePage) {
+    currentActivePage.classList.remove('active');
   }
+
+  const currentPage = event.target;
+  currentPage.classList.add('active');
+
+  const from = currentPage.dataset.from * onPage;
+  const to = (currentPage.dataset.to - 1) * onPage;
+  const sliced = dataM.slice(from, to);
+
+  document.querySelector('section.categories').innerHTML = await renderCards(
+    sliced,
+  );
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
 }
+export { onPaginationAllPage };

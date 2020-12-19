@@ -1,4 +1,5 @@
 import { load, remove, save } from './storage';
+import InitiateListeners from './listeners';
 import fetchFunctions from './fetchMe';
 import myModal from './modalClass';
 import './editProduct';
@@ -8,6 +9,7 @@ import '../js/history/mainHistory.js';
 
 myModal.startListener();
 setGoogleAuth();
+InitiateListeners();
 
 export default async function decideTologin(param) {
   setMainPreloader();
