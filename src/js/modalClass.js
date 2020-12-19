@@ -54,8 +54,8 @@ class Modal {
       setTimeout(() => {
         modalRef.classList.add('opened');
       }, 500);
-      document.body.style.overflow = 'hidden';
       this.scroll = this.oldScroll;
+      document.body.style.overflow = 'hidden';
       modalRef.addEventListener('click', this.onClickCloseModal);
       window.addEventListener('keydown', this.onEscapeCloseModal);
     }
