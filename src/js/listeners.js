@@ -26,6 +26,19 @@ export default function InitiateListeners() {
   document.body.addEventListener('click', listenAllClicks);
 }
 
+// объект для переноса event в функции для работы с history
+const evtHolder = {
+  _target: undefined,
+  get target() {
+    return this._target;
+  },
+  set target(evt) {
+    this._target = evt;
+  },
+};
+
+export { evtHolder };
+
 function listenAllClicks(event) {
   console.log(event.target);
   // переход на обьявления одной категории
@@ -45,6 +58,7 @@ function listenAllClicks(event) {
   }
   // переход на домашнюю страницу
   if (event.target.hasAttribute('data-clear-filter')) {
+    evtHolder.target = event.target; // пример работы объекта evtHolder. Смотреть console.log
     appPage();
     updateState('/', '', '/');
     return;

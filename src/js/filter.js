@@ -9,6 +9,7 @@ import paginationAll from './pagination-for-All';
 // import { openMenu, closeMenu } from './menu';
 import { save } from './storage';
 // import slider from './slider';
+import { evtHolder } from './listeners';
 
 renderFilter();
 appPage();
@@ -34,6 +35,7 @@ async function appPage(sales) {
   const markup = await decideTologin(searchResult);
   const orderedSearch = renderPagination(markup);
   document.querySelector('main div.container').innerHTML = orderedSearch;
+  console.log(evtHolder.target);
 }
 
 async function onPaginationPage(event) {
