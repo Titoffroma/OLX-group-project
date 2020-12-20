@@ -2,6 +2,7 @@ import { measureAndFixScroll } from './preloader';
 const menuBtnRef = document.querySelector('[data-menu-button]');
 const closeBurgerMenu = document.querySelector('.menu-button-close');
 const mobileBackd = document.querySelector('[data-backref]');
+const cabinet = document.querySelector('[data-drop]');
 
 const scrollFix = {
   _initialPadding: 0,
@@ -44,6 +45,19 @@ function closeMenu(event) {
     }, 250);
   }
   return;
+}
+
+cabinet.addEventListener('click', openCabinet);
+
+function openCabinet(event) {
+  //event.preventDefault();
+  if (event.target.hasAttribute('data-drop')) {
+    const cabinetList = document.querySelector('.my-account__cabinet-box');
+    const categoryList = document.querySelector('.header_filter');
+    categoryList.classList.toggle('is-open');
+    cabinet.classList.toggle('open-cab');
+    cabinetList.classList.toggle('open-cab');
+  }
 }
 
 export { openMenu, closeMenu };
