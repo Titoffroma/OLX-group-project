@@ -13,10 +13,6 @@ const scrollFix = {
   },
 };
 
-if (document.documentElement.clientWidth < 1280) {
-  mobileBackd.classList.add('hide');
-}
-
 function openMenu(event) {
   event.preventDefault();
   const expanded = menuBtnRef.getAttribute('aria-expanded') === 'true' || false;

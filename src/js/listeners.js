@@ -41,6 +41,14 @@ export { evtHolder };
 
 function listenAllClicks(event) {
   console.log(event.target);
+  // окрытие бургера
+  if (event.target.hasAttribute('data-menu-open')) {
+    openMenu(event);
+  }
+  // закрытие бургера
+  if (event.target.hasAttribute('data-menu-close')) {
+    closeMenu(event);
+  }
   // переход на обьявления одной категории
   if (event.target.hasAttribute('data-filter')) {
     renderFilterCategory(event);
@@ -80,16 +88,6 @@ function listenAllClicks(event) {
   // прокрутка к разделу в моем кабинете
   if (event.target.hasAttribute('data-office-link')) {
     scrollToOfficeSection(event);
-    return;
-  }
-  // окрытие бургера
-  if (event.target.hasAttribute('data-menu-open')) {
-    openMenu(event);
-    return;
-  }
-  // закрытие бургера
-  if (event.target.hasAttribute('data-menu-close')) {
-    closeMenu(event);
     return;
   }
   // логика добавления карточки товара
