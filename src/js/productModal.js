@@ -1,23 +1,15 @@
 import { load, save, remove } from './storage';
 import hbs from '../templates/product-modal.hbs';
 import fetchFunctions from './fetchMe';
+import { updateState, updatedContent } from './history/mainHistory';
+import addPreloader from './preloader';
 const refs = {
   get element() {
     return document.querySelector('.main-modal-product-photo');
   },
 };
-import desideTologin from './main.js';
-
-import { updateState, updatedContent } from './history/mainHistory';
-import addPreloader from './preloader';
-
-// document.body.addEventListener('click', modalProduct);
 
 let heartInCard = null;
-
-const aboutSellerContOpened = document.querySelector('.modal-button-box-info');
-const aboutSellerContClosed = document.querySelector('.modal-button-box');
-const mainModalPhoto = document.querySelector('.main-modal-product-photo');
 
 export default async function openModalProduct(evt) {
   heartInCard = null;
@@ -75,6 +67,10 @@ export { fetchProduct, openInfoAboutSeller, addToFavorite, changePhoto };
 // }
 
 function openInfoAboutSeller() {
+  const aboutSellerContOpened = document.querySelector(
+    '.modal-button-box-info',
+  );
+  const aboutSellerContClosed = document.querySelector('.modal-button-box');
   aboutSellerContClosed.style.opacity = '0';
   aboutSellerContOpened.style.opacity = '1';
 
@@ -84,6 +80,7 @@ function openInfoAboutSeller() {
 }
 
 function changePhoto(evt) {
+  const mainModalPhoto = document.querySelector('.main-modal-product-photo');
   const nodeArrayPhotos = document.querySelectorAll(
     '.product-photo-list-item-img',
   );
