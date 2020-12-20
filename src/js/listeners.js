@@ -40,7 +40,6 @@ const evtHolder = {
 export { evtHolder };
 
 function listenAllClicks(event) {
-  console.log(event.target);
   // окрытие бургера
   if (event.target.hasAttribute('data-menu-open')) {
     openMenu(event);

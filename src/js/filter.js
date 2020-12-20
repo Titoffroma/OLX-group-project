@@ -7,7 +7,7 @@ import decideTologin from './main';
 import { updatedContent, updateState } from './history/mainHistory';
 import paginationAll from './pagination-for-All';
 // import { openMenu, closeMenu } from './menu';
-import { save } from './storage';
+import { load, save } from './storage';
 // import slider from './slider';
 import { evtHolder } from './listeners';
 
@@ -72,11 +72,16 @@ async function renderFilterCategory(event) {
     query: event.target.dataset.filter,
   };
   let response = null;
-  if (event.target.dataset.filter === 'sales') {
+  if (event.target.dataset.filter == 'sales') {
     updateState(path, '', path);
     updatedContent();
-    renderOffice();
     response = await appPage(true);
+  } else if (event.target.dataset.filter == '0') {
+    const calls = load('User').calls;
+    calls.map(el => (el.logged = 'logged'));
+    response = calls;
+  } else if (event.target.dataset.filter == '1') {
+    response = load('User').favourites;
   } else {
     response = await fetchFunctions.getRequest(request);
     updateState(`/category?value=${path}`);
