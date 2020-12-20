@@ -259,6 +259,9 @@ a {
   text-align: center;
   letter-spacing: 0.02em;
   color: $black;
+  & li {
+    transition: transform $transition;
+  }
 
   &__link:hover,
   &__link:focus {
@@ -539,8 +542,11 @@ a {
     }
   }
   &__cabinet-box {
-    display: none;
-    transform: translateY(-100px);
+    // display: none;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-30px);
+    transition: opacity $transition, transform $transition;
     width: 100%;
     margin-left: 20px;
 
@@ -669,18 +675,22 @@ body.authorized {
   }
 
   @media screen and (max-width: 1279px) {
-    .is-open {
-      padding-top: 210px;
+    .is-open li {
+      transform: translateY(70px);
     }
 
     .open-cab {
       & .drop_up {
         display: block;
+        opacity: 1;
+        pointer-events: auto;
       }
 
       &.my-account__cabinet-box {
         display: block;
+        pointer-events: auto;
         transform: translateY(0px);
+        opacity: 1;
       }
     }
 
