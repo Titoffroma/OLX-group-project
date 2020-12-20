@@ -70,6 +70,7 @@ export default function () {
         refs.priceInput.value = 0;
         refs.priceInput.setAttribute('disabled', 'disabled');
         refs.priceInput.classList.remove('invalid');
+        refs.priceInput.style.backgroundColor = '#fff';
         document.querySelector('.price-error').innerHTML = '';
       } else {
         refs.priceInput.removeAttribute('disabled')
