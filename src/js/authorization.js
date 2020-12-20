@@ -150,6 +150,9 @@ export default function openModalAuth() {
     return false;
   }
   const markup = hbs();
+  errors = [];
+  emailErrors = [];
+  passwordErrors = [];
   document.body.addEventListener('click', validate);
   return markup;
 }

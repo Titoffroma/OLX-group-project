@@ -9,6 +9,8 @@
   }
   background-color: $main-grey;
   &-header {
+    font-size: 14px;
+    line-height: 1.14;
     font-weight: $bold;
     margin-bottom: 20px;
     @media screen and(min-width:$tablet) {
