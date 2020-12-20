@@ -85,7 +85,8 @@
                 <li class="add-card__item">
                     <label class="add-card__label notice">
                         <span class="add-card__subtitle">Ціна</span>
-                        <input class="add-card__input" type="number" name="price" placeholder=" " value="{{price}}" />
+                        <input class="add-card__input price-input" type="number" name="price" step="0.01" min="0"
+                            placeholder=" " value="{{price}}" />
                         <span class="notice-label">0.00</span>
                         <span class="price-valuta">грн</span>
                     </label>
@@ -94,7 +95,8 @@
                 <li class="add-card__item">
                     <label class="add-card__label notice">
                         <span class="add-card__subtitle">Телефон</span>
-                        <input class="add-card__input" type="tel" name="phone" placeholder=" " value="{{phone}}" />
+                        <input class="add-card__input" type="tel" name="phone" placeholder=" " value="{{phone}}"
+                            maxlength="13" />
                         <span class="notice-label">+38 (0--) --- -- --</span>
                     </label>
                     <p class="error-message"></p>
