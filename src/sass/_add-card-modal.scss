@@ -50,6 +50,14 @@
       margin-bottom: 20px;
     }
   }
+
+  &.checkbox-item {
+    margin-bottom: 20px;
+
+    @media screen and (min-width: $tablet) {
+      margin-bottom: 30px;
+    }
+  }
 }
 
 .add-card__label {
