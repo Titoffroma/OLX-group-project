@@ -85,6 +85,7 @@ function changePhoto(evt) {
     '.product-photo-list-item-img',
   );
   const allPhotos = Array.from(nodeArrayPhotos);
+  if (mainModalPhoto.srcset === evt.target.srcset) return;
   if (allPhotos.length === 1) return;
   mainModalPhoto.classList.remove('animate-product-photo-appear');
   mainModalPhoto.classList.add('animate-product-photo-disappear');
