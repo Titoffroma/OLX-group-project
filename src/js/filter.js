@@ -95,50 +95,18 @@ async function logoutOnClick() {
 }
 function scrollToOfficeSection(event) {
   const index = event.target.getAttribute('data-office-link');
-  let int = 0;
   if (!document.querySelector('.my-office')) {
-    document.querySelector('[data-office]').click();
-    int = 3000;
+    renderOffice().then(() => {
+      document
+        .querySelector(`li[data-index="${index}"]`)
+        .scrollIntoView({ block: 'start', behavior: 'smooth' });
+    });
+    return;
   }
-  setTimeout(() => {
-    document
-      .querySelector(`li[data-index="${index}"]`)
-      .scrollIntoView({ block: 'start', behavior: 'smooth' });
-  }, int);
+  document
+    .querySelector(`li[data-index="${index}"]`)
+    .scrollIntoView({ block: 'start', behavior: 'smooth' });
 }
-
-// async function Mycallback(event) {
-// const path = event.target.getAttribute('href');
-// if (event.target.hasAttribute('data-filter')) {
-//   renderFilterCategory(event);
-// }
-// if (event.target.classList.contains('pagination__link')) {
-//   onPaginationPage(event);
-// }
-// if (event.target.hasAttribute('data-clear-filter')) {
-//   appPage();
-//   updateState('/', '', '/');
-// }
-// if (event.target.hasAttribute('data-office')) {
-//   const url = 'user';
-//   updateState(url, '', url);
-//   renderOffice();
-// }
-// if (event.target.hasAttribute('data-out')) {
-//   logoutOnClick();
-// }
-// if (event.target.closest('.cardset')) event.preventDefault();
-// if (event.target.hasAttribute('data-slide')) slider(event);
-// if (event.target.hasAttribute('data-office-link')) {
-//   scrollToOfficeSection(event)
-// }
-// if (event.target.hasAttribute('data-menu-open')) {
-//   openMenu(event);
-// }
-// if (event.target.hasAttribute('data-menu-close')) {
-//   closeMenu(event);
-// }
-// }
 
 export {
   appPage,
