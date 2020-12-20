@@ -6,7 +6,7 @@ import renderOffice from './myOffice';
 import decideTologin from './main';
 import { updatedContent, updateState } from './history/mainHistory';
 import paginationAll from './pagination-for-All';
-import { openMenu, closeMenu } from './menu';
+import { openMenu, closeMenu, openCabinet } from './menu';
 import { save } from './storage';
 import slider from './slider';
 import {
@@ -48,8 +48,11 @@ function listenAllClicks(event) {
   if (event.target.hasAttribute('data-menu-close')) {
     closeMenu(event);
   }
-  // переход на обьявления одной категории
+  if (event.target.hasAttribute('data-drop')) {
+    openCabinet();
+  }
   if (event.target.hasAttribute('data-filter')) {
+    // переход на обьявления одной категории
     renderFilterCategory(event);
     return;
   }

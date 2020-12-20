@@ -35,7 +35,6 @@ async function appPage(sales) {
   const markup = await decideTologin(searchResult);
   const orderedSearch = renderPagination(markup);
   document.querySelector('main div.container').innerHTML = orderedSearch;
-  console.log(evtHolder.target);
 }
 
 async function onPaginationPage(event) {
