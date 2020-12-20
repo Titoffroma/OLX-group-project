@@ -1,6 +1,5 @@
-
 import renderPaginationAll from '../templates/pegination-for-All.hbs';
-
+import {updateHistory, updateState} from './history/mainHistory'
 const onPage = 16;
 let dataM;
 
@@ -32,7 +31,6 @@ async function onPaginationAllPage(event) {
         const currentPage = event.target;        
         currentPage.classList.add('active');
         console.log(currentPage);
-
         const from = currentPage.dataset.from * onPage;      
         const to = (currentPage.dataset.to  - 1)  * onPage;
         const sliced = dataM.slice(from, to );

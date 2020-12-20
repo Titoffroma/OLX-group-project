@@ -1,4 +1,4 @@
-import { getDataSearch, getDataCategory } from './callHistory'
+import { getDataSearch, getDataCategory, getPage } from './callHistory'
 import renderCards from '../../templates/cardset.hbs';
 import fetchFunctions from '../fetchMe';
 // import renderFilter from './js/filter'
@@ -6,6 +6,10 @@ import fetchFunctions from '../fetchMe';
 // import renderOffice from './js/myOffice'
 import decideTologin from '../main';
 import renderPagination from '../../templates/pagination.hbs'
+import category from '../../templates/category.hbs'
+
+
+
 
 
 export function fun5 () {
@@ -23,6 +27,7 @@ export async function  fun6 () {
 export async function  fun7 () {
     const url = new URL(location.href).search;
     const data = await getDataCategory(url.split('=')[1]);
+
    
     document.querySelector('main div.container').innerHTML = renderCards(data)
   
@@ -33,9 +38,20 @@ export async function  fun8 () {
    
 }
 
+
+   
+
 export async function  fun9 () {
     const url = new URL(location.href).search;
-    const data = await getDataCategory(url.split('=')[1]);
+    const data = await getPage(url.split('=')[1]);
+
+    const markup = await decideTologin(data);
+const orderedSearch = renderPagination(markup);
+
    
-    document.querySelector('main div.container').innerHTML = renderCards(data)
+    document.querySelector('main div.container').innerHTML = orderedSearch
+  
 }
+
+
+

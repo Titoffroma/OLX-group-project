@@ -48,15 +48,16 @@ async function onPaginationPage(event) {
   const markup = await decideTologin(searchResult);
   const orderedSearch = renderCategories(markup);
   document.querySelector('section.categories').innerHTML = orderedSearch;
-  updateState(searchQuery.query);
-
+  updateState(searchQuery.query)
+  updatedContent()
+  
   window.scrollTo({
     top: 0,
     behavior: 'smooth',
   });
   document.querySelector('section.categories').innerHTML = orderedSearch;
 }
-function toggleActive(event) {
+ function toggleActive(event) {
   const pagination = document.querySelector('div[data-pagination]');
   pagination.querySelector('.active').classList.remove('active');
   event.target.classList.add('active');
@@ -71,13 +72,14 @@ async function Mycallback(event) {
     };
     let response = null;
     if (event.target.dataset.filter === 'sales') {
-      updateState(path, '', path);
+      updateState(`/category?value=${path}`, '', `/category?value=${path}`);
       updatedContent();
       renderOffice();
       response = await appPage(true);
     } else {
       response = await fetchFunctions.getRequest(request);
       updateState(`/category?value=${path}`);
+      
     }
 
     const markup = await decideTologin(response);
