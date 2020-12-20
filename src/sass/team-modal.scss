@@ -91,23 +91,8 @@
     }
   }
 }
-.icon-btn {
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background-color: transparent;
-  cursor: pointer;
+.footer-icon-btn {
   color: $accent;
-
-  transform: scale(1);
-  transition: transform $transition;
-  &:hover,
-  &:focus {
-    transform: scale(1.5);
-  }
-
   @media screen and(min-width:$tablet) {
     top: 25px;
     right: 25px;

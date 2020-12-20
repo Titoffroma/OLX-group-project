@@ -8,8 +8,11 @@
     />
     <title>OLX-team-project</title>
   </head>
+
   <body>
-    <div class="preloader-backdrop"><div class="preloader"></div></div>
+    <div class="preloader-backdrop">
+      <div class="preloader"></div>
+    </div>
     <header>
       <div class="container header">
         <div class="header_button_menu_phone">
@@ -24,10 +27,14 @@
                   aria-controls="menu-container"
                   data-menu-button
                 >
-                  <span class="menu-button-open material-icons md-24"
+                  <span
+                    data-menu-open
+                    class="menu-button-open material-icons md-24"
                     >menu</span
                   >
-                  <span class="menu-button-close material-icons md-24"
+                  <span
+                    data-menu-close
+                    class="menu-button-close material-icons md-24"
                     >clear</span
                   >
                 </button>
@@ -120,8 +127,13 @@
             <div class="header_button_menu_phone">
               <div class="header_button_menu_tablet">
                 <div class="">
-                  <div class="data-back" data-backref id="menu-container">
-                    <div class="menu-container" id="menu-container">
+                  <div
+                    class="data-back hide is-hidden"
+                    data-backref
+                    data-menu-close
+                    id="menu-container"
+                  >
+                    <div class="menu-container">
                       <button
                         type="button"
                         class="header_button__perm_identity"
@@ -135,6 +147,7 @@
                             class="header_button my-account__cabinet"
                             type="button"
                             data-office
+                            data-menu-close
                           >
                             Мій кабінет
                             <span class="material-icons">arrow_drop_up</span>
@@ -153,15 +166,26 @@
                               data-modal="true"
                               data-hbs="9"
                               aria-expanded="false"
+                              data-menu-close
                               >input</span
                             >
                           </button>
                         </div>
                         <div class="header_button my-account__cabinet-box">
-                          <a class="cabinet_link" data-office-link="0" href="#">
+                          <a
+                            class="cabinet_link"
+                            data-menu-close
+                            data-office-link="0"
+                            href="#"
+                          >
                             Мої оголошення
                           </a>
-                          <a class="cabinet_link" data-office-link="1" href="#">
+                          <a
+                            class="cabinet_link"
+                            data-menu-close
+                            data-office-link="1"
+                            href="#"
+                          >
                             Обране
                           </a>
                         </div>
@@ -178,6 +202,7 @@
                       >
 
                       <div class="header_filter__wrap">
+                        <div class="header_filter__scroll-shield"></div>
                         <ul class="header_filter">
                           <li class="header_filter__item">
                             <a href="#" class="header_filter__link"

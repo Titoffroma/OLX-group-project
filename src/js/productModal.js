@@ -1,17 +1,13 @@
 import { load, save, remove } from './storage';
 import hbs from '../templates/product-modal.hbs';
 import fetchFunctions from './fetchMe';
+import { updateState, updatedContent } from './history/mainHistory';
+import addPreloader from './preloader';
 const refs = {
   get element() {
     return document.querySelector('.main-modal-product-photo');
   },
 };
-import desideTologin from './main.js';
-
-import { updateState, updatedContent } from './history/mainHistory';
-import addPreloader from './preloader';
-
-document.body.addEventListener('click', modalProduct);
 
 let heartInCard = null;
 
@@ -55,112 +51,117 @@ async function fetchProduct(id, title) {
     }
   });
 }
-export { fetchProduct };
+export { fetchProduct, openInfoAboutSeller, addToFavorite, changePhoto };
 
-function modalProduct(evt) {
-  if (evt.target.hasAttribute('data-id')) return addToFavorite(evt);
-  if (!evt.target.closest('.backdrop')) return;
+// function modalProduct(evt) {
+// if (evt.target.hasAttribute('data-id')) return addToFavorite(evt);
+// if (!evt.target.closest('.backdrop')) return;
+
+// if (evt.target.classList.contains('product-photo-list-item-img'))
+//   return changePhoto(evt);
+// if (evt.target.classList.contains('modal-button-box'))
+//   return openInfoAboutSeller(evt);
+//   if (evt.target.nodeName === 'SPAN') return;
+//   if (evt.target.nodeName === 'BUTTON') return;
+
+// }
+
+function openInfoAboutSeller() {
   const aboutSellerContOpened = document.querySelector(
     '.modal-button-box-info',
   );
   const aboutSellerContClosed = document.querySelector('.modal-button-box');
+  aboutSellerContClosed.style.opacity = '0';
+  aboutSellerContOpened.style.opacity = '1';
+
+  setTimeout(() => {
+    aboutSellerContClosed.remove();
+  }, 250);
+}
+
+function changePhoto(evt) {
   const mainModalPhoto = document.querySelector('.main-modal-product-photo');
-  if (evt.target.classList.contains('product-photo-list-item-img'))
-    return changePhoto(evt);
-  if (evt.target.classList.contains('modal-button-box'))
-    return openInfoAboutSeller(evt);
-  if (evt.target.nodeName === 'SPAN') return;
-  if (evt.target.nodeName === 'BUTTON') return;
-  function openInfoAboutSeller() {
-    aboutSellerContClosed.style.opacity = '0';
-    aboutSellerContOpened.style.opacity = '1';
+  const nodeArrayPhotos = document.querySelectorAll(
+    '.product-photo-list-item-img',
+  );
+  const allPhotos = Array.from(nodeArrayPhotos);
+  if (mainModalPhoto.srcset === evt.target.srcset) return;
+  if (allPhotos.length === 1) return;
+  mainModalPhoto.classList.remove('animate-product-photo-appear');
+  mainModalPhoto.classList.add('animate-product-photo-disappear');
+  setTimeout(() => {
+    mainModalPhoto.srcset = evt.target.srcset;
+    mainModalPhoto.classList.remove('animate-product-photo-disappear');
+    mainModalPhoto.classList.add('animate-product-photo-appear');
+  }, 200);
+}
 
-    setTimeout(() => {
-      aboutSellerContClosed.remove();
-    }, 250);
-  }
+async function addToFavorite(evt) {
+  evt.target.classList.add('tapped');
+  const liked = evt.target.hasAttribute('data-idl') ? true : false;
+  const id = evt.target.getAttribute('data-id');
+  const opt = {
+    point: fetchFunctions.points.myFav,
+  };
+  const resp = await fetchFunctions.getRequest(opt);
 
-  function changePhoto(evt) {
-    const nodeArrayPhotos = document.querySelectorAll(
-      '.product-photo-list-item-img',
-    );
-    const allPhotos = Array.from(nodeArrayPhotos);
-    if (allPhotos.length === 1) return;
-    mainModalPhoto.classList.remove('animate-product-photo-appear');
-    mainModalPhoto.classList.add('animate-product-photo-disappear');
-    setTimeout(() => {
-      mainModalPhoto.srcset = evt.target.srcset;
-      mainModalPhoto.classList.remove('animate-product-photo-disappear');
-      mainModalPhoto.classList.add('animate-product-photo-appear');
-    }, 200);
-  }
-
-  async function addToFavorite(evt) {
-    evt.target.classList.add('tapped');
-    const liked = evt.target.hasAttribute('data-idl') ? true : false;
-    const id = evt.target.getAttribute('data-id');
-    const opt = {
-      point: fetchFunctions.points.myFav,
+  if (!resp.favourites.find(el => el._id === id)) {
+    const options = {
+      point: `${fetchFunctions.points.fav}${id}`,
+      method: 'POST',
     };
-    const resp = await fetchFunctions.getRequest(opt);
-
-    if (!resp.favourites.find(el => el._id === id)) {
-      const options = {
-        point: `${fetchFunctions.points.fav}${id}`,
-        method: 'POST',
-      };
-      const response = await fetchFunctions.getRequest(options);
-      if (response) {
-        evt.target.classList.add('liked');
-        evt.target.classList.remove('tapped');
-        if (liked)
-          return (evt.target.closest('.cardset__overlay').dataset.liked =
-            'liked');
-        if (heartInCard) {
-          if (evt.target.classList.contains('actions-item_title')) {
-            evt.target.textContent = 'З обраного';
-          } else {
-            evt.target.previousElementSibling.textContent = 'З обраного';
-            evt.target.previousElementSibling.classList.add('liked');
-          }
-          heartInCard.classList.add('liked');
-          heartInCard.closest('.cardset__overlay').dataset.liked = 'liked';
+    const response = await fetchFunctions.getRequest(options);
+    if (response) {
+      evt.target.classList.add('liked');
+      evt.target.classList.remove('tapped');
+      if (liked)
+        return (evt.target.closest('.cardset__overlay').dataset.liked =
+          'liked');
+      if (heartInCard) {
+        if (evt.target.classList.contains('actions-item_title')) {
+          evt.target.textContent = 'З обраного';
+        } else {
+          evt.target.previousElementSibling.textContent = 'З обраного';
+          evt.target.previousElementSibling.classList.add('liked');
+        }
+        heartInCard.classList.add('liked');
+        heartInCard.closest('.cardset__overlay').dataset.liked = 'liked';
+      }
+    }
+  } else {
+    const options = {
+      point: `${fetchFunctions.points.fav}${id}`,
+      method: 'DELETE',
+    };
+    const response = await fetchFunctions.getRequest(options);
+    if (response) {
+      evt.target.classList.remove('liked');
+      evt.target.classList.remove('tapped');
+      if (liked) {
+        if (evt.target.closest('.fav')) {
+          evt.target.closest('.fav').remove();
+          return (evt.target.closest('.cardset__overlay').dataset.liked = '');
         }
       }
-    } else {
-      const options = {
-        point: `${fetchFunctions.points.fav}${id}`,
-        method: 'DELETE',
-      };
-      const response = await fetchFunctions.getRequest(options);
-      if (response) {
-        evt.target.classList.remove('liked');
-        evt.target.classList.remove('tapped');
-        if (liked) {
-          if (evt.target.closest('.fav')) {
-            evt.target.closest('.fav').remove();
-            return (evt.target.closest('.cardset__overlay').dataset.liked = '');
-          }
+      if (heartInCard) {
+        if (evt.target.classList.contains('actions-item_title')) {
+          evt.target.textContent = 'В обране';
+        } else {
+          evt.target.previousElementSibling.textContent = 'В обране';
+          evt.target.previousElementSibling.classList.remove('liked');
         }
-        if (heartInCard) {
-          if (evt.target.classList.contains('actions-item_title')) {
-            evt.target.textContent = 'В обране';
-          } else {
-            evt.target.previousElementSibling.textContent = 'В обране';
-            evt.target.previousElementSibling.classList.remove('liked');
-          }
-          heartInCard.classList.remove('liked');
-          heartInCard.closest('.cardset__overlay').dataset.liked = '';
-          if (heartInCard.closest('.fav')) {
-            heartInCard.closest('.fav').remove();
-            document.querySelector('.backdrop').click();
-          }
-          return;
+        heartInCard.classList.remove('liked');
+        heartInCard.closest('.cardset__overlay').dataset.liked = '';
+        if (heartInCard.closest('.fav')) {
+          heartInCard.closest('.fav').remove();
+          document.querySelector('.backdrop').click();
         }
+        return;
       }
     }
   }
 }
+
 function slider() {
   if (document.documentElement.clientWidth < 768) {
     var initialPoint;

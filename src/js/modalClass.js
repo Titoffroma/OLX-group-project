@@ -54,8 +54,8 @@ class Modal {
       setTimeout(() => {
         modalRef.classList.add('opened');
       }, 500);
-      document.body.style.overflow = 'hidden';
       this.scroll = this.oldScroll;
+      document.body.style.overflow = 'hidden';
       modalRef.addEventListener('click', this.onClickCloseModal);
       window.addEventListener('keydown', this.onEscapeCloseModal);
     }
@@ -68,9 +68,9 @@ class Modal {
     backdrop.classList.remove('opened');
     setTimeout(() => {
       backdrop.remove();
+      document.body.style.overflowY = 'scroll';
+      document.body.style.paddingRight = this.scroll;
     }, 500);
-    document.body.style.overflowY = 'scroll';
-    document.body.style.paddingRight = this.scroll;
   }
   onEscapeCloseModal(event) {
     if (event.code === 'Escape') {
