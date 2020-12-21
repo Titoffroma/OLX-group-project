@@ -1,9 +1,4 @@
 import fetchFunctions from '../fetchMe';
-
-import renderPagination from '../../templates/pagination.hbs';
-import renderOffice from '../myOffice';
-import decideTologin from '../main';
-
 const BASE_URL = 'https://callboard-backend.herokuapp.com/call'
 
 export const getDataSearch = async (query) => {
@@ -18,10 +13,7 @@ export const getDataSearch = async (query) => {
     } catch (e) {
         console.log(e)
     }
-}
-
-
-
+};
 
 
 export const getDataCategory = async (query) => {
@@ -32,18 +24,26 @@ export const getDataCategory = async (query) => {
     } catch (e) {
         console.log(e)
     }
-}
-
-
+};
 
 export const getPage = async (page) => {
-    try {
-           return await fetch(`${BASE_URL}/${page}`)
-               .then( res => res.json())
-               .then( res => res)
-       } catch (e) {
-           console.log(e)
-       }
+    const searchQuery = {
+        point: fetchFunctions.points.call,
+        query: `?page=${page}`,
+      };
+      return await fetchFunctions.getRequest(searchQuery);
    
-   }
+   };
+
+
+
+   export const getSale = async (sales) => {
+    const searchQuery = {
+        point: fetchFunctions.points.call,
+        query: '?page=1',
+      };
+      const searchResult = await fetchFunctions.getRequest(searchQuery);
+     return searchResult.sales;
+      
+   };
    

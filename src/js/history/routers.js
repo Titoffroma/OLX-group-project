@@ -1,6 +1,6 @@
-import { fun6, fun7, fun8, fun9} from './updatePageHistory' 
-import renderFilter from '../filter'
-import renderOffice from '../myOffice'
+import {fun6, fun7, fun8, fun9} from './updatePageHistory';
+import renderFilter from '../filter';
+import renderOffice from '../myOffice';
 
 export const routers = [
     {
@@ -25,33 +25,15 @@ export const routers = [
         meta: { auth: false}
     },
     {
-        path:'/goods',
+        path:'/page',
         component: fun8,
         meta: { auth: false}
     },
     {
-        path:'/page',
+        path:'/sale',
         component: fun9,
         meta: { auth: false}
     },
-
-    // {
-    //     path:'/category?value=free',
-    //     component: fun11,
-    //     meta: { auth: false}
-    // },
-
-    // {
-    //     path:'/category?value=businessAndServices',
-    //     component: fun12,
-    //     meta: { auth: false}
-    // },
-
-    // {
-    //     path:'?page=2',
-    //     component: fun13,
-    //     meta: { auth: false}
-    // },
-    
+  
 ];
 

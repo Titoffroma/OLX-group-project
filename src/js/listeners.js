@@ -74,6 +74,7 @@ function listenAllClicks(event) {
   if (event.target.hasAttribute('data-office')) {
     const url = 'user';
     updateState(url, '', url);
+    updatedContent()
     renderOffice();
     return;
   }

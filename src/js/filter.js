@@ -12,7 +12,7 @@ import { load, save } from './storage';
 import { evtHolder } from './listeners';
 
 renderFilter();
-appPage();
+appPage()
 
 export default async function renderFilter() {
   const filterUL = document.querySelector('.header_filter');
@@ -22,10 +22,11 @@ export default async function renderFilter() {
   const response = await fetchFunctions.getRequest(filterRequest);
   save('cats', response);
   filterUL.innerHTML = hbsFunction(response);
+  appPage();
   // document.body.addEventListener('click', Mycallback);
 }
 
-async function appPage(sales) {
+ async function appPage(sales) {
   const searchQuery = {
     point: fetchFunctions.points.call,
     query: '?page=1',
@@ -50,9 +51,7 @@ async function onPaginationPage(event) {
   const markup = await decideTologin(searchResult);
   const orderedSearch = renderCategories(markup);
   document.querySelector('section.categories').innerHTML = orderedSearch;
-  updateState(searchQuery.query)
-  updatedContent()
-  
+  updateState(`/page?page=${numderPage}` )
   window.scrollTo({
     top: 0,
     behavior: 'smooth',
@@ -74,7 +73,7 @@ async function renderFilterCategory(event) {
   };
   let response = null;
   if (event.target.dataset.filter == 'sales') {
-    updateState(path, '', path);
+    updateState(`/sale?${path}`);
     updatedContent();
     response = await appPage(true);
   } else if (event.target.dataset.filter == '0') {
@@ -85,7 +84,8 @@ async function renderFilterCategory(event) {
     response = load('User').favourites;
   } else {
     response = await fetchFunctions.getRequest(request);
-    updateState(`/category?value=${path}`);
+   updateState(`/category?value=${path}`);
+    updatedContent()
   }
 
   const markup = await decideTologin(response);
