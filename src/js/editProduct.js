@@ -23,9 +23,7 @@ export default async function openEditCard(evt) {
   const title = evt.target.getAttribute('data-title');
   const data = await productFetch(id, title);
   const imgUrl = data.imageUrls;
-  const markup = editCardHbs(data);
-
-  
+   const markup = editCardHbs(data);
 
   function onEditCard(e) {
     modalLogic();
@@ -34,8 +32,8 @@ export default async function openEditCard(evt) {
   const cardForm = document.querySelector('.add-card__form');
   const closeBtn = document.querySelector('span[data-close]');
   const formData = new FormData();
-  const myHeaders = new Headers();
-  
+    const myHeaders = new Headers();
+    
     ref.btnChekRef.addEventListener('click', () => {
     if (ref.btnChekRef.checked === true) {
       document.querySelector(`.on-change`).textContent = 'Видалити';
@@ -93,10 +91,10 @@ export default async function openEditCard(evt) {
       async function deleteCard() {
         let response = await fetchFunctions.getRequest(deleteRequest);
       }
-      deleteCard()
+          deleteCard()
+         closeBtn.click();
     }
   }
-   
   };
 
  
