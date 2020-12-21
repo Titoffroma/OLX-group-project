@@ -25,7 +25,7 @@ const updateHistory = (query) => {
     if (!router.meta.auth || !auth) updateState(query)
 }
 
-window.onpopstate = function(event) {
+window.onpopstate = function() {
     updatedContent();
 };
 let state = null;
@@ -43,7 +43,7 @@ export const updatedContent = () => {
         updateState(routers[0].path)
     } 
     startState = false;
-}
+};
 
 export const updateState = (payload) => {
     history.pushState(payload, null, payload) 
