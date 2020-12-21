@@ -5,7 +5,7 @@ export default function () {
   const refs = {
     photoElem: document.querySelector('#photoElem'),
     outputImg: document.querySelectorAll('#output_image'),
-    categoryList: document.querySelector('.category-list'),
+    categoryList: document.querySelector('.select-input'),
     addCardForm: document.querySelector('.add-card__form'),
     photoLabel: document.querySelectorAll('.photo-label'),
     formInputs: document.querySelectorAll('.add-card__input'),
@@ -57,7 +57,6 @@ export default function () {
             'Заповніть будьласка це поле';
         } else {
           input.classList.remove('invalid');
-          errorsMessageList[currentIndex].classList.add('visually-hidden');
         }
       });
     });
@@ -74,7 +73,7 @@ export default function () {
         refs.priceInput.style.backgroundColor = '#fff';
         document.querySelector('.price-error').innerHTML = '';
       } else {
-        refs.priceInput.removeAttribute('disabled')
+        refs.priceInput.removeAttribute('disabled');
       }
     });
 
