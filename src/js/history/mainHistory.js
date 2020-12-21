@@ -21,7 +21,6 @@ function refreshHistoryOnClick(e) {
 
 const updateHistory = (query) => {
     let router = routers.find( item => item.path === query);
-    console.log(router);
     if (!router) return
     if (!router.meta.auth || !auth) updateState(query)
 }

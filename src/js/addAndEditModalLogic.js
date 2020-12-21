@@ -40,7 +40,7 @@ export default function () {
   }
 
   function categoryRender() {
-    refs.categoryInput.insertAdjacentHTML('afterbegin', catMarkup(load('cats')));
+    refs.categoryList.insertAdjacentHTML('afterbegin', catMarkup(load('cats')));
   }
 
   function validateInput() {
@@ -51,12 +51,13 @@ export default function () {
         const errorsMessageList = Array.from(refs.errorMessage);
 
         if (input.value.trim() === '') {
+          input.classList.add('invalid');
+
           errorsMessageList[currentIndex].innerHTML =
             'Заповніть будьласка це поле';
-          input.classList.add('invalid');
         } else {
           input.classList.remove('invalid');
-          errorsMessageList[currentIndex].innerHTML = '';
+          errorsMessageList[currentIndex].classList.add('visually-hidden');
         }
       });
     });

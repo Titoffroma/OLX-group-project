@@ -44,6 +44,7 @@ class Modal {
     document.body.addEventListener('click', this.openModal, { once: true });
   }
   async openModal(event) {
+    this.startListener();
     if (event.target.dataset.modal == 'true') {
       const index = event.target.dataset.hbs;
       const markup = await this.functions[index](event);
@@ -59,7 +60,6 @@ class Modal {
       modalRef.addEventListener('click', this.onClickCloseModal);
       window.addEventListener('keydown', this.onEscapeCloseModal);
     }
-    this.startListener();
   }
   closeModal() {
     const backdrop = document.querySelector('div[data-close]');
