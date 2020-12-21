@@ -137,7 +137,6 @@ function validate(evt) {
 
   function validateRegistration(evt) {
     evt.preventDefault();
-    checkOnErrors();
     errors = [...emailErrors, ...passwordErrors];
     if (errors.length < 1) {
       fetchRegistration();
