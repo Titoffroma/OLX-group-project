@@ -40,6 +40,7 @@ const evtHolder = {
 export { evtHolder };
 
 function listenAllClicks(event) {
+  console.log(event.target);
   // окрытие бургера
   if (event.target.hasAttribute('data-menu-open')) {
     openMenu(event);
@@ -48,11 +49,12 @@ function listenAllClicks(event) {
   if (event.target.hasAttribute('data-menu-close')) {
     closeMenu(event);
   }
+  // открытие дропдауна кабинета в бургере
   if (event.target.hasAttribute('data-drop')) {
     openCabinet();
   }
+  // переход на обьявления одной категории
   if (event.target.hasAttribute('data-filter')) {
-    // переход на обьявления одной категории
     renderFilterCategory(event);
     return;
   }
@@ -68,17 +70,14 @@ function listenAllClicks(event) {
   }
   // переход на домашнюю страницу
   if (event.target.hasAttribute('data-clear-filter')) {
-    evtHolder.target = event.target; // пример работы объекта evtHolder. Смотреть console.log
-    appPage();
     updateState('/', '', '/');
+    updatedContent();
     return;
   }
   // переход в мой кабинет
   if (event.target.hasAttribute('data-office')) {
-    const url = 'user';
-    updateState(url, '', url);
-    updatedContent()
-    renderOffice();
+    updateState('user', '', 'user');
+    updatedContent();
     return;
   }
   // выход из аккаунта
@@ -90,8 +89,7 @@ function listenAllClicks(event) {
   if (event.target.hasAttribute('data-slide')) return slider(event);
   // прокрутка к разделу в моем кабинете
   if (event.target.hasAttribute('data-office-link')) {
-    scrollToOfficeSection(event);
-    return;
+    return scrollToOfficeSection(event);
   }
   // логика добавления карточки товара
   if (event.target.closest('.cardset')) event.preventDefault();
