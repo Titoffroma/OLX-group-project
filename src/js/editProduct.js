@@ -4,7 +4,6 @@ import modalLogic from './addAndEditModalLogic';
 import { load, save, remove } from './storage';
 import { pushError } from './pnotify';
 
-
 async function productFetch(id, title) {
   const options = {
     point: fetchFunctions.points.find,
@@ -23,6 +22,19 @@ export default async function openEditCard(evt) {
   const title = evt.target.getAttribute('data-title');
   const data = await productFetch(id, title);
   const imgUrl = data.imageUrls;
+
+  function onAddImg() {
+    const liText = `<li class="photo-item">
+                                <input id="photoElem" class="photo-input" type="file" name="file" multiple
+                                    accept="image/*" required />
+                                <label for="photoElem" class="photo-label"><span
+                                        class="material-icons">add</span></label>
+                                <img id="output_image" />
+                            </li>`;
+    document.querySelector('.photo-list')
+      .insertAdjacentHTML(`beforeend`,liText.repeat(5-imgUrl.length));
+  }
+
    const markup = editCardHbs(data);
 
   function onEditCard(e) {
@@ -33,6 +45,10 @@ export default async function openEditCard(evt) {
   const closeBtn = document.querySelector('span[data-close]');
   const formData = new FormData();
     const myHeaders = new Headers();
+
+    if (imgUrl.length > 0) {
+      onAddImg() 
+    } 
     
     ref.btnChekRef.addEventListener('click', () => {
     if (ref.btnChekRef.checked === true) {
@@ -97,7 +113,7 @@ export default async function openEditCard(evt) {
   }
   };
 
- 
+
   document.body.addEventListener('click', onEditCard, { once: true });
   
   const ref = {
