@@ -1,5 +1,6 @@
 import renderPaginationAll from '../templates/pegination-for-All.hbs';
 import renderCards from '../templates/cardset.hbs';
+
 const onPage = 16;
 let dataM;
 
@@ -30,6 +31,7 @@ export default async function paginationAll(data) {
 }
 
 async function onPaginationAllPage(event) {
+
   const currentActivePage = document.body.querySelector('.btn-pag.active');
   if (currentActivePage) {
     currentActivePage.classList.remove('active');
@@ -45,6 +47,7 @@ async function onPaginationAllPage(event) {
   document.querySelector('section.categories').innerHTML = await renderCards(
     sliced,
   );
+
 
   window.scrollTo({
     top: 0,
