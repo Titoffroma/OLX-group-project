@@ -16,6 +16,5 @@ export default async function renderOffice() {
     'My Calls': user.calls,
     'My Favourites': user.favourites,
   };
-  console.log(user.favourites);
   document.querySelector('main div.container').innerHTML = myAdvert(info);
 }

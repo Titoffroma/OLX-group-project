@@ -1,5 +1,4 @@
 import hbsFunction from '../templates/filter.hbs';
-import renderCards from '../templates/cardset.hbs';
 import renderCategories from '../templates/category.hbs';
 import renderPagination from '../templates/pagination.hbs';
 import fetchFunctions from './fetchMe.js';
@@ -7,9 +6,13 @@ import renderOffice from './myOffice';
 import decideTologin from './main';
 import { updatedContent, updateState } from './history/mainHistory';
 import paginationAll from './pagination-for-All';
+// import { openMenu, closeMenu } from './menu';
+import { load, save } from './storage';
+// import slider from './slider';
+import { evtHolder } from './listeners';
 
-import { save } from './storage';
-import slider from './slider';
+renderFilter();
+appPage();
 
 export default async function renderFilter() {
   const filterUL = document.querySelector('.header_filter');
@@ -19,10 +22,8 @@ export default async function renderFilter() {
   const response = await fetchFunctions.getRequest(filterRequest);
   save('cats', response);
   filterUL.innerHTML = hbsFunction(response);
-  document.body.addEventListener('click', Mycallback);
-  appPage();
+  // document.body.addEventListener('click', Mycallback);
 }
-renderFilter();
 
 async function appPage(sales) {
   const searchQuery = {
@@ -61,75 +62,56 @@ function toggleActive(event) {
   pagination.querySelector('.active').classList.remove('active');
   event.target.classList.add('active');
 }
-async function Mycallback(event) {
+
+async function renderFilterCategory(event) {
   const path = event.target.getAttribute('href');
-  if (event.target.hasAttribute('data-filter')) {
-    event.preventDefault();
-    const request = {
-      point: fetchFunctions.points.catCalls,
-      query: event.target.dataset.filter,
-    };
-    let response = null;
-    if (event.target.dataset.filter === 'sales') {
-      updateState(path, '', path);
-      updatedContent();
-      renderOffice();
-      response = await appPage(true);
-    } else {
-      response = await fetchFunctions.getRequest(request);
-      updateState(`/category?value=${path}`);
-    }
-
-    const markup = await decideTologin(response);
-    // document.querySelector('main div.container').innerHTML = renderCards(
-    //   markup,
-    // );
-    paginationAll(markup);
-    window.scrollTo({
-      top: 0,
-    });
+  event.preventDefault();
+  const request = {
+    point: fetchFunctions.points.catCalls,
+    query: event.target.dataset.filter,
+  };
+  let response = null;
+  if (event.target.dataset.filter == 'sales') {
+    updateState(path, '', path);
+    updatedContent();
+    response = await appPage(true);
+  } else if (event.target.dataset.filter == '0') {
+    const calls = load('User').calls;
+    calls.map(el => (el.logged = 'logged'));
+    response = calls;
+  } else if (event.target.dataset.filter == '1') {
+    response = load('User').favourites;
+  } else {
+    response = await fetchFunctions.getRequest(request);
+    updateState(`/category?value=${path}`);
   }
 
-  if (event.target.classList.contains('pagination__link')) {
-
-    const controlActiveFilter = document.body.querySelector(
-      '.pagination__link.active',
-    );
-    if (controlActiveFilter) {
-      controlActiveFilter.classList.remove('active');
-    }
-    const currentFilter = event.target;
-    currentFilter.classList.add('active');
-
-    onPaginationPage(event);
-  }
-  if (event.target.hasAttribute('data-clear-filter')) {
-    appPage();
-    updateState('/', '', '/');
-  }
-  if (event.target.hasAttribute('data-office')) {
-    const url = 'user';
-    updateState(url, '', url);
-    renderOffice();
-  }
-  if (event.target.hasAttribute('data-out')) {
-    const response = await fetchFunctions.logout();
-    if (response) appPage();
-  }
-  if (event.target.closest('.cardset')) event.preventDefault();
-  if (event.target.hasAttribute('data-slide')) slider(event);
-
-  if (event.target.hasAttribute('data-office-link')) {
-    const index = event.target.getAttribute('data-office-link');
-    let int = 0;
-    if (!document.querySelector('.my-office')) {
-      document.querySelector('[data-office]').click();
-      int = 3000;
-    }
-    setTimeout(() => {
+  const markup = await decideTologin(response);
+  paginationAll(markup);
+}
+async function logoutOnClick() {
+  const response = await fetchFunctions.logout();
+  if (response) appPage();
+}
+function scrollToOfficeSection(event) {
+  const index = event.target.getAttribute('data-office-link');
+  if (!document.querySelector('.my-office')) {
+    renderOffice().then(() => {
       document
         .querySelector(`li[data-index="${index}"]`)
         .scrollIntoView({ block: 'start', behavior: 'smooth' });
-    }, int);
+    });
+    return;
   }
+  document
+    .querySelector(`li[data-index="${index}"]`)
+    .scrollIntoView({ block: 'start', behavior: 'smooth' });
 }
+
+export {
+  appPage,
+  renderFilterCategory,
+  onPaginationPage,
+  logoutOnClick,
+  scrollToOfficeSection,
+};

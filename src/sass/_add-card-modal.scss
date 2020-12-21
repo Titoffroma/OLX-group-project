@@ -8,12 +8,17 @@
   height: 24px;
 
   border: none;
-  background-color: $white;
+  background-color: transparent;
 
   cursor: pointer;
 
   & .material-icons {
     font-weight: 500;
+  }
+  transition: transform $transition;
+  &:hover,
+  &:focus {
+    transform: scale(1.5);
   }
 
   @media screen and (min-width: $tablet) {
@@ -34,13 +39,23 @@
 }
 
 .add-card__item {
-  margin-bottom: 20px;
+  &.photo {
+    margin-bottom: 20px;
+  }
 
   &:last-child {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 
     @media screen and (min-width: $tablet) {
-      margin-bottom: 40px;
+      margin-bottom: 20px;
+    }
+  }
+
+  &.checkbox-item {
+    margin-bottom: 20px;
+
+    @media screen and (min-width: $tablet) {
+      margin-bottom: 30px;
     }
   }
 }
@@ -89,8 +104,14 @@
   @media screen and (min-width: $desktop) {
     width: 440px;
   }
+
   &.select-input {
     cursor: pointer;
+  }
+
+  &:focus {
+    border: 1px solid $accent;
+    outline: none;
   }
 }
 
@@ -130,6 +151,7 @@
   background-size: auto;
   background-origin: border-box;
   background-position: 218px 25px;
+  appearance: none;
 
   @media screen and (min-width: $tablet) {
     background-position: 425px 25px;
@@ -137,11 +159,6 @@
 
   @media screen and (min-width: $desktop) {
     background-position: 409px 25px;
-  }
-
-  &:hover,
-  &:focus {
-    background-image: none;
   }
 }
 
@@ -388,6 +405,7 @@
 }
 
 .error-message {
+  height: 20px;
   color: $main-red;
   margin-top: 5px;
   font-size: 12px;

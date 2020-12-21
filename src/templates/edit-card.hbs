@@ -13,7 +13,7 @@
                     </label>
                     <p class="error-message"></p>
                 </li>
-                <li class="add-card__item">
+                <li class="add-card__item photo">
                     <label class="add-card__label">
                         <span class="add-card__subtitle">Фото</span>
                         <ul class="photo-list">
@@ -80,19 +80,17 @@
                 <li class="add-card__item">
                     <label class="add-card__label notice select-field">
                         <span class="add-card__subtitle">Категорія товару</span>
-                        <input list="categories" class="add-card__input select-input" type="text" name="category"
-                            value="{{category}}" required />
-                        <div class="category-list"></div>
-                        <button class="icon-btn open-category" type="button">
-                            <span class="material-icons" width="10px" height="5px">arrow_drop_down</span>
-                        </button>
+                        <select class="add-card__input select-input" name="category" required>
+                            <option value="{{category}}">{{category}}</option>
+                        </select>
                     </label>
                     <p class="error-message"></p>
                 </li>
                 <li class="add-card__item">
                     <label class="add-card__label notice">
                         <span class="add-card__subtitle">Ціна</span>
-                        <input class="add-card__input" type="number" name="price" placeholder=" " value="{{price}}" />
+                        <input class="add-card__input price-input" type="number" name="price" step="0.01" min="0"
+                            placeholder=" " value="{{price}}" />
                         <span class="notice-label">0.00</span>
                         <span class="price-valuta">грн</span>
                     </label>
@@ -101,12 +99,13 @@
                 <li class="add-card__item">
                     <label class="add-card__label notice">
                         <span class="add-card__subtitle">Телефон</span>
-                        <input class="add-card__input" type="tel" name="phone" placeholder=" " value="{{phone}}" />
+                        <input class="add-card__input" type="tel" name="phone" placeholder=" " value="{{phone}}"
+                            maxlength="13" />
                         <span class="notice-label">+38 (0--) --- -- --</span>
                     </label>
                     <p class="error-message"></p>
                 </li>
-                <li class="add-card__item">
+                <li class="add-card__item checkbox-item">
                     <label class="checkbox-field">
                         <input class="checkbox" type="checkbox" name="checkbox" />
                         <span class="checkbox-label">

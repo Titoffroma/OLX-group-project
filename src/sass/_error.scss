@@ -39,8 +39,8 @@ body > .pnotify.pnotify-positioned.error {
   z-index: 30;
   & .material-container {
     border-radius: 0 0 8px 8px;
-    padding-top: 100px;
-    background: $main-red;
+    padding-top: 60px;
+    background: $accent;
     color: $white;
   }
 }

@@ -73,6 +73,13 @@
     & .icons-container {
       width: 24px;
       height: 24px;
+      // transform: scale(1.4);
+      // @media screen and (min-width: $tablet) {
+      //   transform: scale(1.8);
+      // }
+      // @media screen and (min-width: $tablet) {
+      //   transform: scale(1);
+      // }
       &:first-child {
         margin-bottom: 10px;
       }
@@ -82,10 +89,18 @@
     }
   }
   &__icons {
-    font-size: 14px;
     color: $white;
     opacity: 0;
     transition: opacity $transition;
+    &.size {
+      font-size: 32px;
+      @media screen and (min-width: $tablet) {
+        font-size: 28px;
+      }
+      @media screen and (min-width: $desktop) {
+        font-size: 24px;
+      }
+    }
     &.unauthorized,
     &.unlogged:not(.logged) {
       display: none;
