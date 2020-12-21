@@ -1,5 +1,3 @@
-window.addEventListener('load', delPreloader);
-
 const measureAndFixScroll = function () {
   if (getComputedStyle(document.body).overflowY === 'hidden') return;
   const scrollDiv = document.createElement('div');
@@ -43,4 +41,4 @@ const delPreloader = option => {
 };
 addPreloader();
 export default addPreloader;
-export { measureAndFixScroll };
+export { measureAndFixScroll, delPreloader };

@@ -193,7 +193,7 @@ a {
     left: 64px;
     z-index: 100;
     @media screen and (min-width: $tablet) {
-      left: 73px;
+      //left: 73px;
     }
     @media screen and (min-width: $desktop) {
       display: none;
@@ -259,6 +259,9 @@ a {
   text-align: center;
   letter-spacing: 0.02em;
   color: $black;
+  & li {
+    transition: transform $transition;
+  }
 
   &__link:hover,
   &__link:focus {
@@ -266,7 +269,7 @@ a {
   }
 
   @media screen and (max-width: 1279px) {
-    padding-top: 200px;
+    padding-top: 140px;
     height: 100vh;
     overflow-y: auto;
     border: 1px solid $stroke-grey;
@@ -292,14 +295,12 @@ a {
   @media screen and (max-width: 767px) {
     min-width: 305px;
     //width: 100%;
-    max-height: 815px;
     border: 1px solid $stroke-grey;
   }
 
   @media screen and (min-width: $tablet) and (max-width: 1279px) {
     min-width: 338px;
     // width: 100%;
-    height: 1024px;
   }
 
   &__replay {
@@ -334,9 +335,13 @@ a {
   &__scroll-shield {
     background-color: $main-grey;
     position: relative;
-    height: 220px;
+    height: 150px;
     width: 100%;
     z-index: 20;
+    transition: height $transition;
+    &.is-open {
+      height: 220px;
+    }
     @media screen and (min-width: $desktop) {
       display: none;
     }
@@ -487,7 +492,7 @@ a {
     width: 100%;
     height: 144px;
     flex-direction: column;
-    margin-bottom: 40px;
+    //margin-bottom: 40px;
     padding-top: 95px;
     padding-left: 64px;
 
@@ -539,8 +544,11 @@ a {
     }
   }
   &__cabinet-box {
-    display: none;
-
+    // display: none;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-30px);
+    transition: opacity $transition, transform $transition;
     width: 100%;
     margin-left: 20px;
 
@@ -562,6 +570,11 @@ a {
 
     &__cabinet_link {
       display: flex;
+    }
+
+    & .drop_up {
+      transform: translateX(-24px);
+      display: none;
     }
   }
 }
@@ -631,10 +644,6 @@ a {
 
 body.authorized {
   @media screen and (min-width: $desktop) {
-    & .inMyCabinet {
-      display: block;
-    }
-
     & .outMyCabinet {
       display: none;
     }
@@ -668,8 +677,27 @@ body.authorized {
   }
 
   @media screen and (max-width: 1279px) {
-    .data-back.is-open .header_filter {
-      padding-top: 210px;
+    .is-open li {
+      transform: translateY(70px);
+    }
+
+    .open-cab {
+      & .drop_up {
+        display: block;
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      &.my-account__cabinet-box {
+        display: block;
+        pointer-events: auto;
+        transform: translateY(0px);
+        opacity: 1;
+      }
+    }
+
+    .inMyCabinet {
+      display: block;
     }
 
     .header_button__my-account {
@@ -677,13 +705,15 @@ body.authorized {
     }
 
     .my-account {
-      &__exit,
-      &__cabinet-box {
+      &__exit {
         display: block;
       }
       &__cabinet {
         display: flex;
       }
+      // &__cabinet-box {
+
+      // }
     }
   }
 }

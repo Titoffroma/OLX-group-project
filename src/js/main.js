@@ -1,9 +1,12 @@
-import { load, remove, save } from './storage';
+import { delPreloader } from './preloader.js';
+import { load, save } from './storage';
 import InitiateListeners from './listeners';
 import fetchFunctions from './fetchMe';
 import myModal from './modalClass';
 import './editProduct';
 import addPreloader from './preloader.js';
+
+window.addEventListener('load', delPreloader);
 
 myModal.startListener();
 setGoogleAuth();

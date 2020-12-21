@@ -8,7 +8,7 @@
   height: 24px;
 
   border: none;
-  background-color: $white;
+  background-color: transparent;
 
   cursor: pointer;
 
@@ -104,8 +104,14 @@
   @media screen and (min-width: $desktop) {
     width: 440px;
   }
+
   &.select-input {
     cursor: pointer;
+  }
+
+  &:focus {
+    border: 1px solid $accent;
+    outline: none;
   }
 }
 

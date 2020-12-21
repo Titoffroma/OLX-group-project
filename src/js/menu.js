@@ -2,6 +2,8 @@ import { measureAndFixScroll } from './preloader';
 const menuBtnRef = document.querySelector('[data-menu-button]');
 const closeBurgerMenu = document.querySelector('.menu-button-close');
 const mobileBackd = document.querySelector('[data-backref]');
+const cabinet = document.querySelector('[data-drop]');
+const shield = document.querySelector('.header_filter__scroll-shield');
 
 const scrollFix = {
   _initialPadding: 0,
@@ -46,4 +48,13 @@ function closeMenu(event) {
   return;
 }
 
-export { openMenu, closeMenu };
+function openCabinet() {
+  const cabinetList = document.querySelector('.my-account__cabinet-box');
+  const categoryList = document.querySelector('.header_filter');
+  categoryList.classList.toggle('is-open');
+  cabinet.classList.toggle('open-cab');
+  cabinetList.classList.toggle('open-cab');
+  shield.classList.toggle('is-open');
+}
+
+export { openMenu, closeMenu, openCabinet };

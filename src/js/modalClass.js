@@ -53,7 +53,7 @@ class Modal {
       const modalRef = document.querySelector('div[data-close]');
       setTimeout(() => {
         modalRef.classList.add('opened');
-      }, 500);
+      }, 100);
       this.scroll = this.oldScroll;
       document.body.style.overflow = 'hidden';
       modalRef.addEventListener('click', this.onClickCloseModal);

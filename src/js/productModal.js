@@ -120,6 +120,7 @@ async function addToFavorite(evt) {
       if (heartInCard) {
         if (evt.target.classList.contains('actions-item_title')) {
           evt.target.textContent = 'З обраного';
+          evt.target.nextElementSibling.classList.add('liked');
         } else {
           evt.target.previousElementSibling.textContent = 'З обраного';
           evt.target.previousElementSibling.classList.add('liked');
@@ -146,6 +147,7 @@ async function addToFavorite(evt) {
       if (heartInCard) {
         if (evt.target.classList.contains('actions-item_title')) {
           evt.target.textContent = 'В обране';
+          evt.target.nextElementSibling.classList.remove('liked');
         } else {
           evt.target.previousElementSibling.textContent = 'В обране';
           evt.target.previousElementSibling.classList.remove('liked');
