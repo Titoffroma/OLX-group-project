@@ -17,15 +17,18 @@
                     <label class="add-card__label">
                         <span class="add-card__subtitle">Фото</span>
                         <ul class="photo-list">
+
+                            {{#if imageUrls}}
                             {{#each imageUrls}}
                             <li class="photo-item">
                                 <input id="photoElem" class="photo-input" type="file" name="file" multiple
                                     accept="image/*" />
                                 <label for="photoElem" class="photo-label"><span
                                         class="material-icons">add</span></label>
-                                <img id="output_image" src="{{this}}" />
+                                <img id="output_image" src="{{ this}}" />
                             </li>
                             {{/each}}
+                            {{else}}
                             <li class="photo-item">
                                 <input id="photoElem" class="photo-input" type="file" name="file" multiple
                                     accept="image/*" required />
@@ -61,6 +64,7 @@
                                         class="material-icons">add</span></label>
                                 <img id="output_image" />
                             </li>
+                            {{/if}}
 
                         </ul>
                     </label>
