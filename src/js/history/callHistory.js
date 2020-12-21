@@ -32,7 +32,7 @@ export const getPage = async (page) => {
         query: `?page=${page}`,
       };
       return await fetchFunctions.getRequest(searchQuery);
-   
+      
    };
 
 

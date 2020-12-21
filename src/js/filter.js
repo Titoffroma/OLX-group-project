@@ -12,8 +12,6 @@ import { load, save } from './storage';
 import { evtHolder } from './listeners';
 
 renderFilter();
-appPage()
-
 export default async function renderFilter() {
   const filterUL = document.querySelector('.header_filter');
   const filterRequest = {
@@ -22,7 +20,7 @@ export default async function renderFilter() {
   const response = await fetchFunctions.getRequest(filterRequest);
   save('cats', response);
   filterUL.innerHTML = hbsFunction(response);
-  appPage();
+ appPage();
   // document.body.addEventListener('click', Mycallback);
 }
 
@@ -63,6 +61,7 @@ async function onPaginationPage(event) {
   event.target.classList.add('active');
 }
 
+
 async function renderFilterCategory(event) {
   const path = event.target.getAttribute('href');
   event.preventDefault();
@@ -76,10 +75,12 @@ async function renderFilterCategory(event) {
     updatedContent();
     response = await appPage(true);
   } else if (event.target.dataset.filter == '0') {
+    updateState(`/call?${path}`)
     const calls = load('User').calls;
     calls.map(el => (el.logged = 'logged'));
     response = calls;
   } else if (event.target.dataset.filter == '1') {
+    updateState(`/favorites?${path}`)
     response = load('User').favourites;
   } else {
     response = await fetchFunctions.getRequest(request);

@@ -26,7 +26,17 @@ export async function  fun8 () {
     const markup = await decideTologin(data);
     const orderedSearch = renderPagination(markup);
     document.querySelector('main div.container').innerHTML = orderedSearch;
-}
+    if(document.querySelector('.pagination')){
+        const ref ={
+            pagin: document.querySelector('div[data-pagination]'),
+        };
+        const statePage = location.search.split('');
+        const statePageNew = statePage[statePage.length - 1];
+        ref.pagin.children.forEach(element => {element.classList.remove('active');
+    });
+    ref.pagin.children[statePageNew - 1].classList.add('active');
+};
+};
 
 export async function  fun9 () {
     const url = new URL(location.href).search;
