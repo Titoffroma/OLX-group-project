@@ -5,7 +5,6 @@ export default function () {
   const refs = {
     photoElem: document.querySelector('#photoElem'),
     outputImg: document.querySelectorAll('#output_image'),
-    categoryList: document.querySelector('.category-list'),
     addCardForm: document.querySelector('.add-card__form'),
     photoLabel: document.querySelectorAll('.photo-label'),
     formInputs: document.querySelectorAll('.add-card__input'),
@@ -21,7 +20,6 @@ export default function () {
   refs.photoElem.addEventListener('change', previewImage);
   let i = -1;
   const photoLabelList = Array.from(refs.photoLabel);
-  photoLabelList[0].classList.add('active');
 
   function previewImage(event) {
     const reader = new FileReader();
@@ -40,7 +38,7 @@ export default function () {
   }
 
   function categoryRender() {
-    refs.categoryList.insertAdjacentHTML('afterbegin', catMarkup(load('cats')));
+    refs.categoryInput.insertAdjacentHTML('afterbegin', catMarkup(load('cats')));
   }
 
   function validateInput() {
@@ -57,7 +55,7 @@ export default function () {
             'Заповніть будьласка це поле';
         } else {
           input.classList.remove('invalid');
-          errorsMessageList[currentIndex].classList.add('visually-hidden');
+          errorsMessageList[currentIndex].innerHTML = '';
         }
       });
     });
