@@ -11,7 +11,6 @@ import { load, save } from './storage';
 // import slider from './slider';
 import { evtHolder } from './listeners';
 
-renderFilter();
 export default async function renderFilter() {
   const filterUL = document.querySelector('.header_filter');
   const filterRequest = {
@@ -20,11 +19,10 @@ export default async function renderFilter() {
   const response = await fetchFunctions.getRequest(filterRequest);
   save('cats', response);
   filterUL.innerHTML = hbsFunction(response);
- appPage();
-  // document.body.addEventListener('click', Mycallback);
 }
 
- async function appPage(sales) {
+async function appPage(sales) {
+  renderFilter();
   const searchQuery = {
     point: fetchFunctions.points.call,
     query: '?page=1',
@@ -48,19 +46,18 @@ async function onPaginationPage(event) {
   const markup = await decideTologin(searchResult);
   const orderedSearch = renderCategories(markup);
   document.querySelector('section.categories').innerHTML = orderedSearch;
-  updateState(`/page?page=${numderPage}` )
+  updateState(`/page?page=${numderPage}`);
   window.scrollTo({
     top: 0,
     behavior: 'smooth',
   });
   document.querySelector('section.categories').innerHTML = orderedSearch;
 }
- function toggleActive(event) {
+function toggleActive(event) {
   const pagination = document.querySelector('div[data-pagination]');
   pagination.querySelector('.active').classList.remove('active');
   event.target.classList.add('active');
 }
-
 
 async function renderFilterCategory(event) {
   const path = event.target.getAttribute('href');
@@ -75,29 +72,32 @@ async function renderFilterCategory(event) {
     updatedContent();
     response = await appPage(true);
   } else if (event.target.dataset.filter == '0') {
-    updateState(`/call?${path}`)
+    updateState(`/call?${path}`);
     const calls = load('User').calls;
     calls.map(el => (el.logged = 'logged'));
     response = calls;
   } else if (event.target.dataset.filter == '1') {
-    updateState(`/favorites?${path}`)
+    updateState(`/favorites?${path}`);
     response = load('User').favourites;
   } else {
     response = await fetchFunctions.getRequest(request);
-   updateState(`/category?value=${path}`);
-    updatedContent()
+    updateState(`/category?value=${path}`);
+    updatedContent();
   }
 
   const markup = await decideTologin(response);
   paginationAll(markup);
 }
 async function logoutOnClick() {
+  console.log('logout');
   const response = await fetchFunctions.logout();
   if (response) appPage();
 }
 function scrollToOfficeSection(event) {
   const index = event.target.getAttribute('data-office-link');
   if (!document.querySelector('.my-office')) {
+    updateState('user', '', 'user');
+    updatedContent();
     renderOffice().then(() => {
       document
         .querySelector(`li[data-index="${index}"]`)
