@@ -89,7 +89,6 @@ async function renderFilterCategory(event) {
   paginationAll(markup);
 }
 async function logoutOnClick() {
-  console.log('logout');
   const response = await fetchFunctions.logout();
   if (response) appPage();
 }
