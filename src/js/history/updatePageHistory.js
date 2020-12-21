@@ -43,3 +43,10 @@ export async function  fun9 () {
     const data = await getSale(url.split('=')[1]);
     document.querySelector('main div.container').innerHTML = renderCards(data);
 }
+
+
+export async function  fun10 () {
+    const url = new URL(location.href).search;
+    const data = await getSale(url.split('=')[1]);
+    document.querySelector('main div.container').innerHTML = renderCards(data);
+}

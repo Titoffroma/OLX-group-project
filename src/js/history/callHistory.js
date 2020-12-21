@@ -37,7 +37,7 @@ export const getPage = async (page) => {
 
 
 
-   export const getSale = async (sales) => {
+   export const getSale = async (value) => {
     const searchQuery = {
         point: fetchFunctions.points.call,
         query: '?page=1',
@@ -46,4 +46,3 @@ export const getPage = async (page) => {
      return searchResult.sales;
       
    };
-   
