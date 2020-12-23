@@ -3,7 +3,6 @@ import myAdvert from '../templates/my-advert.hbs';
 import decideTologin from './main';
 
 export default async function renderOffice() {
-  console.log('renderOffice');
   await decideTologin();
   const user = load('User');
 
